@@ -175,6 +175,7 @@
 		</script>
 	</section>
 	<section class="section1">
+	<%@ include file="xe16.jsp"%>
 		<!-- <div style="margin-left: 200px; position: absolute;" align="center" z-index=-1>
 			<a href="http://kialongbien.oto-xemay.vn/" target="_blank"
 				style="margin-right: 15px;" rel="nofollow"> <img
@@ -188,7 +189,7 @@
 				src="http://113.160.50.25/banner/top/banner/1395905620_quan-mui-auto11.gif"
 				border="1"></a>
 		</div> -->
-		<div
+		 <!-- <div
 			style="width: 80%; font-size: 32px; color: white; font-family: arial; position: absolute; margin-top: 100px; background: #1E62A3;">Tìm
 			vé nhanh:</div>
 		<div>
@@ -214,7 +215,7 @@
 					<li>TP Hồ Chí minh → Đắk Lắk 220.000 vnd/vé</li>
 					<li>Hà Nội → Sơn La 220.000 vnd/vé</li>
 				</ul>
-			</div>
+			</div> 
 			<div style="margin-top: 5px; width: 80%; float: left; clear: none;">
 				<h1 style="background: #1E62A3; color: white;">Thông tin khác:</h1>
 				<div class="#">
@@ -237,8 +238,8 @@
 						</li>
 					</ul>
 				</div>
-			</div>
-		</div>
+			</div> 
+		</div> -->
 	</section>
 	<%@ include file="footer.jsp"%>
 

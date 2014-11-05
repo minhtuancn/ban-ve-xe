@@ -1,0 +1,89 @@
+div#xe {
+	position:absolute;
+	border: 3px solid #4F679B;
+	background: white;
+	width: 310px;
+	height: 780px;
+	border-radius: 20px;
+	float: left;
+	clear: right;
+	left: 400px;
+}
+div#xe .ghe {
+	position: absolute;
+	width: 45px;
+	height: 45px;
+}
+
+div#xe .cot0 {
+	left: 20px;
+}
+
+div#xe .cot1 {
+	left: 80px;
+}
+
+div#xe .cot2 {
+	left: 180px;
+}
+
+div#xe .cot3 {
+	left: 240px;
+}
+
+div#xe .hang0 {
+	top: 130px;
+}
+
+div#xe .hang1 {
+	top: 190px;
+}
+
+div#xe .hang2 {
+	top: 250px;
+}
+
+div#xe .hang3 {
+	top: 310px;
+}
+
+div#xe .hang4 {
+	top: 370px;
+}
+div#xe .hang5 {
+	top: 430px;
+}
+div#xe .hang6 {
+	top: 490px;
+}
+div#xe .hang7 {
+	top: 550px;
+}
+div#xe .hang8 {
+	top: 610px;
+}
+div#xe .hang9 {
+	top: 670px;
+}
+div#xe .hang10 {
+	top: 730px;
+	}
+div#xe .cot1-0 {
+	left: 20px;
+}
+
+div#xe .cot1-1 {
+	left: 75px;
+}
+
+div#xe .cot1-2 {
+	left: 130px;
+}
+
+div#xe .cot1-3 {
+	left: 185px;
+}
+div#xe .cot1-4 {
+	left: 240px;
+}
+	
