@@ -6,7 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/xe.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/xe45.css">
+<script>
+	$(document).ready(function() {
+		set($(".ghe"));
+	});
+</script>
 </head>
 <body>
 	<div id="xe">
