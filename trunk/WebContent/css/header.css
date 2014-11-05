@@ -1,0 +1,44 @@
+a {
+	float: left;
+	clear: right;
+}
+
+header {
+	background: #1E62A3;
+	clear: none;
+}
+
+header img{
+	margin-left: 100px;
+}
+
+nav {
+	float: right;
+	margin-top: -65px;
+}
+
+nav ul {
+	list-style: none;
+	font-family: Arial, sans-serif;
+	font-size: 18px;
+	padding: 0;
+}
+
+nav ul li {
+	float: left;
+	position: relative;
+	
+}
+
+nav ul a {
+	text-decoration: none;
+	color: #A3D9ED;
+	display: block;
+	font-weight: bold;
+	padding: 10px 30px;
+	background: #000;
+}
+
+nav ul a:HOVER {
+	background: #555;
+}
