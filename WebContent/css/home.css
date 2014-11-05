@@ -4,50 +4,6 @@ width: 100%;
 height: 700px;
 }
 
-a {
-	float: left;
-	clear: right;
-}
-
-header {
-	background: #1E62A3;
-	clear: none;
-}
-
-header img{
-	margin-left: 100px;
-}
-
-nav {
-	float: right;
-	margin-top: -65px;
-}
-
-nav ul {
-	list-style: none;
-	font-family: Arial, sans-serif;
-	font-size: 18px;
-	padding: 0;
-}
-
-nav ul li {
-	float: left;
-	position: relative;
-	
-}
-
-nav ul a {
-	text-decoration: none;
-	color: #A3D9ED;
-	display: block;
-	font-weight: bold;
-	padding: 10px 30px;
-	background: #000;
-}
-
-nav ul a:HOVER {
-	background: #555;
-}
 
 article {
 	margin-top: -350px;
@@ -223,6 +179,11 @@ div.noidi-nam #noidi-den, div.noidi-trung #noidi-den, div.noidi-bac #noidi-den {
 	border-color: red;
 	background: orange;
 	border: 2px;
+	width: 100%;
+	height: 30px;
+	font-size: 20px;
+	font-style: italic;
+	padding-top: 5px;
 }
 
 ul.noidi-nam1, ul.noidi-nam2, ul.noidi-trung1, ul.noidi-trung2, ul.noidi-bac1,
