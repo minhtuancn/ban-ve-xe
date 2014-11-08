@@ -41,8 +41,8 @@
 </tr>
 </table>
 <hr/>
-<input type="image" src="../image/xacnhan.png" width="80px" style="margin-left:100px;margin-top:15px;" >
-<input type="image" src="../image/huyve.png" width="80px" >
+<a href="thanhtoan.jsp"><input type="image" src="../image/xacnhan.png" width="80px" style="margin-left:100px;margin-top:10px;float:left;clear:right;" onclick="thanhtoan.jsp"></a>
+<a href="datve.jsp"><input type="image" src="../image/huyve.png" width="80px" style="margin-left:10px;margin-top:10px;"  ></a>
 </div>
 </section>
 </body>
