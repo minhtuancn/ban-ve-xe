@@ -33,22 +33,32 @@ public class ServerCheckGhe {
 	}
 
 	@OnMessage
-	public void onMessage(String message, Session session) throws IOException {
+	public synchronized void onMessage(String message, Session session)
+			throws IOException {
 		int ighe = Integer.parseInt(message);
 		if (ghe[ighe]) {
-			session.getBasicRemote().sendText(
-					buildJsonData("check", "false", "ghe", message));
+			 session.getBasicRemote().sendText(
+			 buildJsonData("check", "false", "ghe", message));
+			ghe[ighe] = false;
+			Iterator<Session> i = room.iterator();
+			String s = buildJsonData("unset", message);
+			while (i.hasNext()) {
+				Session session2 = i.next();
+				if (session2.equals(session))
+					continue;
+				session2.getBasicRemote().sendText(s);
+			}
 		} else {
 			session.getBasicRemote().sendText(
 					buildJsonData("check", "true", "ghe", message));
 			ghe[ighe] = true;
 			Iterator<Session> i = room.iterator();
+			String s = buildJsonData("set", message);
 			while (i.hasNext()) {
 				Session session2 = i.next();
 				if (session2.equals(session))
 					continue;
-				session2.getBasicRemote()
-						.sendText(buildJsonData("set", message));
+				session2.getBasicRemote().sendText(s);
 			}
 		}
 	}

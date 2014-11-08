@@ -15,9 +15,12 @@ function set(item) {
 			if (json.check.indexOf("true") != -1)
 				choose("#" + json.ghe);
 			else
-				setSeatOdered( "#" + json.ghe);
+				unchoose("#" + json.ghe);
+				
 		if (json.set != null)
 			setSeatOdered("#" +json.set);
+		if (json.unset != null)
+			unsetSeatOdered("#" +json.unset);
 	};
 	function sendMessage(el) {
 		ws.send(el.attr("id"));
@@ -35,10 +38,11 @@ function unselected(el) {
 function choose(el) {
 	$(el).unbind("mouseenter");
 	$(el).unbind("mouseleave");
-	$(el).unbind("click");
+//	$(el).unbind("click");
 	$(el).click(function() {
 		unchoose($(el));
 	});
+	selected($(el));
 }
 function unchoose(el) {
 	$(el).mouseenter(function() {
@@ -47,10 +51,10 @@ function unchoose(el) {
 	$(el).mouseleave(function() {
 		unchoose($(el));
 	});
-	$(el).unbind("click");
-	$(el).click(function() {
-		choose($(el));
-	});
+//	$(el).unbind("click");
+//	$(el).click(function() {
+//		choose($(el));
+//	});
 	unselected($(el));
 }
 function checkGhe(el) {
@@ -71,4 +75,17 @@ function setSeatOdered(el) {
 	$(el).unbind("mouseenter");
 	$(el).unbind("mouseleave");
 	$(el).unbind("click");
+}
+function unsetSeatOdered(el) {
+	var newSrc = "../image/ghe1.png";
+	$(el).attr("src", newSrc);
+	$(el).mouseleave(function() {
+		unselected($(this));
+	});
+	$(el).mouseenter(function() {
+		selected($(this));
+	});
+	$(el).click(function() {
+		sendMessage($(this));
+	});
 }
