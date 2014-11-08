@@ -54,13 +54,13 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<section>
-		<img alt="nen" src="../image/banner03-v1.jpg" width="100%">
+		<img alt="nen" src="../image/banner03-v1.jpg" width="100%" height="350px">
 
 		<article>
 			<form action="#" class="login-form">
 				<table id="tb-datve" width="200px">
 					<tr>
-						<td><img alt="a" src="../image/tim ve xe.jpg"></td>
+						<td><img alt="a" src="../image/tim ve xe.jpg" height="50px"></td>
 					</tr>
 					<tr>
 						<td><span id="title-datve" class="title-datvedi">Nơi
@@ -175,7 +175,7 @@
 		</script>
 	</section>
 	<section class="section1">
-	<%@ include file="xe16.jsp"%>
+	<div style="width:100%;height:40px;background:#145CA1;font-size:30px;color:white;"> Trang chủ</div>
 		<!-- <div style="margin-left: 200px; position: absolute;" align="center" z-index=-1>
 			<a href="http://kialongbien.oto-xemay.vn/" target="_blank"
 				style="margin-right: 15px;" rel="nofollow"> <img

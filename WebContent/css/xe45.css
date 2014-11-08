@@ -3,11 +3,11 @@ div#xe {
 	border: 3px solid #4F679B;
 	background: white;
 	width: 310px;
-	height: 780px;
+	height: 680px;
 	border-radius: 20px;
 	float: left;
 	clear: right;
-	left: 400px;
+	left: 0px;
 }
 div#xe .ghe {
 	position: absolute;
@@ -32,41 +32,41 @@ div#xe .cot3 {
 }
 
 div#xe .hang0 {
-	top: 130px;
+	top: 120px;
 }
 
 div#xe .hang1 {
-	top: 190px;
+	top: 170px;
 }
 
 div#xe .hang2 {
-	top: 250px;
+	top: 220px;
 }
 
 div#xe .hang3 {
-	top: 310px;
+	top: 270px;
 }
 
 div#xe .hang4 {
-	top: 370px;
+	top: 320px;
 }
 div#xe .hang5 {
-	top: 430px;
+	top: 370px;
 }
 div#xe .hang6 {
-	top: 490px;
+	top: 420px;
 }
 div#xe .hang7 {
-	top: 550px;
+	top: 470px;
 }
 div#xe .hang8 {
-	top: 610px;
+	top: 520px;
 }
 div#xe .hang9 {
-	top: 670px;
+	top: 570px;
 }
 div#xe .hang10 {
-	top: 730px;
+	top: 620px;
 	}
 div#xe .cot1-0 {
 	left: 20px;

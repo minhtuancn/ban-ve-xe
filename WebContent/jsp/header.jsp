@@ -14,10 +14,10 @@
 	<nav>
 		<ul>
 			<li><a href="body.jsp">Trang chủ</a></li>
-			<li><a href="google.com">Giới thiệu</a></li>
+			<li><a href="gioithieu.jsp">Giới thiệu</a></li>
 			<li><a href="datve.jsp">Kiểm tra vé</a></li>
-			<li><a href="google.com">Tin tức</a></li>
-			<li><a href="google.com">Liên hệ</a></li>
+			<li><a href="tintuc.jsp">Tin tức</a></li>
+			<li><a href="lienhe.jsp">Liên hệ</a></li>
 		</ul>
 	</nav>
 </body>
