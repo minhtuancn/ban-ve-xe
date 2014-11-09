@@ -57,7 +57,7 @@
 		<img alt="nen" src="../image/banner03-v1.jpg" width="100%" height="350px">
 
 		<article>
-			<form action="timve.jsp" class="login-form">
+			<form action="datve.jsp" class="login-form">
 				<table id="tb-datve" width="200px">
 					<tr>
 						<td><img alt="a" src="../image/tim ve xe.jpg" height="50px"></td>
@@ -216,29 +216,7 @@
 					<li>Hà Nội → Sơn La 220.000 vnd/vé</li>
 				</ul>
 			</div> 
-			<div style="margin-top: 5px; width: 80%; float: left; clear: none;">
-				<h1 style="background: #1E62A3; color: white;">Thông tin khác:</h1>
-				<div class="#">
-					<ul>
-						<li><a href="#" >Danh sách
-								các chuyến xe khách từ bến xe Giáp Bát đi Hòa Bình </a> 30.10.2014</li>
-						<li><a href="#" >Danh sách
-								các nhà xe chạy tuyến bến xe Giáp Bát đi Quảng Ninh </a> 30.10.2014
-						</li>
-						<li><a href="#" >Lịch trình
-								vận chuyển của xe khách Minh Tơ Bình Thuận </a> 29.10.2014</li>
-						<li><a href="#" >Lịch trình
-								vận chuyển của xe khách Sang Hoa Bình Thuận </a> 28.10.2014</li>
-						<li><a href="#" >Lịch trình
-								vận chuyển của xe khách Văn Tín Bến Tre </a> 28.10.2014</li>
-						<li><a href="#" >Lịch trình
-								xe khách Thảo Nga An Giang </a> 28.10.2014:</li>
-						<li><a href="#" >Lịch trình
-								xe khách Hoàng Yến tuyến Bạc Liêu – TP Hồ Chí Minh </a> 24.10.2014
-						</li>
-					</ul>
-				</div>
-			</div> 
+			
 		</div> -->
 	</section>
 	<%@ include file="footer.jsp"%>
