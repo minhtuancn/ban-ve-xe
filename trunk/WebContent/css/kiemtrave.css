@@ -1,0 +1,89 @@
+
+.kiemtrave {
+	margin: 0 auto;
+	width: 1000px
+}
+
+.kt-ve:before, .kt-ve:after {
+	content: '.';
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	font-size: 0;
+	line-height: 0;
+	width: 0;
+	height: 0
+}
+
+.kt-ve:after {
+	clear: both
+}
+
+.kt-ve {
+	zoom: 1
+}
+
+.mg {
+	margin-bottom: 20px 
+}
+
+.pd {
+	padding: 20px
+}
+
+.fl-l {
+	float: left
+}
+
+.wd-110 {
+	width: 110px
+}
+
+.timve {
+	background-image:-moz-linear-gradient(top, #f79400, #facd00);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#f79400),to(#facd00));
+	border: 1px solid #925a17;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 16px;
+	display: block;
+	cursor: pointer;
+}
+
+label, input {
+	float: left;
+	display: block;
+	border: 1px solid #cecece;
+	padding: 2px 6px 4px 6px;
+	margin-top: 8px;
+	font: normal 13px/18px Arial, sans-serif;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px
+}
+
+label {
+	border: none;
+	padding: 0
+}
+
+label strong{
+	color: red;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+	font-weight: normal
+}
+
+input.input-txt {
+	padding: 2px 10px;
+	height: 20px;
+	margin: 5px 0;
+	width: 205px;
+	color: #4c3a3a;
+	font-size: 12px
+}
+
+
