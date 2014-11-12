@@ -51,6 +51,7 @@
 	font-size: 16px;
 	display: block;
 	cursor: pointer;
+	margin-right: 10px;
 }
 
 label, input {
@@ -84,6 +85,65 @@ input.input-txt {
 	width: 205px;
 	color: #4c3a3a;
 	font-size: 12px
+}
+
+.ttoan {
+	font-size: 14px;
+	margin-left: 20px;
+	display: block;
+}
+
+div.ktve-p p {
+	font-size: 22px;
+	font-family: Arial;
+	font-style: italic;
+	font-weight: bold;
+	color: #1E62A3;
+}
+
+
+table {
+margin-left: 50px;
+margin-right: 50px;
+margin-top: 30px;
+}
+
+table#ktv {
+	margin-left: -5px;
+width: 100%;
+margin-top: 30px;
+}
+
+#dong1 {
+	background: #145CA1;
+	font-size: 20px;
+	color: orange;
+	font-style: oblique;
+	border: 1px solid black;
+	border-radius: 1px;
+}
+
+#dong2 {
+	border: 1px solid black;
+}
+
+.tr1 {
+	border: 1px solid black;
+	width: 5%;
+}
+
+
+.chon {
+	background-image:-moz-linear-gradient(top, #f79400, #facd00);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#f79400),to(#facd00));
+	border: 1px solid #925a17;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-weight: bold;
+	font-size: 16px;
+	display: block;
+	cursor: pointer;
 }
 
 

@@ -4,6 +4,12 @@ margin-right: 50px;
 margin-top: 30px;
 }
 
+table#ktv {
+	margin-left: -5px;
+width: 100%;
+margin-top: 30px;
+}
+
 #dong1 {
 	background: #145CA1;
 	font-size: 20px;
@@ -21,6 +27,7 @@ margin-top: 30px;
 	border: 1px solid black;
 	width: 5%;
 }
+
 
 .chon {
 	background-image:-moz-linear-gradient(top, #f79400, #facd00);
