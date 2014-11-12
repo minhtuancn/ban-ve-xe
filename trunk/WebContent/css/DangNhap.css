@@ -1,96 +1,131 @@
-.login-form,
-.login-form h1,
-.login-form span,
-.login-form input,
-.login-form label {
-margin: 0;
-padding: 0;
-border: 0;
-outline: 0;
+.containerdn {
+	width: 100%; height: 600px;
 }
+
+.ttoan{
+	width: 100%; height: 40px; background: #145CA1; font-size: 30px; color: white; margin-top: 10px;
+}
+
+.lable {
+	font-size: 22px;
+	color: #145CA1;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.ctv {
+	margin-left: 800px; margin-top: 10px;
+	}
+
+
+
+.login-form, .login-form h1, .login-form span, .login-form input,
+	.login-form label {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+}
+
 .login-form {
-position: relative;
-width: 200px;
-height: 230px;
-padding: 15px 25px 0 25px;
-margin-top: 15px;
-cursor: default;
-background-color: #141517;
-border-radius: 5px;
-box-shadow: 0px 1px 1px 0px rgba(255,255,255, .2), inset 0px 1px 1px 0px rgb(0,0,0);
+	float: left;
+	clear: right;
+	position: relative;
+	width: 200px;
+	height: 230px;
+	padding: 15px 25px 0 25px;
+	margin-top: 15px;
+	cursor: default;
+	background-color: #145CA1;
+	border-radius: 8px;
+	box-shadow: 0px 1px 1px 0px rgba(255, 255, 255, .2), inset 0px 1px 1px
+		0px rgb(0, 0, 0);
 }
+
 .login-form	h1 {
-line-height: 40px;
-font-family: 'Myriad Pro', sans-serif;
-font-size: 22px;
-font-weight: normal;
-color: #e4e4e4;
-text-align:center;
+	line-height: 40px;
+	font-family: 'Myriad Pro', sans-serif;
+	font-size: 22px;
+	font-weight: normal;
+	color: #ffffff;
+	text-align: center;
 }
-form .req { color: #ca5354; }
+
+form .req {
+	color: #ca5354;
+}
+
 form label {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 6px 0;
-  color: #e4e4e4;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 0;
+	color: #e4e4e4;
 }
-.login-form input[type=text],
-.login-form input[type=password]{
-line-height: 14px;
-margin: 10px 0;
-padding: 6px 15px;
-border: 0;
-outline: none;
-font-family: Helvetica, sans-serif;
-font-size: 12px;
-font-weight: bold;
-text-shadow: 0px 1px 1px rgba(255,255,255, .2);
-border-radius: 26px;
-transition: all .15s ease-in-out;
+
+.login-form input[type=text], .login-form input[type=password] {
+	line-height: 14px;
+	margin: 10px 0;
+	padding: 6px 15px;
+	border: 0;
+	outline: none;
+	font-family: Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, .2);
+	border-radius: 26px;
+	transition: all .15s ease-in-out;
 }
+
 .login-form input[type=submit] {
 	line-height: 14px;
-margin: 10px 50px;
-padding: 6px 15px;
-border: 0;
-outline: none;
-font-family: Helvetica, sans-serif;
-font-size: 12px;
-font-weight: bold;
-text-shadow: 0px 1px 1px rgba(255,255,255, .2);
-border-radius: 26px;
-transition: all .15s ease-in-out;
+	margin: 10px 50px;
+	padding: 6px 15px;
+	border: 0;
+	outline: none;
+	font-family: Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, .2);
+	border-radius: 26px;
+	transition: all .15s ease-in-out;
 }
-.login-form input[type=text],
-.login-form input[type=password],
-.js .login-form span {
-color: #686868;
-width: 170px;
-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .6);
-background: #989898;
-background: linear-gradient(top,  #ffffff 0%,#989898 100%);
+
+.login-form input[type=text], .login-form input[type=password], .js .login-form span
+	{
+	color: #686868;
+	width: 170px;
+	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6);
+	background: #989898;
+	background: linear-gradient(top, #ffffff 0%, #989898 100%);
 }
-.login-form input[type=text]:hover,
-.login-form input[type=password]:hover {
-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .6), 0px 0px 5px rgba(255,255,255, .5);
+
+.login-form input[type=text]:hover, .login-form input[type=password]:hover
+	{
+	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6), 0px 0px 5px
+		rgba(255, 255, 255, .5);
 }
-.login-form input[type=text]:focus,
-.login-form input[type=password]:focus {
-background: #e1e1e1;
-background: linear-gradient(top,  #ffffff 0%,#e1e1e1 100%);
+
+.login-form input[type=text]:focus, .login-form input[type=password]:focus
+	{
+	background: #e1e1e1;
+	background: linear-gradient(top, #ffffff 0%, #e1e1e1 100%);
 }
-.login-form input[type=submit]
-{
-cursor: pointer;
-color: #445b0f;
-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
-background: #a5cd4e;
-background: linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+
+.login-form input[type=submit] {
+	cursor: pointer;
+	color: #445b0f;
+	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .45), 0px 1px 1px
+		0px rgba(0, 0, 0, .3);
+	background: #a5cd4e;
+	background: linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
 }
+
 .login-form input[type=submit]:hover {
-box-shadow: inset 1px 1px 3px 0px rgba(255,255,255, .8), 0px 1px 1px 0px rgba(0,0,0, .6);
+	box-shadow: inset 1px 1px 3px 0px rgba(255, 255, 255, .8), 0px 1px 1px
+		0px rgba(0, 0, 0, .6);
 }
+
 .login-form input[type=submit]:active {
-box-shadow: none;
+	box-shadow: none;
 }
