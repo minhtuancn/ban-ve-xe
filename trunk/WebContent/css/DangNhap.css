@@ -64,7 +64,7 @@ form label {
 	line-height: 14px;
 	margin: 10px 0;
 	padding: 6px 15px;
-	border: 0;
+	border: 1px solid #ccc;
 	outline: none;
 	font-family: Helvetica, sans-serif;
 	font-size: 12px;
@@ -90,10 +90,10 @@ form label {
 
 .login-form input[type=text], .login-form input[type=password], .js .login-form span
 	{
-	color: white;
+	color: blue;
 	width: 170px;
 	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6);
-	background: #989898;
+	background: #f0f0f0;
 	background: linear-gradient(top, #ffffff 0%, #989898 100%);
 }
 
