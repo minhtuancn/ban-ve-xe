@@ -19,13 +19,14 @@
 			<form action="#">
 				<label for="name">Tên Đăng Nhập: <span class="req">*</span></label>
 				<input type="text" name="username" placeholder="Tên đăng nhập"
-					required="required"> <label for="name">Mật Khẩu: <span
-					class="req">*</span></label> <input type="password" name="password"
-					placeholder="Mật khẩu" required="required"> <input
-					type="submit" value="Đăng nhập">
-					
+					required="required">
+					 <label for="name">Mật Khẩu: <span class="req">*</span></label>
+					  <input type="password" name="password" placeholder="Mật khẩu" required="required">
+					   <input type="submit" value="Đăng nhập">
+					<a href="quenmk.jsp">Quên mật khẩu</a>
+					<a href="DangKi.jsp">Đăng kí</a>
 			</form>
-
+			
 		</div>
 		<div class="ctv"><%@ include file="chitietvexe.jsp"%></div>
 	</div>
