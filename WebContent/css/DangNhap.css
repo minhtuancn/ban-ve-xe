@@ -16,9 +16,7 @@
 .ctv {
 	margin-left: 800px; margin-top: 10px;
 	}
-
-
-
+	
 .login-form, .login-form h1, .login-form span, .login-form input,
 	.login-form label {
 	margin: 0;
@@ -32,14 +30,13 @@
 	clear: right;
 	position: relative;
 	width: 200px;
-	height: 230px;
+	height: 250px;
 	padding: 15px 25px 0 25px;
 	margin-top: 15px;
-	cursor: default;
-	background-color: #145CA1;
-	border-radius: 8px;
-	box-shadow: 0px 1px 1px 0px rgba(255, 255, 255, .2), inset 0px 1px 1px
-		0px rgb(0, 0, 0);
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 1px 1px 1px 1px rgba(255, 255, 255, 255), inset 1px 1px 1px
+		1px rgb(0, 0, 0);
 }
 
 .login-form	h1 {
@@ -47,12 +44,12 @@
 	font-family: 'Myriad Pro', sans-serif;
 	font-size: 22px;
 	font-weight: normal;
-	color: #ffffff;
+	color: blue;
 	text-align: center;
 }
 
 form .req {
-	color: #ca5354;
+	color: red;
 }
 
 form label {
@@ -60,7 +57,7 @@ form label {
 	font-size: 14px;
 	font-weight: bold;
 	padding: 6px 0;
-	color: #e4e4e4;
+	color: blue;
 }
 
 .login-form input[type=text], .login-form input[type=password] {
@@ -93,7 +90,7 @@ form label {
 
 .login-form input[type=text], .login-form input[type=password], .js .login-form span
 	{
-	color: #686868;
+	color: white;
 	width: 170px;
 	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6);
 	background: #989898;
@@ -108,16 +105,20 @@ form label {
 
 .login-form input[type=text]:focus, .login-form input[type=password]:focus
 	{
-	background: #e1e1e1;
-	background: linear-gradient(top, #ffffff 0%, #e1e1e1 100%);
+	color: blue;
+  background-color: #fff;
+  background-position: 110% center;
+  background-repeat: no-repeat;
+  border-color: #059;
+  box-shadow: 0 1px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6), 0 0 11px rgba(70, 100, 200, 0.7);
 }
 
 .login-form input[type=submit] {
 	cursor: pointer;
-	color: #445b0f;
+	color: white;
 	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .45), 0px 1px 1px
 		0px rgba(0, 0, 0, .3);
-	background: #a5cd4e;
+	background: #145CA1;
 	background: linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
 }
 
@@ -128,4 +129,40 @@ form label {
 
 .login-form input[type=submit]:active {
 	box-shadow: none;
+}
+
+a{
+font-family: Aria, sans-serif;
+font-size: 12px;
+font-weight: bold;
+color: #0033FF;
+margin-left: 15px;
+text-decoration: none;
+}
+
+.login-form input[type=button] {
+	line-height: 14px;
+margin: 5px 40px;
+padding: 6px 15px;
+border: 0;
+outline: none;
+font-family: Aria, sans-serif;
+font-size: 16px;
+font-weight: bold;
+text-shadow: 0px 1px 1px rgba(255,255,255, .2);
+border-radius: 26px;
+transition: all .15s ease-in-out;
+}
+.login-form  input[type=button]{
+cursor: pointer;
+color: white;
+box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+background: #06F;
+background: linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+}
+.login-form  input[type=button]:hover {
+box-shadow: inset 1px 1px 3px 0px rgba(255,255,255, .8), 0px 1px 1px 0px rgba(0,0,0, .6);
+}
+.login-form input[type=button]:active {
+box-shadow: none;
 }
