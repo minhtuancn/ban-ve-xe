@@ -7,15 +7,15 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/kiemtrave.css">
 <script src="../js/jquery-1.11.1.min.js"></script>
-<script >
-function removeReadonly() {
-	$('.input-txt').removeAttr('readonly');
-	$(".tv").css("visibility","visible");
-}
-function addReadonly() {
-	$('.input-txt').attr("readonly", "readonly");
-	$(".tv").css("visibility","hidden");
-}
+<script>
+	function removeReadonly() {
+		$('.input-txt').removeAttr('readonly');
+		$(".tv").css("visibility", "visible");
+	}
+	function addReadonly() {
+		$('.input-txt').attr("readonly", "readonly");
+		$(".tv").css("visibility", "hidden");
+	}
 </script>
 </head>
 
@@ -34,17 +34,17 @@ function addReadonly() {
 								<p>Thông tin cá nhân</p>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Tên đăng nhập:</label> <input
-										class="input-txt wd-240"  name="user" type="text" readonly
+										class="input-txt wd-240" name="user" type="text" readonly
 										value="">
 								</div>
 								<div class="ktve-dong kt-ve">
-									<label class="wd-110 fl-l">Địa chỉ Email:</label> <input 
+									<label class="wd-110 fl-l">Địa chỉ Email:</label> <input
 										class="input-txt wd-240" readonly name="email" type="text"
 										value="">
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Số điện thoại:</label> <input
-										class="input-txt wd-240" readonly name="sdt"  type="text"
+										class="input-txt wd-240" readonly name="sdt" type="text"
 										value="">
 								</div>
 								<div class="ktve-dong kt-ve">
@@ -54,17 +54,17 @@ function addReadonly() {
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">&nbsp;</label> <input
-										class="timve fl-l" type="button" value="Sửa thông tin" onclick="removeReadonly()">
-										
-										<input h
-										class="timve tv fl-l" type="button" value="Cập nhật" style="visibility: hidden" onclick="addReadonly()">
+										class="timve fl-l" type="button" value="Sửa thông tin"
+										onclick="removeReadonly()"> <input
+										class="timve tv fl-l" type="button" value="Cập nhật"
+										style="visibility: hidden" onclick="addReadonly()">
 								</div>
 								<a href="#">Đổi mật khẩu</a>
 
 							</div>
 
 						</div>
-						<hr/>
+						<hr />
 						<div class="kt-ve">
 							<div class="ktve-p pd mg kt-ve">
 								<p>Thông tin vé đã đặt</p>

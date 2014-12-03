@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../css/chitietve.css">
 </head>
 <body>
-	<section>
+<!-- 	<section> -->
 	<div id="chitietve">
 		<h1 align="center">Chi tiết đặt chỗ</h1>
 		<table>
@@ -56,6 +56,6 @@
 		<a href="datve.jsp"><input type="image" src="../image/huyve.png"
 			width="80px" style="margin-left: 10px; margin-top: 5px;"></a>
 	</div>
-	</section>
+<!-- 	</section> -->
 </body>
 </html>
