@@ -45,13 +45,10 @@
 	});
 </script>
 
-</style>
 
-<script>
-	
-</script>
 </head>
 <body>
+<div id="container">
 	<%@ include file="header.jsp"%>
 	<section>
 		<img alt="nen" src="../image/banner03-v1.jpg" width="100%" height="350px">
@@ -220,7 +217,6 @@
 		</div> -->
 	</section>
 	<%@ include file="footer.jsp"%>
-
-
+</div>
 </body>
 </html>
