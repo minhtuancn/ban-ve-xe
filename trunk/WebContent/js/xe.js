@@ -39,9 +39,9 @@ function choose(el) {
 	$(el).unbind("mouseenter");
 	$(el).unbind("mouseleave");
 //	$(el).unbind("click");
-	$(el).click(function() {
-		unchoose($(el));
-	});
+//	$(el).click(function() {
+//		unchoose($(el));
+//	});
 	selected($(el));
 }
 function unchoose(el) {
