@@ -54,7 +54,7 @@
 		<img alt="nen" src="../image/banner03-v1.jpg" width="100%" height="350px">
 
 		<article>
-			<form action="timve.jsp" class="login-form">
+			<form action="../TimTuyen" class="login-form">
 				<table id="tb-datve" width="200px">
 					<tr>
 						<td><img alt="a" src="../image/tim ve xe.jpg" height="50px"></td>

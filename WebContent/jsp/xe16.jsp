@@ -1,3 +1,6 @@
+<%@page import="model.Ghe"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Chuyen"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -10,12 +13,16 @@
 <script src="../js/xe.js"></script>
 <script>
 	$(document).ready(function() {
-		set($(".ghe"));
+		set($(".chuadat"));
 	});
 </script>
 </head>
 <body>
 	<div id="xe">
+		<%
+			Chuyen chuyen = (Chuyen) session.getAttribute("chuyenDi");
+			List<Ghe> danhSachghe = chuyen.getDanhSachGheNgoi();
+		%>
 		<img alt="dauxe" src="../image/p.png" width="260px" height="150px">
 		<%
 			for (int i = 0; i < 15; i++) {
@@ -77,10 +84,18 @@
 					cot = 3;
 					break;
 				}
+				if (danhSachghe.get(i).getTrangThai() == Ghe.DA_DAT) {
+		%>
+		<img alt="ghe<%=i%>" src="../image/ghe3.png" id="<%=i%>"
+			class="ghe hang<%=hang%> cot<%=cot%>" />
+
+		<%
+			} else {
 		%>
 		<img alt="ghe<%=i%>" src="../image/ghe1.png" id="<%=i%>"
-			class="ghe hang<%=hang%> cot<%=cot%>" />
+			class="ghe chuadat hang<%=hang%> cot<%=cot%>" />
 		<%
+			}
 			}
 		%>
 	</div>

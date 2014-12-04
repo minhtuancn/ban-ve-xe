@@ -1,3 +1,6 @@
+<%@page import="model.DatVe"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.Chuyen"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,6 +12,9 @@
 </head>
 <body>
 <!-- 	<section> -->
+<% 
+	DatVe datVeDi = (DatVe) session.getAttribute("datVeDi");
+%>
 	<div id="chitietve">
 		<h1 align="center">Chi tiết đặt chỗ</h1>
 		<table>
@@ -18,35 +24,35 @@
 			</tr>
 			<tr>
 				<td id="td1">Tuyến xe:</td>
-				<td id="td2">Tp.Hồ Chí Minh - Nha Trang</td>
+				<td id="td2"><%= datVeDi.getTuyenXe() %></td>
 			</tr>
 			<tr>
 				<td id="td1">Ngày đi:</td>
-				<td id="td2">1/1/2015</td>
+				<td id="td2"><%= new SimpleDateFormat("dd/MM/yyyy").format(datVeDi.getNgayKhoiHanh()) %></td>
 			</tr>
 			<tr>
 				<td id="td1">Giờ khởi hành:</td>
-				<td id="td2">10:10 am</td>
+				<td id="td2"><%= datVeDi.getGioKhoiHanh() %></td>
 			</tr>
 			<tr>
 				<td id="td1">Nơi khởi hành:</td>
-				<td id="td2">bến xe Cty Đồng Phước</td>
+				<td id="td2"><%= datVeDi.getBenXuatPhat() %></td>
 			</tr>
 			<tr>
 				<td id="td1">Giá vé:</td>
-				<td id="td2">500.000đ</td>
+				<td id="td2"><%= datVeDi.getGia() %></td>
 			</tr>
 			<tr>
 				<td id="td1" width="150px">Số lượng:</td>
-				<td id="td2">2</td>
+				<td id="td2"><%= datVeDi.getSoLuongGhe() %></td>
 			</tr>
 			<tr>
 				<td id="td1">Mã ghế:</td>
-				<td id="td2">A1, A2</td>
+				<td id="td2"><%= datVeDi.getTenGhe() %></td>
 			</tr>
 			<tr>
 				<td id="td1">Thành tiền:</td>
-				<td id="td2">1.000.000đ</td>
+				<td id="td2"><%= datVeDi.getTongTien() %></td>
 			</tr>
 		</table>
 		<hr />
