@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/footer.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/footer.css">
 </head>
 <body>
 <footer>
@@ -24,7 +24,7 @@
 		 -->
 		 
 		 <div id="footer">
-		 <img alt="nlu" src="../image/nlu.png" width=100px height=100px/>
+		 <img alt="nlu" src="/BanVeXe/image/nlu.png" width=100px height=100px/>
 		 <article>
 		<p> Bản quyền © 2012 thuộc về VeXeOnline.Com</br>
 Địa chỉ: VP Cẩm Tú, khu phố 6, phường Linh Trung, Q.Thủ Đức, TP. Hồ Chí Minh, Việt Nam </br>

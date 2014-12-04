@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="../js/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/home.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/home.css">
 <script>
 	$(document).ready(function() {
 		$("#menu-noidi li").click(function() {

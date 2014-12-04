@@ -29,4 +29,14 @@
     <servlet-name>TimGhe</servlet-name>
     <url-pattern>/TimGhe</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ThemGhe</display-name>
+    <servlet-name>ThemGhe</servlet-name>
+    <servlet-class>controller.ThemGhe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThemGhe</servlet-name>
+    <url-pattern>/ThemGhe</url-pattern>
+  </servlet-mapping>
 </web-app>

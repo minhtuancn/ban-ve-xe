@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/kiemtrave.css">
-<script src="../js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/kiemtrave.css">
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script>
 	function removeReadonly() {
 		$('.input-txt').removeAttr('readonly');

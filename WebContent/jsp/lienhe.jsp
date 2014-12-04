@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/lienhe.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/lienhe.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -16,23 +16,23 @@
 		<div id="lienhe">
 			<p class="note">
 					<img alt="icon"
-						src="../image/con_address.png">Văn phòng chính: VP Cẩm Tú, khu phố 6, phường Linh Trung, Q.Thủ Đức, TP. Hồ Chí Minh, Việt Nam 
+						src="/BanVeXe/image/con_address.png">Văn phòng chính: VP Cẩm Tú, khu phố 6, phường Linh Trung, Q.Thủ Đức, TP. Hồ Chí Minh, Việt Nam 
 				</p>
 				<p class="note">
 					<img alt="icon"
-						src="../image/emailButton.png"> vexeonline@hcmuaf.edu.vn 
+						src="/BanVeXe/image/emailButton.png"> vexeonline@hcmuaf.edu.vn 
 				</p>
 				<p class="note">
 					<img alt="icon"
-						src="../image/con_tel.png"> Tổng đài đặt vé: 08.29 29 29 29
+						src="/BanVeXe/image/con_tel.png"> Tổng đài đặt vé: 08.29 29 29 29
 				</p>
 				<p class="note">
 					<img alt="icon"
-						src="../image/con_mobile.png"> Đường dây nóng: 01234567890;
+						src="/BanVeXe/image/con_mobile.png"> Đường dây nóng: 01234567890;
 				</p>
 				<p class="note">
 					<img alt="icon"
-						src="../image/con_info.png"> Mọi thông tin thắc mắc khách
+						src="/BanVeXe/image/con_info.png"> Mọi thông tin thắc mắc khách
 					hàng hãy gọi điện hoặc gửi thông tin cho chúng tôi, chúng tôi sẽ
 					trả lời trong thời gian sớm nhất. Xin cảm ơn!
 				</p>

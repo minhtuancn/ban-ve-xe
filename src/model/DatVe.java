@@ -1,5 +1,6 @@
 package model;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -55,7 +56,12 @@ public class DatVe {
 	public int getGia(){
 		return chuyen.getGia();
 	}
+	public void addGhe(int i){
+		danhsachGheDat.add(chuyen.getGhe(i));
+		Collections.sort(danhsachGheDat);
+	}
 	public void addGhe(Ghe ghe){
 		danhsachGheDat.add(ghe);
+		Collections.sort(danhsachGheDat);
 	}
 }

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/DangNhap.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/DangNhap.css">
 </head>
 <body>
 	<div class="login-form">

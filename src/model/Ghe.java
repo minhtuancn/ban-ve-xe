@@ -1,5 +1,5 @@
 package model;
-public class Ghe {
+public class Ghe implements Comparable<Ghe>{
 	private int idGhe;
 	private int soGhe;
 	private byte trangThai;
@@ -36,6 +36,11 @@ public class Ghe {
 
 	public void setTrangThai(byte trangThai) {
 		this.trangThai = trangThai;
+	}
+
+	@Override
+	public int compareTo(Ghe o) {
+		return idGhe - o.idGhe;
 	}
 	
 	
