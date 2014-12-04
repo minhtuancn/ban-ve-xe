@@ -62,10 +62,10 @@
 			</tr>
 		</table>
 		<hr />
-		<a href="DangNhap.jsp"><input type="image"
+		<a href="/BanVeXe/jsp/DangNhap.jsp"><input type="image"
 			src="/BanVeXe/image/xacnhan.png" width="80px"
 			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;"></a>
-		<a href="datve.jsp"><input type="image"
+		<a href="/BanVeXe/jsp/datve.jsp"><input type="image"
 			src="/BanVeXe/image/huyve.png" width="80px"
 			style="margin-left: 10px; margin-top: 5px;"></a>
 	</div>
