@@ -4,20 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Tin tức</title>
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/tintuc.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div style="width: 100%; height: 800px;">
-		<div
-			style="width: 100%; height: 40px; background: #145CA1; font-size: 30px; color: white; position: absolute; margin-top: 10px;">Tin
-			tức</div>
-		<div
-			style="width: 80%; font-size: 20px; color: white; font-family: arial; position: absolute; margin-top: 60px; background: #1E62A3;">Tìm
-			vé nhanh:</div>
-		<div
-			style="margin-top: 100px; margin-left: 10px; width: 80%; float: left; clear: right; border: double;">
-			<ul class="" style="margin-left: 20px; font-size: 18px;">
+	<div id="tt-container">
+		<div id="tintuc">Tin tức</div>
+		<div id="timvenhanh">Tìm vé nhanh:</div>
+		<div id="listve"> 
+		<ul>
 				<li>Hà Nội → TP Hồ Chí Minh 900.000 vnd/vé</li>
 				<li>TP Hồ Chí Minh → Hà Nội 900.000 vnd/vé</li>
 				<li>Hà Nội → Đà Nẵng 380.000 vnd/vé</li>
@@ -38,9 +34,9 @@
 				<li>Hà Nội → Sơn La 220.000 vnd/vé</li>
 			</ul>
 		</div>
-		<div style="margin-top: 5px; width: 80%; float: left; clear: none;">
-				<div style="width: 80%; font-size: 20px; color: white; font-family: arial; position: absolute; background: #1E62A3;">Thông tin khác</div>
-				<div class="#" style="margin-top: 30px;" >
+		<div id="link">
+				<div id="DS-link">Thông tin khác</div>
+				<div id="ds" >
 					<ul>
 						<li><a href="#" >Danh sách
 								các chuyến xe khách từ bến xe Giáp Bát đi Hòa Bình </a> 30.10.2014</li>

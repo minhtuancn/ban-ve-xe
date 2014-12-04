@@ -1,3 +1,7 @@
+#container {
+	width: 1336px;
+}
+
 footer {
 	background: #1E62A3;
 	width: 100%;
@@ -10,7 +14,6 @@ footer {
 	margin-right: auto;
 	background: #1E62A3;
 	height: 100px;
-	
 }
 
 #footer article {
@@ -19,11 +22,15 @@ footer {
 	padding-top: 10px;
 }
 
-#footer img{
-float: left;
-clear: right;
-margin-left: 40px;
-	}
+#footer img {
+	width: 100px;
+	height: 100px;
+	float: left;
+	clear: right;
+	margin-left: 40px;
+	margin-top: 10px;
+}
+
 .section-f1 {
 	width: 20%;
 	height: 300px;

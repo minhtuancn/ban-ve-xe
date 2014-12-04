@@ -1,0 +1,58 @@
+#tt-container {
+	width: 1366px;
+	height: 800px;
+}
+
+#tintuc {
+	width: 100%;
+	height: 40px;
+	background: #145CA1;
+	font-size: 30px;
+	color: white;
+	position: absolute;
+	margin-top: 10px;
+}
+
+#timvenhanh {
+	width: 80%;
+	font-size: 20px;
+	color: white;
+	font-family: arial;
+	position: absolute;
+	margin-top: 60px;
+	background: #1E62A3;
+}
+
+#listve {
+	margin-top: 100px;
+	margin-left: 10px;
+	width: 80%;
+	float: left;
+	clear: right;
+	border: double;
+	font-size: 18px;
+}
+
+#listve ul {
+	margin-left: 20px;
+}
+
+#link {
+	margin-top: 5px;
+	width: 80%;
+	float: left;
+	clear: none;
+}
+
+#DSlink {
+	width: 80%;
+	font-size: 20px;
+	color: white;
+	font-family: arial;
+	position: absolute;
+	background: #1E62A3;
+}
+
+#ds {
+	margin-top: 30px;
+}

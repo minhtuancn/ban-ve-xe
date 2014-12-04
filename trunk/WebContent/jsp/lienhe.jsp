@@ -4,15 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Liên hệ</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/lienhe.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div style="width: 100%; height: 700px;">
-		<div
-			style="width: 100%; height: 40px; background: #145CA1; font-size: 30px; color: white; margin-top: 10px;">Liên
-			hệ</div>
+	<div id="container">
+		<div id="contain">Liên hệ</div>
 		<div id="lienhe">
 			<p class="note">
 					<img alt="icon"

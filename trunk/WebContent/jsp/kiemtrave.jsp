@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Kiểm tra vé</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/kiemtrave.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script>

@@ -1,3 +1,7 @@
+#container {
+	width: 1336px;
+}
+
 a {
 	float: left;
 	clear: right;
