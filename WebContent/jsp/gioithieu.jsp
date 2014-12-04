@@ -4,12 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Giới thiệu</title>
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/gioithieu.css">
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<div style="width:100%;height:600px;">
-<div style="width:100%;height:40px;background:#145CA1;font-size:30px;color:white;position:absolute;margin-top:10px;">Giới thiệu</div>
+<div id="gt-container">
+<div id="gioithieu">Giới thiệu</div>
+<div id="gt">
+			<p class="note">
+					<img alt="icon"
+						src="/BanVeXe/image/con_address.png">1.Giới thiệu</p>
+				<p class="note">
+					<img alt="icon"
+						src="/BanVeXe/image/emailButton.png">2.Tầm nhìn</p>
+				<p class="note">
+					<img alt="icon"
+						src="/BanVeXe/image/con_tel.png">3.Sứ mệnh</p>
+				<p class="note">
+					<img alt="icon"
+						src="/BanVeXe/image/con_mobile.png">4.Triết lí</p>
+		</div>
 </div>
 <%@ include file="footer.jsp" %>
 </body>

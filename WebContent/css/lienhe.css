@@ -1,110 +1,134 @@
+#container {
+	width: 1336px;;
+}
+
+#contain {
+	width: 100%;
+	height: 40px;
+	background: #145CA1;
+	font-size: 30px;
+	color: white;
+	margin-top: 10px;
+}
+
 #lienhe .note {
-  font-size: 1.2em;
-  line-height: 1.33em;
-  font-weight: normal;
-  padding: 2px 7px;
-  margin-bottom: 10px;
+	font-size: 1.2em;
+	line-height: 1.33em;
+	font-weight: normal;
+	padding: 2px 7px;
+	margin-bottom: 10px;
 }
- 
+
 form .row {
-  display: block;
-  padding: 7px 8px;
-  margin-bottom: 7px;
+	display: block;
+	padding: 7px 8px;
+	margin-bottom: 7px;
 }
+
 form .row:hover {
-  background: #f1f7fa;
+	background: #f1f7fa;
 }
- 
+
 form label {
-  display: inline-block;
-  font-size: 1.1em;
-  font-weight: bold;
-  width: 130px;
-  padding: 6px 0;
-  color: blue;
-  vertical-align: top;
+	display: inline-block;
+	font-size: 1.1em;
+	font-weight: bold;
+	width: 130px;
+	padding: 6px 0;
+	color: blue;
+	vertical-align: top;
 }
-form .req { color: #ca5354; }
- 
+
+form .req {
+	color: #ca5354;
+}
+
 form .txt {
-  display: inline-block;
-  padding: 8px 9px;
-  padding-right: 30px;
-  width: 240px;
-  font-family: 'Oxygen', sans-serif;
-  font-size: 1em;
-  font-weight: normal;
-  color: #898989;
-  background-color: #f0f0f0;
-  background-position: 110% center;
-  background-repeat: no-repeat;
-  border: 1px solid #ccc;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.75);
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(25, 25, 25, 0.25) inset, -1px 1px #fff;
-  transition: all 0.3s linear;
+	display: inline-block;
+	padding: 8px 9px;
+	padding-right: 30px;
+	width: 240px;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 1em;
+	font-weight: normal;
+	color: #898989;
+	background-color: #f0f0f0;
+	background-position: 110% center;
+	background-repeat: no-repeat;
+	border: 1px solid #ccc;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(25, 25, 25, 0.25) inset, -1px 1px #fff;
+	transition: all 0.3s linear;
 }
- 
+
 form .txtarea {
-  display: inline-block;
-  padding: 8px 11px;
-  padding-right: 30px;
-  width: 320px;
-  height: 120px;
-  font-family: 'Oxygen', sans-serif;
-  font-size: 1.35em;
-  font-weight: normal;
-  color: #898989;
-  background-color: #f0f0f0;
-  background-position: 110% 4%;
-  background-repeat: no-repeat;
-  border: 1px solid #ccc;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.75);
-  box-sizing: content-box;
-  border-radius: 3px;
-  box-shadow: 0 1px 4px -1px #a8a8a8 inset;
-  transition: all 0.3s linear;
+	display: inline-block;
+	padding: 8px 11px;
+	padding-right: 30px;
+	width: 320px;
+	height: 120px;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 1.35em;
+	font-weight: normal;
+	color: #898989;
+	background-color: #f0f0f0;
+	background-position: 110% 4%;
+	background-repeat: no-repeat;
+	border: 1px solid #ccc;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+	box-sizing: content-box;
+	border-radius: 3px;
+	box-shadow: 0 1px 4px -1px #a8a8a8 inset;
+	transition: all 0.3s linear;
 }
+
 form .txt:focus, form .txtarea:focus {
-  color: #545454;
-  background-color: #fff;
-  background-position: 110% center;
-  background-repeat: no-repeat;
-  border-color: #059;
-  box-shadow: 0 1px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6), 0 0 11px rgba(70, 100, 200, 0.7);
-} 
-form .txt:HOVER, form .txtarea:HOVER  {
- box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6), 0px 0px 5px
+	color: #545454;
+	background-color: #fff;
+	background-position: 110% center;
+	background-repeat: no-repeat;
+	border-color: #059;
+	box-shadow: 0 1px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6),
+		0 0 11px rgba(70, 100, 200, 0.7);
+}
+
+form .txt:HOVER, form .txtarea:HOVER {
+	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6), 0px 0px 5px
 		rgba(255, 255, 255, .5);
 }
 
 #submitbtn {
-  height: 30px;
-  width: 60px;
-  padding: 0;
-  margin-top: 5px;
-  font-family: 'Oxygen', Arial, sans-serif;
-  font-size: 1.2em;
-  color: #0a528f;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.65);
-  border-width: 2px;
-  border-style: solid;
-  border-color: #317bd6 #3784e3 #2d74d5 #3774e3;
-  border-radius: 3px;
-  background-color: #4581e5;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-  transition: all 0.3s linear;
+	height: 30px;
+	width: 60px;
+	padding: 0;
+	margin-top: 5px;
+	font-family: 'Oxygen', Arial, sans-serif;
+	font-size: 1.2em;
+	color: #0a528f;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.65);
+	border-width: 2px;
+	border-style: solid;
+	border-color: #317bd6 #3784e3 #2d74d5 #3774e3;
+	border-radius: 3px;
+	background-color: #4581e5;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4), 0 1px 0
+		rgba(255, 255, 255, 0.5) inset;
+	transition: all 0.3s linear;
 }
+
 #submitbtn:hover, #submitbtn:focus {
-  box-shadow: 0 0 15px rgba(70, 100, 200, 0.9);
+	box-shadow: 0 0 15px rgba(70, 100, 200, 0.9);
 }
- 
+
 #submitbtn:active {
-  box-shadow: 0 0 15px rgba(70, 100, 200, 0.9), 0 1px 3px rgba(0,0,0,0.4) inset;
+	box-shadow: 0 0 15px rgba(70, 100, 200, 0.9), 0 1px 3px
+		rgba(0, 0, 0, 0.4) inset;
 }
-#lienhe .cb{
-	 font-family: 'Oxygen', Arial, sans-serif;
-  font-size: 1.2em;
-  color: #0a528f;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.65);
+
+#lienhe .cb {
+	font-family: 'Oxygen', Arial, sans-serif;
+	font-size: 1.2em;
+	color: #0a528f;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.65);
 }

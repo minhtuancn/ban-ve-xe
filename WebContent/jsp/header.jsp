@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/header.css">
 </head>
 <body>
+<div id="container">
 <header>
 		<img alt="nenlogo" src="/BanVeXe/image/images.jpg" width="380" height="120">
 	</header>
@@ -20,5 +21,6 @@
 			<li><a href="/BanVeXe/jsp/lienhe.jsp">Liên hệ</a></li>
 		</ul>
 	</nav>
+	</div>
 </body>
 </html>

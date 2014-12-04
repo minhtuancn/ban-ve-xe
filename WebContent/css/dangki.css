@@ -1,104 +1,120 @@
 @CHARSET "utf-8";
 
-#dangki{ margin:0 auto; width:500px; background: #fff; padding:10px;}
+#dangki {
+	margin: 0 auto;
+	width: 500px;
+	background: #fff;
+	padding: 10px;
+}
 
 #dangki h1 {
-    border-bottom: 2px solid #BBBBBB;
-    color: #5B5463;
-    font-family:  Arial, Helvetica, sans-serif;
-    font-size: 3.75em;
-    font-weight: bold;
-    line-height: 1.7em;
-    margin-bottom: 7px;
+	border-bottom: 2px solid #BBBBBB;
+	color: #5B5463;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 3.75em;
+	font-weight: bold;
+	line-height: 1.7em;
+	margin-bottom: 7px;
 	text-align: center;
-    text-shadow: 0 2px #FFFFFF, 1px 3px #666666;
-    text-transform: uppercase;
-} 
+	text-shadow: 0 2px #FFFFFF, 1px 3px #666666;
+	text-transform: uppercase;
+}
 /* form styles */
 form .row {
-  display: block;
-  padding: 7px 8px;
-  margin-bottom: 7px;
+	display: block;
+	padding: 7px 8px;
+	margin-bottom: 7px;
 }
+
 form .row:hover {
-  background: #f1f7fa;
+	background: #f1f7fa;
 }
- 
+
 form label {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  width: 120px;
-  padding: 6px 0;
-  color: #464646;
-  vertical-align: top;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	width: 120px;
+	padding: 6px 0;
+	color: #464646;
+	vertical-align: top;
 }
-form .req { color: #ca5354; }
+
+form .req {
+	color: #ca5354;
+}
 
 form .txt {
-  display: inline-block;
-  padding: 8px 9px;
-  padding-right: 30px;
-  width: 240px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  color: #898989;
-  background-color: #f0f0f0;
-  background-image: url('../image/checkmark.png');
-  background-position: 110% center;
-  background-repeat: no-repeat;
-  border: 1px solid #ccc;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.75);
-  box-sizing: content-box;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(25, 25, 25, 0.25) inset, -1px 1px #fff;
-  transition: all 0.3s linear;
+	display: inline-block;
+	padding: 8px 9px;
+	padding-right: 30px;
+	width: 240px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	color: #898989;
+	background-color: #f0f0f0;
+	background-image: url('../image/checkmark.png');
+	background-position: 110% center;
+	background-repeat: no-repeat;
+	border: 1px solid #ccc;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+	box-sizing: content-box;
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(25, 25, 25, 0.25) inset, -1px 1px #fff;
+	transition: all 0.3s linear;
 }
+
 form .txt:focus {
-  width: 300px;
-  color: #545454;
-  background-color: #fff;
-  background-position: 110% center;
-  background-repeat: no-repeat;
-  border-color: #059;
-  box-shadow: 0 1px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6), 0 0 11px rgba(70, 100, 200, 0.7);
+	width: 300px;
+	color: #545454;
+	background-color: #fff;
+	background-position: 110% center;
+	background-repeat: no-repeat;
+	border-color: #059;
+	box-shadow: 0 1px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6),
+		0 0 11px rgba(70, 100, 200, 0.7);
 }
 
 form .txt:valid {
-  background-color: #deecda;
-  background-position: 98% center;
-  background-repeat: no-repeat;
-  color: #7d996e;
-  border: 1px solid #95bc7d;
+	background-color: #deecda;
+	background-position: 98% center;
+	background-repeat: no-repeat;
+	color: #7d996e;
+	border: 1px solid #95bc7d;
 }
-form .txt:focus:valid{
-  box-shadow: 0 1px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6), 0 0 11px rgba(120, 200, 70, 0.7); 
+
+form .txt:focus:valid {
+	box-shadow: 0 1px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6),
+		0 0 11px rgba(120, 200, 70, 0.7);
 }
 
 #submitbtn {
-  height: 70px;
-  width: 200px;
-  padding: 0;
-  margin-left: 150px;
-  cursor: pointer;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  color: #0a528f;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.65);
-  border-width: 1px;
-  border-style: solid;
-  border-color: #317bd6 #3784e3 #2d74d5 #3774e3;
-  border-radius: 3px;
-  background-color: #4581e5;
-  background-image: linear-gradient(top, #6faefd, #4581e5);
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-  transition: all 0.3s linear;
+	height: 70px;
+	width: 200px;
+	padding: 0;
+	margin-left: 150px;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #0a528f;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.65);
+	border-width: 1px;
+	border-style: solid;
+	border-color: #317bd6 #3784e3 #2d74d5 #3774e3;
+	border-radius: 3px;
+	background-color: #4581e5;
+	background-image: linear-gradient(top, #6faefd, #4581e5);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4), 0 1px 0
+		rgba(255, 255, 255, 0.5) inset;
+	transition: all 0.3s linear;
 }
+
 #submitbtn:hover, #submitbtn:focus {
-  box-shadow: 0 0 15px rgba(70, 100, 200, 0.9);
+	box-shadow: 0 0 15px rgba(70, 100, 200, 0.9);
 }
- 
+
 #submitbtn:active {
-  box-shadow: 0 0 15px rgba(70, 100, 200, 0.9), 0 1px 3px rgba(0,0,0,0.4) inset;
+	box-shadow: 0 0 15px rgba(70, 100, 200, 0.9), 0 1px 3px
+		rgba(0, 0, 0, 0.4) inset;
 }

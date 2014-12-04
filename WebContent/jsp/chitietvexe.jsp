@@ -62,7 +62,8 @@
 			</tr>
 		</table>
 		<hr />
-		<a href="/BanVeXe/jsp/DangNhap.jsp"><input type="image"
+			
+			<a href="/BanVeXe/jsp/thanhtoan.jsp"><input type="image"
 			src="/BanVeXe/image/xacnhan.png" width="80px"
 			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;"></a>
 		<a href="/BanVeXe/jsp/datve.jsp"><input type="image"

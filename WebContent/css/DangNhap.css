@@ -14,30 +14,37 @@
 }
 .dangki {
 	padding-top: 10px;
+	margin-left:20px;
 	color: blue;
 	font-size: 20px;
 }
 .quenmk{
 	padding-top: 10px;
+	margin-left:20px;
 	color: blue;
 	font-size: 14px;
 }
 #dangki {
-	margin-left: 100px;
-	margin-top: 50px;
-	width: 500px;
+	margin-left: 300px;
+	margin-top: 40px;
+	width: 550px;
 	background: #fff;
 	padding: 10px;
 	float: left;
 	clear: rght;
-	border: 2 solid;
+	border-radius: 10px;
+	border-width: 3px;
+	border-color: black;
+	box-shadow: -5px -5px 35px #ccc;
 }
 
+
 #dangki h1 {
-	margin-top: -30px;
+	margin-top: 5px;
+	margin-left: 20px;
 	color: #5B5463;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 2em;
+	font-size: 1.6em;
 	font-weight: bold;
 	line-height: 1.7em;
 	margin-bottom: 7px;
@@ -47,7 +54,7 @@
 }
 /* form styles */
 Form {
-	margin-top: 50px;
+	margin-top: 20px;
 }
 form .row {
 	display: block;
@@ -61,9 +68,9 @@ form .row:hover {
 
 form label {
 	display: inline-block;
-	font-size: 14px;
+	font-size: 18px;
 	font-weight: bold;
-	width: 120px;
+	width: 160px;
 	padding: 6px 0;
 	color: #464646;
 	vertical-align: top;
