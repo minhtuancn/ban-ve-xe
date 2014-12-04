@@ -11,12 +11,22 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>CheckGhe</display-name>
-    <servlet-name>CheckGhe</servlet-name>
-    <servlet-class>CheckGhe</servlet-class>
+    <display-name>TimTuyen</display-name>
+    <servlet-name>TimTuyen</servlet-name>
+    <servlet-class>controller.TimTuyen</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>CheckGhe</servlet-name>
-    <url-pattern>/checkGhe</url-pattern>
+    <servlet-name>TimTuyen</servlet-name>
+    <url-pattern>/TimTuyen</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TimGhe</display-name>
+    <servlet-name>TimGhe</servlet-name>
+    <servlet-class>controller.TimGhe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TimGhe</servlet-name>
+    <url-pattern>/TimGhe</url-pattern>
   </servlet-mapping>
 </web-app>
