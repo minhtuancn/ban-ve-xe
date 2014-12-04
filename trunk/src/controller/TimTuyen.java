@@ -39,11 +39,18 @@ public class TimTuyen extends HttpServlet {
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Tuyen tuyen = new TuyenDAOImpl().getTuyen("", "");
+		boolean laKhuHoi = true;
+		
 		HttpSession session = request.getSession();
+		session.setAttribute("laKhuHoi", laKhuHoi);
+		Tuyen tuyen = new TuyenDAOImpl().getTuyen("", "");
 		session.setAttribute("tuyenDi", tuyen);
-//		request.getRequestDispatcher("./jsp/timchuyen.jsp").forward(request, response);;
-		response.sendRedirect("./jsp/timchuyen.jsp");
+		session.setAttribute("tuyenVe", tuyen);
+//		response.sendRedirect("/BanVeXe/jsp/timchuyen.jsp");
+		if(laKhuHoi){
+			
+		}
+		request.getRequestDispatcher("/jsp/timchuyen.jsp").forward(request, response);;
 	}
 	
 

@@ -8,9 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/xe16.css">
-<script src="../js/jquery-1.11.1.min.js"></script>
-<script src="../js/xe.js"></script>
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/xe16.css">
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/xe.js"></script>
 <script>
 	$(document).ready(function() {
 		set($(".chuadat"));
@@ -20,10 +20,17 @@
 <body>
 	<div id="xe">
 		<%
-			Chuyen chuyen = (Chuyen) session.getAttribute("chuyenDi");
+			int idChuyen = (Integer) session.getAttribute("chuyen");
+			Chuyen chuyen = null;
+			if (idChuyen == 1) {
+				chuyen = (Chuyen) session.getAttribute("chuyenDi");
+			} else {
+				chuyen = (Chuyen) session.getAttribute("chuyenVe");
+			}
 			List<Ghe> danhSachghe = chuyen.getDanhSachGheNgoi();
 		%>
-		<img alt="dauxe" src="../image/p.png" width="260px" height="150px">
+		<input type="hidden" value="<%=idChuyen%>" id="idChuyen" /> <img
+			alt="dauxe" src="/BanVeXe/image/p.png" width="260px" height="150px">
 		<%
 			for (int i = 0; i < 15; i++) {
 				int hang = 0;
@@ -86,18 +93,19 @@
 				}
 				if (danhSachghe.get(i).getTrangThai() == Ghe.DA_DAT) {
 		%>
-		<img alt="ghe<%=i%>" src="../image/ghe3.png" id="<%=i%>"
+		<img alt="ghe<%=i%>" src="/BanVeXe/image/ghe3.png" id="<%=i%>"
 			class="ghe hang<%=hang%> cot<%=cot%>" />
 
 		<%
 			} else {
 		%>
-		<img alt="ghe<%=i%>" src="../image/ghe1.png" id="<%=i%>"
+		<img alt="ghe<%=i%>" src="/BanVeXe/image/ghe1.png" id="<%=i%>"
 			class="ghe chuadat hang<%=hang%> cot<%=cot%>" />
 		<%
 			}
 			}
 		%>
 	</div>
+	
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Đăng Kí</title>
-<link rel="stylesheet" type="text/css" href="../css/dangki.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/dangki.css">
 </head>
 <body>
 	<section>

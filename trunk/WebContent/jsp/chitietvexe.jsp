@@ -8,13 +8,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/chitietve.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/chitietve.css">
 </head>
 <body>
-<!-- 	<section> -->
-<% 
-	DatVe datVeDi = (DatVe) session.getAttribute("datVeDi");
-%>
+	<!-- 	<section> -->
+	<%
+		int idChuyen = (Integer) session.getAttribute("chuyen");
+		DatVe datVe = null;
+		if (idChuyen == 1)
+			datVe = (DatVe) session.getAttribute("datVeDi");
+		else
+			datVe = (DatVe) session.getAttribute("datVeVe");
+	%>
 	<div id="chitietve">
 		<h1 align="center">Chi tiết đặt chỗ</h1>
 		<table>
@@ -24,44 +29,46 @@
 			</tr>
 			<tr>
 				<td id="td1">Tuyến xe:</td>
-				<td id="td2"><%= datVeDi.getTuyenXe() %></td>
+				<td id="td2"><%=datVe.getTuyenXe()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Ngày đi:</td>
-				<td id="td2"><%= new SimpleDateFormat("dd/MM/yyyy").format(datVeDi.getNgayKhoiHanh()) %></td>
+				<td id="td2"><%=new SimpleDateFormat("dd/MM/yyyy").format(datVe
+					.getNgayKhoiHanh())%></td>
 			</tr>
 			<tr>
 				<td id="td1">Giờ khởi hành:</td>
-				<td id="td2"><%= datVeDi.getGioKhoiHanh() %></td>
+				<td id="td2"><%=datVe.getGioKhoiHanh()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Nơi khởi hành:</td>
-				<td id="td2"><%= datVeDi.getBenXuatPhat() %></td>
+				<td id="td2"><%=datVe.getBenXuatPhat()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Giá vé:</td>
-				<td id="td2"><%= datVeDi.getGia() %></td>
+				<td id="td2"><%=datVe.getGia()%></td>
 			</tr>
 			<tr>
 				<td id="td1" width="150px">Số lượng:</td>
-				<td id="td2"><%= datVeDi.getSoLuongGhe() %></td>
+				<td id="td2"><%=datVe.getSoLuongGhe()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Mã ghế:</td>
-				<td id="td2"><%= datVeDi.getTenGhe() %></td>
+				<td id="td2"><%=datVe.getTenGhe()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Thành tiền:</td>
-				<td id="td2"><%= datVeDi.getTongTien() %></td>
+				<td id="td2"><%=datVe.getTongTien()%></td>
 			</tr>
 		</table>
 		<hr />
 		<a href="DangNhap.jsp"><input type="image"
-			src="../image/xacnhan.png" width="80px"
+			src="/BanVeXe/image/xacnhan.png" width="80px"
 			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;"></a>
-		<a href="datve.jsp"><input type="image" src="../image/huyve.png"
-			width="80px" style="margin-left: 10px; margin-top: 5px;"></a>
+		<a href="datve.jsp"><input type="image"
+			src="/BanVeXe/image/huyve.png" width="80px"
+			style="margin-left: 10px; margin-top: 5px;"></a>
 	</div>
-<!-- 	</section> -->
+	<!-- 	</section> -->
 </body>
 </html>
