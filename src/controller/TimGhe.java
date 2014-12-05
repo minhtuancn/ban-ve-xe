@@ -60,10 +60,6 @@ public class TimGhe extends HttpServlet {
 						.getDanhSachChuyen().get(id);
 				session.setAttribute("chuyenDi", c);
 				DatVe datVeDi = new DatVe(c);
-				// datVeDi.addGhe(c.getGhe(6));
-				// datVeDi.addGhe(c.getGhe(7));
-				// datVeDi.addGhe(c.getGhe(8));
-				// datVeDi.addGhe(c.getGhe(9));
 				session.setAttribute("datVeDi", datVeDi);
 				// response.sendRedirect("/jsp/datve.jsp");
 				request.getRequestDispatcher("/jsp/datvedi.jsp").forward(
@@ -71,12 +67,8 @@ public class TimGhe extends HttpServlet {
 			} else {
 				Chuyen c = ((Tuyen) session.getAttribute("tuyenVe"))
 						.getDanhSachChuyen().get(id);
-				session.setAttribute("chuyenVe", c);
-				DatVe datVeDi = new DatVe(c);
-				// datVeDi.addGhe(c.getGhe(6));
-				// datVeDi.addGhe(c.getGhe(7));
-				// datVeDi.addGhe(c.getGhe(8));
-				// datVeDi.addGhe(c.getGhe(9));
+				session.setAttribute("chuyenVe", c); 
+				DatVe datVeDi = new DatVe(c); 
 				session.setAttribute("datVeVe", datVeDi);
 				// response.sendRedirect("/jsp/datve.jsp");
 				request.getRequestDispatcher("/jsp/datveve.jsp").forward(

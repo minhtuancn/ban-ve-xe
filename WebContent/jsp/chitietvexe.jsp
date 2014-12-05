@@ -9,6 +9,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/chitietve.css">
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#xacnhan").click(function() {
+			var idChuyen = $('#idChuyen').val();
+			$.get('KiemTraSLGhe', {
+				idChuyen : idChuyen,
+			}, function(responseText) {
+				if(responseText.indexOf("true") != -1){
+					window.location = '/BanVeXe/jsp/thanhtoan.jsp';
+				}else{
+					alert("Bạn chưa chọn bất kỳ ghế nào!");
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- 	<section> -->
@@ -62,10 +78,12 @@
 			</tr>
 		</table>
 		<hr />
-			
-			<a href="/BanVeXe/jsp/thanhtoan.jsp"><input type="image"
-			src="/BanVeXe/image/xacnhan.png" width="80px"
-			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;"></a>
+
+		<!-- 			<a href="/BanVeXe/jsp/thanhtoan.jsp"> -->
+		<input type="image" id="xacnhan" src="/BanVeXe/image/xacnhan.png"
+			width="80px"
+			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;">
+		<!-- 			</a> -->
 		<a href="/BanVeXe/jsp/datve.jsp"><input type="image"
 			src="/BanVeXe/image/huyve.png" width="80px"
 			style="margin-left: 10px; margin-top: 5px;"></a>

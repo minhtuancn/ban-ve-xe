@@ -30,7 +30,7 @@
 				break;
 			}
 		%>
-		<div style="margin-left: 800px;"><%@ include
+		<div style="margin-left: 800px;" id="chitietve"><%@ include
 				file="chitietvexe.jsp"%></div>
 	</div>
 	<%@ include file="footer.jsp"%>

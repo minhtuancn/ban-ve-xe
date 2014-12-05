@@ -65,7 +65,7 @@
 <div  id="timve">Tìm vé về</div>
 		<div>
 			<%
-				tuyen = (Tuyen) session.getAttribute("tuyenDi");
+				tuyen = (Tuyen) session.getAttribute("tuyenVe");
 			%>
 
 			<table class="">
