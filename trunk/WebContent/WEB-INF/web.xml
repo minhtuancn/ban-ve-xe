@@ -59,4 +59,14 @@
     <servlet-name>KiemTraSLGhe</servlet-name>
     <url-pattern>/KiemTraSLGhe</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GenerateCaptcha</display-name>
+    <servlet-name>GenerateCaptcha</servlet-name>
+    <servlet-class>controller.GenerateCaptcha</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GenerateCaptcha</servlet-name>
+    <url-pattern>/GenerateCaptcha</url-pattern>
+  </servlet-mapping>
 </web-app>
