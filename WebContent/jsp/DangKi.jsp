@@ -6,6 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Đăng Kí</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/dangki.css">
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#refresh').click(function() {
+			var d = new Date();
+			var newSrc = "/BanVeXe/GenerateCaptcha?"+d.getTime();
+			$('#captcha').attr("src", newSrc);
+		});
+	});
+</script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -35,6 +45,16 @@
 						name="subject" id="subject" class="txt" tabindex="3"
 						placeholder="Địa chỉ" required>
 				</div>
+				<div class="captcha">
+					<img id="captcha" src="/BanVeXe/GenerateCaptcha"
+						title="Mã xác thực" width="100px" height="30px">
+						<img id="refresh"
+								src="/BanVeXe/image/refresh.png" title="Tải lại mã xác thực khác"  >
+				</div>
+				<div class="row">
+					<label for="subject">Mã xác nhận: <span class="req">*</span></label>
+					<input type="text" id="subject" class="txt" required="required" placeholder="Mã xác nhận">
+				</div>
 				<div class="center">
 					<input type="submit" id="submitbtn" name="submitbtn" tabindex="5"
 						value="Đăng Kí">
@@ -43,6 +63,6 @@
 		</div>
 
 	</div>
-		<%@ include file="footer.jsp"%>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

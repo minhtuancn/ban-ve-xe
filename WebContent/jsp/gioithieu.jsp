@@ -14,16 +14,16 @@
 <div id="gt">
 			<p class="note">
 					<img alt="icon"
-						src="/BanVeXe/image/con_address.png">1.Giới thiệu</p>
+						src="/BanVeXe/image/icon-td.png">1.Giới thiệu</p>
 				<p class="note">
 					<img alt="icon"
-						src="/BanVeXe/image/emailButton.png">2.Tầm nhìn</p>
+						src="/BanVeXe/image/icon-td.png">2.Tầm nhìn</p>
 				<p class="note">
 					<img alt="icon"
-						src="/BanVeXe/image/con_tel.png">3.Sứ mệnh</p>
+						src="/BanVeXe/image/icon-td.png">3.Sứ mệnh</p>
 				<p class="note">
 					<img alt="icon"
-						src="/BanVeXe/image/con_mobile.png">4.Triết lí</p>
+						src="/BanVeXe/image/icon-td.png">4.Triết lí</p>
 		</div>
 </div>
 <%@ include file="footer.jsp" %>

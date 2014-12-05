@@ -7,6 +7,16 @@
 <title>Quên mật khẩu</title>
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/quenmatkhau.css">
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#refresh').click(function() {
+			var d = new Date();
+			var newSrc = "/BanVeXe/GenerateCaptcha?" + d.getTime();
+			$('#captcha').attr("src", newSrc);
+		});
+	});
+</script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -24,9 +34,15 @@
 						<td><span>Quên mật khẩu</span></td>
 					</tr>
 					<tr>
-						<td><span>Nhập email:</span><span class="req">*</span></td>
-						<td><input type="text" name="hoten" required="required"
-							size="40" placeholder="Họ tên" /></td>
+						<td><span>Nhập số điện thoại:</span><span class="req">*</span></td>
+						<td><input type="number" name="hoten" required="required"
+							style="width:310px;" placeholder="số điện thoại" /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><img id="captcha" src="/BanVeXe/GenerateCaptcha" title="Mã xác thực"
+							width="100px" height="30px" />&nbsp;<img id="refresh" title="Tải lại mã xác thực khác" 
+							src="/BanVeXe/image/refresh.png" /></td>
 					</tr>
 					<tr>
 						<td><span>Nhập mã xác nhận:</span><span class="req">*</span></td>
