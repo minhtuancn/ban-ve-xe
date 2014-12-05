@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.DatVe;
+import model.KhachHang;
 
 /**
  * Servlet implementation class ThemGhe
@@ -44,22 +45,34 @@ public class ThemGhe extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		String idGhe = request.getParameter("idGhe");
 		String idChuyen = request.getParameter("idChuyen");
-		DatVe datVe  = null;
-		HttpSession session = request.getSession();
+		DatVe datVe = null;
 		String datVeString = "";
-		if(idChuyen.equalsIgnoreCase("1")){
+		String mes = "";
+		if (idChuyen.equalsIgnoreCase("1")) {
 			datVeString = "datVeDi";
-		}else{
+		} else {
 			datVeString = "datVeVe";
 		}
 		datVe = (DatVe) session.getAttribute(datVeString);
-		datVe.addGhe(Integer.parseInt(idGhe));
-		session.setAttribute(datVeString, datVe);
+		KhachHang kh = (KhachHang) session.getAttribute("khachHang");
+		if ((kh == null && datVe.getSoLuongGhe() > 1)) {
+			mes = "limited-notlogin";
+		} else {
+			if ((kh != null && datVe.getSoLuongGhe() > 4)) {
+				mes = "limited-login";
+			} else {
+				datVe = (DatVe) session.getAttribute(datVeString);
+				datVe.addGhe(Integer.parseInt(idGhe));
+				session.setAttribute(datVeString, datVe);
+				mes = "ok";
+			}
+		}
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().println("ok"); 
+		response.getWriter().println(mes);
 		response.getWriter().flush();
 	}
 

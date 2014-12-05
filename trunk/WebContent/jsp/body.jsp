@@ -55,7 +55,7 @@
 				height="350px">
 
 			<article>
-				<form action="../TimTuyen" class="login-form">
+				<form action="/BanVeXe/TimTuyen" class="login-form">
 					<table id="tb-datve" width="200px">
 						<tr>
 							<td><img alt="a" src="../image/tim ve xe.jpg" height="50px"></td>

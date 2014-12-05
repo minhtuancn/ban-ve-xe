@@ -42,7 +42,34 @@ public class Ghe implements Comparable<Ghe>{
 	public int compareTo(Ghe o) {
 		return idGhe - o.idGhe;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idGhe;
+		result = prime * result + soGhe;
+		result = prime * result + trangThai;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ghe other = (Ghe) obj;
+		if (idGhe != other.idGhe)
+			return false;
+		if (soGhe != other.soGhe)
+			return false;
+		if (trangThai != other.trangThai)
+			return false;
+		return true;
+	}
 	
 	
 	

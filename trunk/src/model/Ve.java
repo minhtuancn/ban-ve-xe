@@ -12,3 +12,4 @@ public class Ve {
 	private Date thoiHanThanhToan;
 	private int soSMS;
 }
+    

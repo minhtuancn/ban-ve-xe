@@ -8,7 +8,8 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/dangki.css">
 </head>
 <body>
-	<section>
+	<%@ include file="header.jsp"%>
+	<div id="dk-contain">
 		<div id="dangki">
 			<h1>Đăng Kí!</h1>
 			<form id="contactform" name="contact" method="post" action="#">
@@ -40,6 +41,8 @@
 				</div>
 			</form>
 		</div>
-	</section>
+
+	</div>
+		<%@ include file="footer.jsp"%>
 </body>
 </html>

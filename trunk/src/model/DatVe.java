@@ -60,6 +60,9 @@ public class DatVe {
 		danhsachGheDat.add(chuyen.getGhe(i));
 		Collections.sort(danhsachGheDat);
 	}
+	public void removeGhe(int i){
+		danhsachGheDat.remove(chuyen.getGhe(i));
+	}
 	public void addGhe(Ghe ghe){
 		danhsachGheDat.add(ghe);
 		Collections.sort(danhsachGheDat);

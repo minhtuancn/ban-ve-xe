@@ -122,6 +122,11 @@ article {
 	font-size: 20px;
 }
 
+.login-form input[type=checkbox] {
+	font-size: 20px;
+	color: white;
+}
+
 .login-form input[type=submit]:hover {
 	-webkit-box-shadow: inset 1px 1px 3px 0px rgba(255, 255, 255, .8), 0px
 		1px 1px 0px rgba(0, 0, 0, .6);
@@ -153,6 +158,7 @@ span#title-datve {
 	font-size: 20px;
 	color: white;
 }
+
 
 div#menu-noidi, div#menu-noiden {
 	position: absolute;
