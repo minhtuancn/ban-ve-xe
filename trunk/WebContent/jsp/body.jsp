@@ -160,7 +160,7 @@
 
 						</tr>
 						<tr>
-							<td align="left"><input type="checkbox" value="Vé khứ hồi"/>Vé khứ hồi</td>
+							<td id="checkbox" align="left"><input  type="checkbox" value="Vé khứ hồi"/>&nbsp;Vé khứ hồi</td>
 							<td align="right"><input type="submit"
 								value="Tìm vé" /></td>
 						</tr>

@@ -30,12 +30,12 @@
 							<td><span>Thông tin người đi:</span></td>
 						</tr>
 						<tr>
-							<td><span>Họ tên:</span></td>
+							<td><span>Họ tên:</span><span class="req">*</span></td>
 							<td><input type="text" name="hoten" size="30"
 								placeholder="Họ tên" /></td>
 						</tr>
 						<tr>
-							<td><span>Di động:</span></td>
+							<td><span>Di động:</span><span class="req">*</span></td>
 							<td><input type="tel" name="didong" size="30"
 								placeholder="Di động" /></td>
 						</tr>
@@ -43,6 +43,10 @@
 							<td><span>Ghi chú:</span></td>
 							<td><textarea rows="5" cols="60" autofocus
 									placeholder="Ghi chú"></textarea></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td id="xacnhan"><input type="submit" name="xacnhan" value="Xác nhận" /></td>
 						</tr>
 					</table>
 				</form>

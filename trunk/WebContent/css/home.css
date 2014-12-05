@@ -122,7 +122,7 @@ article {
 	font-size: 20px;
 }
 
-.login-form input[type=checkbox] {
+#checkbox {
 	font-size: 20px;
 	color: white;
 }
