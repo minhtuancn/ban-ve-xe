@@ -34,5 +34,6 @@
 				file="chitietvexe.jsp"%></div>
 	</div>
 	<%@ include file="footer.jsp"%>
+	
 </body>
 </html>
