@@ -1,0 +1,52 @@
+fieldset {
+	width: 80%;
+	height: 800px;
+	margin-left: 100px;
+}
+
+legend {
+	color: blue;
+	font-style: italic;
+	font-size: 30px;
+}
+
+h1 {
+	color: blue;
+	margin-left: 100px;
+	font-family: Arial;
+}
+
+.container {
+	width: 1366px;
+	height: 1000px;
+}
+
+.thongtinve {
+	width: 900px;
+	height: 450px;
+	background: #fff;
+	padding: 10px;
+	
+	margin-left: 50px;
+	margin-top: 20px;
+	float: left;
+	clear: rght;
+	border-radius: 10px;
+	border-width: 3px;
+	border-color: black;
+	box-shadow: -5px -5px 35px #ccc;
+}
+
+.td {
+font-family: Arial;
+margin-left: 50px;	
+}
+
+.thoidiem {
+	float: left;
+	clear: right;
+}
+
+.mave {
+	
+}

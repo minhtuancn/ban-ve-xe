@@ -6,10 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/header.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 </head>
 <body>
-<div id="container">
-<header>
+<div id="container" >
+<header class="bg">
 		<img alt="nenlogo" src="/BanVeXe/image/images.jpg" width="380" height="120">
 	</header>
 	<nav>
