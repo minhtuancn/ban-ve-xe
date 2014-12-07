@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <title>Giới thiệu</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/gioithieu.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 </head>
 <body>
 <%@ include file="header.jsp" %>
 <div id="gt-container">
-<div id="gioithieu">Giới thiệu</div>
+<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Giới thiệu<marquee behavior="alternate" width="10%"> << </marquee></div>
 <div id="gt">
 			<p class="note">
 					<img alt="icon"

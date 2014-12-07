@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/footer.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 </head>
 <body>
 <div id="container">
 <footer>
-	
-		 <div id="footer">
-		 <img alt="nlu" src="/BanVeXe/image/nlu.png" />
+		 <div id="footer" class="bg">
+		 <img id="img" alt="nlu" src="/BanVeXe/image/nlu.png" />
 		 <article>
 		<p> Bản quyền © 2012 thuộc về VeXeOnline.Com</br>
 Địa chỉ: VP Cẩm Tú, khu phố 6, phường Linh Trung, Q.Thủ Đức, TP. Hồ Chí Minh, Việt Nam </br>

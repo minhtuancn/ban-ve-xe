@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/chitietve.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#xacnhan").click(function() {
@@ -27,7 +28,6 @@
 </script>
 </head>
 <body>
-	<!-- 	<section> -->
 	<%
 		int idChuyen = (Integer) session.getAttribute("chuyen");
 		DatVe datVe = null;
@@ -36,7 +36,7 @@
 		else
 			datVe = (DatVe) session.getAttribute("datVeVe");
 	%>
-	<div id="chitietve">
+	<div id="chitietve" class="bg">
 		<h1 align="center">Chi tiết đặt chỗ</h1>
 		<table>
 			<tr>
@@ -79,15 +79,12 @@
 		</table>
 		<hr />
 
-		<!-- 			<a href="/BanVeXe/jsp/thanhtoan.jsp"> -->
 		<input type="image" id="xacnhan" src="/BanVeXe/image/xacnhan.png"
 			width="80px"
 			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;">
-		<!-- 			</a> -->
 		<a href="/BanVeXe/jsp/datve.jsp"><input type="image"
 			src="/BanVeXe/image/huyve.png" width="80px"
 			style="margin-left: 10px; margin-top: 5px;"></a>
 	</div>
-	<!-- 	</section> -->
 </body>
 </html>

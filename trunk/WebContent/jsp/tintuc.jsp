@@ -10,8 +10,8 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div id="tt-container">
-		<div id="tintuc">Tin tức</div>
-		<div id="timvenhanh">Tìm vé nhanh:</div>
+		<div class="title bg"><marquee behavior="alternate" width="10%">>></marquee>Tin tức<marquee behavior="alternate" width="10%"> << </marquee></div>
+		<div id="timvenhanh" class="bg">Tìm vé nhanh:</div>
 		<div id="listve"> 
 		<ul>
 				<li>Hà Nội → TP Hồ Chí Minh 900.000 vnd/vé</li>

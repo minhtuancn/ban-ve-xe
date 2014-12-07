@@ -6,12 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Đăng nhập</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/DangNhap.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 </head>
 
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="containerdn">
-
+<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Đăng nhập<marquee behavior="alternate" width="10%"> << </marquee></div>
 		<div id="dangki">
 			<h1>Đăng Nhập</h1>
 			<form id="contactform" name="contact" method="post" action="#">

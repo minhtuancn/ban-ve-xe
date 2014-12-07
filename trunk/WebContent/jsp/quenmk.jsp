@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Quên mật khẩu</title>
-<link rel="stylesheet" type="text/css"
-	href="/BanVeXe/css/quenmatkhau.css">
+<link rel="stylesheet" type="text/css"	href="/BanVeXe/css/quenmatkhau.css">
+<link rel="stylesheet" type="text/css"	href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -21,14 +21,14 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="qmk-contain">
-		<div class="quenmatkhau">Quên mật khẩu</div>
+		<div class="title bg"><marquee behavior="alternate" width="10%">>></marquee>Quên mật khẩu<marquee behavior="alternate" width="10%"> << </marquee></div>
 		<div class="quenmk">
 			<p class="ghichu-qmk">
 				Thông tin chi tiết của Quý khách sẽ giúp chúng tôi xác nhận lại tài
 				khoản của mình một cách chính xác <br> - Quý khách vui lòng
 				nhập chính xác các thông tin bên dưới<br>
 			</p>
-			<form action="#" class="quenmatkhau-form">
+			<form action="#" class="quenmatkhau-form bg">
 				<table>
 					<tr>
 						<td><span>Quên mật khẩu</span></td>
@@ -36,12 +36,18 @@
 					<tr>
 						<td><span>Nhập số điện thoại:</span><span class="req">*</span></td>
 						<td><input type="number" name="hoten" required="required"
-							style="width:310px;" placeholder="số điện thoại" /></td>
+							style="width: 310px;" placeholder="số điện thoại" /></td>
+					</tr>
+					<tr>
+						<td><span>Nhập số CMND:</span><span class="req">*</span></td>
+						<td><input type="number" name="hoten" required="required"
+							style="width: 310px;" placeholder="số CMND" /></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td><img id="captcha" src="/BanVeXe/GenerateCaptcha" title="Mã xác thực"
-							width="100px" height="30px" />&nbsp;<img id="refresh" title="Tải lại mã xác thực khác" 
+						<td><img id="captcha" src="/BanVeXe/GenerateCaptcha"
+							title="Mã xác thực" width="100px" height="30px" />&nbsp;<img
+							id="refresh" title="Tải lại mã xác thực khác"
 							src="/BanVeXe/image/refresh.png" /></td>
 					</tr>
 					<tr>
