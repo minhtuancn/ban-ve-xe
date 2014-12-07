@@ -20,23 +20,21 @@
 				<table border="1">
 					<tr>
 						<td>Tuyến</td>
-						<td><h3>Thành phố hồ chí minh---> đà nẵng</h3></td>
+						<td colspan="5"><h3>Thành phố hồ chí minh---> đà nẵng</h3></td>
 					</tr>
 					<tr>
 						<td>Ngày đi</td>
-						<td>12/12/2012</td>
-						<td>Giờ đi</td>
-						<td>12:00</td>
-						<td>Số lượng vé</td>
-						<td>2</td>
+						<td>12/12/2012 14:00</td>
+						<td>Vị trí ghế</td>
+						<td colspan="3">A1, A2, A3</td>
 					</tr>
 					<tr>
 						<td>Hành khách</td>
 						<td>Nguyễn văn a</td>
 						<td>Điện thoại</td>
 						<td>0933323400</td>
-						<td>Vị trí ghế</td>
-						<td>A1, A2</td>
+						<td>Số lượng vé</td>
+						<td>2</td>
 					</tr>
 				</table>
 				<div></div>
@@ -58,7 +56,7 @@
 					tăng Thời hạn thanh toán<br>
 				</p>
 			</div>
-		</fieldset>
+			</fieldset>
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>
