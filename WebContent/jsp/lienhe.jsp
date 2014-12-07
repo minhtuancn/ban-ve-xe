@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <title>Liên hệ</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/lienhe.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
 	<div id="container">
-		<div id="contain">Liên hệ</div>
+		<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Liên hệ<marquee behavior="alternate" width="10%"> << </marquee></div>
 		<div id="lienhe">
 			<p class="note">
 					<img alt="icon"

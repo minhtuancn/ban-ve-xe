@@ -45,8 +45,28 @@ margin-left: 50px;
 .thoidiem {
 	float: left;
 	clear: right;
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+td {
+	width: 15%;
+	color: red;
+	background: #79C1EC;
+}
+
+table {
+/* 	border-radius : 25px; */
+font-weight: bold;
 }
 
 .mave {
-	
+	float: right;
+	margin-right: 100px;
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 30px;
+	margin-bottom: 20px;
 }

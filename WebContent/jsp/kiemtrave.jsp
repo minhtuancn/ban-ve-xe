@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Kiểm tra vé</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/kiemtrave.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script>
 	function removeReadonly() {
@@ -22,9 +23,7 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div style="width: 100%; height: 800px;">
-		<div
-			style="width: 100%; height: 40px; background: #145CA1; font-size: 30px; color: white; margin-top: 10px;">Kiểm
-			tra vé</div>
+		<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Kiểm tra vé<marquee behavior="alternate" width="10%"> << </marquee></div>
 		<div class="kiemtrave kt-ve">
 			<div class="kt-ve pd mg" id="ktve">
 				<form action="#">
@@ -69,7 +68,7 @@
 							<div class="ktve-p pd mg kt-ve">
 								<p>Thông tin vé đã đặt</p>
 								<table id="ktv">
-									<tr id="dong1">
+									<tr id="dong1" class="bg">
 										<td class="tr1" align="center">Chuyến xe</td>
 										<td class="tr1" align="center">Giờ xuất phát</td>
 										<td class="tr1" align="center">Giá vé</td>

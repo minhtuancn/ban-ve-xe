@@ -11,7 +11,7 @@
 <body>
 <div id="container" >
 <header class="bg">
-		<img alt="nenlogo" src="/BanVeXe/image/images.jpg" width="380" height="120">
+		<img alt="nenlogo" src="/BanVeXe/image/logo2.png" width="480" height="120">
 	</header>
 	<nav>
 		<ul>

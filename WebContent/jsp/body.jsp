@@ -56,7 +56,7 @@
 				height="350px">
 
 			<article>
-				<form action="/BanVeXe/TimTuyen" class="login-form">
+				<form action="/BanVeXe/TimTuyen" class="login-form bg">
 					<table id="tb-datve" width="200px">
 						<tr>
 							<td><img alt="a" src="../image/tim ve xe.jpg" height="50px"></td>
@@ -65,7 +65,7 @@
 							<td><span id="title-datve" class="title-datvedi">Nơi
 									đi:</span><input type="text" name="noidi" placeholder="Nơi đi" />
 								<div id="menu-noidi">
-									<div class="noidi-nam">
+									<div class="noidi-nam bg">
 										<div id="noidi-den">Miền Nam</div>
 										<ul class="noidi-nam1">
 											<li class="lis"">Hồ Chí Minh</li>
@@ -78,7 +78,7 @@
 											<li>Sóc Trăng</li>
 										</ul>
 									</div>
-									<div class="noidi-trung">
+									<div class="noidi-trung bg">
 										<div id="noidi-den">Miền Trung</div>
 										<ul class="noidi-trung1">
 											<li>Đà Nẵng</li>
@@ -91,7 +91,7 @@
 											<li>Ninh Thuận</li>
 										</ul>
 									</div>
-									<div class="noidi-bac">
+									<div class="noidi-bac bg">
 										<div id="noidi-den">Miền Bắc</div>
 										<ul class="noidi-bac1">
 											<li>Hà Nội</li>
@@ -111,7 +111,7 @@
 							<td><span id="title-datve" class="title-datveden">Nơi
 									đến:</span><input type="text" name="noiden" placeholder="Nơi đến" />
 								<div id="menu-noiden">
-									<div class="noidi-nam">
+									<div class="noidi-nam bg">
 										<div id="noidi-den">Miền Nam</div>
 										<ul class="noidi-nam1">
 											<li class="lis"">Hồ Chí Minh</li>
@@ -124,7 +124,7 @@
 											<li>Sóc Trăng</li>
 										</ul>
 									</div>
-									<div class="noidi-trung">
+									<div class="noidi-trung bg">
 										<div id="noidi-den">Miền Trung</div>
 										<ul class="noidi-trung1">
 											<li>Đà Nẵng</li>
@@ -137,7 +137,7 @@
 											<li>Ninh Thuận</li>
 										</ul>
 									</div>
-									<div class="noidi-bac">
+									<div class="noidi-bac bg">
 										<div id="noidi-den">Miền Bắc</div>
 										<ul class="noidi-bac1">
 											<li>Hà Nội</li>
@@ -175,9 +175,8 @@
 			</script>
 		</section>
 		<section class="section1">
-			<div
-				style="width: 100%; height: 40px; background: #145CA1; font-size: 30px; color: white;">
-				Trang chủ</div>
+			<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Trang chủ<marquee behavior="alternate" width="10%"> << </marquee>
+				</div>
 			<!-- <div style="margin-left: 200px; position: absolute;" align="center" z-index=-1>
 			<a href="http://kialongbien.oto-xemay.vn/" target="_blank"
 				style="margin-right: 15px;" rel="nofollow"> <img

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/timve.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -32,7 +33,7 @@ $(document).ready(function() {
 		<input type="button" value="Print Div Contents" id="btnPrint" />
 	</div>
 	<div id="tc-container">
-		<div id="timve">Tìm vé đi</div>
+		<div class="title bg"><marquee behavior="alternate" width="10%">>></marquee>Tìm vé đi<marquee behavior="alternate" width="10%"> << </marquee></div>
 		<div>
 			<%
 				Tuyen tuyen = (Tuyen) session.getAttribute("tuyenDi");
@@ -40,7 +41,7 @@ $(document).ready(function() {
 
 			<table class="">
 				<thead>
-					<tr id="dong1">
+					<tr id="dong1" class="bg">
 						<td class="tr1" align="center">Chuyến xe</td>
 						<td class="tr1" align="center">Giờ xuất phát</td>
 						<td class="tr1" align="center">Giá vé</td>
@@ -55,7 +56,7 @@ $(document).ready(function() {
 						int i = 0;
 						for (Chuyen c : tuyen.getDanhSachChuyen()) {
 					%>
-					<tr id="dong2">
+					<tr id="dong2" >
 						<form action="TimGhe">
 							<td class="tr1" align="center"><%=tuyen.getTuyenXe()%></td>
 							<td class="tr1" align="center"><%=c.getGioKhoiHanh()%></td>
@@ -83,7 +84,7 @@ $(document).ready(function() {
 			if (laKhuHoi) {
 		%>
 
-		<div id="timve">Tìm vé về</div>
+		<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Tìm vé về<marquee behavior="alternate" width="10%"> << </marquee></div>
 		<div>
 			<%
 				tuyen = (Tuyen) session.getAttribute("tuyenVe");
@@ -91,7 +92,7 @@ $(document).ready(function() {
 
 			<table class="">
 				<thead>
-					<tr id="dong1">
+					<tr id="dong1" class="bg">
 						<td class="tr1" align="center">Chuyến xe</td>
 						<td class="tr1" align="center">Giờ xuất phát</td>
 						<td class="tr1" align="center">Giá vé</td>

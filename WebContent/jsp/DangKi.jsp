@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Đăng Kí</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/dangki.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -20,6 +21,7 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div id="dk-contain">
+	<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Đăng kí<marquee behavior="alternate" width="10%"> << </marquee></div>
 		<div id="dangki">
 			<h1>Đăng Kí!</h1>
 			<form id="contactform" name="contact" method="post" action="#">
@@ -39,6 +41,11 @@
 					<label for="subject">Số Điện Thoại: <span class="req">*</span></label>
 					<input type="text" name="subject" id="subject" class="txt"
 						tabindex="3" placeholder="Số điện thoại" required>
+				</div>
+				<div class="row">
+					<label for="subject">Số CMND: <span class="req">*</span></label>
+					<input type="text" name="subject" id="subject" class="txt"
+						tabindex="3" placeholder="Số CMND" required>
 				</div>
 				<div class="row">
 					<label for="subject">Địa chỉ:</label> <input type="text"

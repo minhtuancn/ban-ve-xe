@@ -1,16 +1,18 @@
-body{
+body {
 	width: auto;
 }
+
 div#container {
 	width: 1366px;
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
 }
+
 section.def {
-margin-top: 40px;
-width: 100%;
-height: 700px;
+	margin-top: 40px;
+	width: 100%;
+	height: 700px;
 }
 
 article {
@@ -21,8 +23,6 @@ article {
 	opacity: 1;
 }
 
-
-
 .login-form {
 	position: relative;
 	width: 420px;
@@ -31,7 +31,7 @@ article {
 	margin-top: 15px;
 	cursor: default;
 	font-weight: bold;
-	background-color: #145CA1;
+	/* 	background-color: #145CA1; */
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 25px;
@@ -102,7 +102,9 @@ article {
 
 .login-form input[type=submit] {
 	width: 200px;
-	height: 40px; font-size : 20px; cursor : pointer;
+	height: 40px;
+	font-size: 20px;
+	cursor: pointer;
 	color: #445b0f;
 	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .45), 0px
 		1px 1px 0px rgba(0, 0, 0, .3);
@@ -149,7 +151,6 @@ article {
 	padding: 5px;
 }
 
-
 table#tb-datve {
 	border-spacing: 10px;
 }
@@ -158,7 +159,6 @@ span#title-datve {
 	font-size: 20px;
 	color: white;
 }
-
 
 div#menu-noidi, div#menu-noiden {
 	position: absolute;
@@ -170,26 +170,26 @@ div#menu-noidi, div#menu-noiden {
 	display: block;
 	z-index: 1;
 }
-div#menu-noidi:hover, div#menu-noiden:hover{
-height: 100px;
+
+div#menu-noidi:hover, div#menu-noiden:hover {
+	height: 100px;
 	opacity: 1;
 }
-
 
 div.noidi-nam, div.noidi-trung, div.noidi-bac {
 	float: left;
 	clear: right;;
 	font-size: 15px;
 	font-family: arial;
-	color: #145CA1;
+	/* 	color: #145CA1; */
 	background: white;
 	width: 300px;
 	height: 120px;
 	border-right: 1px solid silver;
-	
 }
 
-div.noidi-nam #noidi-den, div.noidi-trung #noidi-den, div.noidi-bac #noidi-den {
+div.noidi-nam #noidi-den, div.noidi-trung #noidi-den, div.noidi-bac #noidi-den
+	{
 	border-color: red;
 	background: orange;
 	border: 2px;
@@ -207,11 +207,14 @@ ul.noidi-nam1, ul.noidi-nam2, ul.noidi-trung1, ul.noidi-trung2, ul.noidi-bac1,
 	list-style-type: none;
 	display: block;
 }
-div#menu-noidi li:hover, div#menu-noiden li:hover{
-color: blue;
-text-decoration: underline;
+
+div#menu-noidi li:hover, div#menu-noiden li:hover {
+	color: blue;
+	text-decoration: underline;
 }
-div#menu-noidi li:active, div#menu-noiden li:active{
-color: yellow;
-text-decoration: underline;
+
+div#menu-noidi li:active, div#menu-noiden li:active {
+	color: yellow;
+	text-decoration: underline;
 }
+
