@@ -25,30 +25,17 @@
 					<tr>
 						<td>Ngày đi</td>
 						<td>12/12/2012 &nbsp;12:00</td>
-						<td<td>Hành khách</td>
+						<td>Hành khách</td>
 						<td>Nguyễn văn a</td>
 						<td>Điện thoại</td>
 						<td>0933323400</td>
-<td>Vị trí ghế</td>
-						<td cosplan="3">A1, A2</td>
-<<<<<<< .mine						<td>12/12/2012 &nbsp; 12:00</td>
-=======						<td>12/12/2012 14:00</td>
-						<td>Vị trí ghế</td>
-						<td colspan="3">A1, A2, A3</td>
-					</tr>
+						</tr>
 					<tr>
->>>>>>> .theirs						
-						
-<<<<<<< .mine						
-					</tr>
-					<tr>
-						<td>Số lượng vé</td>
-						<td>2</td>
+					<td>Số lượng ghế</td>
+					<td>2</td>
 						<td>Vị trí ghế</td>
 						<td colspan="3">A1, A2</td>
-=======						<td>Số lượng vé</td>
-						<td>2</td>
->>>>>>> .theirs					</tr>
+</tr>
 				</table>
 				<div></div>
 				<p>
