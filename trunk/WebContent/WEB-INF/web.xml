@@ -69,4 +69,14 @@
     <servlet-name>GenerateCaptcha</servlet-name>
     <url-pattern>/GenerateCaptcha</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ThongTin</display-name>
+    <servlet-name>ThongTin</servlet-name>
+    <servlet-class>controller.ThongTin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThongTin</servlet-name>
+    <url-pattern>/ThongTin</url-pattern>
+  </servlet-mapping>
 </web-app>
