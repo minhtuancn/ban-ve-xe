@@ -19,25 +19,25 @@
 				<div class="td"><div class="thoidiem">Thời điểm đặt vé :&nbsp;3/12/2012&nbsp; 14:00</div><div class="mave">Mã vé: IU000012</div></div>
 				<table border="1">
 					<tr>
-						<td>Tuyến</td>
-						<td colspan="5"><h3>Thành phố hồ chí minh---> đà nẵng</h3></td>
+						<td>Tuyến:</td>
+						<td colspan="5"><h3>Thành phố hồ chí minh---> đà nẵng</h3> <img alt="chuathanhtoan" src="/BanVeXe/image/iconchuathanhtoan.png"></td>
 					</tr>
 					<tr>
-						<td>Ngày đi</td>
+						<td>Ngày đi:</td>
 						<td>12/12/2012 &nbsp;12:00</td>
-						<td>Hành khách</td>
-						<td>Nguyễn văn a</td>
-						<td>Điện thoại</td>
-						<td>0933323400</td>
+						<td>Hành khách:</td>
+						<td align="center">Nguyễn văn a</td>
+						<td>Điện thoại:</td>
+						<td align="center">0933323400</td>
 						</tr>
 					<tr>
-					<td>Số lượng ghế</td>
-					<td>2</td>
-						<td>Vị trí ghế</td>
-						<td colspan="3">A1, A2</td>
+					<td>Số lượng ghế:</td>
+					<td align="center">2</td>
+						<td>Vị trí ghế:</td>
+						<td colspan="3" align="center">A1, A2</td>
 </tr>
 				</table>
-				<div></div>
+				<div class="thoihan">(Thời hạn thanh toán: 30/12/2012 12:00)</div>
 				<p>
 					Vé của Quý khách được giữ chỗ đến Thời hạn thanh toán được ghi chú
 					trên thông tin vé.<br> Để tăng thời gian giữ chỗ, Quý khách

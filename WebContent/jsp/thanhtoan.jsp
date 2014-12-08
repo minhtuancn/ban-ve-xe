@@ -45,7 +45,7 @@
 					phục vụ Quý khách nếu thông tin của Quý khách không đúng theo Mục
 					6.2, Điều 6, của Quy Định Vận Chuyển.
 				</p>
-				<form action="#" class="login-form bg">
+				<form action="ThongTin" class="login-form bg">
 					<table>
 						<tr>
 							<td><span>Thông tin người đi:</span></td>

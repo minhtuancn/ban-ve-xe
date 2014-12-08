@@ -1,6 +1,6 @@
 fieldset {
 	width: 80%;
-	height: 800px;
+	height: 600px;
 	margin-left: 100px;
 }
 
@@ -23,7 +23,7 @@ h1 {
 
 .thongtinve {
 	width: 900px;
-	height: 450px;
+	height: 500px;
 	background: #fff;
 	padding: 10px;
 	
@@ -51,6 +51,26 @@ margin-left: 50px;
 	margin-bottom: 20px;
 }
 
+td h3 {
+	float: left;
+	clear: right;
+	
+}
+
+td img{
+	float: right;
+	width: 150px;
+	height: 50px;
+}
+
+.thoihan {
+	margin-top: 20px;
+	margin-left: 100px;
+	color: blue;
+	font-family: Tahoma;
+	font-weight: bold;
+	font-size: 20px;
+}
 td {
 	width: 15%;
 	color: red;
@@ -59,7 +79,10 @@ td {
 
 table {
 /* 	border-radius : 25px; */
+text-align: center;
 font-weight: bold;
+margin-left: auto;
+margin-right: auto;
 }
 
 .mave {
