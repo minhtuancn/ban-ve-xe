@@ -11,9 +11,9 @@
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script src="/BanVeXe/js/xe.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	set($(".chuadat"),$('#idChuyenDi'));
-});
+	$(document).ready(function() {
+		set($(".chuadat"), $('#idChuyenDi'));
+	});
 </script>
 </head>
 <body>

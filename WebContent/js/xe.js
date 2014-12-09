@@ -21,7 +21,6 @@ function unselected(el) {
 function choose(el, id) {
 	var idGhe = $(el).attr("id");
 	var idChuyen = $(id).val(); 
-	alert(id + " = " +  idChuyen + " = " + idGhe);
 	$
 			.get(
 					'ThemGhe',
