@@ -1,3 +1,4 @@
+<%@page import="util.DuongDan"%>
 <%@page import="model.Chuyen"%>
 <%@page import="model.Tuyen"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -11,29 +12,27 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	$("#btnPrint").click(function() {
-		var divContents = $("#tc-container").html();
-		var css = '<link rel="stylesheet" type="text/css" href="/BanVeXe/css/timve.css">';
-		var printWindow = window.open('', '', 'height=400,width=800');
-		printWindow.document.write('<html><head><title>DIV Contents</title>');
-		printWindow.document.write(css);
-		printWindow.document.write('</head><body >');
-		printWindow.document.write(divContents);
-		printWindow.document.write('</body></html>');
-		printWindow.document.close();
-		printWindow.print();
-	});
-});
+	function chonXe(chuyenDiOrVe, chuyen, id) {
+		setDefaut(chuyenDiOrVe);
+		$("#"+chuyen+"-"+id).load("/BanVeXe/TimGhe?chuyen="+chuyen+"&id="+id, function() {
+		});
+			$("#"+chuyen+"-"+id).slideDown();
+	}
+	function setDefaut(chuyen) {
+		$("."+chuyen).slideUp();
+		$("."+chuyen).html("");
+	}
 </script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div>
-		<input type="button" value="Print Div Contents" id="btnPrint" />
-	</div>
+	<div></div>
 	<div id="tc-container">
-		<div class="title bg"><marquee behavior="alternate" width="10%">>></marquee>Tìm vé đi<marquee behavior="alternate" width="10%"> << </marquee></div>
+		<div class="title bg">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Tìm vé đi
+			<marquee behavior="slide" width="10%"> << </marquee>
+		</div>
 		<div>
 			<%
 				Tuyen tuyen = (Tuyen) session.getAttribute("tuyenDi");
@@ -56,19 +55,19 @@ $(document).ready(function() {
 						int i = 0;
 						for (Chuyen c : tuyen.getDanhSachChuyen()) {
 					%>
-					<tr id="dong2" >
-						<form action="TimGhe">
-							<td class="tr1" align="center"><%=tuyen.getTuyenXe()%></td>
-							<td class="tr1" align="center"><%=c.getGioKhoiHanh()%></td>
-							<td class="tr1" align="center"><%=c.getGia()%></td>
-							<td class="tr1" align="center"><%=c.getLoaiGhe()%></td>
-							<td class="tr1" align="center"><%=c.getLoaiXe() + " chổ"%></td>
-							<td class="tr1" align="center"><%=c.getSLGheChuaDat()%></td>
-							<td class="tr1" align="center"><input type="hidden"
-								value="<%=i++%>" name="id" /><input type="hidden"
-								value="<%=1%>" name="chuyen" /> <input type="submit"
-								value="chọn" class="chon" /></td>
-						</form>
+					<tr id="dong2">
+						<td class="tr1" align="center"><%=tuyen.getTuyenXe()%></td>
+						<td class="tr1" align="center"><%=c.getGioKhoiHanh()%></td>
+						<td class="tr1" align="center"><%=c.getGia()%></td>
+						<td class="tr1" align="center"><%=c.getLoaiGhe()%></td>
+						<td class="tr1" align="center"><%=c.getLoaiXe() + " chổ"%></td>
+						<td class="tr1" align="center"><%=c.getSLGheChuaDat()%></td>
+						<td class="tr1" align="center"><input type="button"
+							value="chọn" class="chon" onclick="chonXe('chuyendi',1,<%=i%>)" /></td>
+					</tr>
+					<tr>
+						<td colspan="7"><div id="1-<%=i++%>" class="chuyendi"
+								style="margin-left: 200px;"></div></td>
 					</tr>
 					<%
 						}
@@ -84,7 +83,11 @@ $(document).ready(function() {
 			if (laKhuHoi) {
 		%>
 
-		<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Tìm vé về<marquee behavior="alternate" width="10%"> << </marquee></div>
+		<div class="bg title">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Tìm vé về
+			<marquee behavior="alternate" width="10%"> << </marquee>
+		</div>
 		<div>
 			<%
 				tuyen = (Tuyen) session.getAttribute("tuyenVe");
@@ -101,6 +104,7 @@ $(document).ready(function() {
 						<td class="tr1" align="center">Chỗ trống</td>
 						<td class="tr1" align="center">chọn</td>
 					</tr>
+
 				</thead>
 				<tbody>
 					<%
@@ -108,18 +112,19 @@ $(document).ready(function() {
 							for (Chuyen c : tuyen.getDanhSachChuyen()) {
 					%>
 					<tr id="dong2">
-						<form action="TimGhe">
-							<td class="tr1" align="center"><%=tuyen.getTuyenXe()%></td>
-							<td class="tr1" align="center"><%=c.getGioKhoiHanh()%></td>
-							<td class="tr1" align="center"><%=c.getGia()%></td>
-							<td class="tr1" align="center"><%=c.getLoaiGhe()%></td>
-							<td class="tr1" align="center"><%=c.getLoaiXe() + " chổ"%></td>
-							<td class="tr1" align="center"><%=c.getSLGheChuaDat()%></td>
-							<td class="tr1" align="center"><input type="hidden"
-								value="<%=i++%>" name="id" /> <input type="hidden"
-								value="<%=2%>" name="chuyen" /> <input type="submit"
-								value="chọn" class="chon" /></td>
-						</form>
+						<td class="tr1" align="center"><%=tuyen.getTuyenXe()%></td>
+						<td class="tr1" align="center"><%=c.getGioKhoiHanh()%></td>
+						<td class="tr1" align="center"><%=c.getGia()%></td>
+						<td class="tr1" align="center"><%=c.getLoaiGhe()%></td>
+						<td class="tr1" align="center"><%=c.getLoaiXe() + " chổ"%></td>
+						<td class="tr1" align="center"><%=c.getSLGheChuaDat()%></td>
+						<td class="tr1" align="center"><input type="button"
+							value="chọn" class="chon" onclick="chonXe('chuyenve', 2,<%=i%>)" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="7"><div id="2-<%=i++%>" class="chuyenve"
+								style="margin-left: 200px;"></div></td>
 					</tr>
 					<%
 						}

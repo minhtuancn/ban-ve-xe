@@ -1,6 +1,6 @@
 #tc-container {
 	width: 1366px;
-	height: 600px;
+	height: auto;
 }
 
 /* #timve { */
@@ -13,8 +13,8 @@
 /* } */
 
 table {
-	margin-left: 50px;
-	margin-right: 50px;
+/* 	margin-left: 50px; */
+/* 	margin-right: 50px; */
 	margin-top: 10px;
 }
 

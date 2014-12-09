@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/xe45.css">
 <script>
 	$(document).ready(function() {
-		set($(".chuadat"));
+// 		set($(".chuadat"));
 	});
 </script>
 </head>
@@ -29,7 +29,7 @@
 	List<Ghe> danhSachghes = chuyens.getDanhSachGheNgoi();
 	%>
 	<input type="hidden" value="<%= idChuyens%>" id="idChuyen" />
-	<div id="xe">
+	<div id="xe45cho" >
 		<img alt="dauxe" src="/BanVeXe/image/p.png" width="310px"
 			height="100px">
 		<%
