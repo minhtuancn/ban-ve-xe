@@ -6,23 +6,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/xe.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	set($(".chuadat"),$('#idChuyenVe'));
+});
+</script>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
-	<div style="width: 100%; height: 700px; margin-top: 20px;">
+	<%
+		Chuyen c = (Chuyen) session.getAttribute("chuyenVe");
+		int loaiXe = c.getLoaiXe();
+	%>
+	<input type="hidden" value="<%=2%>" id="idChuyenVe" />
+	<div
+		style="width: 100%; <%if (loaiXe == 15) {%> height:530px; <%} else {%> height:720px; <%}%>">
 		<%
-			Chuyen c = (Chuyen) session.getAttribute("chuyenVe");
-			int loaiXe = c.getLoaiXe();
 			switch (loaiXe) {
 			case 15:
 		%>
-		<div style="left: 100px; position: absolute;">
+		<div style="position: absolute;">
 			<%@ include file="xe16.jsp"%></div>
 		<%
 			break;
 			case 45:
 		%>
-		<div style="left: 100px; position: absolute;">
+		<div style="position: absolute;">
 			<%@ include file="xe45.jsp"%></div>
 		<%
 			break;
@@ -30,9 +40,8 @@
 				break;
 			}
 		%>
-		<div style="margin-left: 800px;" id="chitietve"><%@ include
+		<div style="margin-top: 10px; margin-left: 500px" id="chitietve"><%@ include
 				file="chitietvexe.jsp"%></div>
 	</div>
-	<%@ include file="footer.jsp"%>
 </body>
 </html>

@@ -1,4 +1,4 @@
-function set(item) {
+function set(item, idchuyen) {
 	item.mouseleave(function() {
 		unselected($(this));
 	});
@@ -6,7 +6,7 @@ function set(item) {
 		selected($(this));
 	});
 	item.click(function() {
-		choose($(this));
+		choose($(this), idchuyen);
 	});
 }
 
@@ -18,9 +18,10 @@ function unselected(el) {
 	var newSrc = "/BanVeXe/image/ghe1.png";
 	$(el).attr("src", newSrc);
 }
-function choose(el) {
-	var idChuyen = $('#idChuyen').val();
+function choose(el, id) {
 	var idGhe = $(el).attr("id");
+	var idChuyen = $(id).val(); 
+	alert(id + " = " +  idChuyen + " = " + idGhe);
 	$
 			.get(
 					'ThemGhe',
@@ -36,7 +37,7 @@ function choose(el) {
 							$(el).unbind("mouseleave");
 							$(el).unbind("click");
 							$(el).click(function() {
-								unchoose($(el));
+								unchoose($(el), id);
 							});
 							selected($(el));
 							return;
@@ -51,8 +52,8 @@ function choose(el) {
 					});
 
 }
-function unchoose(el) {
-	var idChuyen = $('#idChuyen').val();
+function unchoose(el, id) {
+	var idChuyen = $(id).val();
 	var idGhe = $(el).attr("id");
 	$.get('HuyGhe', {
 		idChuyen : idChuyen,
@@ -68,7 +69,7 @@ function unchoose(el) {
 			});
 			$(el).unbind("click");
 			$(el).click(function() {
-				choose($(el));
+				choose($(el), id);
 			});
 			unselected($(el));
 		} else {

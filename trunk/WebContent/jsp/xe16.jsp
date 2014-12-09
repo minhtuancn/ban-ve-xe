@@ -13,7 +13,7 @@
 <script src="/BanVeXe/js/xe.js"></script>
 <script>
 	$(document).ready(function() {
-		set($(".chuadat"));
+// 		set($(".chuadat"));
 		$("#btnPrint").click( function () {
 	        var divContents = $("body").html();
 	        var printWindow = window.open('', '', 'height=400,width=800');
@@ -30,7 +30,7 @@
 </head>
 <body>
 <input type="button" value="Print Div Contents" id="btnPrint" />
-	<div id="xe">
+	<div id="xe16cho">
 		<%
 			int idChuyen = (Integer) session.getAttribute("chuyen");
 			Chuyen chuyen = null;
@@ -41,7 +41,7 @@
 			}
 			List<Ghe> danhSachghe = chuyen.getDanhSachGheNgoi();
 		%>
-		<input type="hidden" value="<%=idChuyen%>" id="idChuyen" /> <img
+		 <img
 			alt="dauxe" src="/BanVeXe/image/p.png" width="260px" height="150px">
 		<%
 			for (int i = 0; i < 15; i++) {
