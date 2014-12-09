@@ -39,14 +39,14 @@ public class GenerateCaptcha extends HttpServlet {
 		int n = new Random().nextInt(8999)+1000;
 		g.setColor(Color.white);
 		g.fillRect(0, 0, w, h);
-		g.setFont(new Font("Arial",Font.BOLD, 30));
+		g.setFont(new Font("Colonna MT",Font.BOLD, 30));
 		g.setColor(Color.red);
 		g.drawString(n + "", 10, 30);
 		response.setContentType("image/jpg");
 		ImageIO.write(im, "jpg", response.getOutputStream());
 		g.dispose();
 		HttpSession session = request.getSession();
-		session.setAttribute("captcha", n);
+		session.setAttribute("captcha", n+"");
 	}
 
 	/**

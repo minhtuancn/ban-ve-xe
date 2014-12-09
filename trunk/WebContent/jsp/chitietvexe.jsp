@@ -49,7 +49,7 @@
 			</tr>
 			<tr>
 				<td id="td1">Ngày đi:</td>
-				<td id="td2"><%=new SimpleDateFormat("dd/MM/yyyy").format(datVe
+				<td id="td2"><%=new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(datVe
 					.getNgayKhoiHanh())%></td>
 			</tr>
 			<tr>

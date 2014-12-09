@@ -1,7 +1,9 @@
 fieldset {
 	width: 80%;
-	height: 600px;
+/* 	height: 600px; */
+	height: auto;
 	margin-left: 100px;
+	margin-bottom: 30px;
 }
 
 legend {
@@ -18,17 +20,18 @@ h1 {
 
 .container {
 	width: 1366px;
-	height: 1000px;
+/* 	height: 1000px; */
+	height: auto;
 }
 
 .thongtinve {
 	width: 900px;
-	height: 500px;
+/* 	height: 500px; */
+	height: auto;
 	background: #fff;
 	padding: 10px;
 	
-	margin-left: 50px;
-	margin-top: 20px;
+	margin: 30px 68px;
 	float: left;
 	clear: rght;
 	border-radius: 10px;

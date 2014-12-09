@@ -1,3 +1,4 @@
+<%@page import="model.KhachHang"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 	$(document).ready(function() {
 		$('#refresh').click(function() {
 			var d = new Date();
-			var newSrc = "/BanVeXe/GenerateCaptcha?"+d.getTime();
+			var newSrc = "/BanVeXe/GenerateCaptcha?" + d.getTime();
 			$('#captcha').attr("src", newSrc);
 		});
 	});
@@ -20,8 +21,30 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+
+	<%
+		String shoten = "a";
+		String sdidong = "1";
+		String scmnd = "1";
+		String semail = "a";
+		KhachHang kh = (KhachHang ) session.getAttribute("khachHang");
+		if (kh == null) {
+			if (request.getParameter("hoten") != null)
+				shoten = request.getParameter("hoten");
+			if (request.getParameter("didong") != null)
+				sdidong = request.getParameter("didong");
+			if (request.getParameter("cmnd") != null)
+				scmnd = request.getParameter("cmnd");
+			if (request.getParameter("email") != null)
+				semail = request.getParameter("email");
+		}
+	%>
 	<div class="contain">
-		<div class="thongtinKH bg"><marquee behavior="alternate" width="10%">>></marquee>Thanh toán<marquee behavior="alternate" width="10%"> << </marquee></div>
+		<div class="thongtinKH bg">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Thanh toán
+			<marquee behavior="alternate" width="10%"> << </marquee>
+		</div>
 		<div>
 			<p class="p-thongtin">Thông tin khách hàng:</p>
 			<hr />
@@ -45,7 +68,7 @@
 					phục vụ Quý khách nếu thông tin của Quý khách không đúng theo Mục
 					6.2, Điều 6, của Quy Định Vận Chuyển.
 				</p>
-				<form action="ThongTin" class="login-form bg">
+				<form action="/BanVeXe/ThongTin" class="login-form bg">
 					<table>
 						<tr>
 							<td><span>Thông tin người đi:</span></td>
@@ -53,38 +76,44 @@
 						<tr>
 							<td><span>Họ tên:</span><span class="req">*</span></td>
 							<td><input type="text" name="hoten" size="58"
-								required="required" placeholder="Họ tên" /></td>
+								required="required" placeholder="Họ tên" value="<%= shoten%>"/></td>
 						</tr>
 						<tr>
 							<td><span>Di động:</span><span class="req">*</span></td>
 							<td><input type="number" name="didong" size="100"
-								required="required" placeholder="Di động" /></td>
+								required="required" placeholder="Di động" value="<%= sdidong%>" /></td>
 						</tr>
 						<tr>
 							<td><span>Số CMND:</span><span class="req">*</span></td>
 							<td><input type="number" name="cmnd" size="80"
-								required="required" placeholder="Số CMND" /></td>
+								required="required" placeholder="Số CMND" value="<%= scmnd%>" /></td>
+						</tr>
+						<tr>
+							<td><span>Email:</span><span class="req">*</span></td>
+							<td><input type="email" name="email" size="50"
+								required="required" placeholder="abc@gmail.com" value="<%= semail%>"/></td>
 						</tr>
 						<tr>
 							<td><span>Ghi chú:</span></td>
 							<td><textarea rows="5" cols="60" autofocus
-									placeholder="Ghi chú"></textarea></td>
+									placeholder="Ghi chú" name="ghichu"></textarea></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td><img id="captcha" src="/BanVeXe/GenerateCaptcha" title="Mã xác thực"
-								width="100px" height="30px" />&nbsp;<img id="refresh" 
-								src="/BanVeXe/image/refresh.png" title="Tải lại mã xác thực khác" /></td>
+							<td><img id="captcha" src="/BanVeXe/GenerateCaptcha"
+								title="Mã xác thực" width="100px" height="30px" />&nbsp;<img
+								id="refresh" src="/BanVeXe/image/refresh.png"
+								title="Tải lại mã xác thực khác" /></td>
 						</tr>
 						<tr>
 							<td><span>Nhập mã xác nhập:</span><span class="req">*</span></td>
-							<td><input type="text" required="required" 
+							<td><input type="text" required="required" name="captcha"
 								placeholder="Mã xác nhận"></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td id="xacnhan"><input type="submit" name="xacnhan"
-								value="Xác nhận" /></td>
+							<td id="xacnhan"><input type="submit"
+							 /></td>
 						</tr>
 					</table>
 				</form>

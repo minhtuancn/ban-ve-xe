@@ -8,7 +8,7 @@ public class LayMaVe {
 	private static LayMaVe instant = new LayMaVe();
 	private Set<String> listMaVe;
 	private Random random;
-	public static final int SO_KY_TU_MAVE = 6;
+	public static final int SO_KY_TU_MAVE = 4;
 
 	private LayMaVe() {
 		listMaVe = new HashSet<>();

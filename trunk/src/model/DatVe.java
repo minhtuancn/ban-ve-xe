@@ -56,6 +56,10 @@ public class DatVe {
 	public int getGia(){
 		return chuyen.getGia();
 	}
+	
+	public List<Ghe> getDanhsachGheDat() {
+		return danhsachGheDat;
+	}
 	public void addGhe(int i){
 		danhsachGheDat.add(chuyen.getGhe(i));
 		Collections.sort(danhsachGheDat);
