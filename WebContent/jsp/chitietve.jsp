@@ -1,3 +1,5 @@
+<%@page import="model.Ve"%>
+<%@page import="model.KhachHang"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -10,34 +12,115 @@
 	href="/BanVeXe/css/thongtinve.css">
 </head>
 <body>
+	<%
+		KhachHang kh = (KhachHang) session.getAttribute("khachHang");
+		Ve veDi = kh.getVeDi();
+		;
+	%>
+
 	<div class="container">
 		<%@ include file="header.jsp"%>
 		<h1>Chúc mừng quý khách đã giữ chỗ thành công!</h1>
 		<fieldset>
 			<legend>Thông tin vé</legend>
 			<div class="thongtinve">
-				<div class="td"><div class="thoidiem">Thời điểm đặt vé :&nbsp;3/12/2012&nbsp; 14:00</div><div class="mave">Mã vé: IU000012</div></div>
+				<div class="td">
+					<div class="thoidiem">
+						Thời điểm đặt vé :&nbsp;
+						<%=veDi.getNgayDatVe()%></div>
+					<div class="mave">
+						Mã vé:
+						<%=veDi.getMaVe()%></div>
+				</div>
 				<table border="1">
 					<tr>
 						<td>Tuyến:</td>
-						<td colspan="5"><h3>Thành phố hồ chí minh---> đà nẵng</h3> <img alt="chuathanhtoan" src="/BanVeXe/image/iconchuathanhtoan.png"></td>
+						<td colspan="5"><h3><%=veDi.getTuyenXe()%></h3> <%
+ 	if (!veDi.isTrangThaiThanhToan()) {
+ %>
+							<img alt="chuathanhtoan"
+							src="/BanVeXe/image/iconchuathanhtoan.png"></td>
+						<%
+							} else {
+						%>
+						<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png">
+						</td>
+						<%
+							}
+						%>
 					</tr>
 					<tr>
 						<td>Ngày đi:</td>
-						<td>12/12/2012 &nbsp;12:00</td>
+						<td><%=veDi.getNgayKhoiHanh()%></td>
 						<td>Hành khách:</td>
-						<td align="center">Nguyễn văn a</td>
+						<td align="center"><%=kh.getTenKhachHang()%></td>
 						<td>Điện thoại:</td>
-						<td align="center">0933323400</td>
-						</tr>
+						<td align="center"><%=kh.getSdt()%></td>
+					</tr>
 					<tr>
-					<td>Số lượng ghế:</td>
-					<td align="center">2</td>
+						<td>Số lượng ghế:</td>
+						<td align="center"><%=veDi.getSoLuongGhe()%></td>
 						<td>Vị trí ghế:</td>
-						<td colspan="3" align="center">A1, A2</td>
-</tr>
+						<td colspan="3" align="center"><%=veDi.getTenGhe()%></td>
+					</tr>
 				</table>
-				<div class="thoihan">(Thời hạn thanh toán: 30/12/2012 12:00)</div>
+				<div class="thoihan">
+					(Thời hạn thanh toán:
+					<%=veDi.getThoiHanThanhToan()%>)
+				</div>
+
+				<!-- 				Vé về -->
+				<%
+					Ve veVe = kh.getVeVe();
+					if (veVe != null) {
+				%>
+				<div class="td">
+					<div class="thoidiem">
+						Thời điểm đặt vé :&nbsp;
+						<%=veVe.getNgayDatVe()%></div>
+					<div class="mave">
+						Mã vé:
+						<%=veVe.getMaVe()%></div>
+				</div>
+				<table border="1">
+					<tr>
+						<td>Tuyến:</td>
+						<td colspan="5"><h3><%=veVe.getTuyenXe()%></h3> <%
+ 	if (!veVe.isTrangThaiThanhToan()) {
+ %>
+							<img alt="chuathanhtoan"
+							src="/BanVeXe/image/iconchuathanhtoan.png"></td>
+						<%
+							} else {
+						%>
+						<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png">
+						</td>
+						<%
+							}
+						%>
+					</tr>
+					<tr>
+						<td>Ngày đi:</td>
+						<td><%=veVe.getNgayKhoiHanh()%></td>
+						<td>Hành khách:</td>
+						<td align="center"><%=kh.getTenKhachHang()%></td>
+						<td>Điện thoại:</td>
+						<td align="center"><%=kh.getSdt()%></td>
+					</tr>
+					<tr>
+						<td>Số lượng ghế:</td>
+						<td align="center"><%=veVe.getSoLuongGhe()%></td>
+						<td>Vị trí ghế:</td>
+						<td colspan="3" align="center"><%=veVe.getTenGhe()%></td>
+					</tr>
+				</table>
+				<div class="thoihan">
+					(Thời hạn thanh toán:
+					<%=veVe.getThoiHanThanhToan()%>)
+				</div>
+				<%
+					}
+				%>
 				<p>
 					Vé của Quý khách được giữ chỗ đến Thời hạn thanh toán được ghi chú
 					trên thông tin vé.<br> Để tăng thời gian giữ chỗ, Quý khách

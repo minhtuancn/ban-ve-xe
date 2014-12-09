@@ -5,12 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/jquery.md5.js"></script>
+<script type="text/javascript">
+	function check() {
+		var md5 = $.md5('hoang nhuoc quy'); 
+		alert(md5);
+		alert($.md5(md5));
+	}
+</script>
 </head>
 <body>
-	<input type="image" src="../image/xacnhan.png" width="80px" style="margin-left:100px;margin-top:15px;" onclick="thanhtoan.jsp">
-	<a href="thanhtoan.jsp" target="_blank"
-				style="margin-left:100px;margin-top:15px;width:80px;" rel="nofollow"> <img
-				src="../image/xacnhan.png"
-				border="1"></a> 
+	<input type="text" id="text" />
+	<input type="button" onclick="check()" />
 </body>
 </html>
