@@ -10,7 +10,7 @@
 <script src="/BanVeXe/js/xe.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	set($("div#chuyenve img.chuadat"),$('#idChuyenVe'), "#chitietveve");
+	set($("div#chuyenve img.chuadat"),$('#idChuyenVe'), ".chitietve");
 });
 </script>
 </head>
@@ -21,7 +21,8 @@ $(document).ready(function() {
 	%>
 	<input type="hidden" value="2" id="idChuyenVe" />
 	<div id="chuyenve"
-		style="width: 100%; <%if (loaiXe == 15) {%> height:530px; <%} else {%> height:720px; <%}%>">
+<%-- 		style="width: 100%; <%if (loaiXe == 15) {%> height:530px; <%} else {%> height:720px; <%}%>"> --%>
+		style="width: 100%; height: 730px;">
 		<%
 			switch (loaiXe) {
 			case 15:
@@ -40,7 +41,7 @@ $(document).ready(function() {
 				break;
 			}
 		%>
-		<div style="margin-top: 10px; margin-left: 500px" id="chitietveve"><%@ include
+		<div style="margin-top: 10px; margin-left: 500px" class="chitietve"><%@ include
 				file="chitietvexe.jsp"%></div>
 	</div>
 </body>

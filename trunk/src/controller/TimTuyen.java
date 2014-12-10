@@ -43,7 +43,7 @@ public class TimTuyen extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("laKhuHoi", laKhuHoi);
-		Tuyen tuyen = new TuyenDAOImpl().getTuyen("", "");
+		Tuyen tuyen = new TuyenDAOImpl().getTuyen("", "", "");
 		session.setAttribute("tuyenDi", tuyen);
 //		response.sendRedirect("/BanVeXe/jsp/timchuyen.jsp");
 		if(laKhuHoi){

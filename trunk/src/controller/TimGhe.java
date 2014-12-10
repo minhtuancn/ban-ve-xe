@@ -48,7 +48,7 @@ public class TimGhe extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		boolean laKhuhoi = (boolean) session.getAttribute("laKhuHoi");
-
+		
 		String ids = request.getParameter("id");
 		String chuyens = request.getParameter("chuyen");
 		if (ids != null && chuyens != null) {

@@ -11,26 +11,16 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/timve.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/util.js"></script>
 <script type="text/javascript">
 	function chonXe(scrollid,time, chuyenDiOrVe, chuyen, id) {
-		setDefaut(chuyenDiOrVe);
+// 		setDefaut(chuyenDiOrVe);
+		setDefaut('chuyendi');
+		setDefaut('chuyenve');
 		$("#"+chuyen+"-"+id).load("/BanVeXe/TimGhe?chuyen="+chuyen+"&id="+id, function() {
 		});
 			$("#"+chuyen+"-"+id).slideDown();
 			scroll(scrollid,time);
-	}
-	function setDefaut(chuyen) {
-		$("."+chuyen).slideUp(0);
-		$("."+chuyen).html("");
-	}
-	function scroll(el,time) {
-		$('body,html').animate({
-			scrollTop: 0
-		}, 100);
-		$('body,html').animate({
-			scrollTop: $(el).offset().top
-		}, time);
-		return false;
 	}
 </script>
 </head>
@@ -38,7 +28,7 @@
 	<%@ include file="header.jsp"%>
 	<div></div>
 	<div id="tc-container">
-		<div class="title bg">
+		<div id="timvedi" class="title bg">
 			<marquee behavior="alternate" width="10%">>></marquee>
 			Tìm vé đi
 			<marquee behavior="alternate" width="10%"> << </marquee>
@@ -94,7 +84,7 @@
 			if (laKhuHoi) {
 		%>
 
-		<div class="bg title">
+		<div id="timveve" class="bg title">
 			<marquee behavior="alternate" width="10%">>></marquee>
 			Tìm vé về
 			<marquee behavior="alternate" width="10%"> << </marquee>

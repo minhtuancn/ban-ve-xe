@@ -2,7 +2,7 @@ div#chitietve {
 	position: absolute;
 /* 	background-color: #145CA1; */
 	width: 380px;
-	height: 360px;
+	height: auto;
 	border: 2px;
 	border-radius: 10px;
 	padding-left: 25px;
@@ -16,12 +16,13 @@ div h1 {
 	height: 30px;
 	margin-top: 8px;
 }
- div table #td1 {
+ #td1 {
 	margin-left: 20px;
 	color: white;
 	font-size: 18px;
+	width:150px;
 }
-div table #td2 {
+ #td2 {
 	margin-left: 20px;
 	color: white;
 	font-size: 18px;
