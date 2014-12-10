@@ -12,9 +12,6 @@
 <script src="/BanVeXe/js/xe.js"></script>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/xe45.css">
 <script>
-	$(document).ready(function() {
-// 		set($(".chuadat"));
-	});
 </script>
 </head>
 <body>

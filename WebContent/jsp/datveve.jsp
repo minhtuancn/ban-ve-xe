@@ -10,7 +10,7 @@
 <script src="/BanVeXe/js/xe.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	set($("div#chuyenve .chuadat"),$('#idChuyenVe'), "#chitietveve");
+	set($("div#chuyenve img.chuadat"),$('#idChuyenVe'), "#chitietveve");
 });
 </script>
 </head>
