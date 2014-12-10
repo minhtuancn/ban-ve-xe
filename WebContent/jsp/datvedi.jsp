@@ -12,7 +12,7 @@
 <script src="/BanVeXe/js/xe.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		set("div#chuyendi img.chuadat", $('#idChuyenDi'), $("#chitietvedi"));
+		set("div#chuyendi img.chuadat", $('#idChuyenDi'), $(".chitietve"));
 	});
 </script>
 </head>
@@ -20,10 +20,12 @@
 	<%
 		Chuyen c = (Chuyen) session.getAttribute("chuyenDi");
 		int loaiXe = c.getLoaiXe();
+// 		boolean laKhuHoi = (Boolean) session.getAttribute("laKhuHoi");
 	%>
 	<input type="hidden" value="1" id="idChuyenDi" />
 	<div id="chuyendi"
-		style="width: 100%; <%if (loaiXe == 15) {%> height:530px; <%} else {%> height:720px; <%}%>">
+<%-- 		style="width: 100%; <%if (loaiXe == 15) { if(laKhuHoi) {%> height:720px; <%} else {%> height:720px; <%}%>"> --%>
+		style="width: 100%; height:730px; overflow: auto;">
 		<%
 			switch (loaiXe) {
 			case 15:
@@ -42,7 +44,7 @@
 				break;
 			}
 		%>
-		<div style="margin-top: 10px; margin-left: 500px" id="chitietvedi"><%@ include
+		<div style="margin-top: 10px; margin-left: 500px" class="chitietve"><%@ include
 				file="chitietvexe.jsp"%></div>
 	</div>
 

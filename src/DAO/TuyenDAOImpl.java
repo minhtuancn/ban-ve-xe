@@ -12,7 +12,7 @@ import model.Xe;
 public class TuyenDAOImpl implements TuyenDAO {
 
 	@Override
-	public Tuyen getTuyen(String diemDi, String diemDen) {
+	public Tuyen getTuyen(String diemDi, String diemDen, String date) {
 		DiaDiem diemDii = new DiaDiem(1, "Ho Chi Minh");
 		DiaDiem diemDeen = new DiaDiem(2, "Nha Trang");
 		Date ngayDi = new Date();
@@ -31,5 +31,17 @@ public class TuyenDAOImpl implements TuyenDAO {
 		tuyen.add(chuyen4);
 		return tuyen;
 	}
+
+	@Override
+	public List<Tuyen> getAllTuyen(String diemDi, String diemDen) {
+		List<Tuyen> listAllTuyen = new ArrayList();
+		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(2, "An Suong")));
+		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(3, "Khanh Hoa")));
+		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(4, "Binh Thuan")));
+		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(5, "Binh Phuoc")));
+		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(6, "Dak lak")));
+		return listAllTuyen;
+	}
+	
 
 }

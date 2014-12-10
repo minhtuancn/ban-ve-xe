@@ -1,5 +1,7 @@
 package DAO;
 
+import java.util.List;
+
 import model.Tuyen;
 
 public interface TuyenDAO {
@@ -9,5 +11,6 @@ public interface TuyenDAO {
 	 * @param diemDen: địa điểm đến
 	 * @return: tuyến xe
 	 */
-	public Tuyen getTuyen(String diemDi, String  diemDen);
+	public Tuyen getTuyen(String diemDi, String diemDen, String date);
+	public List<Tuyen> getAllTuyen(String diemDi, String diemDen);
 }	

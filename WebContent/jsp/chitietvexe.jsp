@@ -10,17 +10,23 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/chitietve.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
+<script src="/BanVeXe/js/util.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#xacnhan").click(function() {
-			var idChuyen = $('#idChuyen').val();
-			$.get('KiemTraSLGhe', {
-				idChuyen : idChuyen,
-			}, function(responseText) {
-				if(responseText.indexOf("true") != -1){
+		$(".xacnhan").click(function() {
+			$.get('KiemTraSLGhe', {}, function(responseText) {
+				if (responseText.indexOf("0") != -1) {
 					window.location = '/BanVeXe/jsp/thanhtoan.jsp';
-				}else{
-					alert("Bạn chưa chọn bất kỳ ghế nào!");
+				} else {
+					if (responseText.indexOf("1") != -1) {
+						alert("Bạn chưa chọn vé cho chuyến đi!");
+						setDefaut("chuyenve");
+						scroll("#timvedi", 800);
+					} else {
+						alert("Bạn chưa chọn vé cho chuyến về!");
+						setDefaut("chuyendi");
+						scroll("#timveve", 800);
+					}
 				}
 			});
 		});
@@ -29,57 +35,112 @@
 </head>
 <body>
 	<%
-		int idChuyen = Integer.parseInt(request.getParameter("chuyen"));
-		DatVe datVe = null;
-		if (idChuyen == 1)
-			datVe = (DatVe) session.getAttribute("datVeDi");
-		else
-			datVe = (DatVe) session.getAttribute("datVeVe");
+		// 		int idChuyen = Integer.parseInt(request.getParameter("chuyen"));
+		DatVe datVeDi = (DatVe) session.getAttribute("datVeDi");
+		DatVe datVeVe = null;
+		boolean laKhuHoi = (Boolean) session.getAttribute("laKhuHoi");
+		if (laKhuHoi)
+			datVeVe = (DatVe) session.getAttribute("datVeVe");
 	%>
 	<div id="chitietve" class="bg">
 		<h1 align="center">Chi tiết đặt chỗ</h1>
+		<hr />
 		<table>
+			<!-- 			<tr> -->
+			<!-- 				<td id="td1">Công ty:</td> -->
+			<!-- 				<td id="td2">Đồng Phước</td> -->
+			<!-- 			</tr> -->
 			<tr>
-				<td id="td1">Công ty:</td>
-				<td id="td2">Đồng Phước</td>
+				<td colspan="2"><h1>Tuyến đi</h1></td>
 			</tr>
 			<tr>
 				<td id="td1">Tuyến xe:</td>
-				<td id="td2"><%=datVe.getTuyenXe()%></td>
+				<td id="td2"><%=datVeDi.getTuyenXe()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Ngày đi:</td>
-				<td id="td2"><%=new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(datVe
+				<td id="td2"><%=new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(datVeDi
 					.getNgayKhoiHanh())%></td>
 			</tr>
 			<tr>
 				<td id="td1">Giờ khởi hành:</td>
-				<td id="td2"><%=datVe.getGioKhoiHanh()%></td>
+				<td id="td2"><%=datVeDi.getGioKhoiHanh()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Nơi khởi hành:</td>
-				<td id="td2"><%=datVe.getBenXuatPhat()%></td>
+				<td id="td2"><%=datVeDi.getBenXuatPhat()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Giá vé:</td>
-				<td id="td2"><%=datVe.getGia()%></td>
+				<td id="td2"><%=datVeDi.getGia()%></td>
 			</tr>
 			<tr>
 				<td id="td1" width="150px">Số lượng:</td>
-				<td id="td2"><%=datVe.getSoLuongGhe()%></td>
+				<td id="td2"><%=datVeDi.getSoLuongGhe()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Mã ghế:</td>
-				<td id="td2"><%=datVe.getTenGhe()%></td>
+				<td id="td2"><%=datVeDi.getTenGhe()%></td>
 			</tr>
 			<tr>
 				<td id="td1">Thành tiền:</td>
-				<td id="td2"><%=datVe.getTongTien()%></td>
+				<td id="td2"><%=datVeDi.getTongTien()%></td>
 			</tr>
 		</table>
 		<hr />
+		<%
+			if (laKhuHoi && datVeVe != null) {
+		%>
+		<table>
+			<tr>
+				<td colspan="2"><h1>Tuyến về</h1></td>
+			</tr>
+			<tr>
+				<td id="td1">Tuyến xe:</td>
+				<td id="td2"><%=datVeVe.getTuyenXe()%></td>
+			</tr>
+			<tr>
+				<td id="td1">Ngày đi:</td>
+				<td id="td2"><%=new SimpleDateFormat("dd/MM/yyyy  HH:mm")
+						.format(datVeVe.getNgayKhoiHanh())%></td>
+			</tr>
+			<tr>
+				<td id="td1">Giờ khởi hành:</td>
+				<td id="td2"><%=datVeVe.getGioKhoiHanh()%></td>
+			</tr>
+			<tr>
+				<td id="td1">Nơi khởi hành:</td>
+				<td id="td2"><%=datVeVe.getBenXuatPhat()%></td>
+			</tr>
+			<tr>
+				<td id="td1">Giá vé:</td>
+				<td id="td2"><%=datVeVe.getGia()%></td>
+			</tr>
+			<tr>
+				<td id="td1">Số lượng:</td>
+				<td id="td2"><%=datVeVe.getSoLuongGhe()%></td>
+			</tr>
+			<tr>
+				<td id="td1">Mã ghế:</td>
+				<td id="td2"><%=datVeVe.getTenGhe()%></td>
+			</tr>
+			<tr>
+				<td id="td1">Thành tiền:</td>
+				<td id="td2"><%=datVeVe.getTongTien()%></td>
+			</tr>
 
-		<input type="image" id="xacnhan" src="/BanVeXe/image/xacnhan.png"
+		</table>
+		<hr />
+		<table>
+			<tr>
+				<td id="td1">Tổng tiền:</td>
+				<td id="td2"><%=datVeVe.getTongTien() + datVeDi.getTongTien()%></td>
+			</tr>
+		</table>
+		<%
+			}
+		%>
+		<input type="image" class="xacnhan" src="/BanVeXe/image/xacnhan.png"
 			width="80px"
 			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;">
 		<a href="/BanVeXe/jsp/datve.jsp"><input type="image"

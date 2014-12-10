@@ -15,44 +15,60 @@ import model.DatVe;
  */
 public class KiemTraSLGhe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public KiemTraSLGhe() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public KiemTraSLGhe() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
 	}
-	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doAction(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String idChuyen = request.getParameter("idChuyen");
-		String datVeString = "";
+		DatVe datVeDi = (DatVe) session.getAttribute("datVeDi");
+		DatVe datVeVe = null;
+		boolean laKhuHoi = (Boolean) session.getAttribute("laKhuHoi");
+		if (laKhuHoi)
+			datVeVe = (DatVe) session.getAttribute("datVeVe");
+
 		String mes = "";
-		if (idChuyen.equalsIgnoreCase("1")) {
-			datVeString = "datVeDi";
-		} else {
-			datVeString = "datVeVe";
-		}
-		DatVe datVe = (DatVe) session.getAttribute(datVeString);
-		if(datVe.getSoLuongGhe()==0){
-			mes = "false";
+		if (laKhuHoi) {
+			if (datVeDi.getSoLuongGhe() == 0)
+				mes = "1";
+			else if (datVeVe== null || datVeVe.getSoLuongGhe() == 0)
+				mes = "2";
+			else{
+				mes = "0";
+			}
 		}else{
-			mes = "true";
+			if (datVeDi.getSoLuongGhe() == 0)
+				mes = "1";
+			else{
+				mes = "0";
+			}
 		}
+
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().println(mes);

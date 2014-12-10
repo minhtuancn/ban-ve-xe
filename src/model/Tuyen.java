@@ -15,6 +15,10 @@ public class Tuyen {
 		this.ngayDi = ngayDi;
 		danhSachChuyen = new ArrayList<>();
 	}
+	public Tuyen(DiaDiem diemDi, DiaDiem diemDen){
+		this.diemDi = diemDi;
+		this.diemDen = diemDen;
+	}
 	public void add(Chuyen chuyen){
 		danhSachChuyen.add(chuyen);
 	}

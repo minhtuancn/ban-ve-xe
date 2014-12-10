@@ -15,3 +15,17 @@
 	function sendMessage(el) {
 		ws.send(el.attr("id"));
 	}*/
+
+function scroll(el,time) {
+		$('body,html').animate({
+			scrollTop: 0
+		}, 100);
+		$('body,html').animate({
+			scrollTop: $(el).offset().top
+		}, time);
+		return false;
+	}
+function setDefaut(chuyen) {
+	$("."+chuyen).slideUp(0);
+	$("."+chuyen).html("");
+}
