@@ -12,7 +12,7 @@
 <script src="/BanVeXe/js/xe.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		set($("div#chuyendi .chuadat"), $('#idChuyenDi'), $("#chitietvedi"));
+		set("div#chuyendi img.chuadat", $('#idChuyenDi'), $("#chitietvedi"));
 	});
 </script>
 </head>
@@ -28,7 +28,7 @@
 			switch (loaiXe) {
 			case 15:
 		%>
-		<div style="position: absolute;">
+		<div id="xe" style="position: absolute;">
 			<%@ include file="xe16.jsp"%></div>
 		<%
 			break;

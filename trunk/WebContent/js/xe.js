@@ -1,11 +1,11 @@
 function set(item, idchuyen, chitietve) {
-	item.mouseleave(function() {
+	$(item).mouseleave(function() {
 		unselected($(this));
 	});
-	item.mouseenter(function() {
+	$(item).mouseenter(function() {
 		selected($(this));
 	});
-	item.click(function() {
+	$(item).click(function() {
 		choose($(this), idchuyen, chitietve);
 	});
 }
@@ -21,6 +21,7 @@ function unselected(el) {
 function choose(el, id, chitietve) {
 	var idGhe = $(el).attr("id");
 	var idChuyen = $(id).val(); 
+//	alert("xe - " + idChuyen + " - " + idGhe)
 	$
 			.get(
 					'ThemGhe',
@@ -34,7 +35,7 @@ function choose(el, id, chitietve) {
 									.load("/BanVeXe/jsp/chitietvexe.jsp?chuyen=" + idChuyen);
 							$(el).unbind("mouseenter");
 							$(el).unbind("mouseleave");
-							$(el).unbind("click");
+							$(el).off("click");
 							$(el).click(function() {
 								unchoose($(el), id, chitietve);
 							});
@@ -61,7 +62,7 @@ function unchoose(el, id, chitietve) {
 		if (responseText.indexOf("ok") != -1) {
 			$(chitietve ).load("/BanVeXe/jsp/chitietvexe.jsp?chuyen=" + idChuyen);
 			//
-			$(el).unbind("click");
+			$(el).off("click");
 			$(el).click(function() {
 				choose($(this), id, chitietve);
 			});
