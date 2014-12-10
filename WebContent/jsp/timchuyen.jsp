@@ -19,7 +19,7 @@
 			$("#"+chuyen+"-"+id).slideDown();
 			scroll(scrollid,time);
 	}
-	function setDefaut(chuyen,time) {
+	function setDefaut(chuyen) {
 		$("."+chuyen).slideUp(0);
 		$("."+chuyen).html("");
 	}

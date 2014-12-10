@@ -1,4 +1,4 @@
-function set(item, idchuyen) {
+function set(item, idchuyen, chitietve) {
 	item.mouseleave(function() {
 		unselected($(this));
 	});
@@ -6,7 +6,7 @@ function set(item, idchuyen) {
 		selected($(this));
 	});
 	item.click(function() {
-		choose($(this), idchuyen);
+		choose($(this), idchuyen, chitietve);
 	});
 }
 
@@ -18,7 +18,7 @@ function unselected(el) {
 	var newSrc = "/BanVeXe/image/ghe1.png";
 	$(el).attr("src", newSrc);
 }
-function choose(el, id) {
+function choose(el, id, chitietve) {
 	var idGhe = $(el).attr("id");
 	var idChuyen = $(id).val(); 
 	$
@@ -30,13 +30,13 @@ function choose(el, id) {
 					},
 					function(responseText) {
 						if (responseText.indexOf("ok") != -1) {
-							$("#chitietve")
-									.load("/BanVeXe/jsp/chitietvexe.jsp");
+							$(chitietve )
+									.load("/BanVeXe/jsp/chitietvexe.jsp?chuyen=" + idChuyen);
 							$(el).unbind("mouseenter");
 							$(el).unbind("mouseleave");
 							$(el).unbind("click");
 							$(el).click(function() {
-								unchoose($(el), id);
+								unchoose($(el), id, chitietve);
 							});
 							selected($(el));
 							return;
@@ -51,7 +51,7 @@ function choose(el, id) {
 					});
 
 }
-function unchoose(el, id) {
+function unchoose(el, id, chitietve) {
 	var idChuyen = $(id).val();
 	var idGhe = $(el).attr("id");
 	$.get('HuyGhe', {
@@ -59,18 +59,19 @@ function unchoose(el, id) {
 		idGhe : idGhe
 	}, function(responseText) {
 		if (responseText.indexOf("ok") != -1) {
-			$("#chitietve").load("/BanVeXe/jsp/chitietvexe.jsp");
+			$(chitietve ).load("/BanVeXe/jsp/chitietvexe.jsp?chuyen=" + idChuyen);
+			//
+			$(el).unbind("click");
+			$(el).click(function() {
+				choose($(this), id, chitietve);
+			});
+			unselected($(el));
 			$(el).mouseenter(function() {
 				selected($(el));
 			});
 			$(el).mouseleave(function() {
-				unchoose($(el));
+				unselected($(el));
 			});
-			$(el).unbind("click");
-			$(el).click(function() {
-				choose($(el), id);
-			});
-			unselected($(el));
 		} else {
 			selected($(el));
 		}

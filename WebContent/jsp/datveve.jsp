@@ -10,7 +10,7 @@
 <script src="/BanVeXe/js/xe.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	set($(".chuadat"),$('#idChuyenVe'));
+	set($("div#chuyenve .chuadat"),$('#idChuyenVe'), "#chitietveve");
 });
 </script>
 </head>
@@ -19,8 +19,8 @@ $(document).ready(function() {
 		Chuyen c = (Chuyen) session.getAttribute("chuyenVe");
 		int loaiXe = c.getLoaiXe();
 	%>
-	<input type="hidden" value="<%=2%>" id="idChuyenVe" />
-	<div
+	<input type="hidden" value="2" id="idChuyenVe" />
+	<div id="chuyenve"
 		style="width: 100%; <%if (loaiXe == 15) {%> height:530px; <%} else {%> height:720px; <%}%>">
 		<%
 			switch (loaiXe) {
@@ -40,7 +40,7 @@ $(document).ready(function() {
 				break;
 			}
 		%>
-		<div style="margin-top: 10px; margin-left: 500px" id="chitietve"><%@ include
+		<div style="margin-top: 10px; margin-left: 500px" id="chitietveve"><%@ include
 				file="chitietvexe.jsp"%></div>
 	</div>
 </body>

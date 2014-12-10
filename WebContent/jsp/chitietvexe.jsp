@@ -29,7 +29,7 @@
 </head>
 <body>
 	<%
-		int idChuyen = (Integer) session.getAttribute("chuyen");
+		int idChuyen = Integer.parseInt(request.getParameter("chuyen"));
 		DatVe datVe = null;
 		if (idChuyen == 1)
 			datVe = (DatVe) session.getAttribute("datVeDi");

@@ -49,7 +49,6 @@ public class HuyGhe extends HttpServlet {
 			datVeString = "datVeVe";
 		}
 		
-		
 		datVe = (DatVe) session.getAttribute(datVeString);
 		datVe.removeGhe(Integer.parseInt(idGhe));
 		session.setAttribute(datVeString, datVe);
