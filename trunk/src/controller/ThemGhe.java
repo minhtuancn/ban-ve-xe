@@ -70,6 +70,7 @@ public class ThemGhe extends HttpServlet {
 				mes = "ok";
 			}
 		}
+		
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().println(mes);
