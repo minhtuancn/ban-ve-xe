@@ -1,0 +1,8 @@
+div#container {
+	width: 700px;
+	height: auto;
+	margin: 0 auto;
+}
+div#container table{
+	width:  100%;
+}

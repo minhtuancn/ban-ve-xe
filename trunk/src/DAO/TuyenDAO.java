@@ -2,6 +2,7 @@ package DAO;
 
 import java.util.List;
 
+import model.DiaDiem;
 import model.Tuyen;
 
 public interface TuyenDAO {
@@ -12,5 +13,7 @@ public interface TuyenDAO {
 	 * @return: tuyến xe
 	 */
 	public Tuyen getTuyen(String diemDi, String diemDen, String date);
-	public List<Tuyen> getAllTuyen(String diemDi, String diemDen);
+	public List<Tuyen> getAllTuyen();
+	public List<DiaDiem> getAllDiaDiem();
+	public boolean addTuyen(String diemDi, String diemDen);
 }	

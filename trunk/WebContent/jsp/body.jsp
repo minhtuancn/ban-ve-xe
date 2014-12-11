@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Trang chủ</title>
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/home.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script>
