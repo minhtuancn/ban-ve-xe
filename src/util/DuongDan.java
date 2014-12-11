@@ -22,9 +22,12 @@ public class DuongDan {
 	public static final String DAT_VE_DI = "/BanVeXe/jsp/datvedi.jsp";
 	public static final String DAT_VE_VE = "/BanVeXe/jsp/datveve.jsp";
 	public static final String CHI_TIET_VE = "/BanVeXe/jsp/chitietve.jsp";
+	public static final String THEM_TUYEN = "/BanVeXe/jsp/admin/ThemTuyen.jsp";
+	public static final String THEM_TUYEN_SVL = "/jsp/admin/ThemTuyen.jsp";
 	//
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
 	public static final String TIM_TUYEN = "/BanVeXe/TimTuyen";
 	public static final String CAPTCHA = "/BanVeXe/GenerateCaptcha";
+	public static final String THEM_TUYEN_SV = "/BanVeXe/AddTuyen";
 	
 }

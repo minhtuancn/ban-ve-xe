@@ -10,6 +10,7 @@ import model.Tuyen;
 import model.Xe;
 
 public class TuyenDAOImpl implements TuyenDAO {
+	private static List<Tuyen> listAllTuyen;
 
 	@Override
 	public Tuyen getTuyen(String diemDi, String diemDen, String date) {
@@ -19,12 +20,12 @@ public class TuyenDAOImpl implements TuyenDAO {
 		Tuyen tuyen = new Tuyen(diemDii, diemDeen, ngayDi);
 		Xe xe16 = new Xe("1234", "ghe ngoi", 15);
 		Xe xe45 = new Xe("1235", "ghe ngoi", 45);
-		
+
 		Chuyen chuyen1 = new Chuyen(tuyen, "8:00", xe16, "HCM", 500000);
 		Chuyen chuyen2 = new Chuyen(tuyen, "8:05", xe45, "HCM", 500000);
 		Chuyen chuyen3 = new Chuyen(tuyen, "8:10", xe45, "HCM", 500000);
 		Chuyen chuyen4 = new Chuyen(tuyen, "8:15", xe16, "HCM", 500000);
-		
+
 		tuyen.add(chuyen1);
 		tuyen.add(chuyen2);
 		tuyen.add(chuyen3);
@@ -33,15 +34,37 @@ public class TuyenDAOImpl implements TuyenDAO {
 	}
 
 	@Override
-	public List<Tuyen> getAllTuyen(String diemDi, String diemDen) {
-		List<Tuyen> listAllTuyen = new ArrayList();
-		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(2, "An Suong")));
-		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(3, "Khanh Hoa")));
-		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(4, "Binh Thuan")));
-		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(5, "Binh Phuoc")));
-		listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"),new DiaDiem(6, "Dak lak")));
+	public List<Tuyen> getAllTuyen() {
+		if (listAllTuyen == null) {
+			listAllTuyen = new ArrayList();
+			listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"), new DiaDiem(
+					2, "An Suong")));
+			listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"), new DiaDiem(
+					3, "Khanh Hoa")));
+			listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"), new DiaDiem(
+					4, "Binh Thuan")));
+			listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"), new DiaDiem(
+					5, "Binh Phuoc")));
+			listAllTuyen.add(new Tuyen(new DiaDiem(1, "Tay Ninh"), new DiaDiem(
+					6, "Dak lak")));
+		}
 		return listAllTuyen;
 	}
-	
+
+	public List<DiaDiem> getAllDiaDiem() {
+		List<DiaDiem> listAllDiaDiem = new ArrayList();
+		listAllDiaDiem.add(new DiaDiem(1, "Tay Ninh"));
+		listAllDiaDiem.add(new DiaDiem(2, "An Suong"));
+		listAllDiaDiem.add(new DiaDiem(3, "Khanh Hoa"));
+		listAllDiaDiem.add(new DiaDiem(4, "Binh Thuan"));
+		listAllDiaDiem.add(new DiaDiem(5, "Binh Phuoc"));
+		return listAllDiaDiem;
+	}
+
+	@Override
+	public boolean addTuyen(String diemDi, String diemDen) {
+		listAllTuyen.add(new Tuyen(new DiaDiem(7, "abc"), new DiaDiem(8, "bcd")));
+		return true;
+	}
 
 }

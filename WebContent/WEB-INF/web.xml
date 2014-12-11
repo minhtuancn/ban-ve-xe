@@ -89,4 +89,24 @@
     <servlet-name>DangNhap</servlet-name>
     <url-pattern>/DangNhap</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListTuyen</display-name>
+    <servlet-name>ListTuyen</servlet-name>
+    <servlet-class>controller.admin.ListTuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListTuyen</servlet-name>
+    <url-pattern>/ListTuyen</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddTuyen</display-name>
+    <servlet-name>AddTuyen</servlet-name>
+    <servlet-class>controller.admin.AddTuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddTuyen</servlet-name>
+    <url-pattern>/AddTuyen</url-pattern>
+  </servlet-mapping>
 </web-app>
