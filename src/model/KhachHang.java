@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.List;
 public abstract class KhachHang  {
 	private String tenKhachHang;
@@ -9,6 +10,17 @@ public abstract class KhachHang  {
 	private Ve veDi;
 	private Ve veVe;
 	private List<Ve> danhSachVeDaDat;
+	public KhachHang() {
+	}
+	public KhachHang(String tenKhachHang, String sdt, String cmnd, String diaChi, String email){
+		this.tenKhachHang = tenKhachHang;
+		this.sdt = sdt;
+		this.cmnd = cmnd;
+		this.diaChi = diaChi;
+		this.email = email;
+		danhSachVeDaDat = new ArrayList<>();
+	}
+	
 	public String getTenKhachHang() {
 		return tenKhachHang;
 	}
@@ -57,5 +69,4 @@ public abstract class KhachHang  {
 	public void setDanhSachVeDaDat(List<Ve> danhSachVeDaDat) {
 		this.danhSachVeDaDat = danhSachVeDaDat;
 	}
-	
 }

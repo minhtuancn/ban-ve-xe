@@ -2,7 +2,7 @@ package util;
 
 public class DuongDan {
 	//
-	public static final String TRANG_CHU = "/BanVeXe/jsp/body/jsp";
+	public static final String TRANG_CHU = "/BanVeXe/jsp/body.jsp";
 	public static final String GIOI_THIEU = "/BanVeXe/jsp/gioithieu.jsp";
 	public static final String THANH_TOAN = "/BanVeXe/jsp/thanhtoan.jsp";
 	public static final String THANH_TOAN_SVL = "/jsp/thanhtoan.jsp";
@@ -10,6 +10,7 @@ public class DuongDan {
 	public static final String QUEN_MAT_KHAU = "/BanVeXe/jsp/quenmk.jsp";
 	public static final String DANG_KY = "/BanVeXe/jsp/DangKi.jsp";
 	public static final String DANG_NHAP = "/BanVeXe/jsp/DangNhap.jsp";
+	public static final String DANG_NHAP_SVL = "/jsp/DangNhap.jsp";
 	public static final String TIM_CHUYEN = "/BanVeXe/jsp/timchuyen.jsp";
 	public static final String CHI_TIET_DAT_VE = "/BanVeXe/jsp/chitietvexe.jsp";
 	public static final String FOOTER = "/BanVeXe/jsp/footer.jsp";

@@ -79,4 +79,14 @@
     <servlet-name>ThongTin</servlet-name>
     <url-pattern>/ThongTin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DangNhap</display-name>
+    <servlet-name>DangNhap</servlet-name>
+    <servlet-class>controller.DangNhap</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DangNhap</servlet-name>
+    <url-pattern>/DangNhap</url-pattern>
+  </servlet-mapping>
 </web-app>
