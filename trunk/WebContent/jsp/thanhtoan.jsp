@@ -1,3 +1,4 @@
+<%@page import="util.DuongDan"%>
 <%@page import="model.KhachHang"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
@@ -37,6 +38,11 @@
 				scmnd = request.getParameter("cmnd");
 			if (request.getParameter("email") != null)
 				semail = request.getParameter("email");
+		}else{
+			shoten = kh.getTenKhachHang();
+			sdidong = kh.getSdt();
+			scmnd = kh.getCmnd();
+			semail = kh.getEmail();
 		}
 	%>
 	<div class="contain">
@@ -52,7 +58,7 @@
 				<div class="dangnhap">
 					<p class="p-dangnhap">- Bạn nên đăng nhập để có thể tích điểm
 						tích lũy, nhấp vào&nbsp;</p>
-					<a href="/BanVeXe/jsp/DangNhap.jsp" class="dn">ĐÂY</a>
+					<a href="/BanVeXe/jsp/DangNhap.jsp?pageForward=<%=DuongDan.THANH_TOAN%>" class="dn">ĐÂY</a>
 					<p class="p-dangnhap">. Hoặc nhấp vào&nbsp;</p>
 					<a href="/BanVeXe/jsp/DangKi.jsp" class="dn">ĐÂY</a>
 					<p class="p-dangnhap">để đăng kí.</p>
