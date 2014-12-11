@@ -161,9 +161,9 @@
 
 						</tr>
 						<tr>
-							<td id="checkbox" align="left"><input  type="checkbox" value="Vé khứ hồi"/>&nbsp;Vé khứ hồi</td>
-							<td align="right"><input type="submit"
-								value="Tìm vé" /></td>
+							<td id="checkbox" align="left"><input type="checkbox"
+								value="Vé khứ hồi" />&nbsp;Vé khứ hồi</td>
+							<td align="right"><input type="submit" value="Tìm vé" /></td>
 						</tr>
 					</table>
 
@@ -175,8 +175,12 @@
 			</script>
 		</section>
 		<section class="section1">
-			<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Trang chủ<marquee behavior="alternate" width="10%"> << </marquee>
-				</div>
+			<div class="bg title">
+				<marquee behavior="alternate" width="10%">>></marquee>
+				Trang chủ
+				<marquee behavior="alternate" width="10%"> << </marquee>
+			</div>
+			<div class="test"><marquee direction="left">Chào mừng quý khách đã đến với VeXeOnline.com, chúng tôi xin đảm bảo quý khách sẽ được phục vụ tận tình, chu đáo!</marquee></div>
 			<!-- <div style="margin-left: 200px; position: absolute;" align="center" z-index=-1>
 			<a href="http://kialongbien.oto-xemay.vn/" target="_blank"
 				style="margin-right: 15px;" rel="nofollow"> <img
@@ -190,7 +194,7 @@
 				src="http://113.160.50.25/banner/top/banner/1395905620_quan-mui-auto11.gif"
 				border="1"></a>
 		</div> -->
-			
+
 		</section>
 		<%@ include file="footer.jsp"%>
 	</div>

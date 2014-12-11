@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,24 +9,74 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 </head>
 <body>
-<%@ include file="header.jsp" %>
-<div id="gt-container">
-<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Giới thiệu<marquee behavior="alternate" width="10%"> << </marquee></div>
-<div id="gt">
-			<p class="note">
-					<img alt="icon"
-						src="/BanVeXe/image/icon-td.png">1.Giới thiệu</p>
-				<p class="note">
-					<img alt="icon"
-						src="/BanVeXe/image/icon-td.png">2.Tầm nhìn</p>
-				<p class="note">
-					<img alt="icon"
-						src="/BanVeXe/image/icon-td.png">3.Sứ mệnh</p>
-				<p class="note">
-					<img alt="icon"
-						src="/BanVeXe/image/icon-td.png">4.Triết lí</p>
+	<%@ include file="header.jsp"%>
+	<div id="gt-container">
+		<div class="bg title">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Giới thiệu
+			<marquee behavior="alternate" width="10%"> << </marquee>
 		</div>
-</div>
-<%@ include file="footer.jsp" %>
-</body>
-</html>
+		<div id="gt">
+			<p class="note">
+				<img alt="icon" src="/BanVeXe/image/icon-td.png">1.Giới thiệu
+			</p>
+			<p>
+				Hệ thống đặt vé xe khách của chúng tôi gồm có các chức năng:<br>
+				- Nhắn tin thông báo SMS cho khách hàng khi vé đã được đặt. - Quản
+				lý vé đặt trước qua điện thoại và vé bán tại đại lý. - Quản lý danh
+				sách khách hàng. - Thống kê doanh thu đạt được trong ngày, tháng....
+				- Chức năng quản lý thu & chi. - Có thể tùy chỉnh phôi in ra phù hợp
+				với phôi hiện tại của nhà xe.
+			</p>
+			<p class="note">
+				<img alt="icon" src="/BanVeXe/image/icon-td.png">2.Tầm nhìn
+			</p>
+			<p>
+				Vì hàng triệu người Việt Nam không ai phải xếp hàng mua vé<br>
+				Hiện nay, thương mại điện tử, đặc biệt là đặt vé máy bay đã trở nên
+				rất phổ biến ở Việt Nam. Tuy nhiên, lĩnh vực xe khách, phương tiện
+				giao thông được sử dụng phổ biến nhất và đáp ứng được nhu cầu của đa
+				số người dân, lại chưa có một kênh đặt vé trực tuyến đúng nghĩa.Hiểu
+				được nhu cầu đi lại cấp thiết của người dân Việt nam, VeXeRe.Com đã
+				ra đời để cung cấp thông tin: bảng giá vé, lịch trình, địa chỉ, số
+				điện thoại và đánh giá của trên 1000 hãng xe và 3000 tuyến đường cả
+				nước.
+			</p>
+			<p class="note">
+				<img alt="icon" src="/BanVeXe/image/icon-td.png">3.Sứ mệnh
+			</p>
+			<p>
+				Trở thành công ty công nghệ hàng đầu Châu Á chuyên cung cấp các giải
+				pháp nâng cao đời sống xã hội.<br> Trải qua hàng nghìn năm,
+				lịch sử nhân loại đã có những bước tiến nhảy vọt, chủ yếu do cải
+				thiện năng suất lao động. Tin tưởng vào điều này, VeXeRe mong muốn
+				có thể góp phần cải thiện đời sống người dân thông qua khả năng sáng
+				tạo và ứng dụng công nghệ vào mọi mặt đời sống hàng ngày. VeXeRe
+				mong muốn được biết đến với tư cách là một công ty công nghệ hàng
+				đầu Châu Á chuyên cung cấp các sản phẩm và dịch vụ giải quyết các
+				vấn đề hiện tại của xã hội.
+
+			</p>
+			<p class="note">
+				<img alt="icon" src="/BanVeXe/image/icon-td.png">4.Ghi chú
+			</p>
+			<p>
+				Quý khách có thể trực tiếp đến các phòng vé để lấy vé hoặc yêu cầu
+				dịch vụ giao vé tận nhà.<br> * Tổng đài đặt vé: 08.39 29 29 29<br>
+
+				* Bộ phận Chăm sóc khách hàng: 08.35 11 77 88<br> * Đường dây
+				nóng: 0985 29 29 29<br> * Địa chỉ phòng vé:<br> 1. Phòng
+				vé 29, 30 nhà ga Bến Xe Miền Tây: 395, Kinh Dương Vương, P. An Lạc,
+				Q. Bình Tân, Tp. Hồ Chí Minh<br> 2. Phòng vé 75 nhà ga Bến Xe
+				Miền Đông: 292, Đinh Bộ Lĩnh, P. 22, Q. Bình Thạnh, Tp. Hồ Chí Minh<br>
+
+				3. Phòng vé Phạm Ngũ Lão: 201, Phạm Ngũ Lão, Q. 1, Tp. Hồ Chí Minh<br>
+
+				4. Phòng vé Đào Duy Anh: 15, Đào Duy Anh, Q. Phú Nhuận, Tp. Hồ Chí
+				Minh<br>
+			</p>
+			</div>
+			</div>
+			<%@ include file="footer.jsp" %>
+			</body>
+			</html>
