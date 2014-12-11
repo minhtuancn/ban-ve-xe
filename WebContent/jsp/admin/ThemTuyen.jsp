@@ -37,27 +37,33 @@
 		$("#myDataTable").dataTable({
 			"sPaginationType" : "full_numbers",
 			"bJQueryUI" : true
-		}).makeEditable({
-		    "sUpdateURL": "/Company/UpdateCompanyData"
-		        "aoColumns": [
-		        {
-		            //Empty object is used for the default editable settings
-		        },
-		        null,//null for read-only columns
-		        {
-		            indicator: 'Saving...',
-		            tooltip: 'Click to select town',
-		            loadtext: 'loading...',
-		            type: 'select',
-		            onblur: 'submit',
-		            data: "{'London':'London','Liverpool':'Liverpool','Portsmouth':
-		                  'Portsmouth','Edinburgh':'Edinburgh', 'Blackburn':'Blackburn',
-		                  'Kent':'Kent','Essex':'Essex','Oxon':'Oxon','Lothian':'Lothian',
-		                  'West Sussex':'West Sussex','Lanarkshire':'Lanarkshire',
-		                  'Birmingham':'Birmingham','East Sussex':'East Sussex','Surrey':'Surrey'}"
-		        }
-		      ]
-		    });
+		}).
+
+		makeEditable({
+			"sUpdateURL" : "/Company/UpdateCompanyData",
+			"aoColumns" : [ {
+			//Empty object is used for the default editable settings
+			}, null,//null for read-only columns
+			{
+				indicator : 'Saving...',
+				tooltip : 'Click to select town',
+				loadtext : 'loading...',
+				type : 'select',
+				onblur : 'submit',
+				data : "{'London':'London','Liverpool':'Liverpool'}"
+			} ]
+		});
+
+		$("#myDataTable").dataTable().makeEditable({
+			sAddNewRowFormId : "formThemTuyen",
+			sAddNewRowButtonId : "btThemtuyen",
+			sAddNewRowOkButtonId : "btOk",
+			sAddNewRowCancelButtonId : "btCancel",
+			sAddURL :
+<%="'" + DuongDan.THEM_TUYEN_SV + "'"%>
+	,
+			sAddHttpMethod : "POST",
+		});
 	});
 </script>
 </head>
@@ -72,13 +78,15 @@
 					listTuyen = (List<Tuyen>) request.getAttribute("listTuyen");
 				else
 					listTuyen = new ArrayList();
+				%> 
+				<%
 				List<DiaDiem> listDiaDiem;
 				if (request.getAttribute("listDiaDiem") != null)
 					listDiaDiem = (List<DiaDiem>) request
 							.getAttribute("listDiaDiem");
 				else
 					listDiaDiem = new ArrayList();
-			%>
+				%>
 			<thead>
 				<tr>
 					<th>Điểm đi</th>
@@ -101,10 +109,12 @@
 				%>
 			</tbody>
 		</table>
+
+
 		<form id="formThemTuyen" action="#" title="Thêm tuyến xe">
-			<input type="hidden" id="id" name="id" value="-1" rel="0" /> <label
+			<input type="hidden" id="id" name="id" value="-1" /> <label
 				for="name">Điểm đi</label><br /> <select name="diemDi" id="diemDi"
-				rel="1">
+				rel="0">
 				<%
 					for (DiaDiem d : listDiaDiem) {
 				%>
@@ -114,7 +124,7 @@
 					}
 				%>
 			</select> <br /> <label for="name">Điểm đến</label> <select name="diemDen"
-				id="diemDen" rel="2">
+				id="diemDen" rel="1">
 				<%
 					for (DiaDiem d : listDiaDiem) {
 				%>
@@ -123,7 +133,7 @@
 				<%
 					}
 				%>
-			</select> <br /> <input type="hidden" ref="3" />
+			</select> <br />
 			<button id="btOk">Add</button>
 			<button id="btCancel">Cancel</button>
 		</form>
