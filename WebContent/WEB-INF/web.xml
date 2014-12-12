@@ -109,4 +109,24 @@
     <servlet-name>AddTuyen</servlet-name>
     <url-pattern>/AddTuyen</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateTuyen</display-name>
+    <servlet-name>UpdateTuyen</servlet-name>
+    <servlet-class>controller.admin.UpdateTuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateTuyen</servlet-name>
+    <url-pattern>/UpdateTuyen</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteTuyen</display-name>
+    <servlet-name>DeleteTuyen</servlet-name>
+    <servlet-class>controller.admin.DeleteTuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteTuyen</servlet-name>
+    <url-pattern>/DeleteTuyen</url-pattern>
+  </servlet-mapping>
 </web-app>

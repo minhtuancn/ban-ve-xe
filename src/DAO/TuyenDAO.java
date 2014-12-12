@@ -15,5 +15,7 @@ public interface TuyenDAO {
 	public Tuyen getTuyen(String diemDi, String diemDen, String date);
 	public List<Tuyen> getAllTuyen();
 	public List<DiaDiem> getAllDiaDiem();
-	public boolean addTuyen(String diemDi, String diemDen);
+	public int addTuyen(String diemDi, String diemDen);
+	public boolean deleteTuyen(int id);
+	public boolean editTuyen(int id, String value, int columnPosition);
 }	

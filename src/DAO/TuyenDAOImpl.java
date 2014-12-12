@@ -62,9 +62,34 @@ public class TuyenDAOImpl implements TuyenDAO {
 	}
 
 	@Override
-	public boolean addTuyen(String diemDi, String diemDen) {
+	public int addTuyen(String diemDi, String diemDen) {
 		listAllTuyen.add(new Tuyen(new DiaDiem(7, "abc"), new DiaDiem(8, "bcd")));
+		return listAllTuyen.size();
+	}
+
+	@Override
+	public boolean deleteTuyen(int id) {
+		listAllTuyen.remove(id);
 		return true;
 	}
 
+	@Override
+	public boolean editTuyen(int id, String value, int columnPosition) {
+		Tuyen t = listAllTuyen.get(id);
+		System.out.println(columnPosition);
+		switch (columnPosition) {
+		case 0:
+			t.setDiemDi(new DiaDiem(0, value));
+			break;
+		case 1:
+			t.setDiemDen(new DiaDiem(0, value));
+			break;
+		case 2:
+			t.setDiemDen(new DiaDiem(0, value));
+			break;
+		default:
+			break;
+		}
+		return true;
+	}
 }
