@@ -29,5 +29,7 @@ public class DuongDan {
 	public static final String TIM_TUYEN = "/BanVeXe/TimTuyen";
 	public static final String CAPTCHA = "/BanVeXe/GenerateCaptcha";
 	public static final String THEM_TUYEN_SV = "/BanVeXe/AddTuyen";
+	public static final String XOA_TUYEN_SV = "/BanVeXe/DeleteTuyen";
+	public static final String SUA_TUYEN_SV = "/BanVeXe/UpdateTuyen";
 	
 }
