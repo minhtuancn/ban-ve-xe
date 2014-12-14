@@ -24,7 +24,9 @@
 	href="/BanVeXe/css/datatable/media/themes/smoothness/jquery-ui-1.7.2.custom.css"
 	rel="stylesheet" type="text/css" media="all" />
 <link href="/BanVeXe/js/jquery.alerts-1.1/jquery.alerts.css"
-	rel="stylesheet" type="text/css" media="screen"/>
+	rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" async=""
+	src="http://www.google-analytics.com/ga.js"></script>
 <script src="/BanVeXe/js/jquery.alerts-1.1/jquery.alerts.js"
 	type="text/javascript"></script>
 <script src="/BanVeXe/js/scripts/jquery-1.4.4.min.js"
@@ -40,91 +42,62 @@
 	type="text/javascript"></script>
 <script src="/BanVeXe/js/scripts/jquery-ui.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$("#myDataTable").dataTable({
-					"sPaginationType" : "full_numbers",
-					"bJQueryUI" : true
-				});
-				$("#myDataTable").dataTable().makeEditable({
-					sUpdateURL :
+	$(document).ready(function() {
+		$("#myDataTable").dataTable({
+			"sPaginationType" : "full_numbers",
+			"bJQueryUI" : true
+		});
+		$("#myDataTable").dataTable().makeEditable({
+			sUpdateURL :
 <%="'" + DuongDan.SUA_TUYEN_SV + "'"%>
 	,
-					AddURL :
+			sAddURL :
 <%="'" + DuongDan.THEM_TUYEN_SV + "'"%>
 	,
-					sDeleteURL :
+			sDeleteURL :
 <%="'" + DuongDan.XOA_TUYEN_SV + "'"%>
 	,
-					"aoColumns" : [ {
-					//Empty object is used for the default editable settings
-					}, null,//null for read-only columns
-					{
-						indicator : 'Saving...',
-						tooltip : 'Click to select town',
-						loadtext : 'loading...',
-						type : 'select',
-						onblur : 'submit',
-						data : "{'London':'London','Liverpool':'Liverpool'}"
-					} ],
-					sAddNewRowFormId : "formThemTuyen",
-					sAddNewRowButtonId : "btThemTuyen",
-					sAddNewRowOkButtonId : "btOk",
-					sAddNewRowCancelButtonId : "btCancel",
-					sDeleteHttpMethod : "POST",
-					sDeleteRowButtonId : "btXoaTuyen",
-				});
-				
-				//////////////
-// 				$("#myDataTable").dataTable().makeEditable({
-// 					sUpdateURL :
-<%-- <%="'" + DuongDan.SUA_TUYEN_SV + "'"%> --%>
-// 	,
-// 					"aoColumns" : [ {
-// 					//Empty object is used for the default editable settings
-// 					}, null,//null for read-only columns
-// 					{
-// 						indicator : 'Saving...',
-// 						tooltip : 'Click to select town',
-// 						loadtext : 'loading...',
-// 						type : 'select',
-// 						onblur : 'submit',
-// 						data : "{'London':'London','Liverpool':'Liverpool'}"
-// 					} ]
-// 				});
-
-// 				$("#myDataTable").dataTable().makeEditable({
-// 					sAddNewRowFormId : "formThemTuyen",
-// 					sAddNewRowButtonId : "btThemTuyen",
-// 					sAddNewRowOkButtonId : "btOk",
-// 					sAddNewRowCancelButtonId : "btCancel",
-// 					sAddURL :
-<%-- <%="'" + DuongDan.THEM_TUYEN_SV + "'"%> --%>
-// 	,
-// 					sAddHttpMethod : "POST",
-// 				});
-// 				$('#myDataTable').dataTable().makeEditable({
-// 					sDeleteURL :
-<%-- <%="'" + DuongDan.XOA_TUYEN_SV + "'"%> --%>
-// 	,
-// 					sDeleteHttpMethod : "POST",
-// 					sDeleteRowButtonId : "btXoaTuyen"
-// 				});
-// 				$('#myDataTable').dataTable().makeEditable(
-// 						{
-// 							fnOnDeleting : function(tr, id, fnDeleteRow) {
-// 								jConfirm(
-// 										'Please confirm that you want to delete row with id '
-// 												+ id, 'Confirm Delete',
-// 										function(confirmed) {
-// 											if (confirmed) {
-// 												fnDeleteRow(id);
-// 											}
-// 										});
-// 								return false;
-// 							}
-// 						});
-			});
+			"aoColumns" : [ {
+				ndicator : 'Saving...',
+				tooltip : 'Click để chọn điểm đi',
+				loadtext : 'loading...',
+				type : 'select',
+				onblur : 'cancel',
+				submit : 'Ok',
+				data :
+<%=request.getAttribute("dataDiaDiem")%>
+	// 						data : "{'London':'London','Liverpool':'Liverpool'}"
+			},//null for read-only columns
+			{
+				indicator : 'Saving...',
+				tooltip : 'Click để chọn điểm đến',
+				loadtext : 'loading...',
+				type : 'select',
+				onblur : 'cancel',
+				submit : 'Ok',
+				// 						data : "{'London':'London','Liverpool':'Liverpool'}"
+				data :
+<%=request.getAttribute("dataDiaDiem")%>
+	}, null ],
+			sAddNewRowFormId : "formThemTuyen",
+			sAddNewRowButtonId : "btThemTuyen",
+			sAddNewRowOkButtonId : "btOk",
+			sAddNewRowCancelButtonId : "btCancel",
+			sDeleteHttpMethod : "POST",
+			sDeleteRowButtonId : "btXoaTuyen",
+			oAddNewRowButtonOptions : {
+// 				label : "Add...",
+				icons : {
+					primary : 'ui-icon-plus'
+				}
+			},
+		});
+	});
+	function setTenTuyen() {
+		$("#tenTuyen").val(
+				$("#diemDi :selected").text() + " - "
+						+ $("#diemDen :selected").text());
+	}
 </script>
 </head>
 <body id="dt_example">
@@ -174,7 +147,7 @@
 		<form id="formThemTuyen" action="#" title="Thêm tuyến xe">
 			<input type="hidden" id="id" name="id" value="-1" /> <label
 				for="name">Điểm đi</label><br /> <select name="diemDi" id="diemDi"
-				rel="0">
+				rel="0" onchange="setTenTuyen()">
 				<%
 					for (DiaDiem d : listDiaDiem) {
 				%>
@@ -184,7 +157,7 @@
 					}
 				%>
 			</select> <br /> <label for="name">Điểm đến</label> <select name="diemDen"
-				id="diemDen" rel="1">
+				id="diemDen" rel="1" onchange="setTenTuyen()">
 				<%
 					for (DiaDiem d : listDiaDiem) {
 				%>
@@ -193,9 +166,9 @@
 				<%
 					}
 				%>
-			</select> <input type="hidden" value="aaaaaaaaa" ref="2" /> <br />
-			<button id="btOk">Add</button>
-			<button id="btCancel">Cancel</button>
+			</select> <input type="text" value="" rel="2" id="tenTuyen" /> <br />
+			<button id="btOk">Thêm</button>
+			<button id="btCancel">Hủy</button>
 		</form>
 		<!-- <input type="text" name="diemDi" id="diemDi" -->
 		<!-- 				class="required" rel="1" />  -->

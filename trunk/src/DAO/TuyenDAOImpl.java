@@ -11,6 +11,7 @@ import model.Xe;
 
 public class TuyenDAOImpl implements TuyenDAO {
 	private static List<Tuyen> listAllTuyen;
+	private static List<DiaDiem> listAllDiaDiem;
 
 	@Override
 	public Tuyen getTuyen(String diemDi, String diemDen, String date) {
@@ -52,12 +53,14 @@ public class TuyenDAOImpl implements TuyenDAO {
 	}
 
 	public List<DiaDiem> getAllDiaDiem() {
-		List<DiaDiem> listAllDiaDiem = new ArrayList();
+		if(listAllDiaDiem == null){
+		listAllDiaDiem = new ArrayList();
 		listAllDiaDiem.add(new DiaDiem(1, "Tay Ninh"));
 		listAllDiaDiem.add(new DiaDiem(2, "An Suong"));
 		listAllDiaDiem.add(new DiaDiem(3, "Khanh Hoa"));
 		listAllDiaDiem.add(new DiaDiem(4, "Binh Thuan"));
 		listAllDiaDiem.add(new DiaDiem(5, "Binh Phuoc"));
+		}
 		return listAllDiaDiem;
 	}
 
@@ -72,20 +75,24 @@ public class TuyenDAOImpl implements TuyenDAO {
 		listAllTuyen.remove(id);
 		return true;
 	}
-
+	public DiaDiem getDiaDiem(int id){
+		for (DiaDiem d : listAllDiaDiem) {
+			if(d.getIdDiaDiem() == id)
+				return d;
+		}
+		return null;
+	}
 	@Override
 	public boolean editTuyen(int id, String value, int columnPosition) {
 		Tuyen t = listAllTuyen.get(id);
+		DiaDiem d = getDiaDiem(Integer.parseInt(value));
 		System.out.println(columnPosition);
 		switch (columnPosition) {
 		case 0:
-			t.setDiemDi(new DiaDiem(0, value));
+			t.setDiemDi(d);
 			break;
 		case 1:
-			t.setDiemDen(new DiaDiem(0, value));
-			break;
-		case 2:
-			t.setDiemDen(new DiaDiem(0, value));
+			t.setDiemDen(d);
 			break;
 		default:
 			break;

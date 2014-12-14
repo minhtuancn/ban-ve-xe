@@ -93,7 +93,7 @@
     <description></description>
     <display-name>ListTuyen</display-name>
     <servlet-name>ListTuyen</servlet-name>
-    <servlet-class>controller.admin.ListTuyen</servlet-class>
+    <servlet-class>controller.admin.themtuyen.ListTuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ListTuyen</servlet-name>
@@ -103,7 +103,7 @@
     <description></description>
     <display-name>AddTuyen</display-name>
     <servlet-name>AddTuyen</servlet-name>
-    <servlet-class>controller.admin.AddTuyen</servlet-class>
+    <servlet-class>controller.admin.themtuyen.AddTuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddTuyen</servlet-name>
@@ -113,7 +113,7 @@
     <description></description>
     <display-name>UpdateTuyen</display-name>
     <servlet-name>UpdateTuyen</servlet-name>
-    <servlet-class>controller.admin.UpdateTuyen</servlet-class>
+    <servlet-class>controller.admin.themtuyen.UpdateTuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateTuyen</servlet-name>
@@ -123,10 +123,20 @@
     <description></description>
     <display-name>DeleteTuyen</display-name>
     <servlet-name>DeleteTuyen</servlet-name>
-    <servlet-class>controller.admin.DeleteTuyen</servlet-class>
+    <servlet-class>controller.admin.themtuyen.DeleteTuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteTuyen</servlet-name>
     <url-pattern>/DeleteTuyen</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListTuyenData</display-name>
+    <servlet-name>ListTuyenData</servlet-name>
+    <servlet-class>controller.admin.themtuyen.ListTuyenData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListTuyenData</servlet-name>
+    <url-pattern>/ListTuyenData</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,31 +1,27 @@
-package controller.admin;
+package controller.admin.themtuyen;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.bcel.internal.generic.LLOAD;
-
-import util.DuongDan;
 import DAO.TuyenDAO;
 import DAO.TuyenDAOImpl;
-import model.DiaDiem;
-import model.Tuyen;
+import util.DataTablesParamUtility;
+import util.JQueryDataTableParamModel;
 
 /**
- * Servlet implementation class ListTuyen
+ * Servlet implementation class ListTuyenData
  */
-public class ListTuyen extends HttpServlet {
+public class ListTuyenData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ListTuyen() {
+	public ListTuyenData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -50,12 +46,17 @@ public class ListTuyen extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		JQueryDataTableParamModel param = DataTablesParamUtility
+				.getParam(request);
+
+		String sEcho = param.sEcho;
+		
+		int iTotalRecords; // total number of records (unfiltered)
+		int iTotalDisplayRecords; // value will be set when code filters
+									// companies by keyword
+		
 		TuyenDAO tuyenDao = new TuyenDAOImpl();
-		List<Tuyen> listTuyen = tuyenDao.getAllTuyen();
-		List<DiaDiem> listDiaDiem = tuyenDao.getAllDiaDiem();
-		request.setAttribute("listTuyen", listTuyen);
-		request.setAttribute("listDiaDiem", listDiaDiem);
-		request.getRequestDispatcher(DuongDan.THEM_TUYEN_SVL).forward(request, response);
+		iTotalRecords = tuyenDao.getAllTuyen().size();
 	}
 
 }

@@ -18,9 +18,21 @@
 			alert(confirm);
 		});
 	}
+	function getParent(el) {
+		alert($(el).parent().attr("id"));
+	}
 </script>
 </head>
 <body>
-<button onclick="clickc()">click</button>
+	<div id="container">
+		<div id="1">
+			<div id="2">
+				<button onclick="getParent(this)">button 1</button>
+			</div>
+			<div id="3">
+				<button onclick="getParent(this)">button 2</button>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,25 +1,31 @@
-package controller.admin;
+package controller.admin.themtuyen;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.org.apache.bcel.internal.generic.LLOAD;
+
+import util.DuongDan;
 import DAO.TuyenDAO;
 import DAO.TuyenDAOImpl;
+import model.DiaDiem;
+import model.Tuyen;
 
 /**
- * Servlet implementation class UpdateTuyen
+ * Servlet implementation class ListTuyen
  */
-public class UpdateTuyen extends HttpServlet {
+public class ListTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UpdateTuyen() {
+	public ListTuyen() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -44,19 +50,22 @@ public class UpdateTuyen extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		// int columnId = Integer.parseInt(request.getParameter("columnId"));
-		int columnPosition = Integer.parseInt(request
-				.getParameter("columnPosition"));
-		// int rowId = Integer.parseInt(request.getParameter("rowId"));
-		String value = request.getParameter("value");
-		// String columnName = request.getParameter("columnName");
 		TuyenDAO tuyenDao = new TuyenDAOImpl();
-		if (!tuyenDao.editTuyen(id, value, columnPosition))
-			response.getWriter().print("Error - company cannot be found");
-		else{
-			response.getWriter().print(value);
+		List<Tuyen> listTuyen = tuyenDao.getAllTuyen();
+		List<DiaDiem> listDiaDiem = tuyenDao.getAllDiaDiem();
+		String dataDiaDiem = "\"{";
+		DiaDiem d;
+		int i  = 0;
+		for (i = 0; i < listDiaDiem.size() -1; i++) {
+			d = listDiaDiem.get(i);
+			dataDiaDiem += "'" + d.getIdDiaDiem() + "':'" + d.getTenDiaDiem() +"',";
 		}
+		d = listDiaDiem.get(i);
+		dataDiaDiem += "'" + d.getIdDiaDiem() + "':'" + d.getTenDiaDiem() +"'}\"";
+		request.setAttribute("listTuyen", listTuyen);
+		request.setAttribute("listDiaDiem", listDiaDiem);
+		request.setAttribute("dataDiaDiem", dataDiaDiem);
+		request.getRequestDispatcher(DuongDan.THEM_TUYEN_SVL).forward(request, response);
 	}
 
 }
