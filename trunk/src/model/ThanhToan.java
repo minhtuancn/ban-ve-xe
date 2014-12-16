@@ -1,5 +1,9 @@
 package model;
 
-public class ThanhToan {
+import java.util.Date;
 
+public abstract class ThanhToan {
+	protected long idThanhToan;
+	protected Date ngayThanhToan;
+	protected long soTien;
 }
