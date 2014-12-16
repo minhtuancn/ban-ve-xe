@@ -25,7 +25,12 @@
 	rel="stylesheet" type="text/css" media="all" />
 <link href="/BanVeXe/js/jquery.alerts-1.1/jquery.alerts.css"
 	rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript" async=""
+<!-- 	sweet alert -->
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
+<!-- ... -->
+<script type="text/javascript"
 	src="http://www.google-analytics.com/ga.js"></script>
 <script src="/BanVeXe/js/jquery.alerts-1.1/jquery.alerts.js"
 	type="text/javascript"></script>
@@ -98,6 +103,56 @@
 											primary : 'ui-icon-plus'
 										}
 									},
+// 									fnOnDeleting : function(tr, id, fnDeleteRow) {
+// 										var res = false;
+// 										swal(
+// 												{
+// 													title : "Bạn có chắc chắn xóa tuyến "
+// 															+ $(
+// 																	"tr#"
+// 																			+ id
+// 																			+ " :last-child")
+// 																	.html()
+// 															+ " không?",
+// 													text : "",
+// 													type : "warning",
+// 													showCancelButton : true,
+// 													confirmButtonColor : "#DD6B55",
+// 													confirmButtonText : "Ok",
+// 													cancelButtonText : "No",
+// 													closeOnConfirm : false,
+// 													closeOnCancel : true
+// 												}, function(isConfirm) {
+// 													if (isConfirm) {
+// 														swal("Deleted!", "Your imaginary file has been deleted.", "success");
+// 														res = true;
+// 													} else {
+// 														swal("Deleted!", "Your imaginary file has been deleted.", "success");
+// 													}
+// 												});
+																			
+// 										alert(res);
+// 										return res;
+
+// 									},
+									fnOnDeleted : function(status) {
+										if (status.indexOf("success") != -1) {
+											swal({
+												title : "Xóa tuyến thành công!",
+												timer : 2000,
+												type : "success"
+											});
+										}
+									},
+									fnOnAdded : function(status) {
+										if (status.indexOf("success") != -1) {
+											swal({
+												title : "Thêm tuyến thành công!",
+												timer : 2000,
+												type : "success"
+											});
+										}
+									},
 									fnOnEditing : function(jInput,
 											oEditableSettings, sOriginalText,
 											id) {
@@ -130,7 +185,8 @@
 																						+ " - "
 																						+ diemDen);
 															});
-											$('tr#' + idTrEdit).addClass("row_selected");
+											$('tr#' + idTrEdit).addClass(
+													"row_selected");
 										}
 									}
 								});
@@ -181,7 +237,7 @@ tr.ui-selected {
 						int k = 0;
 						for (Tuyen tuyen : listTuyen) {
 					%>
-					<tr id="<%=k++%>" >
+					<tr id="<%=k++%>">
 						<td id="diemDi"><%=tuyen.getDiemDi()%></td>
 						<td id="diemDen"><%=tuyen.getDiemDen()%></td>
 						<td id="tuyen"><%=tuyen.getTuyenXe()%></td>
