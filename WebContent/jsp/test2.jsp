@@ -5,34 +5,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<link href="/BanVeXe/js/jquery.alerts-1.1/jquery.alerts.css"
-	rel="stylesheet" type="text/css" media="screen" />
-<script src="/BanVeXe/js/jquery.alerts-1.1/jquery.alerts.js"
-	type="text/javascript"></script>
-<script src="/BanVeXe/js/jquery.alerts-1.1/ui.draggable.js"
-	type="text/javascript"></script>
-<script src="/BanVeXe/js/jquery-1.11.1.js" type="text/javascript"></script>
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
 <script type="text/javascript">
-	function clickc() {
-		jConfirm("aaaaa", "bbbbbb", function(confirm) {
-			alert(confirm);
+	function mes() {
+		swal({
+			title : "Are you sure?",
+			text : "You will not be able to recover this imaginary file!",
+			type : "warning",
+			showCancelButton : true,
+			confirmButtonColor : "#DD6B55",
+			confirmButtonText : "Yes, delete it!",
+			closeOnConfirm : false,
+			closeOnCancel: false
+		}, function(isConfirm) {
+			if (isConfirm) {
+				swal("Deleted!", "Your imaginary file has been deleted.",
+						"success");
+			} else {
+				swal("Cancelled", "Your imaginary file is safe :)", "error");
+			}
 		});
-	}
-	function getParent(el) {
-		alert($(el).parent().attr("id"));
 	}
 </script>
 </head>
 <body>
-	<div id="container">
-		<div id="1">
-			<div id="2">
-				<button onclick="getParent(this)">button 1</button>
-			</div>
-			<div id="3">
-				<button onclick="getParent(this)">button 2</button>
-			</div>
-		</div>
-	</div>
+	<button onclick="mes()">abc</button>
 </body>
 </html>
