@@ -2,6 +2,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 public abstract class KhachHang  {
+	private long idKhachHang;
 	private String tenKhachHang;
 	private String sdt;
 	private String cmnd;

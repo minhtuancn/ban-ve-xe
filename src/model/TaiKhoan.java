@@ -1,6 +1,7 @@
 package model;
 
 public class TaiKhoan {
+	private long idTaiKhoan;
 	private String tenTK;
 	private String matKhau;
 	private boolean daKichHoat;

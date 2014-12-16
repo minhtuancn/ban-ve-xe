@@ -5,6 +5,7 @@ import java.util.List;
 
 
 public class Tuyen {
+	private long idTuyen;
 	private DiaDiem diemDi;
 	private DiaDiem diemDen;
 	private Date ngayDi;

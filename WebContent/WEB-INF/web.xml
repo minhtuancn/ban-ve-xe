@@ -139,4 +139,54 @@
     <servlet-name>ListTuyenData</servlet-name>
     <url-pattern>/ListTuyenData</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListChuyen</display-name>
+    <servlet-name>ListChuyen</servlet-name>
+    <servlet-class>controller.admin.ListChuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListChuyen</servlet-name>
+    <url-pattern>/ListChuyen</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddChuyen</display-name>
+    <servlet-name>AddChuyen</servlet-name>
+    <servlet-class>controller.admin.AddChuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddChuyen</servlet-name>
+    <url-pattern>/AddChuyen</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Kiemtrachuyen</display-name>
+    <servlet-name>Kiemtrachuyen</servlet-name>
+    <servlet-class>controller.admin.Kiemtrachuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Kiemtrachuyen</servlet-name>
+    <url-pattern>/Kiemtrachuyen</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteChuyen</display-name>
+    <servlet-name>DeleteChuyen</servlet-name>
+    <servlet-class>controller.admin.DeleteChuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteChuyen</servlet-name>
+    <url-pattern>/DeleteChuyen</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateChuyen</display-name>
+    <servlet-name>UpdateChuyen</servlet-name>
+    <servlet-class>controller.admin.UpdateChuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateChuyen</servlet-name>
+    <url-pattern>/UpdateChuyen</url-pattern>
+  </servlet-mapping>
 </web-app>
