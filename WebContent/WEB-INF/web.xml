@@ -189,4 +189,44 @@
     <servlet-name>UpdateChuyen</servlet-name>
     <url-pattern>/UpdateChuyen</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListDiaDiem</display-name>
+    <servlet-name>ListDiaDiem</servlet-name>
+    <servlet-class>controller.admin.themdiadiem.ListDiaDiem</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListDiaDiem</servlet-name>
+    <url-pattern>/ListDiaDiem</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddDiaDiem</display-name>
+    <servlet-name>AddDiaDiem</servlet-name>
+    <servlet-class>controller.admin.themdiadiem.AddDiaDiem</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDiaDiem</servlet-name>
+    <url-pattern>/AddDiaDiem</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteDiaDiem</display-name>
+    <servlet-name>DeleteDiaDiem</servlet-name>
+    <servlet-class>controller.admin.themdiadiem.DeleteDiaDiem</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDiaDiem</servlet-name>
+    <url-pattern>/DeleteDiaDiem</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateDiaDiem</display-name>
+    <servlet-name>UpdateDiaDiem</servlet-name>
+    <servlet-class>controller.admin.themdiadiem.UpdateDiaDiem</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateDiaDiem</servlet-name>
+    <url-pattern>/UpdateDiaDiem</url-pattern>
+  </servlet-mapping>
 </web-app>
