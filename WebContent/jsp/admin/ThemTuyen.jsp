@@ -42,80 +42,111 @@
 	type="text/javascript"></script>
 <script src="/BanVeXe/js/scripts/jquery-ui.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				// edit var
-				var idTrEdit;
-				//
-				var table = $("#myDataTable").dataTable({
-					"sPaginationType" : "full_numbers",
-					"bJQueryUI" : true
-				});
-				table.makeEditable({
-					sUpdateURL :
+	$(document)
+			.ready(
+					function() {
+						// edit var
+						var idTrEdit;
+						//
+						var table = $("#myDataTable").dataTable({
+							"sPaginationType" : "full_numbers",
+							"bJQueryUI" : true
+						});
+						table
+								.makeEditable({
+									sUpdateURL :
 <%="'" + DuongDan.SUA_TUYEN_SV + "'"%>
 	,
-					sAddURL :
+									sAddURL :
 <%="'" + DuongDan.THEM_TUYEN_SV + "'"%>
 	,
-					sDeleteURL :
+									sDeleteURL :
 <%="'" + DuongDan.XOA_TUYEN_SV + "'"%>
 	,
-					"aoColumns" : [ {
-						ndicator : 'Saving...',
-						tooltip : 'Click để chọn điểm đi',
-						loadtext : 'loading...',
-						type : 'select',
-						onblur : 'cancel',
-						submit : 'Ok',
-						data :
+									"aoColumns" : [
+											{
+												ndicator : 'Saving...',
+												tooltip : 'Click để chọn điểm đi',
+												loadtext : 'loading...',
+												type : 'select',
+												onblur : 'cancel',
+												submit : 'Ok',
+												data :
 <%=request.getAttribute("dataDiaDiem")%>
 	// 						data : "{'London':'London','Liverpool':'Liverpool'}"
-					},//null for read-only columns
-					{
-						indicator : 'Saving...',
-						tooltip : 'Click để chọn điểm đến',
-						loadtext : 'loading...',
-						type : 'select',
-						onblur : 'cancel',
-						submit : 'Ok',
-						// 						data : "{'London':'London','Liverpool':'Liverpool'}"
-						data :
+											},//null for read-only columns
+											{
+												indicator : 'Saving...',
+												tooltip : 'Click để chọn điểm đến',
+												loadtext : 'loading...',
+												type : 'select',
+												onblur : 'cancel',
+												submit : 'Ok',
+												// 						data : "{'London':'London','Liverpool':'Liverpool'}"
+												data :
 <%=request.getAttribute("dataDiaDiem")%>
 	}, null ],
-					sAddNewRowFormId : "formThemTuyen",
-					sAddNewRowButtonId : "btThemTuyen",
-					sAddNewRowOkButtonId : "btOk",
-					sAddNewRowCancelButtonId : "btCancel",
-					sDeleteHttpMethod : "POST",
-					sDeleteRowButtonId : "btXoaTuyen",
-					oAddNewRowButtonOptions : {
-						// 				label : "Add...",
-						icons : {
-							primary : 'ui-icon-plus'
-						}
-					},
-					fnOnEditing : function(jInput, oEditableSettings,
-							sOriginalText, id) {
-						// 					  alert("Updating cell with value " + input.val() + ". Sending request to " + oEditableSettings.target);
-						idTrEdit = jInput.parent().parent().parent().attr("id");
-						return true;
-					},
-					fnOnEdited : function(status) {
-						if(status.indexOf("success") !=1){
-							location.reload(true);
-						}
-					}
-				});
-			});
+									sAddNewRowFormId : "formThemTuyen",
+									sAddNewRowButtonId : "btThemTuyen",
+									sAddNewRowOkButtonId : "btOk",
+									sAddNewRowCancelButtonId : "btCancel",
+									sDeleteHttpMethod : "POST",
+									sDeleteRowButtonId : "btXoaTuyen",
+									oAddNewRowButtonOptions : {
+										// 				label : "Add...",
+										icons : {
+											primary : 'ui-icon-plus'
+										}
+									},
+									fnOnEditing : function(jInput,
+											oEditableSettings, sOriginalText,
+											id) {
+										// 					  alert("Updating cell with value " + input.val() + ". Sending request to " + oEditableSettings.target);
+										idTrEdit = jInput.parent().parent()
+												.parent().attr("id");
+										return true;
+									},
+									fnOnEdited : function(status) {
+										if (status.indexOf("success") != 1) {
+											/* location.reload(true); */
+											$('tr#' + idTrEdit)
+													.each(
+															function() {
+																var diemDi = $(
+																		this)
+																		.find(
+																				"#diemDi")
+																		.html();
+																var diemDen = $(
+																		this)
+																		.find(
+																				"#diemDen")
+																		.html();
+																$(this)
+																		.find(
+																				"#tuyen")
+																		.html(
+																				diemDi
+																						+ " - "
+																						+ diemDen);
+															});
+											$('tr#' + idTrEdit).addClass("row_selected");
+										}
+									}
+								});
+					});
 
 	function setTenTuyen() {
-		alert($("#selectdiemDi :selected").text());
-// 		$("#tenTuyen").text(
-// 				$("#diemDi :selected").text() + " - "
-// 						+ $("#diemDen :selected").text());
+		$("#tenTuyen").val(
+				$("#selectdiemDi option:selected").text() + " - "
+						+ $("#selectdiemDen option:selected").text());
 	}
 </script>
+<style>
+tr.ui-selected {
+	background: #F39814;
+}
+</style>
 </head>
 <body id="dt_example">
 	<div id="container">
@@ -150,7 +181,7 @@
 						int k = 0;
 						for (Tuyen tuyen : listTuyen) {
 					%>
-					<tr id="<%=k++%>">
+					<tr id="<%=k++%>" >
 						<td id="diemDi"><%=tuyen.getDiemDi()%></td>
 						<td id="diemDen"><%=tuyen.getDiemDen()%></td>
 						<td id="tuyen"><%=tuyen.getTuyenXe()%></td>
@@ -163,8 +194,8 @@
 		</div>
 		<form id="formThemTuyen" action="#" title="Thêm tuyến xe">
 			<input type="hidden" id="id" name="id" value="-1" /> <label
-				for="name">Điểm đi</label><br /> <select name="tdiemDi" id="selecdiemDi"
-				rel="0" onchange="setTenTuyen()">
+				for="name">Điểm đi</label><br /> <select name="tdiemDi"
+				id="selectdiemDi" rel="0" onchange="setTenTuyen()">
 				<%
 					for (DiaDiem d : listDiaDiem) {
 				%>
@@ -174,7 +205,7 @@
 					}
 				%>
 			</select> <br /> <label for="name">Điểm đến</label> <select name="diemDen"
-				id="diemDen" rel="1" onchange="setTenTuyen()">
+				id="selectdiemDen" rel="1" onchange="setTenTuyen()">
 				<%
 					for (DiaDiem d : listDiaDiem) {
 				%>
@@ -183,7 +214,7 @@
 				<%
 					}
 				%>
-			</select> <input type="text" value="" rel="2" id="tenTuyen" /> <br />
+			</select> <input type="hidden" value="" rel="2" id="tenTuyen" /> <br />
 			<button id="btOk">Thêm</button>
 			<button id="btCancel">Hủy</button>
 		</form>
