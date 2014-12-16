@@ -3,7 +3,9 @@ public class DiaDiem {
 	private long idDiaDiem;
 	private String tenDiaDiem;
 	
-	
+	public DiaDiem(String tenDiaDiem){
+		
+	}
 	public DiaDiem(int idDiaDiem, String tenDiaDiem) {
 		this.idDiaDiem = idDiaDiem;
 		this.tenDiaDiem = tenDiaDiem;
