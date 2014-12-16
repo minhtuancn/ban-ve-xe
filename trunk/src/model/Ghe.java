@@ -1,6 +1,6 @@
 package model;
 public class Ghe implements Comparable<Ghe>{
-	private int idGhe;
+	private long idGhe;
 	private int soGhe;
 	private byte trangThai;
 	//
@@ -14,7 +14,7 @@ public class Ghe implements Comparable<Ghe>{
 		this.trangThai = trangThai;
 	}
 
-	public int getIdGhe() {
+	public long getIdGhe() {
 		return idGhe;
 	}
 
@@ -40,14 +40,14 @@ public class Ghe implements Comparable<Ghe>{
 
 	@Override
 	public int compareTo(Ghe o) {
-		return idGhe - o.idGhe;
+		return (int) (idGhe - o.idGhe);
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idGhe;
+		result = (int) (prime * result + idGhe);
 		result = prime * result + soGhe;
 		result = prime * result + trangThai;
 		return result;

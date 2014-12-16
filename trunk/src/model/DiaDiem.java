@@ -1,15 +1,14 @@
 package model;
 public class DiaDiem {
-	private int idDiaDiem;
+	private long idDiaDiem;
 	private String tenDiaDiem;
-	
 	
 	
 	public DiaDiem(int idDiaDiem, String tenDiaDiem) {
 		this.idDiaDiem = idDiaDiem;
 		this.tenDiaDiem = tenDiaDiem;
 	}
-	public int getIdDiaDiem() {
+	public long getIdDiaDiem() {
 		return idDiaDiem;
 	}
 	public void setIdDiaDiem(int idDiaDiem) {

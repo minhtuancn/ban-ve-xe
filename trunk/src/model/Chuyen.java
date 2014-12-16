@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Chuyen {
+	private long idChuyen;
 	private Tuyen tuyen;
 	private String gioKhoiHanh;
 	private Xe xe;
@@ -13,8 +14,7 @@ public class Chuyen {
 	private boolean chuaKhoiHanh;
 	private List<Ghe> danhSachGheNgoi;
 
-	public Chuyen(Tuyen tuyen, String gioKhoiHanh, Xe xe, String benXuatPhat,
-			int gia) {
+	public Chuyen(Tuyen tuyen, String gioKhoiHanh, Xe xe, String benXuatPhat, int gia) {
 		this.tuyen = tuyen;
 		this.gioKhoiHanh = gioKhoiHanh;
 		this.xe = xe;

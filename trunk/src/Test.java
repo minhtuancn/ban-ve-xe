@@ -5,10 +5,10 @@ import java.util.Date;
 
 public class Test {
 	public static void main(String[] args) throws ParseException {
-		String s = "25-12-2014 23:59:59 PM";
-		SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss a");
+		String s = "2014-12-16";
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = f.parse(s);
 		d.setTime(d.getTime()+1000);
-		System.out.println(d);
+		System.out.println(f.format(d));
 	}
 }

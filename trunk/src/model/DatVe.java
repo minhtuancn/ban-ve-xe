@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DatVe {
+	private long idDatVe;
 	private Date ngayDatVe;
 	private Chuyen chuyen;
 	private List<Ghe> danhsachGheDat;

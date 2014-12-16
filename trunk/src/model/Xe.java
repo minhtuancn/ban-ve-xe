@@ -1,6 +1,7 @@
 package model;
 
 public class Xe {
+	private long idXe;
 	private String bienSoXe;
 	private String loaiGhe;
 	private int soGhe;

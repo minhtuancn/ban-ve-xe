@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Ve {
+	private long idVe;
 	private String maVe;
 	private Chuyen chuyen;
 	private String ghiChu;
