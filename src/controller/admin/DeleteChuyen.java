@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.TuyenDAO;
-import DAO.TuyenDAOImpl;
+import DAO.ChuyenDAO;
+import DAO.ChuyenDAOImpl;
 
 /**
  * Servlet implementation class DeleteChuyen
@@ -41,8 +41,9 @@ public class DeleteChuyen extends HttpServlet {
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int id = Integer.parseInt(request.getParameter("id"));
-		TuyenDAO tuyenDao = new TuyenDAOImpl();
-		if (!tuyenDao.deleteTuyen(id)) {
+		System.out.println("xoa chuyen"+ id);
+		ChuyenDAO chuyenDao = new ChuyenDAOImpl();
+		if (!chuyenDao.deleteChuyen(id)) {
 			response.getWriter().println("error");
 		}
 	}

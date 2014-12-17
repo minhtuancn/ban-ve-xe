@@ -60,15 +60,23 @@
 	,
 					"aoColumns" : [ 
 					//Empty object is used for the default editable settings
-					 null,
+					
 					 
 					{
+// 						indicator : 'Saving...',
+// 						tooltip : 'Click to select town',
+// 						loadtext : 'loading...',
+// 						type : 'select',
+// 						onblur : 'submit',
+// 						data : "{'London':'London','Liverpool':'Liverpool'}"
+					},
+					{
 						indicator : 'Saving...',
 						tooltip : 'Click to select town',
 						loadtext : 'loading...',
 						type : 'select',
 						onblur : 'submit',
-						data : "{'London':'London','Liverpool':'Liverpool'}"
+						data : "{'45':'45','16':'16'}"
 					},
 					{
 						indicator : 'Saving...',
@@ -78,7 +86,7 @@
 						onblur : 'submit',
 						data : "{'London':'London','Liverpool':'Liverpool'}"
 					},
-					null,
+					
 					{
 						indicator : 'Saving...',
 						tooltip : 'Click to select town',
@@ -86,7 +94,7 @@
 						type : 'select',
 						onblur : 'submit',
 						data : "{'London':'London','Liverpool':'Liverpool'}"
-					}],
+					}, null],
 					sAddNewRowFormId : "formThemTuyen",
 					sAddNewRowButtonId : "btThemTuyen",
 					sAddNewRowOkButtonId : "btOk",
@@ -204,11 +212,11 @@
 					
 						<thead>
 							<tr>
-								<th>Tuyến</th>
 								<th>Giờ khỏi hành</th>
 								<th>Loại xe</th>
 								<th>Bến xuất phát</th>
 								<th>Giá</th>
+								<th>Trạng thái khởi hành</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -217,11 +225,15 @@
 								for (Chuyen chuyen : listChuyen) {
 							%>
 							<tr id="<%=k++%>">
-								<td><%=chuyen.getTuyenXe()%></td>
 								<td><%=chuyen.getGioKhoiHanh()%></td>
 								<td><%=chuyen.getLoaiXe()%></td>
 								<td><%=chuyen.getBenXuatPhat()%></td>
 								<td><%=chuyen.getGia()%></td>
+								<td><%=chuyen.isChuaKhoiHanh()%>
+								<% if(!chuyen.isChuaKhoiHanh()) 
+								%>
+								<input type="button" value="cập nhật"/>
+								</td>
 							</tr>
 							<%
 								}
@@ -230,20 +242,7 @@
 					</table>
 				</div>
 				<form id="formThemTuyen" action="#" title="Thêm chuyến xe">
-					<input type="hidden" id="id" name="id" value="-1" />
-<!-- 					 <label	for="name">Tuyến Xe</label><br />  -->
-<%-- 						<input type="hidden" id="tuyen" name="tuyen" value="<%= %>"/> --%>
-<!-- 						<select name="tuyen" id="tuyen" -->
-<!-- 						rel="0"> -->
-<%-- 						<% --%>
-<!-- // 							for (Tuyen d : listTuyen) { -->
-<%-- 						%> --%>
-<%-- 						<option value="<%=d.getTuyenXe()%>"> --%>
-<%-- 							<%=d.getTuyenXe()%></option> --%>
-<%-- 						<% --%>
-<!-- // 							} -->
-<%-- 						%> --%>
-<!-- 					</select> <br />  -->
+					<input type="hidden" id="id" name="id" value="1" />
 					<label for="name">Giờ khởi hành:</label><br/> <input type="text" name="giokhoihanh" id="giokhoihanh" rel="1" />
 					 <label
 						for="name">Xe</label><br /> <select name="xe" id="xe"
@@ -253,7 +252,7 @@
 					</select> <br /> 
 					<label for="name">Giá:</label><br/> <input type="number" name="gia" id="gia" rel="3" />
 					<input type="hidden" value="aaaaaaaaa" rel="4" /> <br />
-					<input type="hidden" value="aaaaaaaaa" rel="0" /> <br />
+					<input type="hidden" value="aaaaaaaaaaa" rel="0" /> <br />
 					<button id="btOk">Add</button>
 					<button id="btCancel">Cancel</button>
 				</form>

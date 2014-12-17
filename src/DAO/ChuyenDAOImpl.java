@@ -11,7 +11,7 @@ import model.Xe;
 
 public class ChuyenDAOImpl implements ChuyenDAO {
 
-	List<Chuyen> list = new ArrayList<Chuyen>();
+	static List<Chuyen> list = new ArrayList<Chuyen>();
 	
 	@Override
 	public Chuyen getChuyen(String gioKhoiHanh, Tuyen tuyen, String benXuatPhat) {
@@ -25,9 +25,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 
 	@Override
 	public List<Chuyen> getAllChuyen(Tuyen tuyen) {
-		DiaDiem diemDii = new DiaDiem(1, "Ho Chi Minh");
-		DiaDiem diemDeen = new DiaDiem(2, "Nha Trang");
-		Date ngayDi = new Date();
+		if(list.size()==0){
 		Xe xe16 = new Xe("1234", "ghe ngoi", 15);
 		Xe xe45 = new Xe("1235", "ghe ngoi", 45);
 
@@ -40,6 +38,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 		list.add(chuyen3);
 		list.add(chuyen2);
 		list.add(chuyen1);
+		}
 		
 		return list;
 	}
@@ -54,6 +53,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 	@Override
 	public boolean deleteChuyen(int id) {
 		list.remove(id);
+		System.out.println(id);
 		return true;
 	}
 
