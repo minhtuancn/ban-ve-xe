@@ -4,7 +4,8 @@ public class DiaDiem {
 	private String tenDiaDiem;
 	
 	public DiaDiem(String tenDiaDiem){
-		
+		idDiaDiem = 1000;
+		this.tenDiaDiem = tenDiaDiem;
 	}
 	public DiaDiem(int idDiaDiem, String tenDiaDiem) {
 		this.idDiaDiem = idDiaDiem;

@@ -17,6 +17,16 @@ public class Ve {
 	private int soSMS;
 	private SimpleDateFormat formats;
 	public static final String FORMAT = "dd/MM/yyyy HH:mm";
+	public Ve(String maVe, Chuyen chuyen, String ghiChu, Date ngayDatVe,List<Ghe> danhsachGhe, boolean daKhoiHanh, boolean trangThaiThanhToan, Date thoiHanThanhToan ){
+		this.maVe = maVe;
+		this.chuyen = chuyen;
+		this.ghiChu = ghiChu;
+		this.ngayDatVe = ngayDatVe;
+		this.danhSachGhe = danhsachGhe;
+		this.daKhoiHanh = daKhoiHanh;
+		this.trangThaiThanhToan = trangThaiThanhToan;
+		this.thoiHanThanhToan = thoiHanThanhToan;
+	}
 	public Ve(String mave,DatVe datVe, String ghiChu) {
 		this.maVe = mave;
 		this.chuyen = datVe.getChuyen();

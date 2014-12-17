@@ -229,4 +229,54 @@
     <servlet-name>UpdateDiaDiem</servlet-name>
     <url-pattern>/UpdateDiaDiem</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListKhachHang</display-name>
+    <servlet-name>ListKhachHang</servlet-name>
+    <servlet-class>cotroller.admin.themkhachhang.ListKhachHang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListKhachHang</servlet-name>
+    <url-pattern>/ListKhachHang</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteKhachHang</display-name>
+    <servlet-name>DeleteKhachHang</servlet-name>
+    <servlet-class>cotroller.admin.themkhachhang.DeleteKhachHang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteKhachHang</servlet-name>
+    <url-pattern>/DeleteKhachHang</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateKhachHang</display-name>
+    <servlet-name>UpdateKhachHang</servlet-name>
+    <servlet-class>cotroller.admin.themkhachhang.UpdateKhachHang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateKhachHang</servlet-name>
+    <url-pattern>/UpdateKhachHang</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListVe</display-name>
+    <servlet-name>ListVe</servlet-name>
+    <servlet-class>controller.admin.ThemVe.ListVe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListVe</servlet-name>
+    <url-pattern>/ListVe</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SendEmail</display-name>
+    <servlet-name>SendEmail</servlet-name>
+    <servlet-class>controller.SendEmail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendEmail</servlet-name>
+    <url-pattern>/SendEmail</url-pattern>
+  </servlet-mapping>
 </web-app>

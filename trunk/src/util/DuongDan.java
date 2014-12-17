@@ -27,6 +27,8 @@ public class DuongDan {
 	public static final String THEM_CHUYEN_SVL = "/jsp/admin/ThemChuyen.jsp";
 	public static final String DSCHUYEN_SVL = "/jsp/admin/DSChuyen.jsp";
 	public static final String THEM_DIADIEM_SVL = "/jsp/admin/ThemDiaDiem.jsp";
+	public static final String THEM_KHACHHANG_SVL = "/jsp/admin/ThemKhachHang.jsp";
+	public static final String THEM_VE_SVL = "/jsp/admin/ThemVe.jsp";
 	//
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
 	public static final String TIM_TUYEN = "/BanVeXe/TimTuyen";
@@ -41,5 +43,7 @@ public class DuongDan {
 	public static final String THEM_DIADIEM_SV = "/BanVeXe/AddDiaDiem";
 	public static final String XOA_DIADIEM_SV = "/BanVeXe/DeleteDiaDiem";
 	public static final String SUA_DIADIEM_SV = "/BanVeXe/UpdateDiaDiem";
+	public static final String XOA_KHACHHANG_SV = "/BanVeXe/DeleteKhachHang";
+	public static final String SUA_KHACHHANG_SV = "/BanVeXe/UpdateKhachHang";
 	
 }

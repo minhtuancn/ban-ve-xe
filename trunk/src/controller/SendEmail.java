@@ -1,27 +1,21 @@
-package controller.admin.themdiadiem;
+package controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DiaDiemDAO;
-import DAO.DiaDiemDAOImpl;
-import DAO.TuyenDAO;
-import DAO.TuyenDAOImpl;
-
 /**
- * Servlet implementation class UpdateDiaDiem
+ * Servlet implementation class SendEmail
  */
-public class UpdateDiaDiem extends HttpServlet {
+public class SendEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateDiaDiem() {
+    public SendEmail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,6 +24,7 @@ public class UpdateDiaDiem extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 
@@ -37,17 +32,12 @@ public class UpdateDiaDiem extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		String value = request.getParameter("value");
-		DiaDiemDAO diaDiemDAO = new DiaDiemDAOImpl();
-		if (!diaDiemDAO.editDiaDiem(id, value))
-			response.getWriter().print("Error - company cannot be found");
-		else{
-			request.getSession().setAttribute("listDiaDiem", diaDiemDAO.getAllDiaDiem());
-			response.getWriter().print(value);
-		}
+		// TODO Auto-generated method stub
+		
 	}
+
 }
