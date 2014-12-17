@@ -1,0 +1,18 @@
+#containers {
+	width: 1366px;
+	height: auto;
+}
+
+#tt-chuyen {
+	width: 20%;
+	height: auto;
+	float: left;
+	clear: right;
+}
+
+#themchuyen {
+	width: 75%;
+	height: auto;
+	float: left;
+	clear: none;
+}

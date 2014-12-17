@@ -274,8 +274,6 @@ tr.ui-selected {
 			<button id="btOk">Thêm</button>
 			<button id="btCancel">Hủy</button>
 		</form>
-		<!-- <input type="text" name="diemDi" id="diemDi" -->
-		<!-- 				class="required" rel="1" />  -->
 	</div>
 </body>
 </html>

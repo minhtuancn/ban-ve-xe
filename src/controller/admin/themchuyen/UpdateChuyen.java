@@ -1,28 +1,26 @@
-package controller.admin;
+package controller.admin.themchuyen;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.DuongDan;
-import model.Tuyen;
-import DAO.TuyenDAO;
-import DAO.TuyenDAOImpl;
+import DAO.ChuyenDAO;
+import DAO.ChuyenDAOImpl;
+import model.Chuyen;
 
 /**
- * Servlet implementation class Kiemtrachuyen
+ * Servlet implementation class UpdateChuyen
  */
-public class Kiemtrachuyen extends HttpServlet {
+public class UpdateChuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Kiemtrachuyen() {
+    public UpdateChuyen() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,17 +37,19 @@ public class Kiemtrachuyen extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
-	
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		TuyenDAO tuyenDAO = new TuyenDAOImpl();
-		List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
-		request.getSession().setAttribute("listTuyen", listTuyen);
-		request.getRequestDispatcher(DuongDan.THEM_CHUYEN_SVL).forward(request, response);
+		int id = Integer.parseInt(request.getParameter("id"));
+		int columnPosition = Integer.parseInt(request
+				.getParameter("columnPosition"));
+		String value = request.getParameter("value");
+		ChuyenDAO chuyenDao = new ChuyenDAOImpl();
+		if (!chuyenDao.editChuyen(id, value, columnPosition))
+			response.getWriter().print("Error - company cannot be found");
+		else{
+			response.getWriter().print(value);
+		}
 	}
-
 
 }
