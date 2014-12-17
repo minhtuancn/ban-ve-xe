@@ -9,6 +9,6 @@ public class Test {
 		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = f.parse(s);
 		d.setTime(d.getTime()+1000);
-		System.out.println(f.format(d));
+		System.out.println(new Date());
 	}
 }

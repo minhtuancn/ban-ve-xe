@@ -25,6 +25,7 @@ public class DuongDan {
 	public static final String THEM_TUYEN = "/BanVeXe/jsp/admin/ThemTuyen.jsp";
 	public static final String THEM_TUYEN_SVL = "/jsp/admin/ThemTuyen.jsp";
 	public static final String THEM_CHUYEN_SVL = "/jsp/admin/ThemChuyen.jsp";
+	public static final String DSCHUYEN_SVL = "/jsp/admin/DSChuyen.jsp";
 	public static final String THEM_DIADIEM_SVL = "/jsp/admin/ThemDiaDiem.jsp";
 	//
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";

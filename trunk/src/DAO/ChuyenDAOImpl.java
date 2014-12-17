@@ -60,19 +60,27 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 	@Override
 	public boolean editChuyen(int id, String value, int columnPosition) {
 		Chuyen c = list.get(id);
+		Xe xe = null;
 		System.out.println(columnPosition);
 		switch (columnPosition) {
-//		case 0:
-//			t.setDiemDi(new DiaDiem(0, value));
-//			break;
-//		case 1:
-//			t.setDiemDen(new DiaDiem(0, value));
-//			break;
-//		case 2:
-//			t.setDiemDen(new DiaDiem(0, value));
-//			break;
-//		default:
-//			break;
+		case 0:
+			c.setGioKhoiHanh(value);;
+			break;
+		case 1:
+			if(value.equalsIgnoreCase("45"))
+				xe = new Xe("", "", 45);
+			else 
+				xe = new Xe("", "", 16);
+			c.setXe(xe);
+			break;
+		case 2:
+			c.setBenXuatPhat(value);
+			break;
+		case 3:
+			c.setGia(Integer.parseInt(value));
+			break;
+		default:
+			break;
 		}
 		return true;
 	}

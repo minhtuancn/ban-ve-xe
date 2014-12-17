@@ -1,25 +1,28 @@
-package controller.admin;
+package controller.admin.themchuyen;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.ChuyenDAO;
-import DAO.ChuyenDAOImpl;
+import util.DuongDan;
+import model.Tuyen;
+import DAO.TuyenDAO;
+import DAO.TuyenDAOImpl;
 
 /**
- * Servlet implementation class DeleteChuyen
+ * Servlet implementation class Kiemtrachuyen
  */
-public class DeleteChuyen extends HttpServlet {
+public class Kiemtrachuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteChuyen() {
+    public Kiemtrachuyen() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,16 +39,17 @@ public class DeleteChuyen extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
+	
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println("xoa chuyen"+ id);
-		ChuyenDAO chuyenDao = new ChuyenDAOImpl();
-		if (!chuyenDao.deleteChuyen(id)) {
-			response.getWriter().println("error");
-		}
+		TuyenDAO tuyenDAO = new TuyenDAOImpl();
+		List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
+		request.getSession().setAttribute("listTuyen", listTuyen);
+		request.getRequestDispatcher(DuongDan.DSCHUYEN_SVL).forward(request, response);
 	}
+
 
 }

@@ -1,32 +1,25 @@
-package controller.admin;
+package controller.admin.themchuyen;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import model.Chuyen;
-import model.Tuyen;
-import util.DuongDan;
 import DAO.ChuyenDAO;
 import DAO.ChuyenDAOImpl;
-import DAO.TuyenDAO;
-import DAO.TuyenDAOImpl;
 
 /**
- * Servlet implementation class ListChuyen
+ * Servlet implementation class DeleteChuyen
  */
-public class ListChuyen extends HttpServlet {
+public class DeleteChuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListChuyen() {
+    public DeleteChuyen() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,26 +36,16 @@ public class ListChuyen extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doAction(request, response);
+		doAction(request, response);
 	}
-
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String tenTuyenXe = request.getParameter("tuyen");
-		String date = request.getParameter("date");
-		
-		List<Tuyen> tuyen = (List<Tuyen>) request.getSession().getAttribute("listTuyen");
-		ChuyenDAO chuyenDAO = new ChuyenDAOImpl();
-		Tuyen t = null;
-		System.out.println(tenTuyenXe);
-		for (Tuyen tuyen2 : tuyen) {
-		if(tuyen2.getTuyenXe().equalsIgnoreCase(tenTuyenXe))
-			 t = tuyen2;
+		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("xoa chuyen"+ id);
+		ChuyenDAO chuyenDao = new ChuyenDAOImpl();
+		if (!chuyenDao.deleteChuyen(id)) {
+			response.getWriter().println("error");
 		}
-		session.setAttribute("tuyen", t);
-		List<Chuyen> list = chuyenDAO.getAllChuyen(t);
-		request.setAttribute("listChuyen", list);
-		request.getRequestDispatcher(DuongDan.THEM_CHUYEN_SVL).forward(request, response);
 	}
 
 }

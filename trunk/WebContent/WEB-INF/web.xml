@@ -143,7 +143,7 @@
     <description></description>
     <display-name>ListChuyen</display-name>
     <servlet-name>ListChuyen</servlet-name>
-    <servlet-class>controller.admin.ListChuyen</servlet-class>
+    <servlet-class>controller.admin.themchuyen.ListChuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ListChuyen</servlet-name>
@@ -153,7 +153,7 @@
     <description></description>
     <display-name>AddChuyen</display-name>
     <servlet-name>AddChuyen</servlet-name>
-    <servlet-class>controller.admin.AddChuyen</servlet-class>
+    <servlet-class>controller.admin.themchuyen.AddChuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddChuyen</servlet-name>
@@ -163,7 +163,7 @@
     <description></description>
     <display-name>Kiemtrachuyen</display-name>
     <servlet-name>Kiemtrachuyen</servlet-name>
-    <servlet-class>controller.admin.Kiemtrachuyen</servlet-class>
+    <servlet-class>controller.admin.themchuyen.Kiemtrachuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Kiemtrachuyen</servlet-name>
@@ -173,7 +173,7 @@
     <description></description>
     <display-name>DeleteChuyen</display-name>
     <servlet-name>DeleteChuyen</servlet-name>
-    <servlet-class>controller.admin.DeleteChuyen</servlet-class>
+    <servlet-class>controller.admin.themchuyen.DeleteChuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteChuyen</servlet-name>
@@ -183,7 +183,7 @@
     <description></description>
     <display-name>UpdateChuyen</display-name>
     <servlet-name>UpdateChuyen</servlet-name>
-    <servlet-class>controller.admin.UpdateChuyen</servlet-class>
+    <servlet-class>controller.admin.themchuyen.UpdateChuyen</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateChuyen</servlet-name>
