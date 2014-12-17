@@ -1,7 +1,6 @@
 package controller.admin.themchuyen;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,11 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.ChuyenDAO;
-import DAO.ChuyenDAOImpl;
-import model.Chuyen;
 import model.Tuyen;
 import model.Xe;
+import DAO.ChuyenDAO;
+import DAO.ChuyenDAOImpl;
 
 /**
  * Servlet implementation class AddChuyen
@@ -48,9 +46,13 @@ public class AddChuyen extends HttpServlet {
 		Tuyen t = (Tuyen) sesstion.getAttribute("tuyen");
 		String gioKhoiHanh = request.getParameter("giokhoihanh");
 		String xe = request.getParameter("xe");
+		Xe xes = null;
+		if(xe.equalsIgnoreCase("xe45"))
+			 xes = new Xe("", "", 45);
+		xes = new Xe("", "", 16);
 		int gia = Integer.parseInt(request.getParameter("gia"));
 		ChuyenDAO dao = new ChuyenDAOImpl();
-		dao.addChuyen(t, gioKhoiHanh,new Xe("", "", 111), t.getDiemDi().getTenDiaDiem(), gia);
+		dao.addChuyen(t, gioKhoiHanh,xes, t.getDiemDi().getTenDiaDiem(), gia);
 		response.getWriter().print("1");
 	}
 
