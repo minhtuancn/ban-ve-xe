@@ -1,15 +1,19 @@
 package controller.admin.themchuyen;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import util.DuongDan;
 import model.Tuyen;
+import util.DuongDan;
 import DAO.TuyenDAO;
 import DAO.TuyenDAOImpl;
 
@@ -46,8 +50,32 @@ public class Kiemtrachuyen extends HttpServlet {
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		TuyenDAO tuyenDAO = new TuyenDAOImpl();
+		HttpSession session = request.getSession();
 		List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
-		request.getSession().setAttribute("listTuyen", listTuyen);
+		session.setAttribute("listTuyen", listTuyen);
+		//
+		String idTuyenSelected = "0";
+		if(request.getParameter("idTuyenSelected") != null)
+			idTuyenSelected = request.getParameter("idTuyenSelected");
+		//
+		String date = "17-12-2014";
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+		if(request.getParameter("date") != null)
+			date = request.getParameter("date");
+		Date selectedDate ;
+		if(date.equals(""))
+			selectedDate = new Date();
+		else
+			try {
+				selectedDate = f.parse(date);
+			} catch (ParseException e) {
+				selectedDate = new Date();
+			}
+		
+		Tuyen tuyen = listTuyen.get(Integer.parseInt(idTuyenSelected));
+		System.out.println(tuyen);
+		request.setAttribute("tuyen", tuyen);
+		
 		request.getRequestDispatcher(DuongDan.DSCHUYEN_SVL).forward(request, response);
 	}
 
