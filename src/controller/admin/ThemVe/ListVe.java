@@ -1,27 +1,28 @@
-package controller.admin.themdiadiem;
+package controller.admin.ThemVe;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DiaDiemDAO;
-import DAO.DiaDiemDAOImpl;
-import DAO.TuyenDAO;
-import DAO.TuyenDAOImpl;
+import util.DuongDan;
+import model.ThongTinVe;
+import DAO.VeDAO;
+import DAO.VeDAOImpl;
 
 /**
- * Servlet implementation class UpdateDiaDiem
+ * Servlet implementation class ListVe
  */
-public class UpdateDiaDiem extends HttpServlet {
+public class ListVe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateDiaDiem() {
+    public ListVe() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,14 +41,10 @@ public class UpdateDiaDiem extends HttpServlet {
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		String value = request.getParameter("value");
-		DiaDiemDAO diaDiemDAO = new DiaDiemDAOImpl();
-		if (!diaDiemDAO.editDiaDiem(id, value))
-			response.getWriter().print("Error - company cannot be found");
-		else{
-			request.getSession().setAttribute("listDiaDiem", diaDiemDAO.getAllDiaDiem());
-			response.getWriter().print(value);
-		}
+			VeDAO ve = new VeDAOImpl();
+			List<ThongTinVe> listVe = ve.getAllVe();
+			request.setAttribute("listVe", listVe);
+			request.getRequestDispatcher(DuongDan.THEM_VE_SVL).forward(request, response);
 	}
+
 }

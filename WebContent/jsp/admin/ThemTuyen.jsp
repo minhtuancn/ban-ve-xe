@@ -103,44 +103,17 @@
 											primary : 'ui-icon-plus'
 										}
 									},
-// 									fnOnDeleting : function(tr, id, fnDeleteRow) {
-// 										var res = false;
-// 										swal(
-// 												{
-// 													title : "Bạn có chắc chắn xóa tuyến "
-// 															+ $(
-// 																	"tr#"
-// 																			+ id
-// 																			+ " :last-child")
-// 																	.html()
-// 															+ " không?",
-// 													text : "",
-// 													type : "warning",
-// 													showCancelButton : true,
-// 													confirmButtonColor : "#DD6B55",
-// 													confirmButtonText : "Ok",
-// 													cancelButtonText : "No",
-// 													closeOnConfirm : false,
-// 													closeOnCancel : true
-// 												}, function(isConfirm) {
-// 													if (isConfirm) {
-// 														swal("Deleted!", "Your imaginary file has been deleted.", "success");
-// 														res = true;
-// 													} else {
-// 														swal("Deleted!", "Your imaginary file has been deleted.", "success");
-// 													}
-// 												});
-																			
-// 										alert(res);
-// 										return res;
-
-// 									},
 									fnOnDeleted : function(status) {
 										if (status.indexOf("success") != -1) {
 											swal({
 												title : "Xóa tuyến thành công!",
 												timer : 2000,
 												type : "success"
+											});
+										}else{
+											swal({
+												title : "Xóa tuyến không thành công!",
+												type : "warning"
 											});
 										}
 									},
@@ -150,6 +123,11 @@
 												title : "Thêm tuyến thành công!",
 												timer : 2000,
 												type : "success"
+											});
+										}else{
+											swal({
+												title : "Thêm tuyến không thành công!",
+												type : "warning"
 											});
 										}
 									},
@@ -163,7 +141,6 @@
 									},
 									fnOnEdited : function(status) {
 										if (status.indexOf("success") != 1) {
-											/* location.reload(true); */
 											$('tr#' + idTrEdit)
 													.each(
 															function() {
@@ -187,6 +164,16 @@
 															});
 											$('tr#' + idTrEdit).addClass(
 													"row_selected");
+											swal({
+												title : "Sữa tuyến thành công!",
+												timer : 2000,
+												type : "success"
+											});
+										}else{
+											swal({
+												title : "Sữa tuyến không thành công!",
+												type : "warning"
+											});
 										}
 									}
 								});
@@ -198,11 +185,6 @@
 						+ $("#selectdiemDen option:selected").text());
 	}
 </script>
-<style>
-tr.ui-selected {
-	background: #F39814;
-}
-</style>
 </head>
 <body id="dt_example">
 	<div id="container">

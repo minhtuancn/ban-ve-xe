@@ -11,7 +11,7 @@ public abstract class KhachHang  {
 	private Ve veDi;
 	private Ve veVe;
 	private List<Ve> danhSachVeDaDat;
-	public KhachHang() {
+	public KhachHang(){
 	}
 	public KhachHang(String tenKhachHang, String sdt, String cmnd, String diaChi, String email){
 		this.tenKhachHang = tenKhachHang;

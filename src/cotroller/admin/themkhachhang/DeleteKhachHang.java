@@ -1,4 +1,4 @@
-package controller.admin.themdiadiem;
+package cotroller.admin.themkhachhang;
 
 import java.io.IOException;
 
@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.DiaDiemDAO;
-import DAO.DiaDiemDAOImpl;
-import DAO.TuyenDAO;
-import DAO.TuyenDAOImpl;
+import DAO.KhachHangDAO;
+import DAO.KhachHangDAOIml;
 
 /**
- * Servlet implementation class UpdateDiaDiem
+ * Servlet implementation class DeleteKhachHang
  */
-public class UpdateDiaDiem extends HttpServlet {
+public class DeleteKhachHang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateDiaDiem() {
+    public DeleteKhachHang() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,16 +36,13 @@ public class UpdateDiaDiem extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
-	}
+		}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		String value = request.getParameter("value");
-		DiaDiemDAO diaDiemDAO = new DiaDiemDAOImpl();
-		if (!diaDiemDAO.editDiaDiem(id, value))
-			response.getWriter().print("Error - company cannot be found");
-		else{
-			request.getSession().setAttribute("listDiaDiem", diaDiemDAO.getAllDiaDiem());
-			response.getWriter().print(value);
+		KhachHangDAO kh = new KhachHangDAOIml();
+		if (!kh.deleteKhachHang(id)) {
+			response.getWriter().println("error");
 		}
 	}
+
 }

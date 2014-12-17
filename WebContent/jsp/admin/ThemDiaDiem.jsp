@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link href="/BanVeXe/css/datatable/ThemChuyen.css" rel="stylesheet"
+<link href="/BanVeXe/css/datatable/ThemDiaDiem.css" rel="stylesheet"
 	type="text/css" media="all" />
 <link href="/BanVeXe/media/dataTables/demo_page.css" rel="stylesheet"
 	type="text/css" />
@@ -26,6 +26,13 @@
 	rel="stylesheet" type="text/css" media="all" />
 <link href="/BanVeXe/js/jquery.alerts-1.1/jquery.alerts.css"
 	rel="stylesheet" type="text/css" media="screen" />
+<!-- 	sweet alert -->
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
+<!-- ... -->
+<script type="text/javascript"
+	src="http://www.google-analytics.com/ga.js"></script>
 <script src="/BanVeXe/js/jquery.alerts-1.1/jquery.alerts.js"
 	type="text/javascript"></script>
 <script src="/BanVeXe/js/scripts/jquery-1.4.4.min.js"
@@ -69,9 +76,75 @@
 					sAddNewRowCancelButtonId : "btCancel",
 					sDeleteHttpMethod : "POST",
 					sDeleteRowButtonId : "btXoaTuyen",
-				});
-				
-		});
+		
+	oAddNewRowButtonOptions : {
+		icons : {
+			primary : 'ui-icon-plus'
+		}
+	},
+	fnOnDeleted : function(status) {
+		if (status.indexOf("success") != -1) {
+			swal({
+				title : "Xóa địa điểm thành công!",
+				timer : 2000,
+				type : "success"
+			});
+		}else{
+			swal({
+				title : "Xóa địa điểm không thành công!",
+				type : "warning"
+			});
+		}
+	},
+	fnOnAdded : function(status) {
+		if (status.indexOf("success") != -1) {
+			swal({
+				title : "Thêm địa điểm thành công!",
+				timer : 2000,
+				type : "success"
+			});
+		}else{
+			swal({
+				title : "Thêm địa điểm không thành công!",
+				type : "warning"
+			});
+		}
+	},
+	fnOnEditing : function(jInput,
+			oEditableSettings, sOriginalText,
+			id) {
+		// 					  alert("Updating cell with value " + input.val() + ". Sending request to " + oEditableSettings.target);
+		idTrEdit = jInput.parent().parent()
+				.parent().attr("id");
+		return true;
+	},
+	fnOnEdited : function(status) {
+		if (status.indexOf("success") != 1) {
+			$('tr#' + idTrEdit)
+					.each(
+							function() {
+								var tenDiaDiem = $(
+										this)
+										.find(
+												"#tenDD")
+										.html();
+							});
+			$('tr#' + idTrEdit).addClass(
+					"row_selected");
+			swal({
+				title : "Sửa địa điểm thành công!",
+				timer : 2000,
+				type : "success"
+			});
+		}else{
+			swal({
+				title : "Sửa địa điểm không thành công!",
+				type : "warning"
+			});
+		}
+	}
+});
+});
 			
 </script>
 </head>
@@ -103,7 +176,7 @@
 								for (DiaDiem d : listDiaDiem) {
 							%>
 							<tr id="<%=k++%>">
-								<td><%=d.getTenDiaDiem()%></td>
+								<td id="tenDD"><%=d.getTenDiaDiem()%></td>
 							</tr>
 							<%
 								}
