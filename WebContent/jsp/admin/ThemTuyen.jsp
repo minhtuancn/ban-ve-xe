@@ -232,7 +232,7 @@
 		</div>
 		<form id="formThemTuyen" action="#" title="Thêm tuyến xe">
 			<input type="hidden" id="id" name="id" value="-1" /> <label
-				for="name">Điểm đi</label><br /> <select name="tdiemDi"
+				for="name">Điểm đi</label><br /> <select name="diemDi"
 				id="selectdiemDi" rel="0" onchange="setTenTuyen()">
 				<%
 					for (DiaDiem d : listDiaDiem) {
