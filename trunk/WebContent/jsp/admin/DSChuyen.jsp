@@ -121,8 +121,7 @@
 </script>
 </head>
 <body>
-	<%	
-		
+	<%
 		List<Tuyen> listTuyen;
 		if (session.getAttribute("listTuyen") != null) {
 			listTuyen = (List<Tuyen>) session.getAttribute("listTuyen");
@@ -130,44 +129,47 @@
 		} else
 			listTuyen = new ArrayList<Tuyen>();
 		SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = new Date();
 		String date = "";
-		if(request.getParameter("date") != null)
+		Date selectDate;
+		if (request.getParameter("date") != null)
 			date = request.getParameter("date");
-		Date selectedDate ;
-		if(date.equals(""))
-			selectedDate = new Date();
-		else
-			selectedDate = f.parse(date);
+		if (date.equals("")) {
+			selectDate = new Date();
+		} else {
+			selectDate = f2.parse(date);
+		}
 	%>
 	<div id="containers">
 		<div id="tt-chuyen">
 			<fieldset>
 				<legend>Thông tin chuyến</legend>
 				<div>
-									<form action="Kiemtrachuyen" id="form">
+					<form action="Kiemtrachuyen" id="form">
 
-					<label for="name">Tuyến Xe</label><br /> <select name="tuyen"
-						id="tuyen">
-						<%
-							for (Tuyen d : listTuyen) {
-						%>
-						<option value="<%=d.getTuyenXe()%>">
-							<%=d.getTuyenXe()%></option>
-						<%
-							}
-						%>
-					</select> <br /> <label for="name">Date</label><br /> <input type="date"
-						id="date" name="date" min="<%= f.format(today) %>" value="2014-12-18"/> <br />
-					<button onclick="timchuyen()">click</button>
-					<br />
-									</form>
+						<label for="name">Tuyến Xe</label><br /> <select name="tuyen"
+							id="tuyen">
+							<%
+								for (Tuyen d : listTuyen) {
+							%>
+							<option value="<%=d.getTuyenXe()%>">
+								<%=d.getTuyenXe()%></option>
+							<%
+								}
+							%>
+						</select> <br /> <label for="name">Date</label><br /> <input type="date"
+							id="date" name="date" min="<%=f2.format(today)%>"
+							value="<%=f2.format(selectDate)%>" /> <br />
+						<button onclick="timchuyen()">click</button>
+						<br />
+					</form>
 				</div>
 			</fieldset>
 		</div>
 
 		<div id="themchuyen">
-			<%@ include file="ThemChuyen.jsp" %>
+			<%@ include file="ThemChuyen.jsp"%>
 		</div>
 		<form id="formThemChuyen" action="#" title="Thêm chuyến xe">
 			<input type="hidden" id="id" name="id" value="1" /> <label
@@ -177,10 +179,11 @@
 				<option value="xe45">xe 45</option>
 				<option value="xe16">xe 16</option>
 			</select> <br /> <label for="name">Giá:</label><br /> <input type="number"
-				name="gia" id="gia" rel="3" value="1222221"/> <input type="hidden" value="false"
-				rel="4" /> <br /> <input type="hidden" value="" rel="2" /> <br />
-			<button id="btOk">Add</button>
-			<button id="btCancel">Cancel</button>
+				name="gia" id="gia" rel="3" value="1222221" /> <input type="hidden"
+				value="false" rel="4" /> <br /> <input type="hidden" value=""
+				rel="2" /> <br />
+			<button id="btOk">Thêm</button>
+			<button id="btCancel">Hủy</button>
 		</form>
 	</div>
 </body>
