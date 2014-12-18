@@ -279,4 +279,6 @@
     <servlet-name>SendEmail</servlet-name>
     <url-pattern>/SendEmail</url-pattern>
   </servlet-mapping>
+ 
+ 
 </web-app>

@@ -1,8 +1,10 @@
 package database;
 
 import java.sql.*;
-import javax.sql.DataSource;
+
 import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 
 public class ConnectionPool {
 	private static ConnectionPool pool = null;
@@ -11,7 +13,7 @@ public class ConnectionPool {
 	private ConnectionPool() {
 		try {
 			InitialContext ic = new InitialContext();
-			dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/murach");
+			dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/banvexe");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,5 +41,10 @@ public class ConnectionPool {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void main(String[] args) {
+		Connection con = getlnstance().getConnection();
+		
+		getlnstance().freeConnection(con);
 	}
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import database.ConnectionPool;
 import database.Database;
 import model.Chuyen;
 import model.DiaDiem;
@@ -70,7 +71,8 @@ public class TuyenDAOImpl implements TuyenDAO {
 	@Override
 	public List<Tuyen> getAllTuyen() {
 		listAllTuyen = new ArrayList<>();
-		Connection con = Database.getInstance().getConnection();
+		// Connection con = Database.getInstance().getConnection();
+		Connection con = ConnectionPool.getlnstance().getConnection();
 		String sql1 = "SELECT tuyen.idtuyen,tuyen.iddiemdi, tuyen.iddiemden FROM tuyen";
 		String sql2 = "SELECT diadiem.tendiadiem FROM diadiem WHERE diadiem.iddiadiem =?";
 		PreparedStatement pre = null, pre2 = null;
@@ -105,7 +107,8 @@ public class TuyenDAOImpl implements TuyenDAO {
 		} finally {
 			Database.getInstance().closePre(pre);
 			Database.getInstance().closePre(pre2);
-			Database.getInstance().closeCon(con);
+//			Database.getInstance().closeCon(con);
+			ConnectionPool.getlnstance().freeConnection(con);
 		}
 		return listAllTuyen;
 	}
@@ -272,7 +275,9 @@ public class TuyenDAOImpl implements TuyenDAO {
 		String sqlIdDiaDiem = "select iddiemdi, iddiemden from tuyen where idtuyen = ?";
 		// sql dùng để kiểm tra chuyến có tồn tại không nếu ta update
 		String sqlKtTuyen = "select iddiemdi, iddiemden from tuyen where iddiemdi = ? and iddiemden = ?";
-		String sql1 = "update tuyen set " + ((columnPosition == 0)? " iddiemdi ": " iddiemden ") + " = ? where idtuyen = ?";
+		String sql1 = "update tuyen set "
+				+ ((columnPosition == 0) ? " iddiemdi " : " iddiemden ")
+				+ " = ? where idtuyen = ?";
 		int kq = -1;
 		long idDiaDiem;
 		long valueL = Long.parseLong(value);
@@ -281,31 +286,30 @@ public class TuyenDAOImpl implements TuyenDAO {
 			pre = con.prepareStatement(sqlIdDiaDiem);
 			pre.setLong(1, id);
 			res = pre.executeQuery();
-			if (res.next()){
-				idDiaDiem = res.getLong((columnPosition == 0)? 2 : 1);
+			if (res.next()) {
+				idDiaDiem = res.getLong((columnPosition == 0) ? 2 : 1);
 				pre = con.prepareStatement(sqlKtTuyen);
-				if(columnPosition  == 0){
+				if (columnPosition == 0) {
 					pre.setLong(1, valueL);
 					pre.setLong(2, idDiaDiem);
-				}else{
+				} else {
 					pre.setLong(1, idDiaDiem);
 					pre.setLong(2, valueL);
 				}
 				res = pre.executeQuery();
-				if(res.next()){
+				if (res.next()) {
 					kq = -2;
-				}else{
-					if(valueL == idDiaDiem){
+				} else {
+					if (valueL == idDiaDiem) {
 						kq = -3;
-					}else{
+					} else {
 						pre = con.prepareStatement(sql1);
 						pre.setLong(1, valueL);
 						pre.setLong(2, id);
 						kq = pre.executeUpdate();
 					}
 				}
-			}
-			else
+			} else
 				kq = -1;
 		} catch (SQLException e) {
 			e.printStackTrace();
