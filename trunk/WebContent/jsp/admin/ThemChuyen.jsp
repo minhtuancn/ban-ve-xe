@@ -89,22 +89,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%
-							int k = 0;
-							for (Chuyen chuyen : listChuyen) {
-						%>
-						<tr id="<%=k++%>">
-							<td><%=chuyen.getGioKhoiHanh()%></td>
-							<td><%=chuyen.getLoaiXe()%></td>
-							<td><%=chuyen.getBenXuatPhat()%></td>
-							<td><%=chuyen.getGia()%></td>
-							<td><%=chuyen.isChuaKhoiHanh()%> <%
- 	if (!chuyen.isChuaKhoiHanh())
- %> <input type="button" value="cập nhật" /></td>
-						</tr>
-						<%
-							}
-						%>
+<%-- 						<% --%>
+<!-- // 							int k = 0; -->
+<!-- // 							for (Chuyen chuyen : listChuyen) { -->
+<%-- 						%> --%>
+<%-- 						<tr id="<%=k++%>"> --%>
+<%-- 							<td><%=chuyen.getGioKhoiHanh()%></td> --%>
+<%-- 							<td><%=chuyen.getLoaiXe()%></td> --%>
+<%-- 							<td><%=chuyen.getBenXuatPhat()%></td> --%>
+<%-- 							<td><%=chuyen.getGia()%></td> --%>
+<%-- 							<td><%=chuyen.isChuaKhoiHanh()%> <% --%>
+<!-- //  	if (!chuyen.isChuaKhoiHanh()) -->
+<%--  %> <input type="button" value="cập nhật" /></td> --%>
+<!-- 						</tr> -->
+<%-- 						<% --%>
+// 							}
+<%-- 						%> --%>
 					</tbody>
 				</table>
 			</div>
