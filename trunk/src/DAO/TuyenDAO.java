@@ -28,6 +28,14 @@ public interface TuyenDAO {
 	 * @param id
 	 * @return là -1 nếu xóa ko được do lỗi, -2 nếu xóa ko được do đã tồn tại trong bảng phân công, là 1 nếu xóa thành công
 	 */
-	public int deleteTuyen(long id);
-	public boolean editTuyen(int id, String value, int columnPosition);
+	public int deleteTuyen(long idTuyen);
+	
+	/**
+	 * 
+	 * @param idTuyen
+	 * @param value
+	 * @param columnPosition
+	 * @return là -1 nếu không tồn tại tuyến, -2 là tuyến sau khi update bị trùng, -3 điểm đi trùng điểm đến, 0 nếu bị lổi, 1 nếu thành công 
+	 */
+	public int editTuyen(long idTuyen, String value, int columnPosition);
 }	
