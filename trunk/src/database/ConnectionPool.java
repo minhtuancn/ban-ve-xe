@@ -23,4 +23,21 @@ public class ConnectionPool {
 		}
 		return pool;
 	}
+
+	public Connection getConnection() {
+		try {
+			return dataSource.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void freeConnection(Connection c) {
+		try {
+			c.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

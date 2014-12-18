@@ -37,8 +37,9 @@ public class AddTuyen extends HttpServlet {
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String diemDi = request.getParameter("diemDi");
-			String diemDen = request.getParameter("diemDen");
+			long diemDi = Long.parseLong(request.getParameter("diemDi"));
+			long diemDen = Long.parseLong(request.getParameter("diemDen"));
+			System.out.println(diemDi +" - "+ diemDen);
 			new TuyenDAOImpl().addTuyen(diemDi, diemDen);
 			response.getWriter().print("1");
 	}

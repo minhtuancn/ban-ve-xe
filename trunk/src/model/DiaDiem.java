@@ -3,12 +3,12 @@ public class DiaDiem {
 	private long idDiaDiem;
 	private String tenDiaDiem;
 	
-	public DiaDiem(String tenDiaDiem){
-		idDiaDiem = 1000;
+	public DiaDiem(long idDiaDiem, String tenDiaDiem) {
+		this.idDiaDiem = idDiaDiem;
 		this.tenDiaDiem = tenDiaDiem;
 	}
-	public DiaDiem(int idDiaDiem, String tenDiaDiem) {
-		this.idDiaDiem = idDiaDiem;
+	public DiaDiem(String tenDiaDiem){
+		idDiaDiem = 1000;
 		this.tenDiaDiem = tenDiaDiem;
 	}
 	public long getIdDiaDiem() {
