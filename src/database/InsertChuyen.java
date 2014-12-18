@@ -37,6 +37,6 @@ public static void main(String[] args) throws SQLException {
 //		System.out.println(tuyen2.getTenDiaDiem());
 //	}
 //	t.addTuyen(7, 6);
-	System.out.println(t.getTuyenID(2).getTuyenXe());
+	System.out.println(t.editTuyen(2, "7", 1));
 }
 }

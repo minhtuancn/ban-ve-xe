@@ -159,10 +159,11 @@ public class TuyenDAOImpl implements TuyenDAO {
 						len = res.getLong("idtuyen");
 					}
 				}
-			}else len = -2;
+			} else
+				len = -2;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			Database.getInstance().closePre(pre);
 			Database.getInstance().closeCon(con);
 		}
@@ -178,24 +179,24 @@ public class TuyenDAOImpl implements TuyenDAO {
 		ResultSet res;
 		int len = 1;
 		try {
-			 pre = con.prepareStatement(sql1);
-			 pre.setLong(1, id);
-			 res = pre.executeQuery();
-			 if(!res.next()){
-				 pre = con.prepareStatement(sql);
-				 pre.setLong(1, id);
-				 if( pre.executeUpdate() == 0)
-					 len = -1;
-			 }else{
-				 len =-2;
-			 }
+			pre = con.prepareStatement(sql1);
+			pre.setLong(1, id);
+			res = pre.executeQuery();
+			if (!res.next()) {
+				pre = con.prepareStatement(sql);
+				pre.setLong(1, id);
+				if (pre.executeUpdate() == 0)
+					len = -1;
+			} else {
+				len = -2;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			Database.getInstance().closePre(pre);
 			Database.getInstance().closeCon(con);
 		}
-		
+
 		return len;
 	}
 
@@ -206,21 +207,22 @@ public class TuyenDAOImpl implements TuyenDAO {
 		PreparedStatement pre = null;
 		ResultSet res;
 		try {
-			 pre = con.prepareStatement(sql1);
-			 pre.setLong(1, id);
-			 res = pre.executeQuery();
-			 while(res.next()){
-			 diadiem = new DiaDiem(id, res.getString("tendiadiem"));
-			 }
+			pre = con.prepareStatement(sql1);
+			pre.setLong(1, id);
+			res = pre.executeQuery();
+			while (res.next()) {
+				diadiem = new DiaDiem(id, res.getString("tendiadiem"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			Database.getInstance().closePre(pre);
 			Database.getInstance().closeCon(con);
 		}
-		
+
 		return diadiem;
 	}
+
 	public Tuyen getTuyenID(long id) {
 		Tuyen tuyen = null;
 		Connection con = Database.getInstance().getConnection();
@@ -229,52 +231,89 @@ public class TuyenDAOImpl implements TuyenDAO {
 		PreparedStatement pre = null, pre2 = null;
 		ResultSet res, res2;
 		long iddiadiem;
-			DiaDiem diaDiem = null;
-			try {
-				pre = con.prepareStatement(sql1);
-				pre2 = con.prepareStatement(sql2);
-				pre.setLong(1, id);
+		DiaDiem diaDiem = null;
+		try {
+			pre = con.prepareStatement(sql1);
+			pre2 = con.prepareStatement(sql2);
+			pre.setLong(1, id);
 			res = pre.executeQuery();
 			while (res.next()) {
-				iddiadiem =res.getLong("iddiemdi");
+				iddiadiem = res.getLong("iddiemdi");
 				pre2.setLong(1, iddiadiem);
 				res2 = pre2.executeQuery();
 				while (res2.next()) {
-					diaDiem = new DiaDiem(iddiadiem, res2.getString("tendiadiem"));
+					diaDiem = new DiaDiem(iddiadiem,
+							res2.getString("tendiadiem"));
 				}
 				//
-				iddiadiem =res.getLong("iddiemden");
+				iddiadiem = res.getLong("iddiemden");
 				pre2.setLong(1, iddiadiem);
 				res2 = pre2.executeQuery();
 				while (res2.next()) {
-					tuyen = new Tuyen(diaDiem, new DiaDiem(iddiadiem, res2.getString("tendiadiem")));
-				}}
+					tuyen = new Tuyen(diaDiem, new DiaDiem(iddiadiem,
+							res2.getString("tendiadiem")));
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			Database.getInstance().closePre(pre);
 			Database.getInstance().closeCon(con);
 		}
-		
+
 		return tuyen;
 	}
 
 	@Override
-	public boolean editTuyen(int id, String value, int columnPosition) {
-		Tuyen t = getTuyenID(id);
-		
-		DiaDiem d = getDiaDiem(Integer.parseInt(value));
-		System.out.println(columnPosition);
-		switch (columnPosition) {
-		case 0:
-			t.setDiemDi(d);
-			break;
-		case 1:
-			t.setDiemDen(d);
-			break;
-		default:
-			break;
+	public int editTuyen(long id, String value, int columnPosition) {
+		Connection con = Database.getInstance().getConnection();
+		PreparedStatement pre = null;
+		ResultSet res;
+		String sqlIdDiaDiem = "select iddiemdi, iddiemden from tuyen where idtuyen = ?";
+		// sql dùng để kiểm tra chuyến có tồn tại không nếu ta update
+		String sqlKtTuyen = "select iddiemdi, iddiemden from tuyen where iddiemdi = ? and iddiemden = ?";
+		String sql1 = "update tuyen set " + ((columnPosition == 0)? " iddiemdi ": " iddiemden ") + " = ? where idtuyen = ?";
+		int kq = -1;
+		long idDiaDiem;
+		long valueL = Long.parseLong(value);
+		//
+		try {
+			pre = con.prepareStatement(sqlIdDiaDiem);
+			pre.setLong(1, id);
+			res = pre.executeQuery();
+			if (res.next()){
+				idDiaDiem = res.getLong((columnPosition == 0)? 2 : 1);
+				pre = con.prepareStatement(sqlKtTuyen);
+				if(columnPosition  == 0){
+					pre.setLong(1, valueL);
+					pre.setLong(2, idDiaDiem);
+				}else{
+					pre.setLong(1, idDiaDiem);
+					pre.setLong(2, valueL);
+				}
+				res = pre.executeQuery();
+				if(res.next()){
+					kq = -2;
+				}else{
+					if(valueL == idDiaDiem){
+						kq = -3;
+					}else{
+						pre = con.prepareStatement(sql1);
+						pre.setLong(1, valueL);
+						pre.setLong(2, id);
+						kq = pre.executeUpdate();
+					}
+				}
+			}
+			else
+				kq = -1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			kq = 0;
+		} finally {
+			Database.getInstance().closePre(pre);
+			Database.getInstance().closeCon(con);
 		}
-		return true;
+		return kq;
 	}
 }
