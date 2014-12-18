@@ -50,6 +50,6 @@ public class SendEmail {
 		}
 	}
 	public static void main(String[] args) {
-		SendEmail.getInstant().guiMailLienHe("Hoang Nhuoc Quy", "12130010@st.hcmuaf.edu.vn", "A Quỳ đạp chai");
+		SendEmail.getInstant().guiMailLienHe("Hoang Nhuoc Quy", "12130026@st.hcmuaf.edu.vn", "Anh ten khoai to");
 	}
 }
