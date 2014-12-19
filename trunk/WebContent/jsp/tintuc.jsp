@@ -10,10 +10,14 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div id="tt-container">
-		<div class="title bg"><marquee behavior="alternate" width="10%">>></marquee>Tin tức<marquee behavior="alternate" width="10%"> << </marquee></div>
+		<div class="title bg">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Tin tức
+			<marquee behavior="alternate" width="10%"> << </marquee>
+		</div>
 		<div id="timvenhanh" class="bg">Tìm vé nhanh:</div>
-		<div id="listve"> 
-		<ul>
+		<div id="listve">
+			<ul>
 				<li>Hà Nội → TP Hồ Chí Minh 900.000 vnd/vé</li>
 				<li>TP Hồ Chí Minh → Hà Nội 900.000 vnd/vé</li>
 				<li>Hà Nội → Đà Nẵng 380.000 vnd/vé</li>
@@ -35,28 +39,26 @@
 			</ul>
 		</div>
 		<div id="link">
-				<div id="DS-link">Thông tin khác</div>
-				<div id="ds" >
-					<ul>
-						<li><a href="#" >Danh sách
-								các chuyến xe khách từ bến xe Giáp Bát đi Hòa Bình </a> 30.10.2014</li>
-						<li><a href="#" >Danh sách
-								các nhà xe chạy tuyến bến xe Giáp Bát đi Quảng Ninh </a> 30.10.2014
-						</li>
-						<li><a href="#" >Lịch trình
-								vận chuyển của xe khách Minh Tơ Bình Thuận </a> 29.10.2014</li>
-						<li><a href="#" >Lịch trình
-								vận chuyển của xe khách Sang Hoa Bình Thuận </a> 28.10.2014</li>
-						<li><a href="#" >Lịch trình
-								vận chuyển của xe khách Văn Tín Bến Tre </a> 28.10.2014</li>
-						<li><a href="#" >Lịch trình
-								xe khách Thảo Nga An Giang </a> 28.10.2014:</li>
-						<li><a href="#" >Lịch trình
-								xe khách Hoàng Yến tuyến Bạc Liêu – TP Hồ Chí Minh </a> 24.10.2014
-						</li>
-					</ul>
-				</div>
-			</div> 
+			<div id="DS-link">Thông tin khác</div>
+			<div id="ds">
+				<ul>
+					<li><a href="#">Danh sách các chuyến xe khách từ bến xe
+							Giáp Bát đi Hòa Bình </a> 30.10.2014</li>
+					<li><a href="#">Danh sách các nhà xe chạy tuyến bến xe
+							Giáp Bát đi Quảng Ninh </a> 30.10.2014</li>
+					<li><a href="#">Lịch trình vận chuyển của xe khách Minh
+							Tơ Bình Thuận </a> 29.10.2014</li>
+					<li><a href="#">Lịch trình vận chuyển của xe khách Sang
+							Hoa Bình Thuận </a> 28.10.2014</li>
+					<li><a href="#">Lịch trình vận chuyển của xe khách Văn
+							Tín Bến Tre </a> 28.10.2014</li>
+					<li><a href="#">Lịch trình xe khách Thảo Nga An Giang </a>
+						28.10.2014:</li>
+					<li><a href="#">Lịch trình xe khách Hoàng Yến tuyến Bạc
+							Liêu – TP Hồ Chí Minh </a> 24.10.2014</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>

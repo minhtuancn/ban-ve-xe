@@ -58,7 +58,9 @@
 				<div class="dangnhap">
 					<p class="p-dangnhap">- Bạn nên đăng nhập để có thể tích điểm
 						tích lũy, nhấp vào&nbsp;</p>
-					<a href="/BanVeXe/jsp/DangNhap.jsp?pageForward=<%=DuongDan.THANH_TOAN%>" class="dn">ĐÂY</a>
+					<a
+						href="/BanVeXe/jsp/DangNhap.jsp?pageForward=<%=DuongDan.THANH_TOAN%>"
+						class="dn">ĐÂY</a>
 					<p class="p-dangnhap">. Hoặc nhấp vào&nbsp;</p>
 					<a href="/BanVeXe/jsp/DangKi.jsp" class="dn">ĐÂY</a>
 					<p class="p-dangnhap">để đăng kí.</p>
@@ -82,7 +84,7 @@
 						<tr>
 							<td><span>Họ tên:</span><span class="req">*</span></td>
 							<td><input type="text" name="hoten" size="58"
-								required="required" placeholder="Họ tên" value="<%= shoten%>"/></td>
+								required="required" placeholder="Họ tên" value="<%= shoten%>" /></td>
 						</tr>
 						<tr>
 							<td><span>Di động:</span><span class="req">*</span></td>
@@ -97,7 +99,8 @@
 						<tr>
 							<td><span>Email:</span><span class="req">*</span></td>
 							<td><input type="email" name="email" size="50"
-								required="required" placeholder="abc@gmail.com" value="<%= semail%>"/></td>
+								required="required" placeholder="abc@gmail.com"
+								value="<%= semail%>" /></td>
 						</tr>
 						<tr>
 							<td><span>Ghi chú:</span></td>
@@ -118,8 +121,7 @@
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td id="xacnhan"><input type="submit"
-							 /></td>
+							<td id="xacnhan"><input type="submit" /></td>
 						</tr>
 					</table>
 				</form>

@@ -8,22 +8,25 @@
 	margin-top: 50px;
 }
 
-.dong{
+.dong {
 	display: block;
 	clear: both;
 }
+
 .dangki {
 	padding-top: 10px;
-	margin-left:20px;
+	margin-left: 20px;
 	color: blue;
 	font-size: 20px;
 }
-.quenmk{
+
+.quenmk {
 	padding-top: 10px;
-	margin-left:20px;
+	margin-left: 20px;
 	color: blue;
 	font-size: 14px;
 }
+
 #dangki {
 	margin-left: 300px;
 	margin-top: 40px;
@@ -37,7 +40,6 @@
 	border-color: black;
 	box-shadow: -5px -5px 35px #ccc;
 }
-
 
 #dangki h1 {
 	margin-top: 5px;
@@ -56,6 +58,7 @@
 Form {
 	margin-top: 20px;
 }
+
 form .row {
 	display: block;
 	padding: 7px 8px;
@@ -146,7 +149,7 @@ form .txt:focus:valid {
 	transition: all 0.3s linear;
 }
 
-#submitbtn:hover, #submitbtn:focus {
+#submitbtn:hover,#submitbtn:focus {
 	box-shadow: 0 0 15px rgba(70, 100, 200, 0.9);
 }
 

@@ -1,36 +1,51 @@
 package DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import database.ConnectionPool;
 import model.DatVe;
+import model.DiaDiem;
 import model.ThongTinVe;
 import model.Ve;
 
 public class VeDAOImpl implements VeDAO{
-	static List<ThongTinVe> listVe;
+	 List<ThongTinVe> listVe;
 	@Override
 	public List<ThongTinVe> getVe(String maVe) {
-		for (ThongTinVe v : listVe) {
-			if(v.getMaVe().equals(maVe))
-				 listVe.add(v);
-		}
+//		for (ThongTinVe v : listVe) {
+//			if(v.getMaVe().equals(maVe))
+//				 listVe.add(v);
+//		}
+		
 		return listVe;
 	}
 
 	@Override
 	public List<ThongTinVe> getAllVe() {
-		if(listVe == null){
-			listVe = new ArrayList<>();
-			
-			listVe.add(new ThongTinVe("1", "Tay Ninh-An Suong", "aaaaa", new Date(), null, true, true, new Date()));
-			listVe.add(new ThongTinVe("2", "Tay Ninh-An Suong", "aaaaa", new Date(), null, true, false, new Date()));
-			listVe.add(new ThongTinVe("3", "Tay Ninh-An Suong", "aaaaa", new Date(), null, false, true, new Date()));
-			listVe.add(new ThongTinVe("4", "Binh Thuan-An Suong", "aaaaa", new Date(), null, false, true, new Date()));
-			listVe.add(new ThongTinVe("5", "Khanh Hoa-An Suong", "aaaaa", new Date(), null, true, true, new Date()));
-		}
-		return listVe;
+//		listVe = new ArrayList<>();
+//		Connection con = ConnectionPool.getInstance().getConnection();
+//		String sql = "SELECT diadiem.iddiadiem,diadiem.tendiadiem FROM diadiem";
+//		PreparedStatement pre = null;
+//		try {
+//			pre = con.prepareStatement(sql);
+//			ResultSet res = pre.executeQuery();
+//			while (res.next()) {
+//				listDiaDiem.add(new DiaDiem(res.getLong("iddiadiem"), res
+//						.getString("tendiadiem")));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			ConnectionPool.getInstance().closePre(pre);
+//			ConnectionPool.getInstance().freeConnection(con);
+//		}
+			return listVe;
 	}
 
 }

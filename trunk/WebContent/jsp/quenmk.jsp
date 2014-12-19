@@ -5,8 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Quên mật khẩu</title>
-<link rel="stylesheet" type="text/css"	href="/BanVeXe/css/quenmatkhau.css">
-<link rel="stylesheet" type="text/css"	href="/BanVeXe/css/util.css">
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/quenmatkhau.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -21,7 +22,11 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="qmk-contain">
-		<div class="title bg"><marquee behavior="alternate" width="10%">>></marquee>Quên mật khẩu<marquee behavior="alternate" width="10%"> << </marquee></div>
+		<div class="title bg">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Quên mật khẩu
+			<marquee behavior="alternate" width="10%"> << </marquee>
+		</div>
 		<div class="quenmk">
 			<p class="ghichu-qmk">
 				Thông tin chi tiết của Quý khách sẽ giúp chúng tôi xác nhận lại tài

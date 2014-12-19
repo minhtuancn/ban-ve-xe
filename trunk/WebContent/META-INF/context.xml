@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-	<Resource name="jdbc/banvexe" auth="Container"
-maxActive="10" maxldle="30" maxWait="10000"
-username="root" password="vertrigo"
-driverClassName="com.mysql.jdbc.Driver"
-url="jdbc:mysql://localhost:3306/banvexe"
-logAbandoned="true" removeAbandoned="true"
-removeAbandonedTimeout="60" type="javax.sql.DataSource"/>
+	<Resource name="jdbc/banvexe" auth="Container" maxActive="10"
+		maxldle="30" maxWait="10000" username="root" password="vertrigo"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/banvexe"
+		logAbandoned="true" removeAbandoned="true" removeAbandonedTimeout="60"
+		type="javax.sql.DataSource" />
 </Context>
 	

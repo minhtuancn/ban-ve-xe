@@ -26,7 +26,7 @@
 	List<Ghe> danhSachghes = chuyens.getDanhSachGheNgoi();
 	%>
 	<input type="hidden" value="<%= idChuyens%>" id="idChuyen" />
-	<div id="xe45cho" >
+	<div id="xe45cho">
 		<img alt="dauxe" src="/BanVeXe/image/p.png" width="310px"
 			height="100px">
 		<%
@@ -62,6 +62,6 @@
 			}
 		%>
 	</div>
-		
+
 </body>
 </html>

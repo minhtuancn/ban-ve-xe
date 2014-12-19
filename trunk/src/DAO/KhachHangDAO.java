@@ -10,7 +10,17 @@ public interface KhachHangDAO {
 	public KhachHang checkLogIn(String user, String password);
 	public KhachHang getKhachHang(String sdt);
 	public List<KhachHang> getAllKhachHang();
-	public int addKhachHang(String tenKH, String sdt, String cmnd, String diaChi, String email);
-	public boolean deleteKhachHang(int id);
-	public boolean editKhachHang(int id, String value, int columnPosition);
+	/**
+	 * 
+	 * @param tenKH
+	 * @param sdt
+	 * @param cmnd
+	 * @param diaChi
+	 * @param email
+	 * @return là -1 nếu không thêm được do lỗi, là -2 đã tồn
+	 *         tại tuyến, là id tuyến nếu thêm thành công
+	 */
+	public long addKhachHang(String tenKH, String sdt, String cmnd, String diaChi, String email);
+	public boolean deleteKhachHang(long id);
+	public boolean editKhachHang(long idKH, String value, int columnPosition);
 }

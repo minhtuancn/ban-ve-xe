@@ -1,4 +1,4 @@
-.test{
+.test {
 	font-family: Tahoma;
 	font-size: 20px;
 	color: red;
@@ -51,7 +51,7 @@ article {
 		0px rgb(0, 0, 0);
 }
 
-.login-form input[type=text], .login-form input[type=date], .login-form input[type=submit]
+.login-form input[type=text],.login-form input[type=date],.login-form input[type=submit]
 	{
 	line-height: 14px;
 	margin: 10px 0;
@@ -71,7 +71,7 @@ article {
 	transition: all .15s ease-in-out;
 }
 
-.login-form input[type=text], .login-form input[type=date], .js .login-form span
+.login-form input[type=text],.login-form input[type=date],.js .login-form span
 	{
 	color: #686868;
 	width: 170px;
@@ -88,7 +88,7 @@ article {
 	background: linear-gradient(top, #ffffff 0%, #989898 100%);
 }
 
-.login-form input[type=text]:hover, .login-form input[type=date]:hover {
+.login-form input[type=text]:hover,.login-form input[type=date]:hover {
 	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6), 0px
 		0px 5px rgba(255, 255, 255, .5);
 	-moz-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6), 0px 0px
@@ -97,7 +97,7 @@ article {
 		rgba(255, 255, 255, .5);
 }
 
-.login-form input[type=text]:focus, .login-form input[type=date]:focus {
+.login-form input[type=text]:focus,.login-form input[type=date]:focus {
 	background: #e1e1e1;
 	background: -moz-linear-gradient(top, #ffffff 0%, #e1e1e1 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff),
@@ -168,7 +168,7 @@ span#title-datve {
 	color: white;
 }
 
-div#menu-noidi, div#menu-noiden {
+div#menu-noidi,div#menu-noiden {
 	position: absolute;
 	width: 904px;
 	height: 100px;
@@ -179,12 +179,12 @@ div#menu-noidi, div#menu-noiden {
 	z-index: 1;
 }
 
-div#menu-noidi:hover, div#menu-noiden:hover {
+div#menu-noidi:hover,div#menu-noiden:hover {
 	height: 100px;
 	opacity: 1;
 }
 
-div.noidi-nam, div.noidi-trung, div.noidi-bac {
+div.noidi-nam,div.noidi-trung,div.noidi-bac {
 	float: left;
 	clear: right;;
 	font-size: 15px;
@@ -196,7 +196,7 @@ div.noidi-nam, div.noidi-trung, div.noidi-bac {
 	border-right: 1px solid silver;
 }
 
-div.noidi-nam #noidi-den, div.noidi-trung #noidi-den, div.noidi-bac #noidi-den
+div.noidi-nam #noidi-den,div.noidi-trung #noidi-den,div.noidi-bac #noidi-den
 	{
 	border-color: red;
 	background: orange;
@@ -208,21 +208,20 @@ div.noidi-nam #noidi-den, div.noidi-trung #noidi-den, div.noidi-bac #noidi-den
 	padding-top: 5px;
 }
 
-ul.noidi-nam1, ul.noidi-nam2, ul.noidi-trung1, ul.noidi-trung2, ul.noidi-bac1,
-	ul.noidi-bac2 {
+ul.noidi-nam1,ul.noidi-nam2,ul.noidi-trung1,ul.noidi-trung2,ul.noidi-bac1,ul.noidi-bac2
+	{
 	float: left;;
 	clear: right;;
 	list-style-type: none;
 	display: block;
 }
 
-div#menu-noidi li:hover, div#menu-noiden li:hover {
+div#menu-noidi li:hover,div#menu-noiden li:hover {
 	color: blue;
 	text-decoration: underline;
 }
 
-div#menu-noidi li:active, div#menu-noiden li:active {
+div#menu-noidi li:active,div#menu-noiden li:active {
 	color: yellow;
 	text-decoration: underline;
 }
-

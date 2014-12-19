@@ -65,20 +65,74 @@ public class DiaDiemDAOImpl implements DiaDiemDAO {
 
 	@Override
 	public int addDiaDiem(String tenDiaDiem) {
-		listDiaDiem.add(new DiaDiem(tenDiaDiem));
-		return listDiaDiem.size();
+		Connection con = ConnectionPool.getInstance().getConnection();
+		PreparedStatement pre = null, pre1 = null;
+		String sql = "INSERT into diadiem(tendiadiem) VALUES (?)";
+		String sql1 = "select iddiadiem from diadiem where iddiadiem = ?";
+		ResultSet res;
+		int len = 1;
+		try {
+			pre = con.prepareStatement(sql1);
+			pre1 = con.prepareStatement(sql);
+			res = pre.executeQuery();
+			if(!res.next()){
+				pre1.setString(1, tenDiaDiem);
+				if(pre1.executeUpdate()==0){
+					len = -1;
+				}else 
+					len = -2;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return len;
 	}
 
 	@Override
-	public boolean deleteDiaDiem(int id) {
-		listDiaDiem.remove(id);
+	public boolean deleteDiaDiem(long idDD) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		PreparedStatement pre = null;
+		String sql = "delete from diadiem where iddiadiem = ?";
+		ResultSet res;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setLong(1, idDD);
+			res = pre.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			Database.getInstance().closePre(pre);
+			Database.getInstance().closeCon(con);
+		}
 		return true;
 	}
 
 	@Override
-	public boolean editDiaDiem(int id, String value) {
-		DiaDiem t = listDiaDiem.get(id);
-		t.setTenDiaDiem(value);
+	public boolean editDiaDiem(long id, String value) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		PreparedStatement pre = null;
+		String sql = "update diadiem set tendiadiem = ? where iddiadiem = ?";
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, value);
+			pre.setLong(2, id);
+			if(pre.executeUpdate()==0){
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
 		return true;
 	}
 }

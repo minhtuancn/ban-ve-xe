@@ -120,7 +120,8 @@
 						<td class="tr1" align="center"><%=c.getLoaiXe() + " chổ"%></td>
 						<td class="tr1" align="center"><%=c.getSLGheChuaDat()%></td>
 						<td class="tr1" align="center"><input type="button"
-							value="chọn" class="chon" onclick="chonXe('#scroll2<%=i%>',1000,'chuyenve', 2,<%=i%>)" />
+							value="chọn" class="chon"
+							onclick="chonXe('#scroll2<%=i%>',1000,'chuyenve', 2,<%=i%>)" />
 						</td>
 					</tr>
 					<tr>

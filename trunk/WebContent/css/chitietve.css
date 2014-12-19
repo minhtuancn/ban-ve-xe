@@ -1,6 +1,6 @@
 div#chitietve {
 	position: absolute;
-/* 	background-color: #145CA1; */
+	/* 	background-color: #145CA1; */
 	width: 380px;
 	height: auto;
 	border: 2px;
@@ -8,6 +8,7 @@ div#chitietve {
 	padding-left: 25px;
 	padding-right: 25px;
 }
+
 div h1 {
 	color: white;
 	font-weight: bold;
@@ -16,13 +17,15 @@ div h1 {
 	height: 30px;
 	margin-top: 8px;
 }
- #td1 {
+
+#td1 {
 	margin-left: 20px;
 	color: white;
 	font-size: 18px;
-	width:150px;
+	width: 150px;
 }
- #td2 {
+
+#td2 {
 	margin-left: 20px;
 	color: white;
 	font-size: 18px;

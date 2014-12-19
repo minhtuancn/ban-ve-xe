@@ -180,7 +180,11 @@
 				Trang chủ
 				<marquee behavior="alternate" width="10%"> << </marquee>
 			</div>
-			<div class="test"><marquee direction="left">Chào mừng quý khách đã đến với VeXeOnline.com, chúng tôi xin đảm bảo quý khách sẽ được phục vụ tận tình, chu đáo!</marquee></div>
+			<div class="test">
+				<marquee direction="left">Chào mừng quý khách đã đến với
+					VeXeOnline.com, chúng tôi xin đảm bảo quý khách sẽ được phục vụ tận
+					tình, chu đáo!</marquee>
+			</div>
 			<!-- <div style="margin-left: 200px; position: absolute;" align="center" z-index=-1>
 			<a href="http://kialongbien.oto-xemay.vn/" target="_blank"
 				style="margin-right: 15px;" rel="nofollow"> <img

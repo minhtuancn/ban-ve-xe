@@ -1,8 +1,8 @@
 @CHARSET "utf-8";
 
 #dk-contain {
-	width:1366px;
-	height:650px;
+	width: 1366px;
+	height: 650px;
 }
 
 #dangki {
@@ -11,7 +11,6 @@
 	height: 500px;
 	background: #fff;
 	padding: 10ư;
-	
 	margin-left: 300px;
 	margin-top: 30px;
 	float: left;
@@ -29,7 +28,7 @@
 	font-size: 2.25em;
 	font-weight: bold;
 	line-height: 1.7em;
-	margin-top: 10px ;
+	margin-top: 10px;
 	margin-bottom: 7px;
 	text-align: center;
 	text-shadow: 0 2px #FFFFFF, 1px 3px #666666;
@@ -127,7 +126,7 @@ form .txt:focus:valid {
 	transition: all 0.3s linear;
 }
 
-#submitbtn:hover, #submitbtn:focus {
+#submitbtn:hover,#submitbtn:focus {
 	box-shadow: 0 0 15px rgba(70, 100, 200, 0.9);
 }
 
@@ -135,6 +134,7 @@ form .txt:focus:valid {
 	box-shadow: 0 0 15px rgba(70, 100, 200, 0.9), 0 1px 3px
 		rgba(0, 0, 0, 0.4) inset;
 }
-#captcha{
+
+#captcha {
 	margin-left: 180px;
 }
