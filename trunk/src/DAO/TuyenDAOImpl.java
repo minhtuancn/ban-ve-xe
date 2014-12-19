@@ -12,14 +12,19 @@ import java.util.List;
 
 import database.ConnectionPool;
 import database.Database;
+import factory.dao.DAO;
+import factory.dao.FactoryDao;
 import model.DiaDiem;
 import model.Tuyen;
 
 public class TuyenDAOImpl implements TuyenDAO {
 	private List<Tuyen> listAllTuyen;
-	private List<DiaDiem> listAllDiaDiem;
-	private SimpleDateFormat f_yyyy_MM_dd = new SimpleDateFormat("yyyy-MM-dd");
-
+	private SimpleDateFormat f_yyyy_MM_dd ;
+	private ChuyenDAO chuyenDAO;
+	
+	public TuyenDAOImpl() {
+		 f_yyyy_MM_dd= new SimpleDateFormat("yyyy-MM-dd");
+	}
 	@Override
 	public Tuyen getTuyen(String diemDi, String diemDen, String date) { // yyyy-MM-dd
 		Connection con = ConnectionPool.getInstance().getConnection();
@@ -30,16 +35,19 @@ public class TuyenDAOImpl implements TuyenDAO {
 		String sql2 = "SELECT diadiem.tendiadiem FROM diadiem WHERE diadiem.iddiadiem =?";
 		PreparedStatement pre = null;
 		ResultSet res;
+		long idTuyen = -1;
 		try {
-			Date d = f_yyyy_MM_dd.parse(date);
+			Date ngayDi = f_yyyy_MM_dd.parse(date);
 			pre = con.prepareStatement(sql1);
-			pre.setDate(1, new java.sql.Date(d.getTime()));
+			pre.setDate(1, new java.sql.Date(ngayDi.getTime()));
 			res = pre.executeQuery();
 			while (res.next()) {
 				iddiemDi = res.getLong("iddiemdi");
 				iddiemDen = res.getLong("iddiemden");
+				idTuyen = res.getLong("idtuyen");
 			}
-			if (iddiemDen != -1) {
+			// nếu idTuyen = -1 nghia là không tồn tại tuyến nao
+			if (idTuyen != -1) {
 				pre = con.prepareStatement(sql2);
 				pre.setLong(1, iddiemDi);
 				res = pre.executeQuery();
@@ -53,6 +61,9 @@ public class TuyenDAOImpl implements TuyenDAO {
 					diemDenRs = res.getString("tendiadiem");
 				}
 				tuyen = new Tuyen(new DiaDiem(diemDiRs), new DiaDiem(diemDenRs));
+				tuyen.setNgayDi(ngayDi);
+				tuyen.setIdTuyen(idTuyen);
+				tuyen.setDanhSachChuyen(getChuyenDAO().getAllChuyen(tuyen, ngayDi));
 			}
 
 		} catch (SQLException e) {
@@ -276,4 +287,8 @@ public class TuyenDAOImpl implements TuyenDAO {
 		}
 		return kq;
 	}
+	public ChuyenDAO getChuyenDAO() {
+		return (ChuyenDAO) ((chuyenDAO!=null)?chuyenDAO : factoryDao.createDAO(FactoryDao.CHUYEN_DAO));
+	}
+	
 }

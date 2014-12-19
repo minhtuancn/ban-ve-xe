@@ -59,7 +59,7 @@
 			</tr>
 			<tr>
 				<td id="td1">Ngày đi:</td>
-				<td id="td2"><%=new SimpleDateFormat("dd/MM/yyyy  HH:mm").format(datVeDi
+				<td id="td2"><%=new SimpleDateFormat("dd/MM/yyyy").format(datVeDi
 					.getNgayKhoiHanh())%></td>
 			</tr>
 			<tr>

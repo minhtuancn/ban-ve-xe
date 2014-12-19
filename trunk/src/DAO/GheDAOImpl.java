@@ -5,26 +5,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import database.ConnectionPool;
+import model.Chuyen;
 import model.Ghe;
-import model.Xe;
 
-public class XeDAOImpl implements XeDAO	{
+public class GheDAOImpl implements GheDAO{
 
 	@Override
-	public Xe getXe(long idXe) {
+	public List<Ghe> getAllGhe(long idChuyen) {
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sql1 = "SELECT biensoxe,loaighe,soghe FROM xe WHERE idxe = ?";
-		Xe xe = null;
+		ArrayList<Ghe> list = new ArrayList<Ghe>();
+		String sql1 = "SELECT idghe,soghe,trangthai FROM ghe WHERE idchuyen = ?";
 		PreparedStatement pre = null;
 		ResultSet res;
 		try {
 			pre = con.prepareStatement(sql1);
-			pre.setLong(1, idXe);
+			pre.setLong(1, idChuyen);
 			res = pre.executeQuery();
 			while (res.next()) {
-				xe = new Xe(idXe, res.getString("biensoxe"), res.getString("loaighe"), res.getInt("soghe"));
+				list.add(new Ghe(res.getLong("idghe"), res.getInt("soghe"), res.getByte("trangthai")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -32,7 +33,7 @@ public class XeDAOImpl implements XeDAO	{
 			ConnectionPool.getInstance().closePre(pre);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
-		return xe;
+		return list;
 	}
 
 }

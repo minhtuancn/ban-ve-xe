@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import database.ConnectionPool;
+import factory.dao.FactoryDao;
 import model.Chuyen;
 import model.DiaDiem;
 import model.Tuyen;
@@ -18,26 +19,59 @@ import model.Xe;
 public class ChuyenDAOImpl implements ChuyenDAO {
 	private TuyenDAO tuyenDAO;
 	private XeDAO xeDAO;
-	
+	private GheDAO gheDAO;
+
 	public ChuyenDAOImpl() {
-		this.tuyenDAO =new TuyenDAOImpl();
-		this.xeDAO = new XeDAOImpl();
 	}
 
 	@Override
 	public Chuyen getChuyen(long id) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		Chuyen chuyen = null;
-		String sql1 = "SELECT idTuyen,benxuatphat,giokhoihanh,gia,idxe FROM chuyen WHERE idchuyen = ?";
-		PreparedStatement pre= null;
+		String sql1 = "SELECT phancong.idtuyen, chuyen.idchuyen, chuyen.benxuatphat,  chuyen.chuakhoihanh, chuyen.gia,  chuyen.giokhoihanh,chuyen.idxe, phancong.ngaydi  FROM chuyen INNER JOIN phancong ON phancong.idchuyen = chuyen.idchuyen  WHERE chuyen.idchuyen = ?";
+		PreparedStatement pre = null;
+		ResultSet res;
+		Date ngayDi;
+		Tuyen tuyen = null;
+		try {
+			pre = con.prepareStatement(sql1);
+			pre.setLong(1, id);
+			res = pre.executeQuery();
+			while (res.next()) {
+				ngayDi = new Date(res.getDate("ngaydi").getTime());
+				chuyen = new Chuyen(res.getLong("idchuyen"), getTuyenDAO()
+						.getTuyen(res.getLong("idTuyen")),
+						res.getString("giokhoihanh"), getXeDAO().getXe(
+								res.getLong("idxe")),
+						res.getString("benxuatphat"), res.getInt("gia"));
+			}
+			chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return chuyen;
+	}
+	@Override
+	public Chuyen getChuyen(long id, Tuyen tuyen) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		Chuyen chuyen = null;
+		String sql1 = "SELECT phancong.idtuyen, chuyen.idchuyen, chuyen.benxuatphat,  chuyen.chuakhoihanh, chuyen.gia,  chuyen.giokhoihanh,chuyen.idxe, phancong.ngaydi  FROM chuyen INNER JOIN phancong ON phancong.idchuyen = chuyen.idchuyen  WHERE chuyen.idchuyen = ?";
+		PreparedStatement pre = null;
 		ResultSet res;
 		try {
 			pre = con.prepareStatement(sql1);
 			pre.setLong(1, id);
 			res = pre.executeQuery();
 			while (res.next()) {
-					chuyen = new Chuyen(res.getLong("idchuyen"),tuyenDAO.getTuyen(res.getLong("idTuyen")), res.getString("giokhoihanh"),xeDAO.getXe(res.getLong("idxe")), res.getString("benxuatphat"), res.getInt("gia"));
+				chuyen = new Chuyen(res.getLong("idchuyen"), tuyen,
+						res.getString("giokhoihanh"), getXeDAO().getXe(
+								res.getLong("idxe")),
+								res.getString("benxuatphat"), res.getInt("gia"));
 			}
+			chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -48,19 +82,19 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 	}
 
 	@Override
-	public List<Chuyen> getAllChuyen(Tuyen tuyen) {
-		ArrayList<Chuyen> list = new ArrayList<Chuyen>();
+	public List<Chuyen> getAllChuyen(Tuyen tuyen, Date ngayDi) {
+		List<Chuyen> list = new ArrayList<Chuyen>();
 		Connection con = ConnectionPool.getInstance().getConnection();
-		Chuyen chuyen = null;
-		String sql1 = "SELECT idChuyen FROM chuyen WHERE idtuyen = ?";
-		PreparedStatement pre= null;
+		String sql1 = "SELECT idchuyen FROM phancong WHERE idtuyen = ? and Date(ngaydi) = ?";
+		PreparedStatement pre = null;
 		ResultSet res;
 		try {
-			pre= con.prepareStatement(sql1);
-			pre.setLong(1,tuyen.getIdTuyen());
+			pre = con.prepareStatement(sql1);
+			pre.setLong(1, tuyen.getIdTuyen());
+			pre.setDate(2, new java.sql.Date(ngayDi.getTime()));
 			res = pre.executeQuery();
-			while(res.next()){
-				list.add(getChuyen(res.getLong("")))
+			while (res.next()) {
+				list.add(getChuyen(res.getLong("idchuyen"), tuyen));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,45 +106,85 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 	}
 
 	@Override
-	public int addChuyen(Tuyen tuyen, String gioKhoiHanh, Xe xe,
+	public int addChuyen(Tuyen tuyen, String gioKhoiHanh, long idXe,
 			String benXuatPhat, int gia) {
-		list.add(new Chuyen(tuyen, gioKhoiHanh, xe, benXuatPhat, gia));
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql1 = "INSERT into chuyen(benxuatphat,chuakhoihanh,gia,giokhoihanh,idtuyen,idxe) VALUES (?,?,?,?,?,?)";
+		String sql2 = "SELECT giokhoihanh FROM chuyen Where ";
+		PreparedStatement pre = null;
+		int res;
+		try {
+			// if()
+			pre = con.prepareStatement(sql1);
+			pre.setString(1, benXuatPhat);
+			pre.setBoolean(2, false);
+			pre.setInt(3, gia);
+			pre.setString(4, gioKhoiHanh);
+			pre.setLong(4, tuyen.getIdTuyen());
+			pre.setLong(6, idXe);
+			res = pre.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+
 		return 1;
 	}
 
 	@Override
 	public boolean deleteChuyen(int id) {
-		list.remove(id);
-		System.out.println(id);
+		// list.remove(id);
+		// System.out.println(id);
 		return true;
 	}
 
 	@Override
 	public boolean editChuyen(int id, String value, int columnPosition) {
-		Chuyen c = list.get(id);
+		// Chuyen c = list.get(id);
 		Xe xe = null;
 		System.out.println(columnPosition);
 		switch (columnPosition) {
 		case 0:
-			c.setGioKhoiHanh(value);;
+			// c.setGioKhoiHanh(value);
+			;
 			break;
 		case 1:
-			if(value.equalsIgnoreCase("45"))
-				xe = new Xe("", "", 45);
-			else 
-				xe = new Xe("", "", 16);
-			c.setXe(xe);
+			// if (value.equalsIgnoreCase("45"))
+			// xe = new Xe("", "", 45);
+			// else
+			// xe = new Xe("", "", 16);
+			// c.setXe(xe);
 			break;
 		case 2:
-			c.setBenXuatPhat(value);
+			// c.setBenXuatPhat(value);
 			break;
 		case 3:
-			c.setGia(Integer.parseInt(value));
+			// c.setGia(Integer.parseInt(value));
 			break;
 		default:
 			break;
 		}
 		return true;
 	}
+
+	public TuyenDAO getTuyenDAO() {
+		return (TuyenDAO) ((tuyenDAO != null) ? tuyenDAO : factoryDao
+				.createDAO(FactoryDao.TUYEN_DAO));
+	}
+
+	public XeDAO getXeDAO() {
+		return (XeDAO) ((xeDAO != null) ? xeDAO : factoryDao
+				.createDAO(FactoryDao.XE_DAO));
+	}
+
+	public GheDAO getGheDAO() {
+		return (GheDAO) ((gheDAO != null) ? gheDAO : factoryDao
+				.createDAO(FactoryDao.GHE_DAO));
+	}
+
+	
 
 }

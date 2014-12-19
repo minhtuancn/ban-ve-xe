@@ -1,37 +1,34 @@
 
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.Out;
-
+import database.ConnectionPool;
 import DAO.TuyenDAOImpl;
 
 /**
- * Servlet implementation class abc
+ * Servlet implementation class connectionpool
  */
-@WebServlet("/abc")
-public class abc extends HttpServlet {
+public class connectionpool extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public abc() {
+    public connectionpool() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().print(new TuyenDAOImpl().getAllTuyen());
+		new TuyenDAOImpl();
 	}
 
 	/**

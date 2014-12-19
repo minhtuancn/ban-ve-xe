@@ -24,10 +24,10 @@
 	<%@ include file="header.jsp"%>
 
 	<%
-		String shoten = "a";
-		String sdidong = "1";
-		String scmnd = "1";
-		String semail = "a";
+		String shoten = "";
+		String sdidong = "";
+		String scmnd = "";
+		String semail = "";
 		KhachHang kh = (KhachHang ) session.getAttribute("khachHang");
 		if (kh == null) {
 			if (request.getParameter("hoten") != null)

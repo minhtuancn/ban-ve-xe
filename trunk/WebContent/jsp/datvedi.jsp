@@ -20,7 +20,6 @@
 	<%
 		Chuyen c = (Chuyen) session.getAttribute("chuyenDi");
 		int loaiXe = c.getLoaiXe();
-// 		boolean laKhuHoi = (Boolean) session.getAttribute("laKhuHoi");
 	%>
 	<input type="hidden" value="1" id="idChuyenDi" />
 	<div id="chuyendi"

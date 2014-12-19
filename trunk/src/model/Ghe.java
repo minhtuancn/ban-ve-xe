@@ -8,7 +8,7 @@ public class Ghe implements Comparable<Ghe>{
 	public static byte DANG_GIU = 1;
 	public static byte DA_DAT = 2;
 	
-	public Ghe(int idGhe, int soGhe, byte trangThai) {
+	public Ghe(long idGhe, int soGhe, byte trangThai) {
 		this.idGhe = idGhe;
 		this.soGhe = soGhe;
 		this.trangThai = trangThai;
