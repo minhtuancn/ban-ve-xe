@@ -20,6 +20,14 @@ public class Tuyen {
 		this.diemDi = diemDi;
 		this.diemDen = diemDen;
 	}
+	
+	public Tuyen(long idtuyen, DiaDiem diemDi, DiaDiem diemDen) {
+		this.idTuyen = idtuyen;
+		this.diemDi = diemDi;
+		this.diemDen = diemDen;
+		danhSachChuyen = new ArrayList<>();
+	}
+	
 	public void add(Chuyen chuyen){
 		danhSachChuyen.add(chuyen);
 	}

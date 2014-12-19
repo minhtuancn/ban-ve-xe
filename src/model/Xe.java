@@ -29,5 +29,11 @@ public class Xe {
 	public void setSoGhe(int soGhe) {
 		this.soGhe = soGhe;
 	}
+	public long getIdXe() {
+		return idXe;
+	}
+	public void setIdXe(long idXe) {
+		this.idXe = idXe;
+	}
 	
 }

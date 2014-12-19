@@ -5,6 +5,8 @@ import java.sql.*;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import DAO.TuyenDAOImpl;
+
 
 public class ConnectionPool {
 	private static ConnectionPool pool = null;
@@ -53,7 +55,7 @@ public class ConnectionPool {
 	}
 	public static void main(String[] args) {
 		Connection con = getInstance().getConnection();
-		
+		System.out.println(new TuyenDAOImpl().getAllTuyen().size());
 		getInstance().freeConnection(con);
 	}
 }

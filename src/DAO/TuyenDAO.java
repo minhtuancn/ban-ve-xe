@@ -2,14 +2,17 @@ package DAO;
 
 import java.util.List;
 
-import model.DiaDiem;
 import model.Tuyen;
+import factory.dao.DAO;
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 
-public interface TuyenDAO {
+public interface TuyenDAO extends DAO{
+	FactoryDao factoryDao = new FactoryDAOImp();
 	/**
 	 * Phương thức rút trích tuyến đi dựa vào địa điểm đi và
 	 * địa điểm đến
-	 * 
+	 * dành cho khách hàng sử dung idtuyen = idphancong
 	 * @param diemDi
 	 *            : địa điểm đi
 	 * @param diemDen
@@ -18,6 +21,11 @@ public interface TuyenDAO {
 	 */
 	public Tuyen getTuyen(String diemDi, String diemDen, String date);
 	
+	/**
+	 * 
+	 * @param idTuyen
+	 * @return
+	 */
 	public Tuyen getTuyen(long idTuyen);
 
 	public List<Tuyen> getAllTuyen();

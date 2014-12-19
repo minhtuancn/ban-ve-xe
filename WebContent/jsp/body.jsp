@@ -155,14 +155,14 @@
 						</tr>
 						<tr>
 							<td><span id="title-datve">Ngày đi:</span><input type="date"
-								name="ngay" min="12/12/2000" max="12/12/2014" /></td>
+								name="ngaydi" min="12/12/2000" max="12/12/2014" /></td>
 							<td><span id="title-datve">Ngày về:</span><input type="date"
-								name="ngay" min="12/12/2000" max="12/12/2014" /></td>
+								name="ngayve" min="12/12/2000" max="12/12/2014" /></td>
 
 						</tr>
 						<tr>
 							<td id="checkbox" align="left"><input type="checkbox"
-								value="Vé khứ hồi" />&nbsp;Vé khứ hồi</td>
+							 name="laKhuHoi" />&nbsp;Vé khứ hồi</td>
 							<td align="right"><input type="submit" value="Tìm vé" /></td>
 						</tr>
 					</table>
