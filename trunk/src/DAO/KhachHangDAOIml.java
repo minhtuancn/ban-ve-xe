@@ -32,9 +32,9 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		KhachHang kh = null;
 		try {
 			pre = con.prepareStatement(sql);
-			res = pre.executeQuery();
 			pre.setString(1, password);
 			pre.setString(2, user);
+			res = pre.executeQuery();
 			while (res.next()) {
 				return new KhachHangThuongXuyen(res.getLong("idkhachhang"),
 						res.getString("tenkhachhang"), res.getString("sdt"),
