@@ -5,7 +5,8 @@ public class Xe {
 	private String bienSoXe;
 	private String loaiGhe;
 	private int soGhe;
-	public Xe(String bienSoXe, String loaiGhe, int soGhe) {
+	public Xe(long idXe,String bienSoXe, String loaiGhe, int soGhe) {
+		this.idXe = idXe;
 		this.bienSoXe = bienSoXe;
 		this.loaiGhe = loaiGhe;
 		this.soGhe = soGhe;

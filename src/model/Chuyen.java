@@ -14,7 +14,8 @@ public class Chuyen {
 	private boolean chuaKhoiHanh;
 	private List<Ghe> danhSachGheNgoi;
 
-	public Chuyen(Tuyen tuyen, String gioKhoiHanh, Xe xe, String benXuatPhat, int gia) {
+	public Chuyen(long idChuyen, Tuyen tuyen, String gioKhoiHanh, Xe xe, String benXuatPhat, int gia) {
+		this.idChuyen = idChuyen;
 		this.tuyen = tuyen;
 		this.gioKhoiHanh = gioKhoiHanh;
 		this.xe = xe;

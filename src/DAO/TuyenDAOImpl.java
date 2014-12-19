@@ -12,10 +12,8 @@ import java.util.List;
 
 import database.ConnectionPool;
 import database.Database;
-import model.Chuyen;
 import model.DiaDiem;
 import model.Tuyen;
-import model.Xe;
 
 public class TuyenDAOImpl implements TuyenDAO {
 	private List<Tuyen> listAllTuyen;
@@ -24,7 +22,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 
 	@Override
 	public Tuyen getTuyen(String diemDi, String diemDen, String date) { // yyyy-MM-dd
-		Connection con = Database.getInstance().getConnection();
+		Connection con = ConnectionPool.getInstance().getConnection();
 		Tuyen tuyen = null;
 		String diemDenRs = "", diemDiRs = "";
 		long iddiemDi = -1, iddiemDen = -1;
@@ -62,17 +60,18 @@ public class TuyenDAOImpl implements TuyenDAO {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} finally {
-			Database.getInstance().closePre(pre);
-			Database.getInstance().closeCon(con);
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return tuyen;
 	}
+	
+	
 
 	@Override
 	public List<Tuyen> getAllTuyen() {
 		listAllTuyen = new ArrayList<>();
-		// Connection con = Database.getInstance().getConnection();
-		Connection con = ConnectionPool.getlnstance().getConnection();
+		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql1 = "SELECT tuyen.idtuyen,tuyen.iddiemdi, tuyen.iddiemden FROM tuyen";
 		String sql2 = "SELECT diadiem.tendiadiem FROM diadiem WHERE diadiem.iddiadiem =?";
 		PreparedStatement pre = null, pre2 = null;
@@ -105,38 +104,17 @@ public class TuyenDAOImpl implements TuyenDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Database.getInstance().closePre(pre);
-			Database.getInstance().closePre(pre2);
-//			Database.getInstance().closeCon(con);
-			ConnectionPool.getlnstance().freeConnection(con);
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().closePre(pre2);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return listAllTuyen;
 	}
 
-	public List<DiaDiem> getAllDiaDiem() {
-		listAllDiaDiem = new ArrayList<>();
-		Connection con = Database.getInstance().getConnection();
-		String sql = "SELECT diadiem.iddiadiem,diadiem.tendiadiem FROM diadiem";
-		PreparedStatement pre = null;
-		try {
-			pre = con.prepareStatement(sql);
-			ResultSet res = pre.executeQuery();
-			while (res.next()) {
-				listAllDiaDiem.add(new DiaDiem(res.getLong("iddiadiem"), res
-						.getString("tendiadiem")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			Database.getInstance().closePre(pre);
-			Database.getInstance().closeCon(con);
-		}
-		return listAllDiaDiem;
-	}
-
+	
 	@Override
 	public long addTuyen(long diemDi, long diemDen) {
-		Connection con = Database.getInstance().getConnection();
+		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql = "INSERT into tuyen(iddiemdi, iddiemden) VALUES (?,?)";
 		String sql1 = "SELECT tuyen.idtuyen FROM tuyen where iddiemdi=? and iddiemden =?";
 		long len = -1;
@@ -167,15 +145,15 @@ public class TuyenDAOImpl implements TuyenDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Database.getInstance().closePre(pre);
-			Database.getInstance().closeCon(con);
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return len;
 	}
 
 	@Override
 	public int deleteTuyen(long id) {
-		Connection con = Database.getInstance().getConnection();
+		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql = "DELETE FROM tuyen WHERE tuyen.idtuyen=?";
 		String sql1 = "SELECT idtuyen FROM phancong WHERE phancong.idtuyen=?";
 		PreparedStatement pre = null;
@@ -196,39 +174,17 @@ public class TuyenDAOImpl implements TuyenDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Database.getInstance().closePre(pre);
-			Database.getInstance().closeCon(con);
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
 
 		return len;
 	}
 
-	public DiaDiem getDiaDiem(long id) {
-		DiaDiem diadiem = null;
-		Connection con = Database.getInstance().getConnection();
-		String sql1 = "SELECT tendiadiem FROM diadiem  WHERE iddiadiem=?";
-		PreparedStatement pre = null;
-		ResultSet res;
-		try {
-			pre = con.prepareStatement(sql1);
-			pre.setLong(1, id);
-			res = pre.executeQuery();
-			while (res.next()) {
-				diadiem = new DiaDiem(id, res.getString("tendiadiem"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			Database.getInstance().closePre(pre);
-			Database.getInstance().closeCon(con);
-		}
-
-		return diadiem;
-	}
-
-	public Tuyen getTuyenID(long id) {
+	@Override
+	public Tuyen getTuyen(long id) {
 		Tuyen tuyen = null;
-		Connection con = Database.getInstance().getConnection();
+		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql1 = "SELECT iddiemdi, iddiemden FROM tuyen  WHERE idtuyen=?";
 		String sql2 = "SELECT tendiadiem FROM diadiem  WHERE iddiadiem=?";
 		PreparedStatement pre = null, pre2 = null;
@@ -260,8 +216,8 @@ public class TuyenDAOImpl implements TuyenDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Database.getInstance().closePre(pre);
-			Database.getInstance().closeCon(con);
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
 
 		return tuyen;
@@ -269,7 +225,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 
 	@Override
 	public int editTuyen(long id, String value, int columnPosition) {
-		Connection con = Database.getInstance().getConnection();
+		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null;
 		ResultSet res;
 		String sqlIdDiaDiem = "select iddiemdi, iddiemden from tuyen where idtuyen = ?";
@@ -315,8 +271,8 @@ public class TuyenDAOImpl implements TuyenDAO {
 			e.printStackTrace();
 			kq = 0;
 		} finally {
-			Database.getInstance().closePre(pre);
-			Database.getInstance().closeCon(con);
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return kq;
 	}

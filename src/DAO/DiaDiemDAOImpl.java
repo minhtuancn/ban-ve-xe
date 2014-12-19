@@ -1,8 +1,14 @@
 package DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import database.ConnectionPool;
+import database.Database;
 import model.DiaDiem;
 import model.Tuyen;
 
@@ -10,26 +16,52 @@ public class DiaDiemDAOImpl implements DiaDiemDAO {
 	private static List<DiaDiem> listDiaDiem;
 
 	@Override
-		public DiaDiem getDiaDiem(String tenDiaDiem){
-			for (DiaDiem d : listDiaDiem) {
-				if(d.getTenDiaDiem().equals(tenDiaDiem))
-					return d;
+	public DiaDiem getDiaDiem(long id) {
+		DiaDiem diadiem = null;
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql1 = "SELECT tendiadiem FROM diadiem  WHERE iddiadiem=?";
+		PreparedStatement pre = null;
+		ResultSet res;
+		try {
+			pre = con.prepareStatement(sql1);
+			pre.setLong(1, id);
+			res = pre.executeQuery();
+			while (res.next()) {
+				diadiem = new DiaDiem(id, res.getString("tendiadiem"));
 			}
-			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
+
+		return diadiem;
+	}
+
 
 	@Override
 	public List<DiaDiem> getAllDiaDiem() {
-		if(listDiaDiem == null){
-			listDiaDiem = new ArrayList();
-			listDiaDiem.add(new DiaDiem(1, "Tay Ninh"));
-			listDiaDiem.add(new DiaDiem(2, "An Suong"));
-			listDiaDiem.add(new DiaDiem(3, "Khanh Hoa"));
-			listDiaDiem.add(new DiaDiem(4, "Binh Thuan"));
-			listDiaDiem.add(new DiaDiem(5, "Binh Phuoc"));
+		listDiaDiem = new ArrayList<>();
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "SELECT diadiem.iddiadiem,diadiem.tendiadiem FROM diadiem";
+		PreparedStatement pre = null;
+		try {
+			pre = con.prepareStatement(sql);
+			ResultSet res = pre.executeQuery();
+			while (res.next()) {
+				listDiaDiem.add(new DiaDiem(res.getLong("iddiadiem"), res
+						.getString("tendiadiem")));
 			}
-			return listDiaDiem;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return listDiaDiem;
 	}
+
 
 	@Override
 	public int addDiaDiem(String tenDiaDiem) {
