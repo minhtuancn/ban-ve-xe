@@ -11,6 +11,6 @@ public interface DiaDiemDAO {
 	public DiaDiem getDiaDiem(long id);
 	public List<DiaDiem> getAllDiaDiem();
 	public int addDiaDiem(String tenDiaDiem);
-	public boolean deleteDiaDiem(int id);
-	public boolean editDiaDiem(int id, String value);
+	public boolean deleteDiaDiem(long id);
+	public boolean editDiaDiem(long id, String value);
 }

@@ -37,9 +37,7 @@
 						<td>Tuyến:</td>
 						<td colspan="5"><h3><%=veDi.getTuyenXe()%></h3> <%
  	if (!veDi.isTrangThaiThanhToan()) {
- %>
-							<img alt="chuathanhtoan"
-							src="/BanVeXe/image/iconchuathanhtoan.png"></td>
+ %> <img alt="chuathanhtoan" src="/BanVeXe/image/iconchuathanhtoan.png"></td>
 						<%
 							} else {
 						%>
@@ -87,9 +85,7 @@
 						<td>Tuyến:</td>
 						<td colspan="5"><h3><%=veVe.getTuyenXe()%></h3> <%
  	if (!veVe.isTrangThaiThanhToan()) {
- %>
-							<img alt="chuathanhtoan"
-							src="/BanVeXe/image/iconchuathanhtoan.png"></td>
+ %> <img alt="chuathanhtoan" src="/BanVeXe/image/iconchuathanhtoan.png"></td>
 						<%
 							} else {
 						%>

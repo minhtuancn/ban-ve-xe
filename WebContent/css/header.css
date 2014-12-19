@@ -11,7 +11,7 @@ header {
 	clear: none;
 }
 
-header img{
+header img {
 	margin-left: 60px;
 }
 
@@ -30,7 +30,6 @@ nav ul {
 nav ul li {
 	float: left;
 	position: relative;
-	
 }
 
 nav ul a {

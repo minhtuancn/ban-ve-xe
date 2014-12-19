@@ -21,7 +21,7 @@ $(document).ready(function() {
 	%>
 	<input type="hidden" value="2" id="idChuyenVe" />
 	<div id="chuyenve"
-<%-- 		style="width: 100%; <%if (loaiXe == 15) {%> height:530px; <%} else {%> height:720px; <%}%>"> --%>
+		<%-- 		style="width: 100%; <%if (loaiXe == 15) {%> height:530px; <%} else {%> height:720px; <%}%>"> --%>
 		style="width: 100%; height: 730px;">
 		<%
 			switch (loaiXe) {

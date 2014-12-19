@@ -1,5 +1,5 @@
 div#xe45cho {
-	position:absolute;
+	position: absolute;
 	border: 3px solid #4F679B;
 	background: white;
 	width: 310px;
@@ -9,6 +9,7 @@ div#xe45cho {
 	clear: right;
 	left: 0px;
 }
+
 div#xe45cho .ghe {
 	position: absolute;
 	width: 45px;
@@ -50,24 +51,31 @@ div#xe45cho .hang3 {
 div#xe45cho .hang4 {
 	top: 320px;
 }
+
 div#xe45cho .hang5 {
 	top: 370px;
 }
+
 div#xe45cho .hang6 {
 	top: 420px;
 }
+
 div#xe45cho .hang7 {
 	top: 470px;
 }
+
 div#xe45cho .hang8 {
 	top: 520px;
 }
+
 div#xe45cho .hang9 {
 	top: 570px;
 }
+
 div#xe45cho .hang10 {
 	top: 620px;
-	}
+}
+
 div#xe45cho .cot1-0 {
 	left: 20px;
 }
@@ -83,7 +91,7 @@ div#xe45cho .cot1-2 {
 div#xe45cho .cot1-3 {
 	left: 185px;
 }
+
 div#xe45cho .cot1-4 {
 	left: 240px;
 }
-	

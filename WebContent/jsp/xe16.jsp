@@ -49,9 +49,8 @@
 			}
 			List<Ghe> danhSachghe = chuyen.getDanhSachGheNgoi();
 		%>
-	<input type="hidden" value="<%= idChuyen%>" id="idChuyen" />
-		<img alt="dauxe" src="/BanVeXe/image/p.png" width="260px"
-			height="150px">
+		<input type="hidden" value="<%= idChuyen%>" id="idChuyen" /> <img
+			alt="dauxe" src="/BanVeXe/image/p.png" width="260px" height="150px">
 		<%
 			for (int i = 0; i < 15; i++) {
 				int hang = 0;
@@ -121,7 +120,7 @@
 			} else if(danhSachghe.get(i).getTrangThai() == Ghe.CHUA_DAT){
 		%>
 		<img alt="ghe<%=i%>" src="/BanVeXe/image/ghe1.png" id="<%=i%>"
-			class="ghe chuadat hang<%=hang%> cot<%=cot%>"/>
+			class="ghe chuadat hang<%=hang%> cot<%=cot%>" />
 		<%
 			} else  {
 		%>

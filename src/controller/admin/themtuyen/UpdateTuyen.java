@@ -52,7 +52,7 @@ public class UpdateTuyen extends HttpServlet {
 		String value = request.getParameter("value");
 		// String columnName = request.getParameter("columnName");
 		TuyenDAO tuyenDao = new TuyenDAOImpl();
-		if (!tuyenDao.editTuyen(id, value, columnPosition))
+		if (!tuyenDao.editTuyen(id, value, columnPosition))b reg è
 			response.getWriter().print("Error - company cannot be found");
 		else{
 			response.getWriter().print(value);

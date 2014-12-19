@@ -164,7 +164,7 @@
 							else
 								listDiaDiem = new ArrayList();
 						%>
-					
+
 						<thead>
 							<tr>
 								<th>Tên địa điểm</th>
@@ -185,8 +185,9 @@
 					</table>
 				</div>
 				<form id="formThemTuyen" action="#" title="Thêm chuyến xe">
-					<input type="hidden" id="id" name="id" value="-1" />
-					<label for="name">Tên địa điểm:</label><br/> <input type="text" name="tendiadiem" id="tendiadiem" rel="0" />
+					<input type="hidden" id="id" name="id" value="-1" /> <label
+						for="name">Tên địa điểm:</label><br /> <input type="text"
+						name="tendiadiem" id="tendiadiem" rel="0" />
 					<button id="btOk">Add</button>
 					<button id="btCancel">Cancel</button>
 				</form>

@@ -10,7 +10,6 @@
 /* 	color: white; */
 /* 	margin-top: 10px; */
 /* } */
-
 #lienhe .note {
 	font-size: 1.2em;
 	line-height: 1.33em;
@@ -83,7 +82,7 @@ form .txtarea {
 	transition: all 0.3s linear;
 }
 
-form .txt:focus, form .txtarea:focus {
+form .txt:focus,form .txtarea:focus {
 	color: #545454;
 	background-color: #fff;
 	background-position: 110% center;
@@ -93,7 +92,7 @@ form .txt:focus, form .txtarea:focus {
 		0 0 11px rgba(70, 100, 200, 0.7);
 }
 
-form .txt:HOVER, form .txtarea:HOVER {
+form .txt:HOVER,form .txtarea:HOVER {
 	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .6), 0px 0px 5px
 		rgba(255, 255, 255, .5);
 }
@@ -118,7 +117,7 @@ form .txt:HOVER, form .txtarea:HOVER {
 	transition: all 0.3s linear;
 }
 
-#submitbtn:hover, #submitbtn:focus {
+#submitbtn:hover,#submitbtn:focus {
 	box-shadow: 0 0 15px rgba(70, 100, 200, 0.9);
 }
 

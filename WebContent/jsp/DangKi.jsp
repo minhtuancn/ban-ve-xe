@@ -21,7 +21,11 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div id="dk-contain">
-	<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Đăng kí<marquee behavior="alternate" width="10%"> << </marquee></div>
+		<div class="bg title">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Đăng kí
+			<marquee behavior="alternate" width="10%"> << </marquee>
+		</div>
 		<div id="dangki">
 			<h1>Đăng Kí!</h1>
 			<form id="contactform" name="contact" method="post" action="#">
@@ -43,9 +47,9 @@
 						tabindex="3" placeholder="Số điện thoại" required>
 				</div>
 				<div class="row">
-					<label for="subject">Số CMND: <span class="req">*</span></label>
-					<input type="text" name="subject" id="subject" class="txt"
-						tabindex="3" placeholder="Số CMND" required>
+					<label for="subject">Số CMND: <span class="req">*</span></label> <input
+						type="text" name="subject" id="subject" class="txt" tabindex="3"
+						placeholder="Số CMND" required>
 				</div>
 				<div class="row">
 					<label for="subject">Địa chỉ:</label> <input type="text"
@@ -54,13 +58,14 @@
 				</div>
 				<div class="captcha">
 					<img id="captcha" src="/BanVeXe/GenerateCaptcha"
-						title="Mã xác thực" width="100px" height="30px">
-						<img id="refresh"
-								src="/BanVeXe/image/refresh.png" title="Tải lại mã xác thực khác"  >
+						title="Mã xác thực" width="100px" height="30px"> <img
+						id="refresh" src="/BanVeXe/image/refresh.png"
+						title="Tải lại mã xác thực khác">
 				</div>
 				<div class="row">
 					<label for="subject">Mã xác nhận: <span class="req">*</span></label>
-					<input type="text" id="subject" class="txt" required="required" placeholder="Mã xác nhận">
+					<input type="text" id="subject" class="txt" required="required"
+						placeholder="Mã xác nhận">
 				</div>
 				<div class="center">
 					<input type="submit" id="submitbtn" name="submitbtn" tabindex="5"

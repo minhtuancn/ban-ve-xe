@@ -91,26 +91,18 @@
 						for (ThongTinVe ve : listVe) {
 					%>
 					<tr id="<%=k++%>">
-						<td ><%=ve.getMaVe()%></td>
-						<td ><%=ve.getChuyen()%></td>
-						<td ><%=ve.getGhiChu()%></td>
-						<td ><%=ve.getNgayDatVe()%></td>
-						<td ><%=ve.getDanhSachGhe()%></td>
-						<td ><%=ve.isDaKhoiHanh()%>
-							<% if(!ve.isDaKhoiHanh()) {
-								%>
-								<input type="button" value="cập nhật"/>
-								<%} %>
-								</td>
-							
-						<td ><%=ve.isTrangThaiThanhToan()%>
-						<% if(!ve.isTrangThaiThanhToan()) {
-								%>
-								<input type="button" value="cập nhật"/>
-								<%} %>
-						</td>
-						
-						<td ><%=ve.getThoiHanThanhToan()%></td>
+						<td><%=ve.getMaVe()%></td>
+						<td><%=ve.getChuyen()%></td>
+						<td><%=ve.getGhiChu()%></td>
+						<td><%=ve.getNgayDatVe()%></td>
+						<td><%=ve.getDanhSachGhe()%></td>
+						<td><%=ve.isDaKhoiHanh()%> <% if(!ve.isDaKhoiHanh()) {
+								%> <input type="button" value="cập nhật" /> <%} %></td>
+
+						<td><%=ve.isTrangThaiThanhToan()%> <% if(!ve.isTrangThaiThanhToan()) {
+								%> <input type="button" value="cập nhật" /> <%} %></td>
+
+						<td><%=ve.getThoiHanThanhToan()%></td>
 					</tr>
 					<%
 								}

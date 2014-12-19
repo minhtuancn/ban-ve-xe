@@ -3,11 +3,12 @@ div#container {
 	height: auto;
 	margin: 0 auto;
 }
-div#container table{
-	width:  100%;
+
+div#container table {
+	width: 100%;
 }
 
-#ngay{
+#ngay {
 	font-size: 20px;
 	font-weight: bold;
 	font-style: italic;
@@ -16,11 +17,9 @@ div#container table{
 	clear: right;
 }
 
-
 legend {
 	font-size: 20px;
-	color:red;
-	
+	color: red;
 }
 
 #Form {
@@ -29,7 +28,6 @@ legend {
 	height: 500px;
 	background: #fff;
 	padding: 10ư;
-	
 	margin-left: 300px;
 	margin-top: 30px;
 	float: left;

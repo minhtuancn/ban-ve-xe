@@ -23,7 +23,11 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div style="width: 100%; height: 800px;">
-		<div class="bg title"><marquee behavior="alternate" width="10%">>></marquee>Kiểm tra vé<marquee behavior="alternate" width="10%"> << </marquee></div>
+		<div class="bg title">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Kiểm tra vé
+			<marquee behavior="alternate" width="10%"> << </marquee>
+		</div>
 		<div class="kiemtrave kt-ve">
 			<div class="kt-ve pd mg" id="ktve">
 				<form action="#">

@@ -89,11 +89,11 @@
 						for (KhachHang kh : listKH) {
 					%>
 					<tr id="<%=h++%>">
-						<td ><%=kh.getTenKhachHang()%></td>
-						<td ><%=kh.getSdt()%></td>
-						<td ><%=kh.getCmnd()%></td>
-						<td ><%=kh.getDiaChi()%></td>
-						<td ><%=kh.getEmail()%></td>
+						<td><%=kh.getTenKhachHang()%></td>
+						<td><%=kh.getSdt()%></td>
+						<td><%=kh.getCmnd()%></td>
+						<td><%=kh.getDiaChi()%></td>
+						<td><%=kh.getEmail()%></td>
 					</tr>
 					<%
 						}

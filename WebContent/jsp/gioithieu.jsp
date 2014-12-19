@@ -75,8 +75,8 @@
 				4. Phòng vé Đào Duy Anh: 15, Đào Duy Anh, Q. Phú Nhuận, Tp. Hồ Chí
 				Minh<br>
 			</p>
-			</div>
-			</div>
-			<%@ include file="footer.jsp" %>
-			</body>
-			</html>
+		</div>
+	</div>
+	<%@ include file="footer.jsp"%>
+</body>
+</html>

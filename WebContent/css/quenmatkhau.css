@@ -1,7 +1,7 @@
 .quenmatkhau {
 	width: 100%;
 	height: 40px;
-/* 	background: #145CA1; */
+	/* 	background: #145CA1; */
 	font-size: 30px;
 	color: white;
 	margin-top: 10px;
@@ -43,7 +43,7 @@
 	margin-top: 5px;
 	cursor: default;
 	font-weight: bold;
-/* 	background-color: #145CA1; */
+	/* 	background-color: #145CA1; */
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 25px;

@@ -11,10 +11,9 @@
 /* 	color: white; */
 /* 	margin-top: 10px; */
 /* } */
-
 table {
-/* 	margin-left: 50px; */
-/* 	margin-right: 50px; */
+	/* 	margin-left: 50px; */
+	/* 	margin-right: 50px; */
 	margin-top: 10px;
 }
 
@@ -25,7 +24,7 @@ table#ktv {
 }
 
 .dong1 {
-/* 	background: #145CA1; */
+	/* 	background: #145CA1; */
 	font-size: 20px;
 	color: orange;
 	font-style: oblique;

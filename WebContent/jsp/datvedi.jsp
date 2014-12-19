@@ -24,8 +24,8 @@
 	%>
 	<input type="hidden" value="1" id="idChuyenDi" />
 	<div id="chuyendi"
-<%-- 		style="width: 100%; <%if (loaiXe == 15) { if(laKhuHoi) {%> height:720px; <%} else {%> height:720px; <%}%>"> --%>
-		style="width: 100%; height:730px; overflow: auto;">
+		<%-- 		style="width: 100%; <%if (loaiXe == 15) { if(laKhuHoi) {%> height:720px; <%} else {%> height:720px; <%}%>"> --%>
+		style="width: 100%; height: 730px; overflow: auto;">
 		<%
 			switch (loaiXe) {
 			case 15:

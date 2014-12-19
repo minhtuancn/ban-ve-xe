@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,19 +9,20 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 </head>
 <body>
-<div id="container" >
-<header class="bg">
-		<img alt="nenlogo" src="/BanVeXe/image/logo2.png" width="480" height="120">
-	</header>
-	<nav>
-		<ul>
-			<li><a href="/BanVeXe/jsp/body.jsp">Trang chủ</a></li>
-			<li><a href="/BanVeXe/jsp/gioithieu.jsp">Giới thiệu</a></li>
-			<li><a href="/BanVeXe/jsp/kiemtrave.jsp">Kiểm tra vé</a></li>
-			<li><a href="/BanVeXe/jsp/tintuc.jsp">Tin tức</a></li>
-			<li><a href="/BanVeXe/jsp/lienhe.jsp">Liên hệ</a></li>
-		</ul>
-	</nav>
+	<div id="container">
+		<header class="bg">
+			<img alt="nenlogo" src="/BanVeXe/image/logo2.png" width="480"
+				height="120">
+		</header>
+		<nav>
+			<ul>
+				<li><a href="/BanVeXe/jsp/body.jsp">Trang chủ</a></li>
+				<li><a href="/BanVeXe/jsp/gioithieu.jsp">Giới thiệu</a></li>
+				<li><a href="/BanVeXe/jsp/kiemtrave.jsp">Kiểm tra vé</a></li>
+				<li><a href="/BanVeXe/jsp/tintuc.jsp">Tin tức</a></li>
+				<li><a href="/BanVeXe/jsp/lienhe.jsp">Liên hệ</a></li>
+			</ul>
+		</nav>
 	</div>
 </body>
 </html>

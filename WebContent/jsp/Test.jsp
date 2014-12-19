@@ -16,6 +16,6 @@
 </script>
 </head>
 <body>
-	<%@ include file="test2.jsp" %>
+	<%@ include file="test2.jsp"%>
 </body>
 </html>
