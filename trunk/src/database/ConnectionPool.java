@@ -19,7 +19,7 @@ public class ConnectionPool {
 		}
 	}
 
-	public static ConnectionPool getlnstance() {
+	public static ConnectionPool getInstance() {
 		if (pool == null) {
 			pool = new ConnectionPool();
 		}
@@ -35,6 +35,15 @@ public class ConnectionPool {
 		}
 	}
 
+	public void closePre(PreparedStatement pre){
+		try {
+			if(pre != null)
+			pre.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+}
+	
 	public void freeConnection(Connection c) {
 		try {
 			c.close();
@@ -43,8 +52,8 @@ public class ConnectionPool {
 		}
 	}
 	public static void main(String[] args) {
-		Connection con = getlnstance().getConnection();
+		Connection con = getInstance().getConnection();
 		
-		getlnstance().freeConnection(con);
+		getInstance().freeConnection(con);
 	}
 }

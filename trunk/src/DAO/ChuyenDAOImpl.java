@@ -1,45 +1,73 @@
 package DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import database.ConnectionPool;
 import model.Chuyen;
 import model.DiaDiem;
 import model.Tuyen;
 import model.Xe;
 
 public class ChuyenDAOImpl implements ChuyenDAO {
-
-	static List<Chuyen> list = new ArrayList<Chuyen>();
+	private TuyenDAO tuyenDAO;
+	private XeDAO xeDAO;
 	
+	public ChuyenDAOImpl() {
+		this.tuyenDAO =new TuyenDAOImpl();
+		this.xeDAO = new XeDAOImpl();
+	}
+
 	@Override
-	public Chuyen getChuyen(String gioKhoiHanh, Tuyen tuyen, String benXuatPhat) {
+	public Chuyen getChuyen(long id) {
+		Connection con = ConnectionPool.getInstance().getConnection();
 		Chuyen chuyen = null;
-		for (Chuyen c : list) {
-			if(c.getGioKhoiHanh().equalsIgnoreCase(gioKhoiHanh) && c.getBenXuatPhat().equalsIgnoreCase(benXuatPhat) && c.getTuyenXe().equalsIgnoreCase(tuyen.getTuyenXe()))
-				chuyen = c;
+		String sql1 = "SELECT idTuyen,benxuatphat,giokhoihanh,gia,idxe FROM chuyen WHERE idchuyen = ?";
+		PreparedStatement pre= null;
+		ResultSet res;
+		try {
+			pre = con.prepareStatement(sql1);
+			pre.setLong(1, id);
+			res = pre.executeQuery();
+			while (res.next()) {
+					chuyen = new Chuyen(res.getLong("idchuyen"),tuyenDAO.getTuyen(res.getLong("idTuyen")), res.getString("giokhoihanh"),xeDAO.getXe(res.getLong("idxe")), res.getString("benxuatphat"), res.getInt("gia"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return chuyen;
 	}
 
 	@Override
 	public List<Chuyen> getAllChuyen(Tuyen tuyen) {
-		if(list.size()==0){
-		Xe xe16 = new Xe("1234", "ghe ngoi", 15);
-		Xe xe45 = new Xe("1235", "ghe ngoi", 45);
-
-		Chuyen chuyen1 = new Chuyen(tuyen, "8:00", xe16, tuyen.getDiemDi().getTenDiaDiem(), 500000);
-		Chuyen chuyen2 = new Chuyen(tuyen, "8:05", xe45, tuyen.getDiemDi().getTenDiaDiem(), 500000);
-		Chuyen chuyen3 = new Chuyen(tuyen, "8:10", xe45, tuyen.getDiemDi().getTenDiaDiem(), 500000);
-		Chuyen chuyen4 = new Chuyen(tuyen, "8:15", xe16, tuyen.getDiemDi().getTenDiaDiem(), 500000);
-	
-		list.add(chuyen4);
-		list.add(chuyen3);
-		list.add(chuyen2);
-		list.add(chuyen1);
+		ArrayList<Chuyen> list = new ArrayList<Chuyen>();
+		Connection con = ConnectionPool.getInstance().getConnection();
+		Chuyen chuyen = null;
+		String sql1 = "SELECT idChuyen FROM chuyen WHERE idtuyen = ?";
+		PreparedStatement pre= null;
+		ResultSet res;
+		try {
+			pre= con.prepareStatement(sql1);
+			pre.setLong(1,tuyen.getIdTuyen());
+			res = pre.executeQuery();
+			while(res.next()){
+				list.add(getChuyen(res.getLong("")))
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
-		
 		return list;
 	}
 

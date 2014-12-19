@@ -23,6 +23,12 @@ public class Tuyen {
 	public void add(Chuyen chuyen){
 		danhSachChuyen.add(chuyen);
 	}
+	public long getIdTuyen() {
+		return idTuyen;
+	}
+	public void setIdTuyen(long idTuyen) {
+		this.idTuyen = idTuyen;
+	}
 	public DiaDiem getDiemDi() {
 		return diemDi;
 	}

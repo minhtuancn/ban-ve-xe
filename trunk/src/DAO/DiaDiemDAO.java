@@ -8,7 +8,7 @@ import model.Tuyen;
 import model.Xe;
 
 public interface DiaDiemDAO {
-	public DiaDiem getDiaDiem(String tenDiaDiem);
+	public DiaDiem getDiaDiem(long id);
 	public List<DiaDiem> getAllDiaDiem();
 	public int addDiaDiem(String tenDiaDiem);
 	public boolean deleteDiaDiem(int id);
