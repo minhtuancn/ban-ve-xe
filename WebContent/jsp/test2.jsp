@@ -31,6 +31,7 @@
 </script>
 </head>
 <body>
-	<button onclick="mes()">abc</button>
+<!-- 	<button onclick="mes()">abc</button> -->
+<img alt="gjhadsg" src="/BanVeXe/GenerateCaptcha">
 </body>
 </html>
