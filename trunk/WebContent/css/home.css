@@ -170,7 +170,7 @@ span#title-datve {
 
 div#menu-noidi,div#menu-noiden {
 	position: absolute;
-	width: 904px;
+	width: 1060px;
 	height: 100px;
 	background: white;
 	transition: all 0.3s linear;
@@ -191,8 +191,8 @@ div.noidi-nam,div.noidi-trung,div.noidi-bac {
 	font-family: arial;
 	/* 	color: #145CA1; */
 	background: white;
-	width: 300px;
-	height: 120px;
+	width: 350px;
+	height: auto;
 	border-right: 1px solid silver;
 }
 
@@ -208,14 +208,19 @@ div.noidi-nam #noidi-den,div.noidi-trung #noidi-den,div.noidi-bac #noidi-den
 	padding-top: 5px;
 }
 
-ul.noidi-nam1,ul.noidi-nam2,ul.noidi-trung1,ul.noidi-trung2,ul.noidi-bac1,ul.noidi-bac2
+ul.diadiem
 	{
+/* 	width:150px; */
+padding:0;
+margin-left: 25px;
 	float: left;;
 	clear: right;;
-	list-style-type: none;
-	display: block;
+	list-style-type: disc;
 }
 
+ul.diadiem li{
+	width: 150px;
+}
 div#menu-noidi li:hover,div#menu-noiden li:hover {
 	color: blue;
 	text-decoration: underline;

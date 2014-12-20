@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.DiaDiem"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -11,13 +14,14 @@
 <script>
 	$(document).ready(function() {
 		$("#menu-noidi li").click(function() {
-			$("input[name='noidi']").val($(this).text());
+			$("input[id='noidi']").val($(this).text());
+			$("#idnoidi").val($(this).attr('id'));
 			$("#menu-noidi").hide();
 		});
-		$("input[name='noidi']").mouseenter(function() {
+		$("input[id='noidi']").mouseenter(function() {
 			$("#menu-noidi").show(300);
 		});
-		$("input[name='noidi']").mouseleave(function() {
+		$("input[id='noidi']").mouseleave(function() {
 			$("#menu-noidi").hide();
 		});
 		$("#menu-noidi").mouseenter(function() {
@@ -28,13 +32,14 @@
 		});
 
 		$("#menu-noiden li").click(function() {
-			$("input[name='noiden']").val($(this).text());
+			$("input[id='noiden']").val($(this).text());
+			$("#idnoiden").val($(this).attr('id'));
 			$("#menu-noiden").hide();
 		});
-		$("input[name='noiden']").mouseenter(function() {
+		$("input[id='noiden']").mouseenter(function() {
 			$("#menu-noiden").show(300);
 		});
-		$("input[name='noiden']").mouseleave(function() {
+		$("input[id='noiden']").mouseleave(function() {
 			$("#menu-noiden").hide();
 		});
 		$("#menu-noiden").mouseenter(function() {
@@ -57,65 +62,76 @@
 
 			<article>
 				<form action="/BanVeXe/TimTuyen" class="login-form bg">
+					<input type="hidden" id="idnoidi" name="idnoidi" /> <input
+						type="hidden" id="idnoiden" name="idnoiden" />
 					<table id="tb-datve" width="200px">
 						<tr>
-							<td><img alt="a" src="../image/tim ve xe.jpg" height="50px"></td>
+							<td><img alt="a" src="/BanVeXe/image/tim ve xe.jpg"
+								height="50px"></td>
 						</tr>
+						<%
+							List<DiaDiem> listmb = new ArrayList();
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
-									đi:</span><input type="text" name="noidi" placeholder="Nơi đi" />
+									đi:</span><input type="text" id="noidi" placeholder="Nơi đi" />
 								<div id="menu-noidi">
+									<%
+										int sl = listmb.size();
+									int slOnCol = sl/6 + (sl%6 > 0 ?1:0 );
+									int n = 0; for(int i=0; i<sl;){
+									%>
 									<div class="noidi-nam bg">
-										<div id="noidi-den">Miền Nam</div>
-										<ul class="noidi-nam1">
-											<li class="lis"">Hồ Chí Minh</li>
-											<li>Cần Thơ</li>
-											<li>Bà Rịa Vũng Tàu</li>
+										<div id="noidi-den"></div>
+										<%
+											for(int k =0; k<2; k++){
+										%>
+										<ul class="diadiem">
+											<%
+												for(int j = 0;i < sl && j < slOnCol; i++, j++){
+											%>
+											<li id="<%=listmb.get(i).getIdDiaDiem()%>"><%=listmb.get(i).getTenDiaDiem()%></li>
+											<%
+												}
+											%>
 										</ul>
-										<ul class="noidi-nam2">
-											<li>Kiên Giang</li>
-											<li>Long An</li>
-											<li>Sóc Trăng</li>
-										</ul>
+										<%
+											}
+										%>
 									</div>
-									<div class="noidi-trung bg">
-										<div id="noidi-den">Miền Trung</div>
-										<ul class="noidi-trung1">
-											<li>Đà Nẵng</li>
-											<li>Quãng Ngãi</li>
-											<li>Khánh Hòa</li>
-										</ul>
-										<ul class="noidi-trung2">
-											<li>Hà Tĩnh</li>
-											<li>Kon Tum</li>
-											<li>Ninh Thuận</li>
-										</ul>
-									</div>
-									<div class="noidi-bac bg">
-										<div id="noidi-den">Miền Bắc</div>
-										<ul class="noidi-bac1">
-											<li>Hà Nội</li>
-											<li>Hải Phòng</li>
-											<li>Quảng Ninh</li>
-										</ul>
-										<ul class="noidi-bac2">
-											<li>Hưng Yên</li>
-											<li>Lai Châu</li>
-											<li>Lạng Sơn</li>
-										</ul>
-									</div>
+									<%
+										}
+									%>
 								</div></td>
-
-
-
 							<td><span id="title-datve" class="title-datveden">Nơi
-									đến:</span><input type="text" name="noiden" placeholder="Nơi đến" />
+									đến:</span><input type="text" id="noiden" placeholder="Nơi đến" />
 								<div id="menu-noiden">
 									<div class="noidi-nam bg">
 										<div id="noidi-den">Miền Nam</div>
 										<ul class="noidi-nam1">
-											<li class="lis"">Hồ Chí Minh</li>
-											<li>Cần Thơ</li>
+											<li>Hồ Chí Minh</li>
+											<li id="2">Cần Thơ</li>
 											<li>Bà Rịa Vũng Tàu</li>
 										</ul>
 										<ul class="noidi-nam2">
@@ -162,7 +178,7 @@
 						</tr>
 						<tr>
 							<td id="checkbox" align="left"><input type="checkbox"
-							 name="laKhuHoi" />&nbsp;Vé khứ hồi</td>
+								name="laKhuHoi" />&nbsp;Vé khứ hồi</td>
 							<td align="right"><input type="submit" value="Tìm vé" /></td>
 						</tr>
 					</table>
