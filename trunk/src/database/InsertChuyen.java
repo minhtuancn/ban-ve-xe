@@ -9,6 +9,7 @@ import java.util.Date;
 
 import model.DiaDiem;
 import model.Tuyen;
+import DAO.ChuyenDAOImpl;
 import DAO.TuyenDAOImpl;
 
 public class InsertChuyen {
@@ -27,9 +28,10 @@ public int insertChuyen() throws SQLException{
 	return now.compareTo(date);
 }
 
+
 public static void main(String[] args) throws SQLException {
 //	System.out.println(new InsertChuyen().insertChuyen());
-	TuyenDAOImpl t = new TuyenDAOImpl();
+	
 //	/*Tuyen tuyen = t.getTuyen("", "", "2014-12-31");
 //	*/System.out.println(tuyen.getTuyenXe());
 //	ArrayList<DiaDiem> tuyen = (ArrayList<DiaDiem>) t.getAllDiaDiem();
@@ -37,6 +39,6 @@ public static void main(String[] args) throws SQLException {
 //		System.out.println(tuyen2.getTenDiaDiem());
 //	}
 //	t.addTuyen(7, 6);
-	System.out.println(t.editTuyen(2, "7", 1));
+	
 }
 }

@@ -19,6 +19,7 @@ public interface ChuyenDAO extends DAO{
 	 */
 	public Chuyen getChuyen(long id);
 	public Chuyen getChuyen(long id, Tuyen tuyen);
+	public String getTenChuyen(long idVe);
 	
 	public List<Chuyen> getAllChuyen(Tuyen tuyen, Date ngayDi);
 	public int addChuyen(Tuyen tuyen, String gioKhoiHanh, long idXe, String benXuatPhat, int gia);

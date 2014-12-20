@@ -42,8 +42,8 @@ public class ListVe extends HttpServlet {
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			VeDAO ve = new VeDAOImpl();
-			List<ThongTinVe> listVe = ve.getAllVe();
-			request.setAttribute("listVe", listVe);
+//			List<Ve> listVe = ve.getAllVe();
+//			request.setAttribute("listVe", listVe);
 			request.getRequestDispatcher(DuongDan.THEM_VE_SVL).forward(request, response);
 	}
 

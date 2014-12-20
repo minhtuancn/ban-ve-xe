@@ -9,6 +9,16 @@ import model.Ve;
 
 public interface VeDAO {
 	FactoryDao factoryDao = new FactoryDAOImp();
+	
 	public List<ThongTinVe> getVe(String maVe);
-	public List<ThongTinVe> getAllVe();
+	/**
+	 * danh cho khach hang
+	 * @return
+	 */
+	public List<Ve> getAllVe(long idKhachHang);
+	
+	/**
+	 * danh cho admin, khach hang
+	 */
+	public List<Ve> searchVe(String maSearch);
 }
