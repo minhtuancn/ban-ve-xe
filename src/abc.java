@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
 
+import DAO.ChuyenDAOImpl;
 import DAO.TuyenDAOImpl;
 
 /**
@@ -31,7 +32,8 @@ public class abc extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().print(new TuyenDAOImpl().getAllTuyen());
+		ChuyenDAOImpl t = new ChuyenDAOImpl();
+		response.getWriter().print(t.getTenChuyen(1));
 	}
 
 	/**

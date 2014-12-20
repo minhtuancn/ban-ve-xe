@@ -185,6 +185,42 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 				.createDAO(FactoryDao.GHE_DAO));
 	}
 
+	@Override
+	public String getTenChuyen(long idVe) {
+			Connection con = ConnectionPool.getInstance().getConnection();
+			String sql = "SELECT tuyen.iddiemdi,tuyen.iddiemden FROM chuyen INNER JOIN ve ON ve.idchuyen = chuyen.idchuyen INNER JOIN phancong ON phancong.idchuyen = chuyen.idchuyen INNER JOIN tuyen ON phancong.idtuyen = tuyen.idtuyen WHEREve.idve = ? ";
+			String sql1 = "SELECT tendiadiem FROM diadiem WHERE iddiadiem = ? ";
+			PreparedStatement pre = null, pre1=null;
+			ResultSet res, res1;
+			String kq = "";
+			try {
+			pre = con.prepareStatement(sql);
+			pre.setLong(1, idVe);
+			res = pre.executeQuery();
+			while(res.next()){
+				pre1 = con.prepareStatement(sql1);
+				pre1.setLong(1, res.getLong("iddiemdi"));
+				res1 = pre1.executeQuery();
+				while (res1.next()){
+					kq+= res1.getString("tendiadiem")+ " - ";
+				}
+				pre1 = con.prepareStatement(sql1);
+				pre1.setLong(1, res.getLong("iddiemden"));
+				res1 = pre1.executeQuery();
+				while (res1.next()){
+					kq+= res1.getString("tendiadiem");
+				}
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionPool.getInstance().closePre(pre);
+				ConnectionPool.getInstance().closePre(pre1);
+				ConnectionPool.getInstance().freeConnection(con);
+			}
+		return kq;
+	}
+
 	
 
 }
