@@ -1,6 +1,7 @@
 package factory.dao;
 
 import DAO.ChuyenDAOImpl;
+import DAO.DiaDiemDAOImpl;
 import DAO.GheDAOImpl;
 import DAO.TuyenDAOImpl;
 import DAO.VeDAOImpl;
@@ -21,6 +22,8 @@ public class FactoryDAOImp implements FactoryDao{
 			return new GheDAOImpl();
 		case VE_DAO:
 			return new VeDAOImpl();
+		case DIA_DIEM_DAO:
+			return new DiaDiemDAOImpl();
 		default:
 			break;
 		}

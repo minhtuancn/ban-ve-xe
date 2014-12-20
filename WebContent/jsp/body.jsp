@@ -71,27 +71,9 @@
 						</tr>
 						<%
 							List<DiaDiem> listmb = new ArrayList();
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
-																														listmb.add(new DiaDiem(1,"TP: Hồ Chí Minh"));
+						if(session.getAttribute("listDiaDiem") != null){
+							listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
+						}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
@@ -99,7 +81,7 @@
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
-									int slOnCol = sl/6 + (sl%6 > 0 ?1:0 );
+									int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
 									int n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
@@ -127,45 +109,30 @@
 							<td><span id="title-datve" class="title-datveden">Nơi
 									đến:</span><input type="text" id="noiden" placeholder="Nơi đến" />
 								<div id="menu-noiden">
+									<%
+									 n = 0; for(int i=0; i<sl;){
+									%>
 									<div class="noidi-nam bg">
-										<div id="noidi-den">Miền Nam</div>
-										<ul class="noidi-nam1">
-											<li>Hồ Chí Minh</li>
-											<li id="2">Cần Thơ</li>
-											<li>Bà Rịa Vũng Tàu</li>
+										<div id="noidi-den"></div>
+										<%
+											for(int k =0; k<2; k++){
+										%>
+										<ul class="diadiem">
+											<%
+												for(int j = 0;i < sl && j < slOnCol; i++, j++){
+											%>
+											<li id="<%=listmb.get(i).getIdDiaDiem()%>"><%=listmb.get(i).getTenDiaDiem()%></li>
+											<%
+												}
+											%>
 										</ul>
-										<ul class="noidi-nam2">
-											<li>Kiên Giang</li>
-											<li>Long An</li>
-											<li>Sóc Trăng</li>
-										</ul>
+										<%
+											}
+										%>
 									</div>
-									<div class="noidi-trung bg">
-										<div id="noidi-den">Miền Trung</div>
-										<ul class="noidi-trung1">
-											<li>Đà Nẵng</li>
-											<li>Quãng Ngãi</li>
-											<li>Khánh Hòa</li>
-										</ul>
-										<ul class="noidi-trung2">
-											<li>Hà Tĩnh</li>
-											<li>Kon Tum</li>
-											<li>Ninh Thuận</li>
-										</ul>
-									</div>
-									<div class="noidi-bac bg">
-										<div id="noidi-den">Miền Bắc</div>
-										<ul class="noidi-bac1">
-											<li>Hà Nội</li>
-											<li>Hải Phòng</li>
-											<li>Quảng Ninh</li>
-										</ul>
-										<ul class="noidi-bac2">
-											<li>Hưng Yên</li>
-											<li>Lai Châu</li>
-											<li>Lạng Sơn</li>
-										</ul>
-									</div>
+									<%
+										}
+									%>
 								</div></td>
 
 						</tr>

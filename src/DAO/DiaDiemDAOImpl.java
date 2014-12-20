@@ -5,14 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import database.ConnectionPool;
 import database.Database;
+import factory.dao.DAO;
 import model.DiaDiem;
 import model.Tuyen;
 
-public class DiaDiemDAOImpl implements DiaDiemDAO {
+public class DiaDiemDAOImpl implements DiaDiemDAO , DAO{
 	private static List<DiaDiem> listDiaDiem;
 
 	@Override
@@ -42,6 +45,7 @@ public class DiaDiemDAOImpl implements DiaDiemDAO {
 
 	@Override
 	public List<DiaDiem> getAllDiaDiem() {
+		if(listDiaDiem == null){
 		listDiaDiem = new ArrayList<>();
 		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql = "SELECT diadiem.iddiadiem,diadiem.tendiadiem FROM diadiem";
@@ -53,11 +57,13 @@ public class DiaDiemDAOImpl implements DiaDiemDAO {
 				listDiaDiem.add(new DiaDiem(res.getLong("iddiadiem"), res
 						.getString("tendiadiem")));
 			}
+			Collections.sort(listDiaDiem);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);
 			ConnectionPool.getInstance().freeConnection(con);
+		}
 		}
 		return listDiaDiem;
 	}
