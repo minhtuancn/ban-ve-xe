@@ -1,5 +1,5 @@
 package model;
-public class DiaDiem {
+public class DiaDiem implements Comparable<DiaDiem>{
 	private long idDiaDiem;
 	private String tenDiaDiem;
 	
@@ -26,6 +26,10 @@ public class DiaDiem {
 	@Override
 	public String toString() {
 		return this.tenDiaDiem;
+	}
+	@Override
+	public int compareTo(DiaDiem o) {
+		return this.tenDiaDiem.compareTo(o.tenDiaDiem);
 	}
 	
 }
