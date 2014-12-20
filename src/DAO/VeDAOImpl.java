@@ -9,13 +9,15 @@ import java.util.Date;
 import java.util.List;
 
 import database.ConnectionPool;
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 import model.DatVe;
 import model.DiaDiem;
 import model.ThongTinVe;
 import model.Ve;
 
 public class VeDAOImpl implements VeDAO{
-	
+	private GheDAO gheDAO;
 	@Override
 	public List<Ve> getVe(String maVe) {
 		return null;
@@ -32,7 +34,7 @@ public class VeDAOImpl implements VeDAO{
 			pre.setLong(1, idKhachHang);
 			ResultSet res = pre.executeQuery();
 			while (res.next()) {
-			listVe.add(new Ve(res.getString("mave"), res.getString("ghichu"), res.getDate("ngaydatve"), null , res.getBoolean("dakhoihanh"), res.getBoolean("trangthaithanhtoan"), res.getDate("thoihanthanhtoan"), res.getBoolean("trangthaihuyve"), res.getString("lidohuyve")))	;			
+			listVe.add(new Ve(res.getString("mave"), res.getString("ghichu"), res.getDate("ngaydatve"), ((GheDAO) new FactoryDAOImp().createDAO(FactoryDao.GHE_DAO)).getGheOfVe(res.getLong("idve")) , res.getBoolean("dakhoihanh"), res.getBoolean("trangthaithanhtoan"), res.getDate("thoihanthanhtoan"), res.getBoolean("trangthaihuyve"), res.getString("lidohuyve")))	;			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,5 +69,9 @@ public class VeDAOImpl implements VeDAO{
 			}
 				return listVe;
 	}
-
+	public GheDAO getGheDAO(){
+		return (GheDAO) (gheDAO != null ? gheDAO : factoryDao.createDAO(FactoryDao.GHE_DAO));
+		
+	}
+	
 }
