@@ -4,9 +4,9 @@ public class Ghe implements Comparable<Ghe>{
 	private int soGhe;
 	private byte trangThai;
 	//
-	public static byte CHUA_DAT = 0;
-	public static byte DANG_GIU = 1;
-	public static byte DA_DAT = 2;
+	public static final byte CHUA_DAT = 0;
+	public static final byte DANG_GIU = 1;
+	public static final byte DA_DAT = 2;
 	
 	public Ghe(long idGhe, int soGhe, byte trangThai) {
 		this.idGhe = idGhe;
