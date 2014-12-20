@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import controller.DangNhap;
 import database.ConnectionPool;
 import database.Database;
 import model.Chuyen;
@@ -15,7 +17,7 @@ import model.DatVe;
 import model.Ghe;
 
 public class GheDAOImpl implements GheDAO {
-	
+
 	@Override
 	public List<Ghe> getAllGhe(long idChuyen) {
 		Connection con = ConnectionPool.getInstance().getConnection();
@@ -38,7 +40,8 @@ public class GheDAOImpl implements GheDAO {
 				case Ghe.DANG_GIU:
 					// kiểm tra thời gian giữ ghế còn hiệu lực không
 					dateGiuCho = new Date(res.getTimestamp("giucho").getTime());
-					trangThai = dateGiuCho.compareTo(now) < 0? Ghe.CHUA_DAT : Ghe.DA_DAT;
+					trangThai = dateGiuCho.compareTo(now) < 0 ? Ghe.CHUA_DAT
+							: Ghe.DA_DAT;
 					break;
 				case Ghe.DA_DAT:
 					trangThai = Ghe.DA_DAT;
@@ -60,31 +63,88 @@ public class GheDAOImpl implements GheDAO {
 
 	@Override
 	public String setGiuCho(DatVe datVe) {
+		List<Ghe> listGhe = datVe.getDanhsachGheDat();
 		Connection con = ConnectionPool.getInstance().getConnection();
-		con.setAutoCommit(false);
-		con.setTransactionIsolation(Connection.);
-		PreparedStatement pre = null;
-		ResultSet res;
 		String sqlCheck = "select trangthai, giucho from ghe where idghe=?";
-		String sqlSet = "update ghe set trangthai=? where idghe=?";
+		String sqlSet = "update ghe set trangthai=?, giucho = ? where idghe=?";
+		PreparedStatement preCheck = null;
+		PreparedStatement preSet = null;
+		ResultSet res;
+		byte trangThai;
+		Date giuCho; // var date giữ chố của ghế trên database
+		Date datCho = new Date(System.currentTimeMillis() + 10 * 60 * 1000); // var
+																				// date
+																				// hiện
+																				// tại
+																				// +
+																				// 10
+																				// phút
+		Date now = new Date();
+		String mes = null;
 		try {
-			
+			con.setAutoCommit(false);
+			preCheck = con.prepareStatement(sqlCheck);
+			preSet = con.prepareStatement(sqlSet);
+			for (Ghe ghe : listGhe) {
+				preCheck.setLong(1, ghe.getIdGhe());
+				res = preCheck.executeQuery();
+				trangThai = res.getByte("trangthai");
+				switch (trangThai) {
+				case Ghe.CHUA_DAT:
+					preSet.setByte(1, Ghe.DANG_GIU);
+					preSet.setTimestamp(2, new Timestamp(datCho.getTime()));
+					preSet.setLong(3, ghe.getIdGhe());
+					break;
+				case Ghe.DANG_GIU:
+					giuCho = new Date(res.getTimestamp("giucho").getTime());
+					if (giuCho.compareTo(now) < 0) {
+						mes = "Ghế " + ghe.getSoGhe() + " của tuyến "
+								+ datVe.getTuyenXe()
+								+ " đã có người đặt trước!";
+						throw new SQLException();
+					} else {
+						preSet.setByte(1, Ghe.DANG_GIU);
+						preSet.setTimestamp(2, new Timestamp(datCho.getTime()));
+						preSet.setLong(3, ghe.getIdGhe());
+					}
+					break;
+				case Ghe.DA_DAT:
+					throw new SQLException();
+				default:
+					break;
+				}
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		} finally {
-			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().closePre(preCheck);
+			ConnectionPool.getInstance().closePre(preSet);
+			ConnectionPool.getInstance().setDefaulAutoCommit(con);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
-		return null;
+		return mes;
 	}
 
-//	public static void main(String[] args) throws SQLException {
-//		PreparedStatement pre = Database.getInstance().getConnection()
-//				.prepareStatement("select trangthai from ghe");
-//		ResultSet res = pre.executeQuery();
-//		while(res.next())
-//			System.out.println(res.getInt("trangthai"));
-//	}
+	public static void main(String[] args) throws SQLException {
+		// PreparedStatement pre = Database.getInstance().getConnection()
+		// .prepareStatement("select trangthai from ghe");
+		// ResultSet res = pre.executeQuery();
+		// while(res.next())
+		// System.out.println(res.getInt("trangthai"));
+		try {
+			String s = null;
+			if (s == null)
+				throw new NumberFormatException();
+			System.out.println(s);
+		} catch (NumberFormatException e) {
+			System.out.println("catch");
+		}
+	}
 
 }
