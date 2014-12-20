@@ -6,12 +6,12 @@ import java.util.List;
 
 public class DatVe {
 	private long idDatVe;
-	private Date ngayDatVe;
+//	private Date ngayDatVe;
 	private Chuyen chuyen;
 	private List<Ghe> danhsachGheDat;
 	public DatVe(Chuyen chuyen) {
 		this.chuyen = chuyen;
-		this.ngayDatVe = new Date();
+//		this.ngayDatVe = new Date();
 		this.danhsachGheDat = new ArrayList<>();
 	}
 	public String getTenGhe(){
@@ -30,12 +30,7 @@ public class DatVe {
 	public int getSoLuongGhe(){
 		return danhsachGheDat.size();
 	}
-	public Date getNgayDatVe() {
-		return ngayDatVe;
-	}
-	public void setNgayDatVe(Date ngayDatVe) {
-		this.ngayDatVe = ngayDatVe;
-	}
+	
 	public Chuyen getChuyen() {
 		return chuyen;
 	}

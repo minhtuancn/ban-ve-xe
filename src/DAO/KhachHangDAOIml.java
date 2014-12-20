@@ -104,10 +104,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return kh;
-
 	}
-
-
 	@Override
 	public List<KhachHang> getAllKhachHang() {
 		listKhachHang = new ArrayList<>();
