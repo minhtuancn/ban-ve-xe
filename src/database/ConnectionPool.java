@@ -53,6 +53,14 @@ public class ConnectionPool {
 			e.printStackTrace();
 		}
 	}
+	public void setDefaulAutoCommit(Connection c) {
+		try {
+			c.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		Connection con = getInstance().getConnection();
 		System.out.println(new TuyenDAOImpl().getAllTuyen().size());
