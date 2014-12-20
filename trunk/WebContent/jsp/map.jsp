@@ -33,7 +33,7 @@
 		var directionsDisplay;
 
 		// Thẻ div chứa bản đồ
-		var map_canvas = document.getElementById('google-map');
+		var map_canvas = document.getElementById("google-map");
 		map_canvas.style.width = '100%';
 		map_canvas.style.height = '500px';
 
@@ -41,7 +41,7 @@
 		var map_options = {
 			center : from,
 			zoom : 12,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
+			mapTypeId : google.maps.MapTypeId.HYBRID
 		};
 
 		// Đối tương map
