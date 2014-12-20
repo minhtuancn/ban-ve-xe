@@ -2,15 +2,16 @@ package DAO;
 
 import java.util.List;
 
+import factory.dao.DAO;
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
 import model.ThongTinVe;
 import model.Ve;
 
-public interface VeDAO {
+public interface VeDAO extends DAO{
 	FactoryDao factoryDao = new FactoryDAOImp();
 	
-	public List<ThongTinVe> getVe(String maVe);
+	public List<Ve> getVe(String maVe);
 	/**
 	 * danh cho khach hang
 	 * @return

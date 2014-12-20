@@ -9,6 +9,8 @@ import java.util.List;
 
 import database.ConnectionPool;
 import database.Database;
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 import model.DiaDiem;
 import model.KhachHang;
 import model.KhachHangThuongXuyen;
@@ -18,7 +20,6 @@ import model.Tuyen;
 import model.Ve;
 
 public class KhachHangDAOIml implements KhachHangDAO {
-	private static List<KhachHang> listKhachHang;
 
 	@Override
 	public KhachHang checkLogIn(String user, String password) {
@@ -57,33 +58,19 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null, pre1 = null, pre2 = null;
 		String sql2 = "select idkhachhang , cmnd, diachi, email, tenkhachhang from khachhang where sdt = ?";
-		String sql1 = "SELECT idkhachhang from khachhangthuongxuyen WHERE idkhachhang=?";
-		String sql = "SELECT khachhang.idkhachhang, khachhang.cmnd, khachhang.diachi, khachhang.email, khachhangthuongxuyen.sotien, khachhang.tenkhachhang FROM khachhang INNER JOIN khachhangthuongxuyen ON khachhangthuongxuyen.idkhachhang = khachhang.idkhachhang where sdt=?";
+		String sql = "SELECT idkhachhang from khachhang WHERE sdt=?";
+		String sql1 = "SELECT khachhangthuongxuyen.sotien FROM khachhang INNER JOIN khachhangthuongxuyen ON khachhangthuongxuyen.idkhachhang = khachhang.idkhachhang where sdt=?";
 		ResultSet res, res1, res2;
 		String tenKhachHang = "", cmnd = "", diaChi = "", email = "";
 		long soTien = 0;
 		long idkh = -1;
 		try {
-			pre = con.prepareStatement(sql1);
-			pre1 = con.prepareStatement(sql);
+			pre = con.prepareStatement(sql);
+			pre1 = con.prepareStatement(sql1);
 			pre2 = con.prepareStatement(sql2);
-			pre.setLong(1, idkh);
+			pre.setString(1, sdt);
 			res = pre.executeQuery();
 			if (res.next()) {
-				pre1.setString(1, sdt);
-				res1 = pre1.executeQuery();
-				while (res1.next()) {
-					idkh = res1.getLong("idkhachhang");
-					cmnd = res1.getString("cmnd");
-					diaChi = res1.getString("diachi");
-					email = res1.getString("email");
-					tenKhachHang = res1.getString("tenkhachhang");
-					soTien = res1.getLong("sotien");
-				}
-			kh = new KhachHangThuongXuyen(idkh,tenKhachHang, sdt,
-						cmnd, diaChi, email, soTien);
-
-			} else {
 				pre2.setString(1, sdt);
 				res2 = pre2.executeQuery();
 				while (res2.next()) {
@@ -92,66 +79,39 @@ public class KhachHangDAOIml implements KhachHangDAO {
 					diaChi = res2.getString("diachi");
 					email = res2.getString("email");
 					tenKhachHang = res2.getString("tenkhachhang");
-					kh = new KhachHangVangLai(idkh,tenKhachHang, sdt,
-							cmnd, diaChi, email);
+					pre1.setString(1, sdt);
+					res1 = pre1.executeQuery();
+					if(res1.next()){
+					kh =new KhachHangThuongXuyen(idkh,tenKhachHang, sdt, cmnd, diaChi, email, res1.getInt("sotien"));
+					}else{
+						kh = new KhachHangVangLai(idkh, tenKhachHang, sdt, cmnd, diaChi, email);
+					}
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().closePre(pre1);
+			ConnectionPool.getInstance().closePre(pre2);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return kh;
 	}
+
 	@Override
 	public List<KhachHang> getAllKhachHang() {
-		listKhachHang = new ArrayList<>();
+		List<KhachHang> listKhachHang = new ArrayList<KhachHang>();
 		Connection con = ConnectionPool.getInstance().getConnection();
-		PreparedStatement pre = null, pre1 = null, pre2 = null;
-		String sql2 = "select idkhachhang , cmnd, diachi, email, sdt, tenkhachhang from khachhang";
-		String sql1 = "SELECT idkhachhang from khachhangthuongxuyen WHERE idkhachhang=?";
-		String sql = "SELECT khachhang.idkhachhang, khachhang.cmnd, khachhang.diachi, khachhang.email, khachhang.sdt, khachhangthuongxuyen.sotien, khachhang.tenkhachhang FROM khachhang INNER JOIN khachhangthuongxuyen ON khachhangthuongxuyen.idkhachhang = khachhang.idkhachhang";
-		ResultSet res, res1, res2;
-		String tenKhachHang = "", sdt = "", cmnd = "", diaChi = "", email = "";
-		long soTien = 0;
-		long idkh = -1;
+		String sql = "select sdt from khachhang";
+		PreparedStatement pre = null;
 		try {
-			pre = con.prepareStatement(sql1);
-			pre1 = con.prepareStatement(sql);
-			pre2 = con.prepareStatement(sql2);
-			pre.setLong(1, idkh);
-			res = pre.executeQuery();
-			if (res.next()) {
-				res1 = pre1.executeQuery();
-				while (res1.next()) {
-					idkh = res1.getLong("idkhachhang");
-					cmnd = res1.getString("cmnd");
-					diaChi = res1.getString("diachi");
-					email = res1.getString("email");
-					sdt = res1.getString("sdt");
-					tenKhachHang = res1.getString("tenkhachhang");
-					soTien = res1.getLong("sotien");
-				}
-				listKhachHang.add(new KhachHangThuongXuyen(idkh,tenKhachHang, sdt,
-						cmnd, diaChi, email, soTien));
-
-			} else {
-				res2 = pre2.executeQuery();
-				while (res2.next()) {
-					idkh = res2.getLong("idkhachhang");
-					cmnd = res2.getString("cmnd");
-					diaChi = res2.getString("diachi");
-					email = res2.getString("email");
-					sdt = res2.getString("sdt");
-					tenKhachHang = res2.getString("tenkhachhang");
-					listKhachHang.add(new KhachHangVangLai(idkh,tenKhachHang, sdt,
-							cmnd, diaChi, email));
-				}
+			pre = con.prepareStatement(sql);
+			ResultSet res = pre.executeQuery();
+			while (res.next()) {
+			listKhachHang.add(getKhachHang(res.getString("sdt")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);
@@ -200,6 +160,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		return len;
 	}
 
+	// chưa sử dụng
 	@Override
 	public boolean deleteKhachHang(long id) {
 		Connection con = ConnectionPool.getInstance().getConnection();
@@ -226,32 +187,122 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null;
 		ResultSet res;
-		String sql = "update khachhang set ";
-		// KhachHang kh = listKhachHang.get(idKH);
-		// switch (columnPosition) {
-		// case 0:
-		// kh.setTenKhachHang(value);
-		// break;
-		// case 1:
-		// kh.setSdt(value);
-		// break;
-		// case 2:
-		// kh.setSdt(value);
-		// break;
-		// case 3:
-		// kh.setCmnd(value);
-		// ;
-		// break;
-		// case 4:
-		// kh.setDiaChi(value);
-		// break;
-		// case 5:
-		// kh.setEmail(value);
-		// break;
-		// default:
-		// break;
-		// }
+		List<Ve> list;
+		String sql = "update tuyen set ";
+		int kq = -1;
+		long idDiaDiem;
+			switch (columnPosition) {
+			case 0:
+				sql += "tenkhachhang = " + value;
+				try {
+				pre = con.prepareStatement(sql);
+				kq = pre.executeUpdate();
+				
+				if (kq > 0)
+					return true;
+				else
+					return false;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case 1:
+				list = ((VeDAO) (new FactoryDAOImp()
+						.createDAO(FactoryDao.VE_DAO))).searchVe(value);
+				if (list.size() > 0)
+					return false;
+				else {
+					sql += "sdt = " + value;
+					try{
+					pre = con.prepareStatement(sql);
+					kq = pre.executeUpdate();
+					if (kq > 0)
+						return true;
+					else
+						return false;
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				break;
+			case 2:
+				list = ((VeDAO) (new FactoryDAOImp()
+						.createDAO(FactoryDao.VE_DAO))).searchVe(value);
+				if (list.size() > 0)
+					return false;
+				else {
+					sql += "cmnd = " + value;
+					try{
+					pre = con.prepareStatement(sql);
+					kq = pre.executeUpdate();
+					if (kq > 0)
+						return true;
+					else
+						return false;
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				break;
+			case 3:
+				sql += "diachi = " + value;
+				try{
+				pre = con.prepareStatement(sql);
+				kq = pre.executeUpdate();
+				if (kq > 0)
+					return true;
+				else
+					return false;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case 4:
+				sql += "email = " + value;
+				try{
+				pre = con.prepareStatement(sql);
+				kq = pre.executeUpdate();
+				if (kq > 0)
+					return true;
+				else
+					return false;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			default:
+				break;
+
+			}
+		
 		return true;
+	}
+
+	@Override
+	public List<KhachHang> searchKhachHang(String maSearch) {
+		List<KhachHang> listKhachHang = new ArrayList<KhachHang>();
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "SELECT idkhachhang, tenkhachhang, sdt, cmnd, diachi, email FROM khachhang WHERE khachhang.sdt like ? OR khachhang.cmnd like ? OR khachhang.tenkhachhang like ? OR khachhang.email like ? OR khachhang.diachi like ? ";
+		PreparedStatement pre = null;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1,"'%"+ maSearch+"%'");
+			pre.setString(2, "'%"+ maSearch+"%'");
+			pre.setString(3, "'%"+ maSearch+"%'");
+			pre.setString(4, "'%"+ maSearch+"%'");
+			pre.setString(5, "'%"+ maSearch+"%'");
+			ResultSet res = pre.executeQuery();
+			while (res.next()) {
+			listKhachHang.add(new KhachHangThuongXuyen(res.getLong("idkhachhang"), res.getString("tenkhachhang"), res.getString("sdt"),res.getString("cmnd") , res.getString("diachi"), res.getString("email")));
+			listKhachHang.add(new KhachHangVangLai(res.getLong("idkhachhang"), res.getString("tenkhachhang"), res.getString("sdt"),res.getString("cmnd") , res.getString("diachi"), res.getString("email")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return listKhachHang;
 	}
 
 }

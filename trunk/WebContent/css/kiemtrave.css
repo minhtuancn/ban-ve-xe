@@ -14,6 +14,16 @@
 	height: 0
 }
 
+#timkiem{
+	float: right;
+	clear:  none;
+}
+
+#thongtinve{
+	float: left;
+	clear: right;
+}
+
 .kt-ve:after {
 	clear: both
 }

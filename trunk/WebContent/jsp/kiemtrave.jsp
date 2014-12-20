@@ -70,7 +70,9 @@
 						<hr />
 						<div class="kt-ve">
 							<div class="ktve-p pd mg kt-ve">
-								<p>Thông tin vé đã đặt</p>
+								<div id="thongtinve"><p>Thông tin vé đã đặt</p></div>
+								<div id="timkiem"> <input type="text" id="text_timkiem"/> &nbsp;<button><img alt="hinhsearch" src=""></button></div>
+		
 								<table id="ktv">
 									<tr id="dong1" class="bg">
 										<td class="tr1" align="center">Chuyến xe</td>

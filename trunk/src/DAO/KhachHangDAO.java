@@ -21,6 +21,7 @@ public interface KhachHangDAO {
 	 *         tại tuyến, là id tuyến nếu thêm thành công
 	 */
 	public long addKhachHang(String tenKH, String sdt, String cmnd, String diaChi, String email);
+	public List<KhachHang> searchKhachHang(String maSearch);
 	public boolean deleteKhachHang(long id);
 	public boolean editKhachHang(long idKH, String value, int columnPosition);
 }

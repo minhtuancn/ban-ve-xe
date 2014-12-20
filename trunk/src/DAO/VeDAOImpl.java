@@ -17,7 +17,7 @@ import model.Ve;
 public class VeDAOImpl implements VeDAO{
 	
 	@Override
-	public List<ThongTinVe> getVe(String maVe) {
+	public List<Ve> getVe(String maVe) {
 		return null;
 	}
 
@@ -51,10 +51,10 @@ public class VeDAOImpl implements VeDAO{
 			PreparedStatement pre = null;
 			try {
 				pre = con.prepareStatement(sql);
-				pre.setString(1, maSearch);
-				pre.setString(2, maSearch);
-				pre.setString(3, maSearch);
-				pre.setString(4, maSearch);
+				pre.setString(1, "'%"+ maSearch+"%'");
+				pre.setString(2, "'%"+ maSearch+"%'");
+				pre.setString(3, "'%"+ maSearch+"%'");
+				pre.setString(4, "'%"+ maSearch+"%'");
 				ResultSet res = pre.executeQuery();
 				while (res.next()) {
 				listVe.add(new Ve(res.getString("mave"), res.getString("ghichu"), res.getDate("ngaydatve"), null , res.getBoolean("dakhoihanh"), res.getBoolean("trangthaithanhtoan"), res.getDate("thoihanthanhtoan"), res.getBoolean("trangthaihuyve"), res.getString("lidohuyve")))	;			
