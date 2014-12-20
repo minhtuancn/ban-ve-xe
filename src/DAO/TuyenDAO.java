@@ -1,5 +1,6 @@
 package DAO;
 
+import java.util.Date;
 import java.util.List;
 
 import model.Tuyen;
@@ -19,7 +20,7 @@ public interface TuyenDAO extends DAO{
 	 *            : địa điểm đến
 	 * @return: tuyến xe
 	 */
-	public Tuyen getTuyen(String diemDi, String diemDen, String date);
+	public Tuyen getTuyen(long diemDi, long diemDen, Date ngayDi);
 	
 	/**
 	 * 

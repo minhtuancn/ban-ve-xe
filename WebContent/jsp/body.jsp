@@ -11,49 +11,79 @@
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/home.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
 <script>
 	$(document).ready(function() {
+		
 		$("#menu-noidi li").click(function() {
 			$("input[id='noidi']").val($(this).text());
 			$("#idnoidi").val($(this).attr('id'));
-			$("#menu-noidi").hide();
+			$("#menu-noidi").slideUp(100);
 		});
 		$("input[id='noidi']").mouseenter(function() {
-			$("#menu-noidi").show(300);
+			$("#menu-noidi").slideDown(100);
 		});
 		$("input[id='noidi']").mouseleave(function() {
-			$("#menu-noidi").hide();
+			$("#menu-noidi").slideUp(100);
 		});
 		$("#menu-noidi").mouseenter(function() {
-			$("#menu-noidi").show();
+			$("#menu-noidi").slideDown(100);
 		});
 		$("#menu-noidi").mouseleave(function() {
-			$("#menu-noidi").hide();
+			$("#menu-noidi").slideUp(100);
 		});
 
 		$("#menu-noiden li").click(function() {
 			$("input[id='noiden']").val($(this).text());
 			$("#idnoiden").val($(this).attr('id'));
-			$("#menu-noiden").hide();
+			$("#menu-noiden").slideUp(100);
 		});
 		$("input[id='noiden']").mouseenter(function() {
-			$("#menu-noiden").show(300);
+			$("#menu-noiden").slideDown(100);
 		});
 		$("input[id='noiden']").mouseleave(function() {
-			$("#menu-noiden").hide();
+			$("#menu-noiden").slideUp(100);
 		});
 		$("#menu-noiden").mouseenter(function() {
-			$("#menu-noiden").show();
+			$("#menu-noiden").slideDown(100);
 		});
 		$("#menu-noiden").mouseleave(function() {
-			$("#menu-noiden").hide();
+			$("#menu-noiden").slideUp(100);
 		});
+
 	});
+	function checkEr() {
+		if ($("#error").val().length != 0) {
+			al($("#error").val(), "error");
+		}
+	};
+	function al(mes, type) {
+		swal({
+			title : mes ,
+			type : type
+		});
+	}
+	function submits() {
+		if ($("#noidi").val().length == 0) {
+			al("Bạn chưa chọn nơi đi!", "warning");
+		} else if ($("#noiden").val().length == 0) {
+			al("Bạn chưa chọn nơi đến!", "warning");
+		} else if ($("input[name='ngaydi']").val() == 0) {
+			al("Bạn chưa chọn ngày đi!", "warning");
+		} else if ($("input[name='laKhuHoi']").is(':checked')
+				&& $("input[name='ngayve']").val() == 0) {
+			al("Bạn chưa chọn ngày về!", "warning");
+		} else {
+			$("#formtimve").submit();
+		}
+	}
 </script>
 
 
 </head>
-<body>
+<body onload="checkEr()">
 	<div id="container">
 		<%@ include file="header.jsp"%>
 		<section>
@@ -61,7 +91,14 @@
 				height="350px">
 
 			<article>
-				<form action="/BanVeXe/TimTuyen" class="login-form bg">
+				<%
+					String mes = "ok";
+																		if((String) request.getAttribute("mes")!= null)
+																			mes = (String) request.getAttribute("mes");
+				%>
+				<input type="hidden" value="<%=mes%>" id="error" />
+				<form action="/BanVeXe/TimTuyen" class="login-form bg"
+					id="formtimve">
 					<input type="hidden" id="idnoidi" name="idnoidi" /> <input
 						type="hidden" id="idnoiden" name="idnoiden" />
 					<table id="tb-datve" width="200px">
@@ -69,20 +106,23 @@
 							<td><img alt="a" src="/BanVeXe/image/tim ve xe.jpg"
 								height="50px"></td>
 						</tr>
+
+
+
 						<%
 							List<DiaDiem> listmb = new ArrayList();
-						if(session.getAttribute("listDiaDiem") != null){
-							listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
-						}
+																																										if(session.getAttribute("listDiaDiem") != null){
+																																											listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
+																																										}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
-									đi:</span><input type="text" id="noidi" placeholder="Nơi đi" />
+									đi:</span><input type="text" id="noidi" placeholder="Nơi đi" readonly />
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
-									int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
-									int n = 0; for(int i=0; i<sl;){
+																																																																								int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
+																																																																								int n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
 										<div id="noidi-den"></div>
@@ -107,10 +147,11 @@
 									%>
 								</div></td>
 							<td><span id="title-datve" class="title-datveden">Nơi
-									đến:</span><input type="text" id="noiden" placeholder="Nơi đến" />
+									đến:</span><input type="text" id="noiden" placeholder="Nơi đến"
+								readonly />
 								<div id="menu-noiden">
 									<%
-									 n = 0; for(int i=0; i<sl;){
+										n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
 										<div id="noidi-den"></div>
@@ -146,15 +187,16 @@
 						<tr>
 							<td id="checkbox" align="left"><input type="checkbox"
 								name="laKhuHoi" />&nbsp;Vé khứ hồi</td>
-							<td align="right"><input type="submit" value="Tìm vé" /></td>
+							<td align="right"><input type="button" value="Tìm vé"
+								onclick="submits()" /></td>
 						</tr>
 					</table>
 
 				</form>
 			</article>
 			<script>
-				$("#menu-noidi").hide();
-				$("#menu-noiden").hide();
+				$("#menu-noidi").slideUp();
+				$("#menu-noiden").slideUp();
 			</script>
 		</section>
 		<section class="section1">

@@ -14,6 +14,7 @@ public class DuongDan {
 	public static final String DANG_NHAP = "/BanVeXe/jsp/DangNhap.jsp";
 	public static final String DANG_NHAP_SVL = "/jsp/DangNhap.jsp";
 	public static final String TIM_CHUYEN = "/BanVeXe/jsp/timchuyen.jsp";
+	public static final String TIM_CHUYEN_SVL = "/jsp/timchuyen.jsp";
 	public static final String CHI_TIET_DAT_VE = "/BanVeXe/jsp/chitietvexe.jsp";
 	public static final String FOOTER = "/BanVeXe/jsp/footer.jsp";
 	public static final String HEADER = "/BanVeXe/jsp/header.jsp";
@@ -31,6 +32,7 @@ public class DuongDan {
 	public static final String THEM_DIADIEM_SVL = "/jsp/admin/ThemDiaDiem.jsp";
 	public static final String THEM_KHACHHANG_SVL = "/jsp/admin/ThemKhachHang.jsp";
 	public static final String THEM_VE_SVL = "/jsp/admin/ThemVe.jsp";
+	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
 	//
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
 	public static final String TIM_TUYEN = "/BanVeXe/TimTuyen";

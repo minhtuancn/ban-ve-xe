@@ -27,49 +27,42 @@ public class TuyenDAOImpl implements TuyenDAO {
 		 f_yyyy_MM_dd= new SimpleDateFormat("yyyy-MM-dd");
 	}
 	@Override
-	public Tuyen getTuyen(String diemDi, String diemDen, String date) { // yyyy-MM-dd
+	public Tuyen getTuyen(long diemDi, long diemDen, Date ngayDi) { // yyyy-MM-dd
 		Connection con = ConnectionPool.getInstance().getConnection();
 		Tuyen tuyen = null;
 		String diemDenRs = "", diemDiRs = "";
-		long iddiemDi = -1, iddiemDen = -1;
-		String sql1 = "SELECT tuyen.iddiemdi,tuyen.iddiemden,phancong.ngaydi,tuyen.idtuyen FROM tuyen INNER JOIN phancong ON phancong.idtuyen = tuyen.idtuyen WHERE DATE(phancong.ngaydi) =?";
+		String sql1 = "SELECT tuyen.idtuyen, tuyen.iddiemdi, tuyen.iddiemden FROM tuyen WHERE iddiemdi = ? and iddiemden = ?";
 		String sql2 = "SELECT diadiem.tendiadiem FROM diadiem WHERE diadiem.iddiadiem =?";
 		PreparedStatement pre = null;
 		ResultSet res;
 		long idTuyen = -1;
 		try {
-			Date ngayDi = f_yyyy_MM_dd.parse(date);
-			pre = con.prepareStatement(sql1);
-			pre.setDate(1, new java.sql.Date(ngayDi.getTime()));
-			res = pre.executeQuery();
-			while (res.next()) {
-				iddiemDi = res.getLong("iddiemdi");
-				iddiemDen = res.getLong("iddiemden");
-				idTuyen = res.getLong("idtuyen");
-			}
-			// nếu idTuyen = -1 nghia là không tồn tại tuyến nao
-			if (idTuyen != -1) {
-				pre = con.prepareStatement(sql2);
-				pre.setLong(1, iddiemDi);
+				pre = con.prepareStatement(sql1);
+				pre.setLong(1, diemDi);
+				pre.setLong(2, diemDen);
 				res = pre.executeQuery();
-				while (res.next()) {
-					diemDiRs = res.getString("tendiadiem");
+				if(res.next()){
+					idTuyen = res.getLong("idtuyen");
+					//
+					ConnectionPool.getInstance().closePre(pre);
+					pre = con.prepareStatement(sql2);
+					//
+					pre.setLong(1, diemDi);
+					res = pre.executeQuery();
+					while(res.next())
+						diemDiRs = res.getString("tendiadiem");
+					//
+					pre.setLong(1, diemDen);
+					res = pre.executeQuery();
+					while(res.next())
+						diemDenRs = res.getString("tendiadiem");
+					tuyen = new Tuyen(new DiaDiem(diemDi, diemDiRs), new DiaDiem(diemDen, diemDenRs));
+					tuyen.setNgayDi(ngayDi);
+					tuyen.setIdTuyen(idTuyen);
+					tuyen.setDanhSachChuyen(getChuyenDAO().getAllChuyen(tuyen, ngayDi));
 				}
-				pre = con.prepareStatement(sql2);
-				pre.setLong(1, iddiemDen);
-				res = pre.executeQuery();
-				while (res.next()) {
-					diemDenRs = res.getString("tendiadiem");
-				}
-				tuyen = new Tuyen(new DiaDiem(diemDiRs), new DiaDiem(diemDenRs));
-				tuyen.setNgayDi(ngayDi);
-				tuyen.setIdTuyen(idTuyen);
-				tuyen.setDanhSachChuyen(getChuyenDAO().getAllChuyen(tuyen, ngayDi));
-			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);
@@ -77,9 +70,6 @@ public class TuyenDAOImpl implements TuyenDAO {
 		}
 		return tuyen;
 	}
-	
-	
-
 	@Override
 	public List<Tuyen> getAllTuyen() {
 		listAllTuyen = new ArrayList<>();
