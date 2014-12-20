@@ -3,6 +3,7 @@ package factory.dao;
 import DAO.ChuyenDAOImpl;
 import DAO.GheDAOImpl;
 import DAO.TuyenDAOImpl;
+import DAO.VeDAOImpl;
 import DAO.XeDAOImpl;
 
 public class FactoryDAOImp implements FactoryDao{
@@ -18,6 +19,8 @@ public class FactoryDAOImp implements FactoryDao{
 			return new XeDAOImpl();
 		case GHE_DAO:
 			return new GheDAOImpl();
+		case VE_DAO:
+			return new VeDAOImpl();
 		default:
 			break;
 		}

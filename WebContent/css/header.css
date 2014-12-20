@@ -15,6 +15,24 @@ header img {
 	margin-left: 60px;
 }
 
+#dn{
+	float: right;
+	clear: none;
+	padding-top: 50px;
+	padding-right: 10px;
+}
+
+#taga{
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: bold;
+	font-style: italic;
+	color: white;
+	text-decoration: none;
+	display: block;
+	padding-right: 10px;
+}
+
 nav {
 	float: right;
 	margin-top: -65px;
@@ -26,7 +44,9 @@ nav ul {
 	font-size: 18px;
 	padding: 0;
 }
-
+.overflow{
+	overflow: auto;
+}
 nav ul li {
 	float: left;
 	position: relative;
