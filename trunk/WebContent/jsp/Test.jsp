@@ -16,6 +16,6 @@
 </script>
 </head>
 <body>
-	<%@ include file="test2.jsp"%>
+	<button onclick="check()">click</button>
 </body>
 </html>

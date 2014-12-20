@@ -72,13 +72,8 @@ public class GheDAOImpl implements GheDAO {
 		ResultSet res;
 		byte trangThai;
 		Date giuCho; // var date giữ chố của ghế trên database
-		Date datCho = new Date(System.currentTimeMillis() + 10 * 60 * 1000); // var
-																				// date
-																				// hiện
-																				// tại
-																				// +
-																				// 10
-																				// phút
+		// var date hiện tại + 10 phút
+		Date datCho = new Date(System.currentTimeMillis() + 10 * 60 * 1000);
 		Date now = new Date();
 		String mes = null;
 		try {
@@ -88,33 +83,39 @@ public class GheDAOImpl implements GheDAO {
 			for (Ghe ghe : listGhe) {
 				preCheck.setLong(1, ghe.getIdGhe());
 				res = preCheck.executeQuery();
-				trangThai = res.getByte("trangthai");
-				switch (trangThai) {
-				case Ghe.CHUA_DAT:
-					preSet.setByte(1, Ghe.DANG_GIU);
-					preSet.setTimestamp(2, new Timestamp(datCho.getTime()));
-					preSet.setLong(3, ghe.getIdGhe());
-					break;
-				case Ghe.DANG_GIU:
-					giuCho = new Date(res.getTimestamp("giucho").getTime());
-					if (giuCho.compareTo(now) < 0) {
-						mes = "Ghế " + ghe.getSoGhe() + " của tuyến "
-								+ datVe.getTuyenXe()
-								+ " đã có người đặt trước!";
-						throw new SQLException();
-					} else {
+				while (res.next()) {
+					trangThai = res.getByte("trangthai");
+					switch (trangThai) {
+					case Ghe.CHUA_DAT:
 						preSet.setByte(1, Ghe.DANG_GIU);
 						preSet.setTimestamp(2, new Timestamp(datCho.getTime()));
 						preSet.setLong(3, ghe.getIdGhe());
+						break;
+					case Ghe.DANG_GIU:
+						if (res.getTimestamp("giucho") != null) {
+							giuCho = new Date(res.getTimestamp("giucho")
+									.getTime());
+							if (giuCho.compareTo(now) > 0) {
+								mes = "Ghế " + ghe.getSoGhe() + " của tuyến "
+										+ datVe.getTuyenXe()
+										+ " đã có người đặt trước!";
+								throw new SQLException();
+							} else {
+								preSet.setByte(1, Ghe.DANG_GIU);
+								preSet.setTimestamp(2,
+										new Timestamp(datCho.getTime()));
+								preSet.setLong(3, ghe.getIdGhe());
+							}
+						}
+						break;
+					case Ghe.DA_DAT:
+						throw new SQLException();
+					default:
+						break;
 					}
-					break;
-				case Ghe.DA_DAT:
-					throw new SQLException();
-				default:
-					break;
 				}
 			}
-
+			con.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {
@@ -131,20 +132,55 @@ public class GheDAOImpl implements GheDAO {
 		return mes;
 	}
 
-	public static void main(String[] args) throws SQLException {
-		// PreparedStatement pre = Database.getInstance().getConnection()
-		// .prepareStatement("select trangthai from ghe");
-		// ResultSet res = pre.executeQuery();
-		// while(res.next())
-		// System.out.println(res.getInt("trangthai"));
+	@Override
+	public List<Ghe> getGheOfVe(long idVe) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		ArrayList<Ghe> list = new ArrayList<Ghe>();
+		String sql1 = "SELECT idghe,soghe,trangthai,idve, giucho FROM ghe WHERE idve = ?";
+		PreparedStatement pre = null;
+		ResultSet res;
+		Date now = new Date();
+		Date dateGiuCho;
+		byte trangThai = 0;
 		try {
-			String s = null;
-			if (s == null)
-				throw new NumberFormatException();
-			System.out.println(s);
-		} catch (NumberFormatException e) {
-			System.out.println("catch");
+			pre = con.prepareStatement(sql1);
+			pre.setLong(1, idVe);
+			res = pre.executeQuery();
+			while (res.next()) {
+				list.add(new Ghe(res.getLong("idghe"), res.getInt("soghe"), res
+						.getByte("trangthai")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
+		return list;
 	}
 
+	public static void main(String[] args) {
+		Connection con = Database.getInstance().getConnection();
+		ArrayList<Ghe> list = new ArrayList<Ghe>();
+		String sql1 = "SELECT idghe,soghe,trangthai,idve, giucho FROM ghe WHERE idve = ?";
+		PreparedStatement pre = null;
+		ResultSet res;
+		Date now = new Date();
+		Date dateGiuCho;
+		byte trangThai = 0;
+		try {
+			pre = con.prepareStatement(sql1);
+			pre.setLong(1, 2);
+			res = pre.executeQuery();
+			while (res.next()) {
+				list.add(new Ghe(res.getLong("idghe"), res.getInt("soghe"), res
+						.getByte("trangthai")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Database.getInstance().closePre(pre);
+		}
+		System.out.println(list);
+	}
 }
