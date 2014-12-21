@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
+import DAO.TuyenDAO;
+
 
 public class Tuyen {
 	private long idTuyen;
@@ -10,6 +14,39 @@ public class Tuyen {
 	private DiaDiem diemDen;
 	private Date ngayDi;
 	private List<Chuyen> danhSachChuyen;
+	private TuyenDAO tuyenDAO;
+	
+	//tương tác database
+	public Tuyen(){
+		tuyenDAO = (TuyenDAO) new FactoryDAOImp()
+		.createDAO(FactoryDao.TUYEN_DAO);
+	}
+	
+	public Tuyen getTuyen(long idNoiDi,long idNoiDen,Date dateNgayDi){
+		return tuyenDAO.getTuyen(idNoiDi,idNoiDen,ngayDi);
+	}
+	
+	public Tuyen getTuyen(long idTuyen){
+		return tuyenDAO.getTuyen(idTuyen);
+	}
+
+	public List<Tuyen> getAllTuyen(){
+		return tuyenDAO.getAllTuyen();
+	}
+	
+	public long addTuyen(long diemDi, long diemDen){
+		return tuyenDAO.addTuyen(diemDi, diemDen);
+	}
+	
+	public int deleteTuyen(long idTuyen){
+		return tuyenDAO.deleteTuyen(idTuyen);
+	}
+	
+	public int editTuyen(long idTuyen, String value, int columnPosition){
+		return tuyenDAO.editTuyen(idTuyen, value, columnPosition);
+	}
+	//
+	
 	public Tuyen(DiaDiem diemDi, DiaDiem diemDen, Date ngayDi) {
 		this.diemDi = diemDi;
 		this.diemDen = diemDen;

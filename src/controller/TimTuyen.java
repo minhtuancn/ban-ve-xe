@@ -22,7 +22,7 @@ import factory.dao.FactoryDao;
  */
 public class TimTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private TuyenDAO tuyenDAO;
+	Tuyen tuyenModel;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,8 +36,7 @@ public class TimTuyen extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		tuyenDAO = (TuyenDAO) new FactoryDAOImp()
-				.createDAO(FactoryDao.TUYEN_DAO);
+		tuyenModel = new Tuyen();
 	}
 
 	/**
@@ -101,6 +100,7 @@ public class TimTuyen extends HttpServlet {
 			request.setAttribute("mes", mes);
 			typeError = 2;
 			request.setAttribute("typeError", typeError);
+			System.out.println(typeError);
 			request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
 					request, response);
 			return;
@@ -121,28 +121,31 @@ public class TimTuyen extends HttpServlet {
 				return;
 			}
 		}
-		Tuyen tuyen = tuyenDAO.getTuyen(idNoiDi, idNoiDen, dateNgayDi);
-		if(tuyen == null){
+		Tuyen tuyen = tuyenModel.getTuyen(idNoiDi, idNoiDen, dateNgayDi);
+		if (tuyen == null) {
 			mes = "Tuyến Đi không có, xin vui lòng chọn chuyến khác!";
 			request.setAttribute("mes", mes);
 			request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
 					request, response);
 			return;
-		}else
+		} else{
+			System.out.println(tuyen.getTuyenXe());
 			session.setAttribute("tuyenDi", tuyen);
-		if(laKhuHoi_bool){
-			tuyen = tuyenDAO.getTuyen(idNoiDen, idNoiDi, dateNgayVe);
-			if(tuyen == null){
+		}
+		if (laKhuHoi_bool) {
+			tuyen = tuyenModel.getTuyen(idNoiDen, idNoiDi, dateNgayVe);
+			if (tuyen == null) {
 				mes = "Tuyến Về không có, xin vui lòng chọn chuyến khác!";
 				request.setAttribute("mes", mes);
 				request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
 						request, response);
 				return;
-			}else
+			} else
 				session.setAttribute("tuyenVe", tuyen);
 		}
-		request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request, response);
-			
+		request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request,
+				response);
+
 	}
 
 }

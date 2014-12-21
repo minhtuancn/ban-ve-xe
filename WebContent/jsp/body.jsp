@@ -76,7 +76,13 @@
 				&& $("input[name='ngayve']").val() == 0) {
 			al("Bạn chưa chọn ngày về!", "warning");
 		} else {
+			var ngayDi = new Date(($("input[name='ngaydi']").val()));
+			var ngayVe = new Date(($("input[name='ngayve']").val()));
+			if(ngayDi > ngayVe)
+				al("Ngày về phải lớn hơn ngày đi!", "warning");
+			else{
 			$("#formtimve").submit();
+		}
 		}
 	}
 </script>
@@ -87,14 +93,13 @@
 	<div id="container">
 		<%@ include file="header.jsp"%>
 		<section>
-			<img alt="nen" src="../image/banner03-v1.jpg" width="100%"
-				height="350px">
+			<img alt="nen" src="../image/banner03-v1.jpg" id="img-1"/>
 
 			<article>
 				<%
-					String mes = "ok";
-																		if((String) request.getAttribute("mes")!= null)
-																			mes = (String) request.getAttribute("mes");
+					String mes = "";
+						if((String) request.getAttribute("mes")!= null)
+					mes = (String) request.getAttribute("mes");
 				%>
 				<input type="hidden" value="<%=mes%>" id="error" />
 				<form action="/BanVeXe/TimTuyen" class="login-form bg"
@@ -106,14 +111,11 @@
 							<td><img alt="a" src="/BanVeXe/image/tim ve xe.jpg"
 								height="50px"></td>
 						</tr>
-
-
-
 						<%
 							List<DiaDiem> listmb = new ArrayList();
-																																										if(session.getAttribute("listDiaDiem") != null){
-																																											listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
-																																										}
+						if(session.getAttribute("listDiaDiem") != null){
+							listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
+								}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
@@ -121,8 +123,8 @@
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
-																																																																								int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
-																																																																								int n = 0; for(int i=0; i<sl;){
+									int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
+									int n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
 										<div id="noidi-den"></div>
@@ -175,7 +177,6 @@
 										}
 									%>
 								</div></td>
-
 						</tr>
 						<tr>
 							<td><span id="title-datve">Ngày đi:</span><input type="date"

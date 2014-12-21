@@ -58,10 +58,30 @@ public class TestDatabase {
 		con.close();
 		return now.compareTo(date);
 	}
+	public int inert(){
+		PreparedStatement pre;
+		int t = 0;
+		try {
+			pre = con.prepareStatement("INSERT INTO ghe (soghe,trangthai,idchuyen)VALUES(?,?,?)");
+			for (int j = 16; j < 46; j++) {
+				pre.setInt(1, j);
+				pre.setByte(2, (byte) 0);
+				pre.setLong(3, 4);
+				pre.executeUpdate();
+				t++;
+			}
+		con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return t;
+	}
 
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException {
-		// System.out.println(new TestDatabase().check());
-		new TestDatabase().inserDate(new Date());
+		 TestDatabase t = new TestDatabase();
+		 System.out.println(t.inert());
+		
 	}
 }
