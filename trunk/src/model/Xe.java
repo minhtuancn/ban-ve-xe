@@ -1,10 +1,15 @@
-package model;
+﻿package model;
+
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
+import DAO.XeDAO;
 
 public class Xe {
 	private long idXe;
 	private String bienSoXe;
 	private String loaiGhe;
 	private int soGhe;
+	
 	public Xe(long idXe,String bienSoXe, String loaiGhe, int soGhe) {
 		this.idXe = idXe;
 		this.bienSoXe = bienSoXe;
@@ -35,5 +40,5 @@ public class Xe {
 	public void setIdXe(long idXe) {
 		this.idXe = idXe;
 	}
-	
+
 }
