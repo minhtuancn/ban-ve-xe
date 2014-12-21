@@ -100,7 +100,6 @@ public class TimTuyen extends HttpServlet {
 			request.setAttribute("mes", mes);
 			typeError = 2;
 			request.setAttribute("typeError", typeError);
-			System.out.println(typeError);
 			request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
 					request, response);
 			return;
@@ -129,7 +128,6 @@ public class TimTuyen extends HttpServlet {
 					request, response);
 			return;
 		} else{
-			System.out.println(tuyen.getTuyenXe());
 			session.setAttribute("tuyenDi", tuyen);
 		}
 		if (laKhuHoi_bool) {

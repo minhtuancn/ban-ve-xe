@@ -12,6 +12,9 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script src="/BanVeXe/js/util.js"></script>
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
 <script type="text/javascript">
 	function chonXe(scrollid,time, chuyenDiOrVe, chuyen, id) {
 // 		setDefaut(chuyenDiOrVe);
@@ -22,11 +25,31 @@
 			$("#"+chuyen+"-"+id).slideDown();
 			scroll(scrollid,time);
 	}
+	
+	function checkEr() {
+		if ($("#error").val().length != 0) {
+			al($("#error").val(), "error");
+		}
+	};
+	function al(mes, type) {
+		swal({
+			title : mes ,
+			type : type
+		});
+	}
+	$(window).load(function() {
+		checkEr();
+	  });
 </script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div></div>
+	<%
+					String mes = "";
+						if((String) request.getAttribute("mes")!= null)
+					mes = (String) request.getAttribute("mes");
+				%>
+				<input type="hidden" value="<%=mes%>" id="error" />
 	<div id="tc-container">
 		<div id="timvedi" class="title bg">
 			<marquee behavior="alternate" width="10%">>></marquee>

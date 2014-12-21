@@ -25,14 +25,22 @@ else pageLink = DuongDan.KIEM_TRA_VE_CHUA_DANG_NHAP;
 			<img alt="logo"  src="/BanVeXe/image/logo2.png" width="480"
 				height="120"  >
 				</a> 
+				<%KhachHang khs = (KhachHang) session.getAttribute("khachHang");
+				if(khs == null){
+				%>
 				<div id="dn"><a id="taga" href=<%=DuongDan.DANG_NHAP %>>Đăng nhập</a> &nbsp;
 				<a id="taga" href=<%=DuongDan.DANG_KY %>>Đăng kí</a></div>
+				<%}else { %>
+				<div id="dn"><a id="taga" href=<%=DuongDan.KIEM_TRA_THONG_TIN %>><%=khs.getTenKhachHang() %></a> &nbsp;
+				<a id="taga" href=<%=DuongDan.DANG_XUAT %>>Thoát</a></div>
+				<%} %>
 		</header>
 		<nav>
 			<ul>
 				<li><a href="/BanVeXe/jsp/body.jsp">Trang chủ</a></li>
 				<li><a href="/BanVeXe/jsp/gioithieu.jsp">Giới thiệu</a></li>
 				<li><a href=<%=pageLink %>>Kiểm tra thông tin</a></li>
+				<li><a href="/BanVeXe/jsp/timve.jsp">Kiểm tra vé</a></li>
 				<li><a href="/BanVeXe/jsp/tintuc.jsp">Tin tức</a></li>
 				<li><a href="/BanVeXe/jsp/lienhe.jsp">Liên hệ</a></li>
 			</ul>

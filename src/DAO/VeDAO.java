@@ -24,6 +24,8 @@ public interface VeDAO extends DAO {
 	 * danh cho admin, khach hang
 	 */
 	public List<Ve> searchVe(String maSearch);
+	
+	public Ve timVeOfMaVe(String maVe);
 
 //	public String addVe( String ghiChu, String maVe, Date ngayDat,
 //			Date thoiHanThanhToan,long idChuyen,

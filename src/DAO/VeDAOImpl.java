@@ -118,14 +118,11 @@ public class VeDAOImpl implements VeDAO {
 //			long idKhachHang) {
 	public String addVe(Ve ve){
 		Connection con = ConnectionPool.getInstance().getConnection();
-		PreparedStatement pre = null, pre1 = null;
+		PreparedStatement pre = null;
 		String sql = "INSERT into Ve(dakhoihanh, ghichu,mave,ngaydatve, thoihanthanhtoan, trangthaithanhtoan, idchuyen, idkhachhang, lahuyve) VALUES (?,?,?,?,?,?,?,?,?)";
-		ResultSet res;
-		int len = 1;
 		String giuCho = null;
 		try {
 			gheDAO = getGheDAO();
-//			Ve ve = new Ve(maVe,new DatVe(getChuyenDAO().getChuyen(idChuyen)), ghiChu);
 			giuCho = gheDAO.setGiuCho(ve);
 			if(null == giuCho){
 			pre = con.prepareStatement(sql);
@@ -144,12 +141,44 @@ public class VeDAOImpl implements VeDAO {
 			}
 			}
 		} catch (SQLException e) {
+			giuCho = "Lỗi hệ thống, xin vui lòng thử lại sau vài phút!";
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return giuCho;
+	}
+
+	@Override
+	public Ve timVeOfMaVe(String maVe) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "SELECT idve,dakhoihanh,ghichu,mave,ngaydatve,thoihanthanhtoan,trangthaithanhtoan,idchuyen,idkhachhang,lahuyve,lidohuy FROM ve INNER JOIN khachhang ON ve.idkhachhang = khachhang.idkhachhang WHERE ve.mave = ? ";
+		PreparedStatement pre = null;
+		Ve ve = null;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, maVe);
+			ResultSet res = pre.executeQuery();
+			while (res.next()) {
+				ve = new Ve(res.getLong("idve"),res.getString("mave"), res
+						.getString("ghichu"), res.getDate("ngaydatve"), null,
+						res.getBoolean("dakhoihanh"), res
+								.getBoolean("trangthaithanhtoan"), res
+								.getDate("thoihanthanhtoan"), res
+								.getBoolean("trangthaihuyve"), res
+								.getString("lidohuyve"));
+				ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(ve.getIdVe()));;
+				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return ve;
 	}
 
 }

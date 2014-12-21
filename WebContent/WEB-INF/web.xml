@@ -292,4 +292,14 @@
     <servlet-name>Home</servlet-name>
     <url-pattern>/Home</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DangXuat</display-name>
+    <servlet-name>DangXuat</servlet-name>
+    <servlet-class>controller.DangXuat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DangXuat</servlet-name>
+    <url-pattern>/DangXuat</url-pattern>
+  </servlet-mapping>
 </web-app>

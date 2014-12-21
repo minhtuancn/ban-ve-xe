@@ -21,7 +21,6 @@ public class GheDAOImpl implements GheDAO {
 
 	@Override
 	public List<Ghe> getAllGhe(long idChuyen) {
-		System.out.println("GheDaoImpl " + idChuyen);
 		Connection con = ConnectionPool.getInstance().getConnection();
 		ArrayList<Ghe> list = new ArrayList<Ghe>();
 		String sql1 = "SELECT idghe,soghe,trangthai, giucho FROM ghe WHERE idchuyen = ?";
@@ -54,7 +53,6 @@ public class GheDAOImpl implements GheDAO {
 				list.add(new Ghe(res.getLong("idghe"), res.getInt("soghe"),
 						trangThai));
 			}
-			System.out.println("GheDaoImpl " + list.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -125,6 +123,7 @@ public class GheDAOImpl implements GheDAO {
 			}
 			con.commit();
 		} catch (SQLException e) {
+			mes = "Lỗi hệ thống, xin vui lòng thử lại sau vài phút!";
 			e.printStackTrace();
 			try {
 				con.rollback();
