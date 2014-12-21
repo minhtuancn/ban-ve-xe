@@ -4,8 +4,6 @@ import java.util.List;
 
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
-import DAO.KhachHangDAO;
-import DAO.VeDAO;
 public abstract class KhachHang  {
 	private long idKhachHang;
 	private String tenKhachHang;
@@ -17,6 +15,8 @@ public abstract class KhachHang  {
 	private Ve veVe;
 	private List<Ve> danhSachVeDaDat;
 	
+	public KhachHang(){
+	}
 	
 	public KhachHang(long idKH, String tenKhachHang, String sdt, String cmnd, String diaChi, String email){
 		this.idKhachHang = idKH;

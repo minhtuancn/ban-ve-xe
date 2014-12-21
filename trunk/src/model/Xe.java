@@ -1,8 +1,5 @@
 ﻿package model;
 
-import factory.dao.FactoryDAOImp;
-import factory.dao.FactoryDao;
-import DAO.XeDAO;
 
 public class Xe {
 	private long idXe;
