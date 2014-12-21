@@ -34,6 +34,7 @@ public class DuongDan {
 	public static final String THEM_VE_SVL = "/jsp/admin/ThemVe.jsp";
 	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
 	//
+	public static final String DANG_XUAT = "/BanVeXe/DangXuat";
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
 	public static final String TIM_TUYEN = "/BanVeXe/TimTuyen";
 	public static final String CAPTCHA = "/BanVeXe/GenerateCaptcha";

@@ -85,15 +85,18 @@
 		}
 		}
 	}
+	 $(window).load(function() {
+		    checkEr();
+		  });
 </script>
 
 
 </head>
-<body onload="checkEr()">
+<body >
 	<div id="container">
 		<%@ include file="header.jsp"%>
 		<section>
-			<img alt="nen" src="../image/banner03-v1.jpg" id="img-1"/>
+			<img alt="nen" src="/BanVeXe/image/banner03-v1.jpg" id="img-1"/>
 
 			<article>
 				<%
