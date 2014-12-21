@@ -17,6 +17,12 @@ div#container {
 	margin-right: auto;
 }
 
+#img-1{
+	width: 100%;
+	height: 350px;
+	display: block;
+}
+
 section.def {
 	margin-top: 40px;
 	width: 100%;
