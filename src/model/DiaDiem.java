@@ -1,4 +1,11 @@
-package model;
+﻿package model;
+
+import java.util.List;
+
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
+import DAO.DiaDiemDAO;
+
 public class DiaDiem implements Comparable<DiaDiem>{
 	private long idDiaDiem;
 	private String tenDiaDiem;

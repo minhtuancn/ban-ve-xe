@@ -24,6 +24,8 @@ public class FactoryDAOImp implements FactoryDao{
 			return new VeDAOImpl();
 		case DIA_DIEM_DAO:
 			return new DiaDiemDAOImpl();
+		case KHACH_HANG_DAO:
+			return new DiaDiemDAOImpl();
 		default:
 			break;
 		}
