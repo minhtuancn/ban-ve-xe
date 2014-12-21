@@ -2,9 +2,6 @@ package model;
 
 import java.util.List;
 
-import factory.dao.FactoryDAOImp;
-import factory.dao.FactoryDao;
-import DAO.GheDAO;
 
 public class Ghe implements Comparable<Ghe>{
 	private long idGhe;

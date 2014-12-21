@@ -22,7 +22,7 @@ import factory.dao.FactoryDao;
  */
 public class TimTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Tuyen tuyenModel;
+	Tuyen tuyenDAO;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,7 +36,7 @@ public class TimTuyen extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		tuyenModel = new Tuyen();
+		tuyenDAO = (Tuyen) new FactoryDAOImp().createDAO(FactoryDao.TUYEN_DAO);
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class TimTuyen extends HttpServlet {
 				return;
 			}
 		}
-		Tuyen tuyen = tuyenModel.getTuyen(idNoiDi, idNoiDen, dateNgayDi);
+		Tuyen tuyen = tuyenDAO.getTuyen(idNoiDi, idNoiDen, dateNgayDi);
 		if (tuyen == null) {
 			mes = "Tuyến Đi không có, xin vui lòng chọn chuyến khác!";
 			request.setAttribute("mes", mes);
@@ -133,7 +133,7 @@ public class TimTuyen extends HttpServlet {
 			session.setAttribute("tuyenDi", tuyen);
 		}
 		if (laKhuHoi_bool) {
-			tuyen = tuyenModel.getTuyen(idNoiDen, idNoiDi, dateNgayVe);
+			tuyen = tuyenDAO.getTuyen(idNoiDen, idNoiDi, dateNgayVe);
 			if (tuyen == null) {
 				mes = "Tuyến Về không có, xin vui lòng chọn chuyến khác!";
 				request.setAttribute("mes", mes);
