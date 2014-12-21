@@ -3,6 +3,8 @@ package factory.dao;
 import DAO.ChuyenDAOImpl;
 import DAO.DiaDiemDAOImpl;
 import DAO.GheDAOImpl;
+import DAO.KhachHangDAOIml;
+import DAO.ThanhToanDAOIpml;
 import DAO.TuyenDAOImpl;
 import DAO.VeDAOImpl;
 import DAO.XeDAOImpl;
@@ -25,7 +27,9 @@ public class FactoryDAOImp implements FactoryDao{
 		case DIA_DIEM_DAO:
 			return new DiaDiemDAOImpl();
 		case KHACH_HANG_DAO:
-			return new DiaDiemDAOImpl();
+			return new KhachHangDAOIml();
+		case THANH_TOAN_DAO:
+			return new ThanhToanDAOIpml();
 		default:
 			break;
 		}

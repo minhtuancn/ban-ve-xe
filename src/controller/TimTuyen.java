@@ -22,7 +22,7 @@ import factory.dao.FactoryDao;
  */
 public class TimTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Tuyen tuyenDAO;
+	TuyenDAO tuyenDAO;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -36,7 +36,7 @@ public class TimTuyen extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		tuyenDAO = (Tuyen) new FactoryDAOImp().createDAO(FactoryDao.TUYEN_DAO);
+		tuyenDAO = (TuyenDAO) new FactoryDAOImp().createDAO(FactoryDao.TUYEN_DAO);
 	}
 
 	/**

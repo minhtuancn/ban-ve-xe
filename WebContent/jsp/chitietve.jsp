@@ -13,8 +13,8 @@
 </head>
 <body>
 	<%
-		KhachHang kh = (KhachHang) session.getAttribute("khachHang");
-		Ve veDi = kh.getVeDi();
+		Ve veDi = (Ve) session.getAttribute("veDi");
+		KhachHang kh = veDi.getKhachHang();
 		;
 	%>
 
@@ -69,7 +69,7 @@
 
 				<!-- 				Vé về -->
 				<%
-					Ve veVe = kh.getVeVe();
+					Ve veVe = (Ve) session.getAttribute("veVe");
 					if (veVe != null) {
 				%>
 				<div class="td">

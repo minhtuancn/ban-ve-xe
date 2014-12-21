@@ -31,19 +31,15 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 		String sql1 = "SELECT phancong.idtuyen, chuyen.idchuyen, chuyen.benxuatphat,  chuyen.chuakhoihanh, chuyen.gia,  chuyen.giokhoihanh,chuyen.idxe, phancong.ngaydi  FROM chuyen INNER JOIN phancong ON phancong.idchuyen = chuyen.idchuyen  WHERE chuyen.idchuyen = ?";
 		PreparedStatement pre = null;
 		ResultSet res;
-		Date ngayDi;
 		Tuyen tuyen = null;
 		try {
 			pre = con.prepareStatement(sql1);
 			pre.setLong(1, id);
 			res = pre.executeQuery();
 			while (res.next()) {
-				ngayDi = new Date(res.getDate("ngaydi").getTime());
-				chuyen = new Chuyen(res.getLong("idchuyen"), getTuyenDAO()
-						.getTuyen(res.getLong("idTuyen")),
-						res.getString("giokhoihanh"), getXeDAO().getXe(
-								res.getLong("idxe")),
-						res.getString("benxuatphat"), res.getInt("gia"));
+				chuyen = getChuyen(id,getTuyenDAO()
+						.getTuyen(res.getLong("idTuyen")));
+						
 			}
 			chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 		} catch (SQLException e) {
@@ -54,6 +50,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 		}
 		return chuyen;
 	}
+
 	@Override
 	public Chuyen getChuyen(long id, Tuyen tuyen) {
 		Connection con = ConnectionPool.getInstance().getConnection();
@@ -69,7 +66,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 				chuyen = new Chuyen(res.getLong("idchuyen"), tuyen,
 						res.getString("giokhoihanh"), getXeDAO().getXe(
 								res.getLong("idxe")),
-								res.getString("benxuatphat"), res.getInt("gia"));
+						res.getString("benxuatphat"), res.getInt("gia"));
 			}
 			chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 		} catch (SQLException e) {
@@ -187,40 +184,38 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 
 	@Override
 	public String getTenChuyen(long idVe) {
-			Connection con = ConnectionPool.getInstance().getConnection();
-			String sql = "SELECT tuyen.iddiemdi,tuyen.iddiemden FROM chuyen INNER JOIN ve ON ve.idchuyen = chuyen.idchuyen INNER JOIN phancong ON phancong.idchuyen = chuyen.idchuyen INNER JOIN tuyen ON phancong.idtuyen = tuyen.idtuyen WHEREve.idve = ? ";
-			String sql1 = "SELECT tendiadiem FROM diadiem WHERE iddiadiem = ? ";
-			PreparedStatement pre = null, pre1=null;
-			ResultSet res, res1;
-			String kq = "";
-			try {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "SELECT tuyen.iddiemdi,tuyen.iddiemden FROM chuyen INNER JOIN ve ON ve.idchuyen = chuyen.idchuyen INNER JOIN phancong ON phancong.idchuyen = chuyen.idchuyen INNER JOIN tuyen ON phancong.idtuyen = tuyen.idtuyen WHEREve.idve = ? ";
+		String sql1 = "SELECT tendiadiem FROM diadiem WHERE iddiadiem = ? ";
+		PreparedStatement pre = null, pre1 = null;
+		ResultSet res, res1;
+		String kq = "";
+		try {
 			pre = con.prepareStatement(sql);
 			pre.setLong(1, idVe);
 			res = pre.executeQuery();
-			while(res.next()){
+			while (res.next()) {
 				pre1 = con.prepareStatement(sql1);
 				pre1.setLong(1, res.getLong("iddiemdi"));
 				res1 = pre1.executeQuery();
-				while (res1.next()){
-					kq+= res1.getString("tendiadiem")+ " - ";
+				while (res1.next()) {
+					kq += res1.getString("tendiadiem") + " - ";
 				}
 				pre1 = con.prepareStatement(sql1);
 				pre1.setLong(1, res.getLong("iddiemden"));
 				res1 = pre1.executeQuery();
-				while (res1.next()){
-					kq+= res1.getString("tendiadiem");
+				while (res1.next()) {
+					kq += res1.getString("tendiadiem");
 				}
 			}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				ConnectionPool.getInstance().closePre(pre);
-				ConnectionPool.getInstance().closePre(pre1);
-				ConnectionPool.getInstance().freeConnection(con);
-			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().closePre(pre1);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
 		return kq;
 	}
-
-	
 
 }

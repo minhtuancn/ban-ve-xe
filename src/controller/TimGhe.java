@@ -58,6 +58,7 @@ public class TimGhe extends HttpServlet {
 			if (chuyen == 1) {
 				Chuyen c = ((Tuyen) session.getAttribute("tuyenDi"))
 						.getDanhSachChuyen().get(id);
+				System.out.println("TimGhe " + c.getDanhSachGheNgoi().size() + " : " + c.getLoaiGhe());
 				session.setAttribute("chuyenDi", c);
 				DatVe datVeDi = new DatVe(c);
 				session.setAttribute("datVeDi", datVeDi);
