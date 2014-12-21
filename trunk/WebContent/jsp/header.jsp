@@ -32,7 +32,7 @@ else pageLink = DuongDan.KIEM_TRA_VE_CHUA_DANG_NHAP;
 			<ul>
 				<li><a href="/BanVeXe/jsp/body.jsp">Trang chủ</a></li>
 				<li><a href="/BanVeXe/jsp/gioithieu.jsp">Giới thiệu</a></li>
-				<li><a href=<%=pageLink %>>Kiểm tra vé</a></li>
+				<li><a href=<%=pageLink %>>Kiểm tra thông tin</a></li>
 				<li><a href="/BanVeXe/jsp/tintuc.jsp">Tin tức</a></li>
 				<li><a href="/BanVeXe/jsp/lienhe.jsp">Liên hệ</a></li>
 			</ul>
