@@ -63,13 +63,15 @@ public class TestDatabase {
 		int t = 0;
 		try {
 			pre = con.prepareStatement("INSERT INTO ghe (soghe,trangthai,idchuyen)VALUES(?,?,?)");
-			for (int j = 16; j < 46; j++) {
+			for(int i=39; i<64; i++ ){
+				pre.setLong(3, i);
+			for (int j = 1; j < 12; j++) {
 				pre.setInt(1, j);
 				pre.setByte(2, (byte) 0);
-				pre.setLong(3, 4);
 				pre.executeUpdate();
 				t++;
 			}
+			}			
 		con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -77,7 +79,6 @@ public class TestDatabase {
 		}
 		return t;
 	}
-
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException {
 		 TestDatabase t = new TestDatabase();
