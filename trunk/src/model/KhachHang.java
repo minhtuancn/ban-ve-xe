@@ -11,8 +11,6 @@ public abstract class KhachHang  {
 	private String cmnd;
 	private String diaChi;
 	private String email;
-	private Ve veDi;
-	private Ve veVe;
 	private List<Ve> danhSachVeDaDat;
 	
 	public KhachHang(){
@@ -67,23 +65,25 @@ public abstract class KhachHang  {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Ve getVeDi() {
-		return veDi;
-	}
-	public void setVeDi(Ve veDi) {
-		this.veDi = veDi;
-	}
-	public Ve getVeVe() {
-		return veVe;
-	}
-	public void setVeVe(Ve veVe) {
-		this.veVe = veVe;
-	}
 	public List<Ve> getDanhSachVeDaDat() {
 		return danhSachVeDaDat;
 	}
 	public void setDanhSachVeDaDat(List<Ve> danhSachVeDaDat) {
 		this.danhSachVeDaDat = danhSachVeDaDat;
+	}
+
+	/**
+	 * @return the idKhachHang
+	 */
+	public long getIdKhachHang() {
+		return idKhachHang;
+	}
+
+	/**
+	 * @param idKhachHang the idKhachHang to set
+	 */
+	public void setIdKhachHang(long idKhachHang) {
+		this.idKhachHang = idKhachHang;
 	}
 
 }

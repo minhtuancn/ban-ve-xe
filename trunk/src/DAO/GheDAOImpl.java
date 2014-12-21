@@ -15,14 +15,16 @@ import database.Database;
 import model.Chuyen;
 import model.DatVe;
 import model.Ghe;
+import model.Ve;
 
 public class GheDAOImpl implements GheDAO {
 
 	@Override
 	public List<Ghe> getAllGhe(long idChuyen) {
+		System.out.println("GheDaoImpl " + idChuyen);
 		Connection con = ConnectionPool.getInstance().getConnection();
 		ArrayList<Ghe> list = new ArrayList<Ghe>();
-		String sql1 = "SELECT idghe,soghe,trangthai,idve, giucho FROM ghe WHERE idchuyen = ?";
+		String sql1 = "SELECT idghe,soghe,trangthai, giucho FROM ghe WHERE idchuyen = ?";
 		PreparedStatement pre = null;
 		ResultSet res;
 		Date now = new Date();
@@ -52,6 +54,7 @@ public class GheDAOImpl implements GheDAO {
 				list.add(new Ghe(res.getLong("idghe"), res.getInt("soghe"),
 						trangThai));
 			}
+			System.out.println("GheDaoImpl " + list.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -62,11 +65,11 @@ public class GheDAOImpl implements GheDAO {
 	}
 
 	@Override
-	public String setGiuCho(DatVe datVe) {
-		List<Ghe> listGhe = datVe.getDanhsachGheDat();
+	public String setGiuCho(Ve datVe) {
+		List<Ghe> listGhe = datVe.getDanhSachGhe();
 		Connection con = ConnectionPool.getInstance().getConnection();
 		String sqlCheck = "select trangthai, giucho from ghe where idghe=?";
-		String sqlSet = "update ghe set trangthai=?, giucho = ? where idghe=?";
+		String sqlSet = "update ghe set trangthai=?, giucho = ? , idve=? where idghe=?";
 		PreparedStatement preCheck = null;
 		PreparedStatement preSet = null;
 		ResultSet res;
@@ -89,7 +92,8 @@ public class GheDAOImpl implements GheDAO {
 					case Ghe.CHUA_DAT:
 						preSet.setByte(1, Ghe.DANG_GIU);
 						preSet.setTimestamp(2, new Timestamp(datCho.getTime()));
-						preSet.setLong(3, ghe.getIdGhe());
+						preSet.setString(3, datVe.getMaVe());
+						preSet.setLong(4, ghe.getIdGhe());
 						break;
 					case Ghe.DANG_GIU:
 						if (res.getTimestamp("giucho") != null) {
@@ -104,11 +108,15 @@ public class GheDAOImpl implements GheDAO {
 								preSet.setByte(1, Ghe.DANG_GIU);
 								preSet.setTimestamp(2,
 										new Timestamp(datCho.getTime()));
-								preSet.setLong(3, ghe.getIdGhe());
+								preSet.setString(3, datVe.getMaVe());
+								preSet.setLong(4, ghe.getIdGhe());
 							}
 						}
 						break;
 					case Ghe.DA_DAT:
+						mes = "Ghế " + ghe.getSoGhe() + " của tuyến "
+								+ datVe.getTuyenXe()
+								+ " đã có người đặt trước!";
 						throw new SQLException();
 					default:
 						break;
@@ -159,28 +167,38 @@ public class GheDAOImpl implements GheDAO {
 		return list;
 	}
 
-	public static void main(String[] args) {
-		Connection con = Database.getInstance().getConnection();
-		ArrayList<Ghe> list = new ArrayList<Ghe>();
-		String sql1 = "SELECT idghe,soghe,trangthai,idve, giucho FROM ghe WHERE idve = ?";
-		PreparedStatement pre = null;
-		ResultSet res;
-		Date now = new Date();
-		Date dateGiuCho;
-		byte trangThai = 0;
+
+	@Override
+	public String setNonGiuCho(Ve datVe) {
+		List<Ghe> listGhe = datVe.getDanhSachGhe();
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sqlSet = "update ghe set trangthai=? where idghe=?";
+		PreparedStatement preSet = null;
+		String mes = null;
+		int i = 0;
 		try {
-			pre = con.prepareStatement(sql1);
-			pre.setLong(1, 2);
-			res = pre.executeQuery();
-			while (res.next()) {
-				list.add(new Ghe(res.getLong("idghe"), res.getInt("soghe"), res
-						.getByte("trangthai")));
+			con.setAutoCommit(false);
+			preSet = con.prepareStatement(sqlSet);
+			for (Ghe ghe : listGhe){
+				preSet.setByte(1, Ghe.DANG_GIU);
+				preSet.setLong(2, ghe.getIdGhe());
+				if (preSet.executeUpdate() == 0){
+					throw new SQLException();
+				}
 			}
+			con.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		} finally {
-			Database.getInstance().closePre(pre);
+			ConnectionPool.getInstance().closePre(preSet);
+			ConnectionPool.getInstance().setDefaulAutoCommit(con);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
-		System.out.println(list);
+		return mes;
 	}
 }

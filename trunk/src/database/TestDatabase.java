@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import DAO.VeDAO;
+import DAO.VeDAOImpl;
+
 public class TestDatabase {
 	Connection con;
 	String user = "root";
@@ -81,8 +84,8 @@ public class TestDatabase {
 	}
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException {
-		 TestDatabase t = new TestDatabase();
-		 System.out.println(t.inert());
+		VeDAO vedao = new VeDAOImpl();
+		System.out.println(vedao.addVe( "asd", "1234",new Date(), new Date(),1,1));
 		
 	}
 }

@@ -148,4 +148,12 @@ public class Chuyen {
 	public Ghe getGhe(int i){
 		return danhSachGheNgoi.get(i);
 	}
+	/**
+	 * @return the idChuyen
+	 */
+	public long getIdChuyen() {
+		return idChuyen;
+	}
+	
+	
 }

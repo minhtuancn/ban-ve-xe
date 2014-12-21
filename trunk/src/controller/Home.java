@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.DiaDiem;
 import util.DuongDan;
+import DAO.DiaDiemDAO;
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
-import DAO.DiaDiemDAO;
-import model.DiaDiem;
 
 /**
  * Servlet implementation class Home
@@ -20,7 +20,7 @@ import model.DiaDiem;
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DiaDiemDAO diaDiemDAO;
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */

@@ -1,30 +1,25 @@
 package DAO;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import database.ConnectionPool;
-import database.Database;
-import factory.dao.DAO;
 import factory.dao.FactoryDao;
 import model.DiaDiem;
 import model.Tuyen;
 
 public class TuyenDAOImpl implements TuyenDAO {
 	private List<Tuyen> listAllTuyen;
-	private SimpleDateFormat f_yyyy_MM_dd ;
+//	private SimpleDateFormat f_yyyy_MM_dd ;
 	private ChuyenDAO chuyenDAO;
 	
 	public TuyenDAOImpl() {
-		 f_yyyy_MM_dd= new SimpleDateFormat("yyyy-MM-dd");
+//		 f_yyyy_MM_dd= new SimpleDateFormat("yyyy-MM-dd");
 	}
 	@Override
 	public Tuyen getTuyen(long diemDi, long diemDen, Date ngayDi) { // yyyy-MM-dd
@@ -129,6 +124,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 			pre.setLong(2, diemDen);
 			res = pre.executeQuery();
 			if (!res.next()) {
+				pre.close();
 				pre = con.prepareStatement(sql);
 				pre.setLong(1, diemDi);
 				pre.setLong(2, diemDen);
@@ -166,6 +162,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 			pre.setLong(1, id);
 			res = pre.executeQuery();
 			if (!res.next()) {
+				pre.close();
 				pre = con.prepareStatement(sql);
 				pre.setLong(1, id);
 				if (pre.executeUpdate() == 0)
@@ -246,6 +243,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 			res = pre.executeQuery();
 			if (res.next()) {
 				idDiaDiem = res.getLong((columnPosition == 0) ? 2 : 1);
+				pre.close();
 				pre = con.prepareStatement(sqlKtTuyen);
 				if (columnPosition == 0) {
 					pre.setLong(1, valueL);

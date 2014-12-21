@@ -19,12 +19,13 @@ public class Ve {
 	private boolean trangThaiThanhToan;
 	private ThanhToan phuongThucThanhToan;
 	private Date thoiHanThanhToan;
-	private int soSMS;
+	private KhachHang khachHang;
 	private boolean trangThaiHuyVe;
 	private String liDoHuyVe;
 	private SimpleDateFormat formats;
 	public static final String FORMAT = "dd/MM/yyyy HH:mm";
 
+	
 	public Ve(String maVe, Chuyen chuyen, String ghiChu, Date ngayDatVe,
 			List<Ghe> danhsachGhe, boolean daKhoiHanh,
 			boolean trangThaiThanhToan, Date thoiHanThanhToan,
@@ -40,6 +41,8 @@ public class Ve {
 		this.trangThaiHuyVe = trangThaiHuyVe;
 		this.liDoHuyVe = liDoHuyVe;
 	}
+	
+	
 
 	public Ve(String maVe, String ghiChu, Date ngayDatVe,
 			List<Ghe> danhSachGhe, boolean daKhoiHanh,
@@ -55,16 +58,33 @@ public class Ve {
 		this.trangThaiHuyVe = trangThaiHuyVe;
 		this.liDoHuyVe = liDoHuyVe;
 	}
+	public Ve(long idVe,String maVe, String ghiChu, Date ngayDatVe,
+			List<Ghe> danhSachGhe, boolean daKhoiHanh,
+			boolean trangThaiThanhToan, Date thoiHanThanhToan,
+			boolean trangThaiHuyVe, String liDoHuyVe) {
+		this.idVe = idVe;
+		this.maVe = maVe;
+		this.ghiChu = ghiChu;
+		this.ngayDatVe = ngayDatVe;
+		this.danhSachGhe = danhSachGhe;
+		this.daKhoiHanh = daKhoiHanh;
+		this.trangThaiThanhToan = trangThaiThanhToan;
+		this.thoiHanThanhToan = thoiHanThanhToan;
+		this.trangThaiHuyVe = trangThaiHuyVe;
+		this.liDoHuyVe = liDoHuyVe;
+	}
 
-	public Ve(String mave, DatVe datVe, String ghiChu) {
+	public Ve(KhachHang kh,String mave, DatVe datVe, String ghiChu) {
 		this.maVe = mave;
+		this.khachHang = kh;
 		this.chuyen = datVe.getChuyen();
 		this.ghiChu = ghiChu;
 		this.ngayDatVe = new Date();
 		this.danhSachGhe = datVe.getDanhsachGheDat();
 		this.daKhoiHanh = false;
 		this.trangThaiThanhToan = false;
-		this.thoiHanThanhToan = new Date();
+		this.thoiHanThanhToan = new Date(
+				System.currentTimeMillis() + 10 * 60 * 1000);
 		formats = new SimpleDateFormat(FORMAT);
 	}
 
@@ -81,12 +101,7 @@ public class Ve {
 	}
 
 	public String getTuyenXe() {
-		if (chuyen != null)
-			return chuyen.getTuyenXe();
-		else {
-			return ((ChuyenDAO) new FactoryDAOImp()
-					.createDAO(FactoryDao.CHUYEN_DAO)).getTenChuyen(idVe);
-		}
+		return chuyen.getTuyenXe();
 	}
 
 	public boolean isTrangThaiThanhToan() {
@@ -122,5 +137,133 @@ public class Ve {
 
 	public String getThoiHanThanhToan() {
 		return formats.format(thoiHanThanhToan);
+	}
+
+	public List<Ghe> getDanhSachGhe() {
+		return danhSachGhe;
+	}
+
+	public ThanhToan getPhuongThucThanhToan() {
+		return phuongThucThanhToan;
+	}
+
+	public void setPhuongThucThanhToan(ThanhToan phuongThucThanhToan) {
+		this.phuongThucThanhToan = phuongThucThanhToan;
+	}
+
+
+
+	public String getGhiChu() {
+		return ghiChu;
+	}
+
+
+
+	public void setGhiChu(String ghiChu) {
+		this.ghiChu = ghiChu;
+	}
+
+
+
+	/**
+	 * @return the khachHang
+	 */
+	public KhachHang getKhachHang() {
+		return khachHang;
+	}
+
+
+
+	/**
+	 * @param khachHang the khachHang to set
+	 */
+	public void setKhachHang(KhachHang khachHang) {
+		this.khachHang = khachHang;
+	}
+
+
+
+	public boolean isDaKhoiHanh() {
+		return daKhoiHanh;
+	}
+
+
+
+	public void setDaKhoiHanh(boolean daKhoiHanh) {
+		this.daKhoiHanh = daKhoiHanh;
+	}
+
+
+
+	public boolean isTrangThaiHuyVe() {
+		return trangThaiHuyVe;
+	}
+
+
+
+	public void setTrangThaiHuyVe(boolean trangThaiHuyVe) {
+		this.trangThaiHuyVe = trangThaiHuyVe;
+	}
+
+
+
+	public String getLiDoHuyVe() {
+		return liDoHuyVe;
+	}
+
+
+
+	public void setLiDoHuyVe(String liDoHuyVe) {
+		this.liDoHuyVe = liDoHuyVe;
+	}
+
+
+
+	public void setIdVe(long idVe) {
+		this.idVe = idVe;
+	}
+
+
+
+	public void setNgayDatVe(Date ngayDatVe) {
+		this.ngayDatVe = ngayDatVe;
+	}
+
+
+
+	public void setDanhSachGhe(List<Ghe> danhSachGhe) {
+		this.danhSachGhe = danhSachGhe;
+	}
+
+
+
+	public void setThoiHanThanhToan(Date thoiHanThanhToan) {
+		this.thoiHanThanhToan = thoiHanThanhToan;
+	}
+
+
+
+	public Chuyen getChuyen() {
+		return chuyen;
+	}
+
+
+
+	public void setChuyen(Chuyen chuyen) {
+		this.chuyen = chuyen;
+	}
+
+
+
+	public long getIdVe() {
+		return idVe;
+	}
+
+	public Date getNgayDatVes(){
+		return ngayDatVe;
+	}
+	
+	public Date getThoiHanThanhToans(){
+		return thoiHanThanhToan;
 	}
 }

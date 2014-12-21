@@ -2,11 +2,12 @@ package DAO;
 
 import java.util.List;
 
+import factory.dao.DAO;
 import model.DiaDiem;
 import model.KhachHang;
 import model.Ve;
 
-public interface KhachHangDAO {
+public interface KhachHangDAO extends DAO{
 	public KhachHang checkLogIn(String user, String password);
 	public KhachHang getKhachHang(String sdt);
 	public List<KhachHang> getAllKhachHang();
