@@ -11,9 +11,8 @@
 <%@ include file="header.jsp"%>
 <div id="contain">
 <div id="center">
-<p id="h3">Bạn vui lòng nhập thông tin để kiểm tra vé!</p>
-<div id="divtrai"><label id="lsdt">Nhập số điện thoại:</label><br> <input type="text" class="text"/></div>
-<div id="divphai"><label id="lcmnd">Nhập số CMND:</label><br><input type="text" class="text"/></div>
+<p id="h3">Bạn vui lòng nhập thông tin để tìm vé!</p>
+<div id="divtrai"><input type="text" class="text" style="width: 400px;"/> <input type="button" id="button_s" value="Tìm vé "/></div>
 </div>
 </div>
 <%@ include file="footer.jsp"%>
