@@ -23,12 +23,9 @@ public class KhachHangDAOIml implements KhachHangDAO {
 
 	@Override
 	public KhachHang checkLogIn(String user, String password) {
-		// return new KhachHangThuongXuyen("Hoang Nhuoc Quy", "1234567890",
-		// "123456", "Tay Ninh", "123@gmail.com", new TaiKhoan("hoangnhuocquy",
-		// "123", true), 10000000);
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null;
-		String sql = "SELECT taikhoan.idkhachhang,khachhang.idkhachhang,khachhang.cmnd,khachhang.diachi,khachhang.email,khachhang.sdt,khachhang.tenkhachhang,khachhangthuongxuyen.sotien FROM khachhangthuongxuyen INNER JOIN taikhoan ON taikhoan.idkhachhang = khachhangthuongxuyen.idkhachhang INNER JOIN khachhang ON khachhangthuongxuyen.idkhachhang = khachhang.idkhachhang WHEREtaikhoan.matkhau = ? AND taikhoan.tentk = ?";
+		String sql = "SELECT khachhang.idkhachhang,khachhang.cmnd,khachhang.diachi,khachhang.email,khachhang.sdt,khachhang.tenkhachhang,khachhangthuongxuyen.sotien FROM khachhang INNER JOIN khachhangthuongxuyen ON khachhangthuongxuyen.idkhachhang = khachhang.idkhachhang INNER JOIN taikhoan ON khachhangthuongxuyen.idtaikhoan = taikhoan.idtaikhoan WHERE taikhoan.matkhau = ? AND taikhoan.tentk = ?";
 		ResultSet res;
 		KhachHang kh = null;
 		try {
@@ -43,7 +40,6 @@ public class KhachHangDAOIml implements KhachHangDAO {
 						res.getString("email"), res.getLong("sotien"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);
