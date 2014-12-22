@@ -73,6 +73,8 @@ public class TuyenDAOImpl implements TuyenDAO {
 		String sql2 = "SELECT diadiem.tendiadiem FROM diadiem WHERE diadiem.iddiadiem =?";
 		PreparedStatement pre = null, pre2 = null;
 		ResultSet res, res2;
+		long idTuyen = 0;
+		Tuyen tuyen;
 		try {
 			pre = con.prepareStatement(sql1);
 			pre2 = con.prepareStatement(sql2);
@@ -81,6 +83,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 			res = pre.executeQuery();
 			DiaDiem diaDiem;
 			while (res.next()) {
+				idTuyen = res.getLong("idtuyen");
 				id = res.getLong("iddiemdi");
 				pre2.setLong(1, id);
 				res2 = pre2.executeQuery();
@@ -95,8 +98,10 @@ public class TuyenDAOImpl implements TuyenDAO {
 				while (res2.next()) {
 					diaDiem_s = res2.getString("tendiadiem");
 				}
+				tuyen = new Tuyen(diaDiem, new DiaDiem(id, diaDiem_s));
+				tuyen.setIdTuyen(idTuyen);
 				listAllTuyen
-						.add(new Tuyen(diaDiem, new DiaDiem(id, diaDiem_s)));
+						.add(tuyen);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

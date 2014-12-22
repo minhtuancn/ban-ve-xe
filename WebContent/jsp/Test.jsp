@@ -13,9 +13,15 @@
 		alert(md5);
 		alert($.md5(md5));
 	}
+	function eq() {
+		if("abc" == "abc")
+			alert("abs");
+		else
+			alert("ass");
+	}
 </script>
 </head>
 <body>
-	<button onclick="check()">click</button>
+	<button onclick="eq()">click</button>
 </body>
 </html>
