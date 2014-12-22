@@ -34,12 +34,14 @@ public class GheDAOImpl implements GheDAO {
 			pre.setLong(1, idChuyen);
 			res = pre.executeQuery();
 			while (res.next()) {
+				trangThai = 0;
 				switch (res.getByte("trangthai")) {
 				case Ghe.CHUA_DAT:
 					// khong lam gi het
 					break;
 				case Ghe.DANG_GIU:
 					// kiểm tra thời gian giữ ghế còn hiệu lực không
+					System.out.println("GheDAOImpl : "+ res.getTimestamp("giucho"));
 					dateGiuCho = new Date(res.getTimestamp("giucho").getTime());
 					trangThai = dateGiuCho.compareTo(now) < 0 ? Ghe.CHUA_DAT
 							: Ghe.DA_DAT;
@@ -67,7 +69,7 @@ public class GheDAOImpl implements GheDAO {
 		List<Ghe> listGhe = datVe.getDanhSachGhe();
 		Connection con = ConnectionPool.getInstance().getConnection();
 		String sqlCheck = "select trangthai, giucho from ghe where idghe=?";
-		String sqlSet = "update ghe set trangthai=?, giucho = ? , idve=? where idghe=?";
+		String sqlSet = "update ghe set trangthai=?, giucho = ? , mave=? where idghe=?";
 		PreparedStatement preCheck = null;
 		PreparedStatement preSet = null;
 		ResultSet res;
@@ -92,6 +94,7 @@ public class GheDAOImpl implements GheDAO {
 						preSet.setTimestamp(2, new Timestamp(datCho.getTime()));
 						preSet.setString(3, datVe.getMaVe());
 						preSet.setLong(4, ghe.getIdGhe());
+						preSet.executeUpdate();
 						break;
 					case Ghe.DANG_GIU:
 						if (res.getTimestamp("giucho") != null) {
@@ -101,13 +104,14 @@ public class GheDAOImpl implements GheDAO {
 								mes = "Ghế " + ghe.getSoGhe() + " của tuyến "
 										+ datVe.getTuyenXe()
 										+ " đã có người đặt trước!";
-								throw new SQLException();
+								throw new SQLException("dadat");
 							} else {
 								preSet.setByte(1, Ghe.DANG_GIU);
 								preSet.setTimestamp(2,
 										new Timestamp(datCho.getTime()));
 								preSet.setString(3, datVe.getMaVe());
 								preSet.setLong(4, ghe.getIdGhe());
+								preSet.executeUpdate();
 							}
 						}
 						break;
@@ -115,7 +119,7 @@ public class GheDAOImpl implements GheDAO {
 						mes = "Ghế " + ghe.getSoGhe() + " của tuyến "
 								+ datVe.getTuyenXe()
 								+ " đã có người đặt trước!";
-						throw new SQLException();
+						throw new SQLException("dadat");
 					default:
 						break;
 					}
@@ -123,6 +127,7 @@ public class GheDAOImpl implements GheDAO {
 			}
 			con.commit();
 		} catch (SQLException e) {
+			if(!"dadat".equals(e.getMessage()))
 			mes = "Lỗi hệ thống, xin vui lòng thử lại sau vài phút!";
 			e.printStackTrace();
 			try {

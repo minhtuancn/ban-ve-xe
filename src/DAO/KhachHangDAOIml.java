@@ -77,10 +77,12 @@ public class KhachHangDAOIml implements KhachHangDAO {
 					tenKhachHang = res2.getString("tenkhachhang");
 					pre1.setString(1, sdt);
 					res1 = pre1.executeQuery();
-					if(res1.next()){
-					kh =new KhachHangThuongXuyen(idkh,tenKhachHang, sdt, cmnd, diaChi, email, res1.getInt("sotien"));
-					}else{
-						kh = new KhachHangVangLai(idkh, tenKhachHang, sdt, cmnd, diaChi, email);
+					if (res1.next()) {
+						kh = new KhachHangThuongXuyen(idkh, tenKhachHang, sdt,
+								cmnd, diaChi, email, res1.getInt("sotien"));
+					} else {
+						kh = new KhachHangVangLai(idkh, tenKhachHang, sdt,
+								cmnd, diaChi, email);
 					}
 				}
 			}
@@ -105,7 +107,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 			pre = con.prepareStatement(sql);
 			ResultSet res = pre.executeQuery();
 			while (res.next()) {
-			listKhachHang.add(getKhachHang(res.getString("sdt")));
+				listKhachHang.add(getKhachHang(res.getString("sdt")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,6 +134,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 			pre.setString(1, sdt);
 			res = pre.executeQuery();
 			if (!res.next()) {
+				pre.close();
 				pre = con.prepareStatement(sql);
 				pre.setString(1, cmnd);
 				pre.setString(2, diaChi);
@@ -161,7 +164,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 	public boolean deleteKhachHang(long id) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null;
-		String sql = "delete from khachhang where id = ?";
+		String sql = "delete from khachhang where idkhachhang = ?";
 		ResultSet res;
 		try {
 			pre = con.prepareStatement(sql);
@@ -187,90 +190,90 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		String sql = "update tuyen set ";
 		int kq = -1;
 		long idDiaDiem;
-			switch (columnPosition) {
-			case 0:
-				sql += "tenkhachhang = " + value;
-				try {
+		switch (columnPosition) {
+		case 0:
+			sql += "tenkhachhang = " + value;
+			try {
 				pre = con.prepareStatement(sql);
 				kq = pre.executeUpdate();
-				
-				if (kq > 0)
-					return true;
-				else
-					return false;
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				break;
-			case 1:
-				list = ((VeDAO) (new FactoryDAOImp()
-						.createDAO(FactoryDao.VE_DAO))).searchVe(value);
-				if (list.size() > 0)
-					return false;
-				else {
-					sql += "sdt = " + value;
-					try{
-					pre = con.prepareStatement(sql);
-					kq = pre.executeUpdate();
-					if (kq > 0)
-						return true;
-					else
-						return false;
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				break;
-			case 2:
-				list = ((VeDAO) (new FactoryDAOImp()
-						.createDAO(FactoryDao.VE_DAO))).searchVe(value);
-				if (list.size() > 0)
-					return false;
-				else {
-					sql += "cmnd = " + value;
-					try{
-					pre = con.prepareStatement(sql);
-					kq = pre.executeUpdate();
-					if (kq > 0)
-						return true;
-					else
-						return false;
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				break;
-			case 3:
-				sql += "diachi = " + value;
-				try{
-				pre = con.prepareStatement(sql);
-				kq = pre.executeUpdate();
-				if (kq > 0)
-					return true;
-				else
-					return false;
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				break;
-			case 4:
-				sql += "email = " + value;
-				try{
-				pre = con.prepareStatement(sql);
-				kq = pre.executeUpdate();
-				if (kq > 0)
-					return true;
-				else
-					return false;
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				break;
-			default:
-				break;
 
+				if (kq > 0)
+					return true;
+				else
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		
+			break;
+		case 1:
+			list = ((VeDAO) (new FactoryDAOImp().createDAO(FactoryDao.VE_DAO)))
+					.searchVe(value);
+			if (list.size() > 0)
+				return false;
+			else {
+				sql += "sdt = " + value;
+				try {
+					pre = con.prepareStatement(sql);
+					kq = pre.executeUpdate();
+					if (kq > 0)
+						return true;
+					else
+						return false;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		case 2:
+			list = ((VeDAO) (new FactoryDAOImp().createDAO(FactoryDao.VE_DAO)))
+					.searchVe(value);
+			if (list.size() > 0)
+				return false;
+			else {
+				sql += "cmnd = " + value;
+				try {
+					pre = con.prepareStatement(sql);
+					kq = pre.executeUpdate();
+					if (kq > 0)
+						return true;
+					else
+						return false;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		case 3:
+			sql += "diachi = " + value;
+			try {
+				pre = con.prepareStatement(sql);
+				kq = pre.executeUpdate();
+				if (kq > 0)
+					return true;
+				else
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+		case 4:
+			sql += "email = " + value;
+			try {
+				pre = con.prepareStatement(sql);
+				kq = pre.executeUpdate();
+				if (kq > 0)
+					return true;
+				else
+					return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+		default:
+			break;
+
+		}
+
 		return true;
 	}
 
@@ -282,15 +285,21 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		PreparedStatement pre = null;
 		try {
 			pre = con.prepareStatement(sql);
-			pre.setString(1,"'%"+ maSearch+"%'");
-			pre.setString(2, "'%"+ maSearch+"%'");
-			pre.setString(3, "'%"+ maSearch+"%'");
-			pre.setString(4, "'%"+ maSearch+"%'");
-			pre.setString(5, "'%"+ maSearch+"%'");
+			pre.setString(1, "'%" + maSearch + "%'");
+			pre.setString(2, "'%" + maSearch + "%'");
+			pre.setString(3, "'%" + maSearch + "%'");
+			pre.setString(4, "'%" + maSearch + "%'");
+			pre.setString(5, "'%" + maSearch + "%'");
 			ResultSet res = pre.executeQuery();
 			while (res.next()) {
-			listKhachHang.add(new KhachHangThuongXuyen(res.getLong("idkhachhang"), res.getString("tenkhachhang"), res.getString("sdt"),res.getString("cmnd") , res.getString("diachi"), res.getString("email")));
-			listKhachHang.add(new KhachHangVangLai(res.getLong("idkhachhang"), res.getString("tenkhachhang"), res.getString("sdt"),res.getString("cmnd") , res.getString("diachi"), res.getString("email")));
+				listKhachHang.add(new KhachHangThuongXuyen(res
+						.getLong("idkhachhang"), res.getString("tenkhachhang"),
+						res.getString("sdt"), res.getString("cmnd"), res
+								.getString("diachi"), res.getString("email")));
+				listKhachHang.add(new KhachHangVangLai(res
+						.getLong("idkhachhang"), res.getString("tenkhachhang"),
+						res.getString("sdt"), res.getString("cmnd"), res
+								.getString("diachi"), res.getString("email")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -299,6 +308,66 @@ public class KhachHangDAOIml implements KhachHangDAO {
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return listKhachHang;
+	}
+
+	@Override
+	public KhachHang getKhachHang(long id) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "SELECT idkhachhang FROM khachhangthuongxuyen WHERE idkhachhang = ? ";
+		KhachHang khachhang = null;
+		PreparedStatement pre = null;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setLong(1, id);
+			ResultSet res = pre.executeQuery();
+			while (res.next()) {
+				khachhang = getKhachHang(res.getString("sdt"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return khachhang;
+	}
+
+	@Override
+	public long addKhachHang(KhachHang kh) {
+		long id = addKhachHang(kh.getTenKhachHang(), kh.getSdt(), kh.getCmnd(),
+				kh.getDiaChi(), kh.getEmail());
+		kh.setIdKhachHang(id);
+		String sql = "";
+		if (kh instanceof KhachHangVangLai) {
+			sql = "insert into khachhangvanglai (idkhachhang) value (?)";
+		} else {
+			long idTaiKhoan = 1;
+			// sql = " insert into khachhangthuongxuyen (idkhachhang, sotien, "
+		}
+		Connection con = ConnectionPool.getInstance().getConnection();
+		PreparedStatement pre = null;
+		try {
+			pre = con.prepareStatement(sql);
+			if (kh instanceof KhachHangVangLai) {
+				pre.setLong(1, id);
+			} else {
+				
+			}
+//			if( pre.executeUpdate() != 0)
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return id;
+	}
+
+	@Override
+	public boolean deleteKhachHang(KhachHang kh) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
