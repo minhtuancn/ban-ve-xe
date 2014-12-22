@@ -107,8 +107,8 @@
 				<input type="hidden" value="<%=mes%>" id="error" />
 				<form action="/BanVeXe/TimTuyen" class="login-form bg"
 					id="formtimve">
-					<input type="hidden" id="idnoidi" name="idnoidi" /> <input
-						type="hidden" id="idnoiden" name="idnoiden" />
+					<input type="hidden" id="idnoidi" name="idnoidi" value="20"/> <input
+						type="hidden" id="idnoiden" name="idnoiden" value="21"/>
 					<table id="tb-datve" width="200px">
 						<tr>
 							<td><img alt="a" src="/BanVeXe/image/tim ve xe.jpg"
@@ -122,7 +122,7 @@
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
-									đi:</span><input type="text" id="noidi" placeholder="Nơi đi" readonly />
+									đi:</span><input type="text" id="noidi" placeholder="Nơi đi" readonly value="a" />
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
@@ -152,7 +152,7 @@
 									%>
 								</div></td>
 							<td><span id="title-datve" class="title-datveden">Nơi
-									đến:</span><input type="text" id="noiden" placeholder="Nơi đến"
+									đến:</span><input type="text" id="noiden" placeholder="Nơi đến" value="b"
 								readonly />
 								<div id="menu-noiden">
 									<%
@@ -183,7 +183,7 @@
 						</tr>
 						<tr>
 							<td><span id="title-datve">Ngày đi:</span><input type="date"
-								name="ngaydi" min="12/12/2000" max="12/12/2014" /></td>
+								name="ngaydi" min="12/12/2000" max="12/12/2014" value="2014-12-30"/></td>
 							<td><span id="title-datve">Ngày về:</span><input type="date"
 								name="ngayve" min="12/12/2000" max="12/12/2014" /></td>
 

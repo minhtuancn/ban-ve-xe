@@ -72,16 +72,10 @@ public abstract class KhachHang  {
 		this.danhSachVeDaDat = danhSachVeDaDat;
 	}
 
-	/**
-	 * @return the idKhachHang
-	 */
 	public long getIdKhachHang() {
 		return idKhachHang;
 	}
 
-	/**
-	 * @param idKhachHang the idKhachHang to set
-	 */
 	public void setIdKhachHang(long idKhachHang) {
 		this.idKhachHang = idKhachHang;
 	}

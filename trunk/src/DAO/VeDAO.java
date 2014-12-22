@@ -25,6 +25,8 @@ public interface VeDAO extends DAO {
 	 */
 	public List<Ve> searchVe(String maSearch);
 	
+	public void deleteVe(Ve ve);
+	
 	public Ve timVeOfMaVe(String maVe);
 
 //	public String addVe( String ghiChu, String maVe, Date ngayDat,

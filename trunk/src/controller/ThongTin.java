@@ -10,13 +10,17 @@ import javax.servlet.http.HttpSession;
 
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
+import DAO.ChuyenDAO;
+import DAO.KhachHangDAO;
 import DAO.VeDAO;
 import util.DuongDan;
 import util.LayMaVe;
+import model.Chuyen;
 import model.DatVe;
 import model.KhachHang;
 import model.KhachHangThuongXuyen;
 import model.KhachHangVangLai;
+import model.Tuyen;
 import model.Ve;
 
 /**
@@ -25,18 +29,26 @@ import model.Ve;
 public class ThongTin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private VeDAO veDAO;
+	private KhachHangDAO khachHangDAO;
+	private ChuyenDAO chuyenDAO;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ThongTin() {
 		super();
-		
+
 	}
-	
+
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		veDAO = (VeDAO) new FactoryDAOImp().createDAO(FactoryDao.VE_DAO);
+		chuyenDAO = (ChuyenDAO) new FactoryDAOImp()
+				.createDAO(FactoryDao.CHUYEN_DAO);
+		khachHangDAO = (KhachHangDAO) new FactoryDAOImp()
+				.createDAO(FactoryDao.KHACH_HANG_DAO);
+
 	}
 
 	/**
@@ -60,48 +72,55 @@ public class ThongTin extends HttpServlet {
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		KhachHang kh;
-		if (session.getAttribute("khachHang") != null && ((KhachHang) session.getAttribute("khachHang") instanceof KhachHangThuongXuyen))
+		KhachHang kh = null;
+		if (session.getAttribute("khachHang") != null)
 			kh = (KhachHang) session.getAttribute("khachHang");
-		else
-			kh = new KhachHangVangLai();
 		String sghiChu = request.getParameter("ghichu");
-		String scaptcha = request.getParameter("captcha");
+		String scaptcha = "";
+		if (request.getParameter("captcha") != null)
+			scaptcha = request.getParameter("captcha");
 		boolean laKhuHoi = (Boolean) session.getAttribute("laKhuHoi");
-		if (((String) session.getAttribute("captcha")).equals(scaptcha)) {
-			if(kh instanceof KhachHangVangLai){
-			kh.setTenKhachHang(request.getParameter("hoten"));
-			kh.setSdt(request.getParameter("didong"));
-			kh.setCmnd(request.getParameter("cmnd"));
-			kh.setEmail(request.getParameter("email"));
-			}
-			//
-			Ve veDi = new Ve(kh,LayMaVe.getInstant().getMaVe(),
+		if (scaptcha.equals(((String) session.getAttribute("captcha")))) {
+			Ve veDi = new Ve(kh, LayMaVe.getInstant().getMaVe(),
 					(DatVe) session.getAttribute("datVeDi"), sghiChu);
 			String luuVe = veDAO.addVe(veDi);
-			if(null!= luuVe){
+			if (null != luuVe) {
+				// Chuyen c = chuyenDAO.getChuyen(((Chuyen )
+				// session.getAttribute("chuyenDi")).getIdChuyen(), (Tuyen)
+				// session.getAttribute("tuyenDi"));
+				// session.setAttribute("chuyenDi", c);
+				session.setAttribute("captcha", null);
 				request.setAttribute("mes", luuVe);
-				request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request, response);
+				request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(
+						request, response);
+				// response.sendRedirect(DuongDan.TIM_CHUYEN + "?mes=" + luuVe);
 				return;
 			}
 			Ve veVe = null;
 			if (laKhuHoi) {
-				veVe = new Ve(kh,(String) session.getAttribute("maVeVe"),
+				veVe = new Ve(kh, LayMaVe.getInstant().getMaVe(),
 						(DatVe) session.getAttribute("datVeVe"), sghiChu);
-				 luuVe = veDAO.addVe(veDi);
-				 if(null!= luuVe){
-						request.setAttribute("mes", luuVe);
-						request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request, response);
-						return;
-					}
+				luuVe = veDAO.addVe(veVe);
+				if (null != luuVe) {
+					// Chuyen c = chuyenDAO.getChuyen(((Chuyen )
+					// session.getAttribute("chuyenVe")).getIdChuyen(), (Tuyen)
+					// session.getAttribute("tuyenVe"));
+					// session.setAttribute("chuyenVe", c);
+					request.setAttribute("mes", luuVe);
+					request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL)
+							.forward(request, response);
+					return;
+				}
 			}
+			System.out.println("ThongTin: cua tui");
 			session.setAttribute("veDi", veDi);
-			if(laKhuHoi)
-			session.setAttribute("veVe", veVe);
+			if (laKhuHoi)
+				session.setAttribute("veVe", veVe);
 			response.sendRedirect(DuongDan.CHI_TIET_VE);
-			
+
 		} else {
-			request.getRequestDispatcher(DuongDan.THANH_TOAN_SVL).forward(request, response);
+			request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(
+					request, response);
 		}
 	}
 
