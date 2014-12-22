@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.org.apache.bcel.internal.generic.LLOAD;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 import util.DuongDan;
+import DAO.DiaDiemDAO;
 import DAO.TuyenDAO;
 import DAO.TuyenDAOImpl;
 import model.DiaDiem;
@@ -21,7 +24,8 @@ import model.Tuyen;
  */
 public class ListTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private TuyenDAO tuyenDAO;
+	private DiaDiemDAO diaDiemDAO;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -29,7 +33,13 @@ public class ListTuyen extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		FactoryDao f = new FactoryDAOImp();
+		tuyenDAO = (TuyenDAO) f.createDAO(FactoryDao.TUYEN_DAO);
+		diaDiemDAO = (DiaDiemDAO) f.createDAO(FactoryDao.DIA_DIEM_DAO);
+	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -52,7 +62,7 @@ public class ListTuyen extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		TuyenDAO tuyenDao = new TuyenDAOImpl();
 		List<Tuyen> listTuyen = tuyenDao.getAllTuyen();
-		List<DiaDiem> listDiaDiem = tuyenDao.getAllDiaDiem();
+		List<DiaDiem> listDiaDiem = diaDiemDAO.getAllDiaDiem();
 		String dataDiaDiem = "\"{";
 		DiaDiem d;
 		int i  = 0;

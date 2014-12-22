@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
+import DAO.DiaDiemDAO;
+import DAO.TuyenDAO;
 import DAO.TuyenDAOImpl;
 
 /**
@@ -14,7 +18,7 @@ import DAO.TuyenDAOImpl;
  */
 public class AddTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private TuyenDAO tuyenDAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -22,7 +26,11 @@ public class AddTuyen extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    public void init() throws ServletException {
+		super.init();
+		FactoryDao f = new FactoryDAOImp();
+		tuyenDAO = (TuyenDAO) f.createDAO(FactoryDao.TUYEN_DAO);
+	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -37,11 +45,15 @@ public class AddTuyen extends HttpServlet {
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		long id = -1;
+		try{
 			long diemDi = Long.parseLong(request.getParameter("diemDi"));
 			long diemDen = Long.parseLong(request.getParameter("diemDen"));
-			System.out.println(diemDi +" - "+ diemDen);
-			new TuyenDAOImpl().addTuyen(diemDi, diemDen);
-			response.getWriter().print("1");
+			id = tuyenDAO.addTuyen(diemDi, diemDen);
+		}catch (NumberFormatException e){
+			
+		}
+			response.getWriter().print(id);
 	}
 
 }

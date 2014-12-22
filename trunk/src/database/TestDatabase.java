@@ -84,8 +84,6 @@ public class TestDatabase {
 	}
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException {
-		VeDAO vedao = new VeDAOImpl();
-		System.out.println(vedao.addVe( "asd", "1234",new Date(), new Date(),1,1));
 		
 	}
 }

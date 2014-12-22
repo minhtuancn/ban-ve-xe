@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 import DAO.TuyenDAO;
 import DAO.TuyenDAOImpl;
 import model.Tuyen;
@@ -16,6 +18,7 @@ import model.Tuyen;
  */
 public class DeleteTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private TuyenDAO tuyenDAO;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -24,7 +27,11 @@ public class DeleteTuyen extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	public void init() throws ServletException {
+		super.init();
+		FactoryDao f = new FactoryDAOImp();
+		tuyenDAO = (TuyenDAO) f.createDAO(FactoryDao.TUYEN_DAO);
+	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -45,10 +52,31 @@ public class DeleteTuyen extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String mes = null;
+		try{
 		int id = Integer.parseInt(request.getParameter("id"));
-		TuyenDAO tuyenDao = new TuyenDAOImpl();
-		if (!tuyenDao.deleteTuyen(id)) {
-			response.getWriter().println("error");
+		tuyenDAO = new TuyenDAOImpl();
+		int res = tuyenDAO.deleteTuyen(id);
+		switch (res) {
+		case -1:
+			mes = "Server Lổi!\nXóa tuyến không thành công!";
+			break;
+		case -2:
+			mes = "Tuyến bị đã được phân công chuyến đi!\nKhông thể xóa!";
+			break;
+		case 1:
+			mes = null;
+			break;
+		default:
+			break;
 		}
+		}catch(NumberFormatException e){
+			mes = "Lổi định dạng!";
+		}
+		if(mes!= null){
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().print(mes);
+		}
+			
 	}
 }

@@ -104,7 +104,7 @@
 										}
 									},
 									fnOnDeleted : function(status) {
-										if (status.indexOf("success") != -1) {
+										if ("success" == status) {
 											swal({
 												title : "Xóa tuyến thành công!",
 												timer : 2000,
@@ -118,7 +118,7 @@
 										}
 									},
 									fnOnAdded : function(status) {
-										if (status.indexOf("success") != -1) {
+										if ("success" == status) {
 											swal({
 												title : "Thêm tuyến thành công!",
 												timer : 2000,
@@ -140,7 +140,7 @@
 										return true;
 									},
 									fnOnEdited : function(status) {
-										if (status.indexOf("success") != 1) {
+										if (status == "success") {
 											$('tr#' + idTrEdit)
 													.each(
 															function() {
@@ -170,10 +170,10 @@
 												type : "success"
 											});
 										}else{
-											swal({
-												title : "Sữa tuyến không thành công!",
-												type : "warning"
-											});
+// 											swal({
+// 												title : "Sữa tuyến không thành công!",
+// 												type : "warning"
+// 											});
 										}
 									}
 								});
@@ -219,7 +219,7 @@
 						int k = 0;
 						for (Tuyen tuyen : listTuyen) {
 					%>
-					<tr id="<%=k++%>">
+					<tr id="<%=tuyen.getIdTuyen()%>">
 						<td id="diemDi"><%=tuyen.getDiemDi()%></td>
 						<td id="diemDen"><%=tuyen.getDiemDen()%></td>
 						<td id="tuyen"><%=tuyen.getTuyenXe()%></td>
