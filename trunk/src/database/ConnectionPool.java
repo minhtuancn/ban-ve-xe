@@ -15,7 +15,7 @@ public class ConnectionPool {
 	private ConnectionPool() {
 		try {
 			InitialContext ic = new InitialContext();
-			dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/banvexe");
+			dataSource = (DataSource) ic.lookup("java:/comp/env/jdbc/banvexe?characterEncoding=UTF-8");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

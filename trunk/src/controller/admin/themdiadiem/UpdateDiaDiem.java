@@ -40,14 +40,21 @@ public class UpdateDiaDiem extends HttpServlet {
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String value = request.getParameter("value");
-		DiaDiemDAO diaDiemDAO = new DiaDiemDAOImpl();
-		if (!diaDiemDAO.editDiaDiem(id, value))
-			response.getWriter().print("Error - company cannot be found");
-		else{
-			request.getSession().setAttribute("listDiaDiem", diaDiemDAO.getAllDiaDiem());
-			response.getWriter().print(value);
+		try{
+			int id = Integer.parseInt(request.getParameter("id"));
+			DiaDiemDAO diaDiemDAO = new DiaDiemDAOImpl();
+			if (!diaDiemDAO.editDiaDiem(id, value))
+				value = "Update địa điểm không thành công";
+			else{
+				request.getSession().setAttribute("listDiaDiem", diaDiemDAO.getAllDiaDiem());
+			}
+			
+		}catch (NumberFormatException e){
+			value = "Lổi định dạng";
 		}
+		response.getWriter().print(value);
 	}
 }
