@@ -20,6 +20,7 @@ import model.Tuyen;
 import model.Ve;
 
 public class KhachHangDAOIml implements KhachHangDAO {
+	private VeDAO veDao;
 
 	@Override
 	public KhachHang checkLogIn(String user, String password) {
@@ -39,6 +40,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 						res.getString("cmnd"), res.getString("diachi"),
 						res.getString("email"), res.getLong("sotien"));
 				((KhachHangThuongXuyen) kh).setTaiKhoan(new TaiKhoan(res.getString("tentk"), res.getString("matkhau"), true));
+				kh.setDanhSachVeDaDat(getVeDao().getAllVe(res.getLong("idkhachhang")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -403,4 +405,9 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		return idKhachHang;
 	}
 
+	public VeDAO getVeDao() {
+		veDao = (VeDAO) (veDao ==null? new FactoryDAOImp().createDAO(FactoryDao.VE_DAO): veDao);
+		return veDao;
+	}
+	
 }
