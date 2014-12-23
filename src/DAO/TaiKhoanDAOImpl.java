@@ -43,4 +43,28 @@ public class TaiKhoanDAOImpl implements TaiKhoanDAO {
 		return id;
 	}
 
+	@Override
+	public boolean checkUser(String user) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "select tentk from taikhoan where tentk =? ";
+		PreparedStatement pre = null;
+		ResultSet res = null;
+		boolean kq = false;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, user);
+			res = pre.executeQuery();
+			if(res.next()){
+				kq=  true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		
+		return kq;
+	}
+
 }
