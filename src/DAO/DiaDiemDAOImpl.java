@@ -15,8 +15,7 @@ import factory.dao.DAO;
 import model.DiaDiem;
 import model.Tuyen;
 
-public class DiaDiemDAOImpl implements DiaDiemDAO , DAO{
-	private static List<DiaDiem> listDiaDiem;
+public class DiaDiemDAOImpl implements DiaDiemDAO, DAO {
 
 	@Override
 	public DiaDiem getDiaDiem(long id) {
@@ -42,11 +41,9 @@ public class DiaDiemDAOImpl implements DiaDiemDAO , DAO{
 		return diadiem;
 	}
 
-
 	@Override
 	public List<DiaDiem> getAllDiaDiem() {
-		if(listDiaDiem == null){
-		listDiaDiem = new ArrayList<>();
+		List<DiaDiem> listDiaDiem = new ArrayList<>();
 		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql = "SELECT diadiem.iddiadiem,diadiem.tendiadiem FROM diadiem";
 		PreparedStatement pre = null;
@@ -64,61 +61,73 @@ public class DiaDiemDAOImpl implements DiaDiemDAO , DAO{
 			ConnectionPool.getInstance().closePre(pre);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
-		}
 		return listDiaDiem;
 	}
 
-
 	@Override
-	public int addDiaDiem(String tenDiaDiem) {
+	public long addDiaDiem(String tenDiaDiem) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null, pre1 = null;
 		String sql = "INSERT into diadiem(tendiadiem) VALUES (?)";
 		String sql1 = "select iddiadiem from diadiem where iddiadiem = ?";
 		ResultSet res;
-		int len = 1;
+		long len = 1;
 		try {
-			pre = con.prepareStatement(sql1);
+
 			pre1 = con.prepareStatement(sql);
-			res = pre.executeQuery();
-			if(!res.next()){
-				pre1.setString(1, tenDiaDiem);
-				if(pre1.executeUpdate()==0){
-					len = -1;
-				}else 
+			pre1.setString(1, tenDiaDiem);
+			if (pre1.executeUpdate() == 0) {
+				len = -1;
+			} else {
+				pre = con.prepareStatement(sql1);
+				pre.setString(1, tenDiaDiem);
+				res = pre.executeQuery();
+				if (!res.next()) {
 					len = -2;
+				} else
+					len = res.getLong("iddiadiem");
 			}
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			len = -1;
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().closePre(pre1);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return len;
 	}
 
 	@Override
-	public boolean deleteDiaDiem(long idDD) {
+	public int deleteDiaDiem(long idDD) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null;
 		String sql = "delete from diadiem where iddiadiem = ?";
+		String sqlCheck = "SELECT tuyen.idtuyen, tuyen.iddiemdi,tuyen.iddiemden FROM tuyen WHERE tuyen.iddiemdi = ? OR tuyen.iddiemden = ?";
 		ResultSet res;
+		int kq = 1;
 		try {
-			pre = con.prepareStatement(sql);
+			pre = con.prepareStatement(sqlCheck);
 			pre.setLong(1, idDD);
+			pre.setLong(2, idDD);
 			res = pre.executeQuery();
-
+			if (!res.next()) {
+				pre.close();
+				pre = con.prepareStatement(sql);
+				pre.setLong(1, idDD);
+				if(pre.executeUpdate() == 0)
+					kq = -2;
+			}else{
+				kq = -1;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			kq = -3;
 		} finally {
 			Database.getInstance().closePre(pre);
 			Database.getInstance().closeCon(con);
 		}
-		return true;
+		return kq;
 	}
 
 	@Override
@@ -130,15 +139,14 @@ public class DiaDiemDAOImpl implements DiaDiemDAO , DAO{
 			pre = con.prepareStatement(sql);
 			pre.setString(1, value);
 			pre.setLong(2, id);
-			if(pre.executeUpdate()==0){
+			if (pre.executeUpdate() == 0) {
 				return false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-		
+
 		return true;
 	}
 }

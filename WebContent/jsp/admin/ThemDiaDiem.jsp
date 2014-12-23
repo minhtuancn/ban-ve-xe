@@ -9,7 +9,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/BanVeXe/css/datatable/ThemDiaDiem.css" rel="stylesheet"
 	type="text/css" media="all" />
@@ -83,7 +84,7 @@
 		}
 	},
 	fnOnDeleted : function(status) {
-		if (status.indexOf("success") != -1) {
+		if (status == "success") {
 			swal({
 				title : "Xóa địa điểm thành công!",
 				timer : 2000,
@@ -97,7 +98,7 @@
 		}
 	},
 	fnOnAdded : function(status) {
-		if (status.indexOf("success") != -1) {
+		if (status == "success") {
 			swal({
 				title : "Thêm địa điểm thành công!",
 				timer : 2000,
@@ -119,7 +120,7 @@
 		return true;
 	},
 	fnOnEdited : function(status) {
-		if (status.indexOf("success") != 1) {
+		if (status == "success") {
 			$('tr#' + idTrEdit)
 					.each(
 							function() {
@@ -137,10 +138,10 @@
 				type : "success"
 			});
 		}else{
-			swal({
-				title : "Sửa địa điểm không thành công!",
-				type : "warning"
-			});
+// 			swal({
+// 				title : "Sửa địa điểm không thành công!",
+// 				type : "warning"
+// 			});
 		}
 	}
 });
@@ -175,7 +176,7 @@
 								int k = 0;
 								for (DiaDiem d : listDiaDiem) {
 							%>
-							<tr id="<%=k++%>">
+							<tr id="<%=d.getIdDiaDiem()%>">
 								<td id="tenDD"><%=d.getTenDiaDiem()%></td>
 							</tr>
 							<%
