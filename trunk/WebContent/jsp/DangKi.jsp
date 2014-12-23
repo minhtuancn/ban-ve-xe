@@ -8,14 +8,48 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/dangki.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
 <script>
 	$(document).ready(function() {
 		$('#refresh').click(function() {
 			var d = new Date();
-			var newSrc = "/BanVeXe/GenerateCaptcha?"+d.getTime();
+			var newSrc = "/BanVeXe/GenerateCaptcha?" + d.getTime();
 			$('#captcha').attr("src", newSrc);
 		});
 	});
+
+	function al(mes, type) {
+		swal({
+			title : mes,
+			type : type
+		});
+	}
+
+	function checkEr() {
+		if ($("#error").val().length != 0) {
+			al($("#error").val(), "error");
+		}
+	};
+
+	$(window).load(function() {
+		checkEr();
+	});
+
+	function checkPass() {
+		if ($("#pass").val() == $("#re-pass").val())
+			$("#contactform").submit();
+		else
+			$("#error-pass").text("Mật khẩu không trùng khớp!");
+
+	}
+	function checkUser() {
+		if ($("#name").val().length != 0) {
+			$("#error-user").load("/BanVeXe/KiemTraUser?user=" + $("#name").val());
+		}
+	}
+	
 </script>
 </head>
 <body>
@@ -26,35 +60,102 @@
 			Đăng kí
 			<marquee behavior="alternate" width="10%"> << </marquee>
 		</div>
+		<%
+			String user = "";
+			String pass = "";
+			String re_pass = "";
+			String sdt = "";
+			String tenDangKi = "";
+			String email = "";
+			String cmnd = "";
+			String diaChi = "";
+
+			if (request.getParameter("user") != null) {
+				user = request.getParameter("user");
+			}
+			if (request.getParameter("pass") != null) {
+				pass = request.getParameter("pass");
+			}
+			if (request.getParameter("re-pass") != null) {
+				re_pass = request.getParameter("re-pass");
+			}
+			if (request.getParameter("sdt") != null) {
+				sdt = request.getParameter("sdt");
+			}
+			if (request.getParameter("name") != null) {
+				tenDangKi = request.getParameter("name");
+			}
+			if (request.getParameter("email") != null) {
+				email = request.getParameter("email");
+			}
+			if (request.getParameter("cmnd") != null) {
+				cmnd = request.getParameter("cmnd");
+			}
+			if (request.getParameter("diachi") != null) {
+				diaChi = request.getParameter("diachi");
+			}
+		%>
+
+		<%
+			String mes = "";
+			if (request.getAttribute("mes") != null)
+				mes = (String) request.getAttribute("mes");
+		%>
+		<input type="hidden" value="<%=mes%>" id="error" />
 		<div id="dangki">
 			<h1>Đăng Kí!</h1>
-			<form id="contactform" name="contact" method="post" action="#">
+			<form id="contactform" name="contact" method="post"
+				action="/BanVeXe/DangKi">
+				<span id="error-user" style="color: red; margin-left: 180px;"></span>
 				<div class="row">
 					<label for="name">Tên Đăng Nhập: <span class="req">*</span></label>
+					<input type="text" name="user" id="name" class="txt" tabindex="1"
+						value="<%=user%>" placeholder="Tên đăng nhập" required
+						onblur="checkUser()" onfocus="$('#error-user').text(' ')">
+				</div>
+
+				<div class="row">
+					<label for="name">Mật khẩu: <span class="req">*</span></label> <input
+						type="password" name="pass" id="pass" class="txt" tabindex="1"
+						value="<%=pass%>" placeholder="********" required>
+				</div>
+
+				<span id="error-pass" style="color: red; margin-left: 180px;"></span>
+				<div class="row">
+					<label for="name">Nhập lại mật khẩu: <span class="req">*</span></label>
+					<input type="password" name="re-pass" id="re-pass" class="txt"
+						value="<%=re_pass%>" tabindex="1" placeholder="********" required
+						onblur="checkPass()" onfocus="$('#error-pass').text(' ')" >
+
+				</div>
+
+				<div class="row">
+					<label for="name">Tên Khách hàng: <span class="req">*</span></label>
 					<input type="text" name="name" id="name" class="txt" tabindex="1"
-						placeholder="Tên đăng nhập" required>
+						value="<%=tenDangKi%>" placeholder="Tên khách hàng" required>
 				</div>
 
 				<div class="row">
 					<label for="email">Địa chỉ email: <span class="req">*</span></label>
 					<input type="email" name="email" id="email" class="txt"
-						tabindex="2" placeholder="address@gmail.com" required>
+						value="<%=diaChi%>" tabindex="2" placeholder="address@gmail.com"
+						required>
 				</div>
 
 				<div class="row">
 					<label for="subject">Số Điện Thoại: <span class="req">*</span></label>
-					<input type="text" name="subject" id="subject" class="txt"
-						tabindex="3" placeholder="Số điện thoại" required>
+					<input type="text" name="sdt" id="subject" class="txt" tabindex="3"
+						value="<%=sdt%>" placeholder="Số điện thoại" required>
 				</div>
 				<div class="row">
 					<label for="subject">Số CMND: <span class="req">*</span></label> <input
-						type="text" name="subject" id="subject" class="txt" tabindex="3"
-						placeholder="Số CMND" required>
+						type="text" name="cmnd" id="subject" class="txt" tabindex="3"
+						value="<%=cmnd%>" placeholder="Số CMND" required>
 				</div>
 				<div class="row">
 					<label for="subject">Địa chỉ:</label> <input type="text"
-						name="subject" id="subject" class="txt" tabindex="3"
-						placeholder="Địa chỉ" required>
+						name="diachi" id="subject" class="txt" tabindex="3"
+						value="<%=diaChi%>" placeholder="Địa chỉ" required>
 				</div>
 				<div class="captcha">
 					<img id="captcha" src="/BanVeXe/GenerateCaptcha"
@@ -65,11 +166,11 @@
 				<div class="row">
 					<label for="subject">Mã xác nhận: <span class="req">*</span></label>
 					<input type="text" id="subject" class="txt" required="required"
-						placeholder="Mã xác nhận">
+						name="captcha" placeholder="Mã xác nhận">
 				</div>
 				<div class="center">
-					<input type="submit" id="submitbtn" name="submitbtn" tabindex="5"
-						value="Đăng Kí">
+					<input type="button" id="submitbtn" name="submitbtn" tabindex="5"
+						value="Đăng Kí" onclick="checkPass()">
 				</div>
 			</form>
 		</div>

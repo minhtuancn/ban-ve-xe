@@ -9,5 +9,6 @@ public interface FactoryDao {
 	public static final int DIA_DIEM_DAO =6;
 	public static final int KHACH_HANG_DAO =7;
 	public static final int THANH_TOAN_DAO =8;
+	public static final int TAI_KHOAN_DAO =9;
 	public DAO createDAO(int type);
 }

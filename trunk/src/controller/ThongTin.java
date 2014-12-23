@@ -112,7 +112,6 @@ public class ThongTin extends HttpServlet {
 					return;
 				}
 			}
-			System.out.println("ThongTin: cua tui");
 			session.setAttribute("veDi", veDi);
 			if (laKhuHoi)
 				session.setAttribute("veVe", veVe);

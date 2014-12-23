@@ -11,7 +11,6 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>TimTuyen</display-name>
     <servlet-name>TimTuyen</servlet-name>
     <servlet-class>controller.TimTuyen</servlet-class>
   </servlet>
@@ -301,5 +300,25 @@
   <servlet-mapping>
     <servlet-name>DangXuat</servlet-name>
     <url-pattern>/DangXuat</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DangKi</display-name>
+    <servlet-name>DangKi</servlet-name>
+    <servlet-class>controller.DangKi</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DangKi</servlet-name>
+    <url-pattern>/DangKi</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KiemTraUser</display-name>
+    <servlet-name>KiemTraUser</servlet-name>
+    <servlet-class>controller.KiemTraUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KiemTraUser</servlet-name>
+    <url-pattern>/KiemTraUser</url-pattern>
   </servlet-mapping>
 </web-app>
