@@ -25,7 +25,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 	public KhachHang checkLogIn(String user, String password) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null;
-		String sql = "SELECT khachhang.idkhachhang,khachhang.cmnd,khachhang.diachi,khachhang.email,khachhang.sdt,khachhang.tenkhachhang,khachhangthuongxuyen.sotien FROM khachhang INNER JOIN khachhangthuongxuyen ON khachhang.idkhachhang = khachhangthuongxuyen.idkhachhang INNER JOIN taikhoan ON khachhangthuongxuyen.idtaikhoan = taikhoan.idtaikhoan WHERE taikhoan.matkhau = ? AND taikhoan.tentk = ?";
+		String sql = "SELECT khachhang.idkhachhang,khachhang.cmnd,khachhang.diachi,khachhang.email,khachhang.sdt,khachhang.tenkhachhang,khachhangthuongxuyen.sotien,taikhoan.idtaikhoan,taikhoan.tentk,taikhoan.matkhau FROM khachhang INNER JOIN khachhangthuongxuyen ON khachhang.idkhachhang = khachhangthuongxuyen.idkhachhang INNER JOIN taikhoan ON khachhangthuongxuyen.idtaikhoan = taikhoan.idtaikhoan WHERE taikhoan.matkhau = ? AND taikhoan.tentk = ?";
 		ResultSet res;
 		KhachHang kh = null;
 		try {
@@ -34,10 +34,11 @@ public class KhachHangDAOIml implements KhachHangDAO {
 			pre.setString(2, user);
 			res = pre.executeQuery();
 			while (res.next()) {
-				return new KhachHangThuongXuyen(res.getLong("idkhachhang"),
+				kh = new KhachHangThuongXuyen(res.getLong("idkhachhang"),
 						res.getString("tenkhachhang"), res.getString("sdt"),
 						res.getString("cmnd"), res.getString("diachi"),
 						res.getString("email"), res.getLong("sotien"));
+				((KhachHangThuongXuyen) kh).setTaiKhoan(new TaiKhoan(res.getString("tentk"), res.getString("matkhau"), true));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -183,7 +184,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 				size = pre.executeUpdate();
 				if (size > 0) {
 					pre = con.prepareStatement(sql1);
-					pre.setString(1,  kh.getSdt());
+					pre.setString(1, kh.getSdt());
 					res = pre.executeQuery();
 					len = res.getLong("idkhachhang");
 				}
@@ -198,8 +199,6 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		return len;
 	}
 
-	
-	
 	// chưa sử dụng
 	@Override
 	public boolean deleteKhachHang(long id) {
@@ -373,11 +372,35 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		return khachhang;
 	}
 
-	
 	@Override
 	public boolean deleteKhachHang(KhachHang kh) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public long upDate(KhachHang kh) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "update khachhang set tenkhachhang=? , sdt=? , diachi=? , email =? , cmnd=? where idkhachhang =?";
+		KhachHang khachhang = null;
+		PreparedStatement pre = null;
+		long idKhachHang =-1;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, kh.getTenKhachHang());
+			pre.setString(2, kh.getSdt());
+			pre.setString(3, kh.getDiaChi());
+			pre.setString(4, kh.getEmail());
+			pre.setString(5, kh.getCmnd());
+			pre.setLong(6, kh.getIdKhachHang());
+			idKhachHang = pre.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return idKhachHang;
 	}
 
 }

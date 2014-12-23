@@ -32,9 +32,12 @@ public class DuongDan {
 	public static final String THEM_KHACHHANG_SVL = "/jsp/admin/ThemKhachHang.jsp";
 	public static final String THEM_VE_SVL = "/jsp/admin/ThemVe.jsp";
 	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
-	//
+	
+	public static final String KIEM_TRA_THONG_TIN_SVL = "/jsp/kiemtrave.jsp";
+	public static final String DOI_MAT_KHAU_SVL = "/jsp/DoiMatKhau.jsp";
 	public static final String DANG_NHAP_SVL = "/jsp/DangNhap.jsp";
 	public static final String DANG_KI_SVL = "/jsp/DangKi.jsp";
+	//
 	public static final String DANG_XUAT = "/BanVeXe/DangXuat";
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
 	public static final String TIM_TUYEN = "/BanVeXe/TimTuyen";

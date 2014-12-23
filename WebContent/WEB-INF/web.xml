@@ -331,4 +331,14 @@
     <servlet-name>DoiMatKhau</servlet-name>
     <url-pattern>/DoiMatKhau</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SuaThongTin</display-name>
+    <servlet-name>SuaThongTin</servlet-name>
+    <servlet-class>controller.SuaThongTin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SuaThongTin</servlet-name>
+    <url-pattern>/SuaThongTin</url-pattern>
+  </servlet-mapping>
 </web-app>
