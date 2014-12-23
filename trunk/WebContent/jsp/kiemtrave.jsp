@@ -30,30 +30,52 @@
 		</div>
 		<div class="kiemtrave kt-ve">
 			<div class="kt-ve pd mg" id="ktve">
+			
+			<% KhachHang kh = (KhachHang) session.getAttribute("khachHang");
+			String user = "";
+			String sdt = kh.getSdt();
+			String tenDangKi = kh.getTenKhachHang();
+			String email = kh.getEmail();
+			String cmnd = kh.getCmnd();
+			String diaChi = kh.getDiaChi();
+			%>
+			
 				<form action="#">
 					<fieldset>
 						<div class="kt-ve">
 							<div class="ktve-p pd mg kt-ve">
 								<p>Thông tin cá nhân</p>
+<!-- 								<div class="ktve-dong kt-ve"> -->
+<!-- 									<label class="wd-110 fl-l">Tên đăng nhập:</label> <input -->
+<!-- 										class="input-txt wd-240" name="user" type="text" readonly -->
+<%-- 										value=<%=user %>> --%>
+<!-- 								</div> -->
 								<div class="ktve-dong kt-ve">
-									<label class="wd-110 fl-l">Tên đăng nhập:</label> <input
-										class="input-txt wd-240" name="user" type="text" readonly
-										value="">
+									<label class="wd-110 fl-l">Tên Khách hàng:</label>
+<%-- 									<textarea rows="10" cols="100"><%=tenDangKi %></textarea> --%>
+									 <input
+										class="input-txt wd-240" name="name" type="text" readonly 
+										value="<%=tenDangKi %>">
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Địa chỉ Email:</label> <input
 										class="input-txt wd-240" readonly name="email" type="text"
-										value="">
+										value=<%=email %>>
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Số điện thoại:</label> <input
 										class="input-txt wd-240" readonly name="sdt" type="text"
-										value="">
+										value=<%=sdt %>>
+								</div>
+								<div class="ktve-dong kt-ve">
+									<label class="wd-110 fl-l">Số Cmnd:</label> <input
+										class="input-txt wd-240" name="cmnd" type="text" readonly
+										value=<%=cmnd %>>
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Địa chỉ:</label> <input
 										class="input-txt wd-240" readonly name="diachi" type="text"
-										value="">
+										value=<%=diaChi %>>
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">&nbsp;</label> <input
@@ -62,7 +84,7 @@
 										class="timve tv fl-l" type="button" value="Cập nhật"
 										style="visibility: hidden" onclick="addReadonly()">
 								</div>
-								<a href="#">Đổi mật khẩu</a>
+								<a href="/BanVeXe/jsp/DoiMatKhau.jsp">Đổi mật khẩu</a>
 
 							</div>
 
