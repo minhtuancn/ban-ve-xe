@@ -171,7 +171,7 @@ public class VeDAOImpl implements VeDAO {
 	@Override
 	public Ve timVeOfMaVe(String maVe) {
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sql = "SELECT idve,dakhoihanh,ghichu,mave,ngaydatve,thoihanthanhtoan,trangthaithanhtoan,idchuyen,idkhachhang,lahuyve,lidohuy FROM ve INNER JOIN khachhang ON ve.idkhachhang = khachhang.idkhachhang WHERE ve.mave = ? ";
+		String sql = "SELECT ve.idve, ve.dakhoihanh, ve.ghichu,ve.mave,ve.ngaydatve,ve.thoihanthanhtoan,ve.trangthaithanhtoan,ve.idchuyen,ve.lahuyve,ve.lidohuy,ve.idkhachhang FROM ve INNER JOIN khachhang ON ve.idkhachhang = khachhang.idkhachhang WHERE ve.mave = ?";
 		PreparedStatement pre = null;
 		Ve ve = null;
 		try {
@@ -180,16 +180,17 @@ public class VeDAOImpl implements VeDAO {
 			ResultSet res = pre.executeQuery();
 			while (res.next()) {
 				ve = new Ve(res.getLong("idve"), res.getString("mave"),
-						res.getString("ghichu"), res.getDate("ngaydatve"),
-						null, res.getBoolean("dakhoihanh"),
+						res.getString("ghichu"), new Date(res.getTimestamp("ngaydatve").getTime()),
+						getGheDAO().getGheOfVe(res.getLong("idve")), res.getBoolean("dakhoihanh"),
 						res.getBoolean("trangthaithanhtoan"),
 						res.getDate("thoihanthanhtoan"),
-						res.getBoolean("trangthaihuyve"),
-						res.getString("lidohuyve"));
+						res.getBoolean("lahuyve"),
+						res.getString("lidohuy"));
 				ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
 						ve.getIdVe()));
-				;
 				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen")));
+				System.out.println("Vedaoiml " + ve.getChuyen().getTuyen().getNgayDi());
+				ve.setKhachHang(getKhachHangDAO().getKhachHang(res.getLong("idkhachhang")));
 			}
 
 		} catch (SQLException e) {

@@ -191,8 +191,9 @@ public class TuyenDAOImpl implements TuyenDAO {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql1 = "SELECT iddiemdi, iddiemden FROM tuyen  WHERE idtuyen=?";
 		String sql2 = "SELECT tendiadiem FROM diadiem  WHERE iddiadiem=?";
-		PreparedStatement pre = null, pre2 = null;
-		ResultSet res, res2;
+		String sql3 = "SELECT tuyen.idtuyen, phancong.ngaydi FROM tuyen  INNER JOIN phancong ON phancong.idtuyen = tuyen.idtuyen where tuyen.idtuyen = ?";
+		PreparedStatement pre = null, pre2 = null, pre3 = null;
+		ResultSet res, res2, res3;
 		long iddiadiem;
 		DiaDiem diaDiem = null;
 		try {
@@ -216,11 +217,20 @@ public class TuyenDAOImpl implements TuyenDAO {
 					tuyen = new Tuyen(diaDiem, new DiaDiem(iddiadiem,
 							res2.getString("tendiadiem")));
 				}
+				pre3 =con.prepareStatement(sql3);
+				pre3.setLong(1, id);
+				res3 = pre3.executeQuery();
+				while(res3.next()){
+					tuyen.setNgayDi(new Date(res3.getTimestamp("ngaydi").getTime()));
+				}
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().closePre(pre3);
+			ConnectionPool.getInstance().closePre(pre2);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 
