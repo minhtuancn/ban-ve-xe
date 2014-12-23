@@ -353,7 +353,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 	@Override
 	public KhachHang getKhachHang(long id) {
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sql = "SELECT idkhachhang FROM khachhangthuongxuyen WHERE idkhachhang = ? ";
+		String sql = "SELECT idkhachhang,sdt FROM khachhang WHERE idkhachhang = ? ";
 		KhachHang khachhang = null;
 		PreparedStatement pre = null;
 		try {

@@ -22,7 +22,7 @@ public class Ve {
 	private KhachHang khachHang;
 	private boolean trangThaiHuyVe;
 	private String liDoHuyVe;
-	private SimpleDateFormat formats;
+	private SimpleDateFormat formats = new SimpleDateFormat(FORMAT);;
 	public static final String FORMAT = "dd/MM/yyyy HH:mm";
 
 	

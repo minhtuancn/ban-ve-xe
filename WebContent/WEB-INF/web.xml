@@ -341,4 +341,14 @@
     <servlet-name>SuaThongTin</servlet-name>
     <url-pattern>/SuaThongTin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TimVe</display-name>
+    <servlet-name>TimVe</servlet-name>
+    <servlet-class>controller.TimVe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TimVe</servlet-name>
+    <url-pattern>/TimVe</url-pattern>
+  </servlet-mapping>
 </web-app>
