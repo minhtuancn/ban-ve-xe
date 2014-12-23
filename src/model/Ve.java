@@ -192,7 +192,7 @@ public class Ve {
 	public void setDaKhoiHanh(boolean daKhoiHanh) {
 		this.daKhoiHanh = daKhoiHanh;
 	}
-
+	
 
 
 	public boolean isTrangThaiHuyVe() {
@@ -265,5 +265,23 @@ public class Ve {
 	
 	public Date getThoiHanThanhToans(){
 		return thoiHanThanhToan;
+	}
+	public String getBenXuatPhat(){
+		return chuyen.getBenXuatPhat();
+	}
+	public int getGia(){
+		return chuyen.getGia();
+	}
+	public String getLoaiGhe(){
+		return chuyen.getLoaiGhe();
+	}
+	public String getLoaiXe(){
+		return chuyen.getLoaiXe() + " chổ";
+	}
+	public String getTrangThaiThanhToan(){
+		return isTrangThaiThanhToan()? "Đã thanh toán" : "Chưa Thanh Toán";
+	}
+	public String getTrangThaiKhoiHanh(){
+		return isDaKhoiHanh() ? "Đã Khởi hành" : "Chưa khởi hành";
 	}
 }

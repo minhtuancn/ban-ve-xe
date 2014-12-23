@@ -1,3 +1,5 @@
+<%@page import="model.Ve"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -55,6 +57,7 @@
 			String email = kh.getEmail();
 			String cmnd = kh.getCmnd();
 			String diaChi = kh.getDiaChi();
+			List<Ve> listVe = kh.getDanhSachVeDaDat();
 			%>
 			
 			<%
@@ -115,6 +118,7 @@
 								<div id="timkiem"> <input type="text" id="text_timkiem"/> &nbsp;<button><img alt="hinhsearch" src=""></button></div>
 		
 								<table id="ktv">
+								
 									<tr id="dong1" class="bg">
 										<td class="tr1" align="center">Chuyến xe</td>
 										<td class="tr1" align="center">Giờ xuất phát</td>
@@ -123,29 +127,42 @@
 										<td class="tr1" align="center">Loại xe</td>
 										<td class="tr1" align="center">Mã ghế</td>
 										<td class="tr1" align="center">Thanh toán</td>
-										<td class="tr1" align="center">Xóa</td>
+										<td class="tr1" align="center">Khởi hành</td>
 									</tr>
+									
+									<% for(Ve v : listVe){ %>
 									<tr id="dong2">
-										<td class="tr1" align="center">HCM - Nha Trang</td>
-										<td class="tr1" align="center">7:00 am</td>
-										<td class="tr1" align="center">220,000đ</td>
-										<td class="tr1" align="center">Giường nằm</td>
-										<td class="tr1" align="center">45 chỗ</td>
-										<td class="tr1" align="center">A1</td>
-										<td class="tr1" align="center">Chưa thanh toán<br /> <a
-											href="DangNhap.jsp" class="ttoan">thanh toán</a></td>
-										<td align="center" class="tr1"><button class="chon">Xóa</button></td>
+										<td class="tr1" align="center"><%= v.getTuyenXe() %></td>
+										<td class="tr1" align="center"><%= v.getBenXuatPhat() %></td>
+										<td class="tr1" align="center"><%= v.getGia() %></td>
+										<td class="tr1" align="center"><%= v.getLoaiGhe() %></td>
+										<td class="tr1" align="center"><%= v.getLoaiXe() %></td>
+										<td class="tr1" align="center"><%= v.getTenGhe() %></td>
+										<td class="tr1" align="center"><%= v.getTrangThaiThanhToan() %></td>
+										<td class="tr1" align="center"><%= v.getTrangThaiKhoiHanh() %></td>
 									</tr>
-									<tr id="dong2">
-										<td class="tr1" align="center">HCM - Nha Trang</td>
-										<td class="tr1" align="center">5:00 pm</td>
-										<td class="tr1" align="center">120,000đ</td>
-										<td class="tr1" align="center">Giường nằm</td>
-										<td class="tr1" align="center">45 chỗ</td>
-										<td class="tr1" align="center">A2</td>
-										<td class="tr1" align="center">Đã thanh toán</td>
-										<td class="tr1" align="center"><button class="chon">Xóa</button></td>
-									</tr>
+									<% } %>
+<!-- 									<tr id="dong2"> -->
+<!-- 										<td class="tr1" align="center">HCM - Nha Trang</td> -->
+<!-- 										<td class="tr1" align="center">7:00 am</td> -->
+<!-- 										<td class="tr1" align="center">220,000đ</td> -->
+<!-- 										<td class="tr1" align="center">Giường nằm</td> -->
+<!-- 										<td class="tr1" align="center">45 chỗ</td> -->
+<!-- 										<td class="tr1" align="center">A1</td> -->
+<!-- 										<td class="tr1" align="center">Chưa thanh toán<br /> <a -->
+<!-- 											href="DangNhap.jsp" class="ttoan">thanh toán</a></td> -->
+<!-- 										<td align="center" class="tr1"><button class="chon">Xóa</button></td> -->
+<!-- 									</tr> -->
+<!-- 									<tr id="dong2"> -->
+<!-- 										<td class="tr1" align="center">HCM - Nha Trang</td> -->
+<!-- 										<td class="tr1" align="center">5:00 pm</td> -->
+<!-- 										<td class="tr1" align="center">120,000đ</td> -->
+<!-- 										<td class="tr1" align="center">Giường nằm</td> -->
+<!-- 										<td class="tr1" align="center">45 chỗ</td> -->
+<!-- 										<td class="tr1" align="center">A2</td> -->
+<!-- 										<td class="tr1" align="center">Đã thanh toán</td> -->
+<!-- 										<td class="tr1" align="center"><button class="chon">Xóa</button></td> -->
+<!-- 									</tr> -->
 
 								</table>
 							</div>
