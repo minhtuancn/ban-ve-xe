@@ -17,7 +17,7 @@
 String pageLink = "";
 if(khachHang!=null)
 	pageLink = DuongDan.KIEM_TRA_VE;
-else pageLink = DuongDan.KIEM_TRA_VE_CHUA_DANG_NHAP;
+else pageLink = DuongDan.DANG_NHAP;
 %>
 	<div id="container">
 		<header class="bg overflow">

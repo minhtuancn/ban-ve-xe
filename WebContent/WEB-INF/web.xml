@@ -321,4 +321,14 @@
     <servlet-name>KiemTraUser</servlet-name>
     <url-pattern>/KiemTraUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoiMatKhau</display-name>
+    <servlet-name>DoiMatKhau</servlet-name>
+    <servlet-class>controller.DoiMatKhau</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoiMatKhau</servlet-name>
+    <url-pattern>/DoiMatKhau</url-pattern>
+  </servlet-mapping>
 </web-app>
