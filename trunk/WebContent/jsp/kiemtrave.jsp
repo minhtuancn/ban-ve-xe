@@ -16,7 +16,24 @@
 	function addReadonly() {
 		$('.input-txt').attr("readonly", "readonly");
 		$(".tv").css("visibility", "hidden");
+		$("#form-thongtin").submit();
 	}
+	
+	
+	function checkEr() {
+		if ($("#error").val().length != 0) {
+			al($("#error").val(), "error");
+		}
+	};
+	function al(mes, type) {
+		swal({
+			title : mes ,
+			type : type
+		});
+	}
+	$(window).load(function() {
+	    checkEr();
+	  });
 </script>
 </head>
 
@@ -40,16 +57,18 @@
 			String diaChi = kh.getDiaChi();
 			%>
 			
-				<form action="#">
+			<%
+					String mes = "";
+						if((String) request.getAttribute("mes")!= null)
+					mes = (String) request.getAttribute("mes");
+				%>
+				<input type="hidden" value="<%=mes%>" id="error" />
+			
+				<form action="/BanVeXe/SuaThongTin" id="form-thongtin">
 					<fieldset>
 						<div class="kt-ve">
 							<div class="ktve-p pd mg kt-ve">
 								<p>Thông tin cá nhân</p>
-<!-- 								<div class="ktve-dong kt-ve"> -->
-<!-- 									<label class="wd-110 fl-l">Tên đăng nhập:</label> <input -->
-<!-- 										class="input-txt wd-240" name="user" type="text" readonly -->
-<%-- 										value=<%=user %>> --%>
-<!-- 								</div> -->
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Tên Khách hàng:</label>
 <%-- 									<textarea rows="10" cols="100"><%=tenDangKi %></textarea> --%>

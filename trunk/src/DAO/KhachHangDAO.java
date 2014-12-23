@@ -24,6 +24,7 @@ public interface KhachHangDAO extends DAO{
 	 */
 	public long addKhachHang(String tenKH, String sdt, String cmnd, String diaChi, String email);
 	public long addKhachHang(KhachHang kh);
+	public long upDate(KhachHang kh);
 	public List<KhachHang> searchKhachHang(String maSearch);
 	public boolean deleteKhachHang(long id);
 	public boolean deleteKhachHang(KhachHang kh);

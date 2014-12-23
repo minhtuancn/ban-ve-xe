@@ -40,7 +40,8 @@ public class DangKi extends HttpServlet {
 		super.init();
 		khachHangDAO = (KhachHangDAO) new FactoryDAOImp()
 				.createDAO(FactoryDao.KHACH_HANG_DAO);
-		taiKhoanDAO = (TaiKhoanDAO) new FactoryDAOImp().createDAO(FactoryDao.TAI_KHOAN_DAO);
+		taiKhoanDAO = (TaiKhoanDAO) new FactoryDAOImp()
+				.createDAO(FactoryDao.TAI_KHOAN_DAO);
 	}
 
 	/**
@@ -69,39 +70,42 @@ public class DangKi extends HttpServlet {
 		KhachHang khachHang = null;
 		if (request.getParameter("captcha") != null) {
 			scaptcha = request.getParameter("captcha");
-			
+
 			String sdt = request.getParameter("sdt");
 			khachHang = khachHangDAO.getKhachHang(sdt);
-			
+
 			if (khachHang == null) {
 				String user = request.getParameter("user");
 				String pass = request.getParameter("pass");
 				String re_pass = request.getParameter("re-pass");
-//				if (!pass.equals(re_pass)) {
-//					mes = "Mật khẩu không trùng khớp!";
-//					request.setAttribute("mes", mes);
-//					request.getRequestDispatcher(DuongDan.DANG_KI_SVL).forward(
-//							request, response);
-//				} else {
+				if (!pass.equals(re_pass)) {
+					mes = "Mật khẩu không trùng khớp!";
+					request.setAttribute("mes", mes);
+					request.getRequestDispatcher(DuongDan.DANG_KI_SVL).forward(
+							request, response);
+				} else {
 					khachHang = khachHangDAO.checkLogIn(user, pass);
 					if (khachHang == null) {
 						String tenDangKi = request.getParameter("name");
 						String email = request.getParameter("email");
 						String cmnd = request.getParameter("cmnd");
 						String diaChi = request.getParameter("diachi");
-						khachHang = new KhachHangThuongXuyen(0, tenDangKi, sdt, cmnd, diaChi, email);
+						khachHang = new KhachHangThuongXuyen(0, tenDangKi, sdt,
+								cmnd, diaChi, email);
 
 						System.out.println(khachHang.toString());
-						
+
 						khachHangDAO.addKhachHang(khachHang);
-						taiKhoanDAO.addTaiKhoan(new TaiKhoan(user, pass, false));
-System.out.println(khachHangDAO.addKhachHang(khachHang));
+						taiKhoanDAO
+								.addTaiKhoan(new TaiKhoan(user, pass, false));
+						System.out
+								.println(khachHangDAO.addKhachHang(khachHang));
 						response.sendRedirect(DuongDan.TRANG_CHU);
 					} else {
 						mes = "Tài khoản đã tồn tại!";
 						request.setAttribute("mes", mes);
-						request.getRequestDispatcher(DuongDan.DANG_KI_SVL).forward(
-								request, response);
+						request.getRequestDispatcher(DuongDan.DANG_KI_SVL)
+								.forward(request, response);
 					}
 
 				}
@@ -113,4 +117,4 @@ System.out.println(khachHangDAO.addKhachHang(khachHang));
 			}
 		}
 	}
-
+}

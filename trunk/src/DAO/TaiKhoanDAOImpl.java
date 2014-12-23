@@ -67,4 +67,26 @@ public class TaiKhoanDAOImpl implements TaiKhoanDAO {
 		return kq;
 	}
 
+
+	@Override
+	public long upDateMatKhau(String tk) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "update taikhoan set matkhau = ?";
+		PreparedStatement pre = null;
+		long idtaikhoan = -1;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, tk);
+			if(pre.executeUpdate() > 0){
+			idtaikhoan = 2;	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return idtaikhoan;
+	}
+
 }

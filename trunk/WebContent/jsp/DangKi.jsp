@@ -44,6 +44,11 @@
 			$("#error-pass").text("Mật khẩu không trùng khớp!");
 
 	}
+	function checkPass2() {
+		if ($("#pass").val() != $("#re-pass").val())
+			$("#error-pass").text("Mật khẩu không trùng khớp!");
+
+	}
 	function checkUser() {
 		if ($("#name").val().length != 0) {
 			$("#error-user").load("/BanVeXe/KiemTraUser?user=" + $("#name").val());
@@ -125,7 +130,7 @@
 					<label for="name">Nhập lại mật khẩu: <span class="req">*</span></label>
 					<input type="password" name="re-pass" id="re-pass" class="txt"
 						value="<%=re_pass%>" tabindex="1" placeholder="********" required
-						onblur="checkPass()" onfocus="$('#error-pass').text(' ')" >
+						onblur="checkPass2()"  onfocus="$('#error-pass').text(' ')" >
 
 				</div>
 

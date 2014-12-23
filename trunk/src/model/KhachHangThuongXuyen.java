@@ -16,4 +16,18 @@ public class KhachHangThuongXuyen extends KhachHang{
 		this.taiKhoan = taiKhoan;
 		this.soTien = soTien;
 	}
+	public TaiKhoan getTaiKhoan() {
+		return taiKhoan;
+	}
+	public void setTaiKhoan(TaiKhoan taiKhoan) {
+		this.taiKhoan = taiKhoan;
+	}
+	public long getSoTien() {
+		return soTien;
+	}
+	public void setSoTien(long soTien) {
+		this.soTien = soTien;
+	}
+	
+	
 }
