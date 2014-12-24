@@ -9,19 +9,24 @@
 <script src="/BanVeXe/js/jquery.md5.js"></script>
 <script type="text/javascript">
 	function check() {
-		var md5 = $.md5('hoang nhuoc quy'); 
+		var md5 = $.md5('hoang nhuoc quy');
 		alert(md5);
 		alert($.md5(md5));
 	}
 	function eq() {
-		if("abc" == "abc")
+		if ("abc" == "abc")
 			alert("abs");
 		else
 			alert("ass");
 	}
+	function change() {
+		$("#passmd5").val($.md5($("#pass").val()));
+	}
 </script>
 </head>
 <body>
+	<input type="text" id="pass" onblur="change()"/>
+	<input type="hidden" id="passmd5"/>
 	<button onclick="eq()">click</button>
 </body>
 </html>

@@ -2,33 +2,47 @@ package util;
 
 import java.io.IOException;
 import java.text.Normalizer;
+import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 import model.Ve;
 
+import org.smslib.AGateway;
 import org.smslib.GatewayException;
-import org.smslib.Message.MessageEncodings;
+import org.smslib.IInboundMessageNotification;
+import org.smslib.InboundMessage;
+import org.smslib.InboundMessage.MessageClasses;
+import org.smslib.Message.MessageTypes;
 import org.smslib.OutboundMessage;
 import org.smslib.SMSLibException;
 import org.smslib.Service;
 import org.smslib.TimeoutException;
 import org.smslib.modem.SerialModemGateway;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
+import DAO.VeDAO;
+
 public class SendMessageUtil {
 	private static SendMessageUtil instance;
+	private VeDAO veDAO;
 
 	private SendMessageUtil() {
 
 	}
 
-	public static void init(String com, String smsNumber) {
+	public void init(String com, String smsNumber) {
 		try {
+			InboundNotification inboundNotification = new InboundNotification();
+			;
 			SerialModemGateway gateway = new SerialModemGateway("modem.com1",
 					com, 115200, "Huawei", "");
 			gateway.setInbound(true);
 			gateway.setOutbound(true);
 			gateway.setSimPin("0000");
 			gateway.setSmscNumber(smsNumber);
+			Service.getInstance().setInboundMessageNotification(
+					inboundNotification);
 			Service.getInstance().addGateway(gateway);
 			Service.getInstance().startService();
 			instance = new SendMessageUtil();
@@ -70,6 +84,12 @@ public class SendMessageUtil {
 		return instance;
 	}
 
+	public void sendMess(String phoneNumber, String message) {
+		OutboundMessage msg = new OutboundMessage(phoneNumber,
+				unAccent(message));
+		Service.getInstance().queueMessage(msg);
+	}
+
 	public void forgetPassword(String phoneNumber, String password) {
 		OutboundMessage msg = new OutboundMessage(phoneNumber,
 				"Mat khau moi cua quy khach la: " + password);
@@ -77,12 +97,19 @@ public class SendMessageUtil {
 	}
 
 	public void sendTicket(String phoneNumber, Ve ve) {
-		if(instance == null) return;
+		if (instance == null)
+			return;
 		String mes = "Thong tin ve cua quy khach vua dat la:\n-Ma Ve : "
-				+ ve.getMaVe() + "\n-Tuyen : " + ve.getTuyenXe()
-				+ "\n-Gio khoi hanh : " + ve.getNgayKhoiHanh()
-				+ "\n-Danh sach ghe : " + ve.getTenGhe()
-				+ "\n-Thoi han thanh toan : " + ve.getThoiHanThanhToan() + "\nXin vui long thanh toan truoc thoi han neu khong ve se tu dong huy! Xin cam on! vexeonline.com";
+				+ ve.getMaVe()
+				+ "\n-Tuyen : "
+				+ ve.getTuyenXe()
+				+ "\n-Gio khoi hanh : "
+				+ ve.getNgayKhoiHanh()
+				+ "\n-Danh sach ghe : "
+				+ ve.getTenGhe()
+				+ "\n-Thoi han thanh toan : "
+				+ ve.getThoiHanThanhToan()
+				+ "\nXin vui long thanh toan truoc thoi han neu khong ve se tu dong huy! Xin cam on! vexeonline.com";
 		OutboundMessage msg = new OutboundMessage(phoneNumber, unAccent(mes));
 		Service.getInstance().queueMessage(msg);
 	}
@@ -90,6 +117,40 @@ public class SendMessageUtil {
 	private String unAccent(String s) {
 		String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
 		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-		return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D").replace("đ", "");
+		return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D")
+				.replace("đ", "");
 	}
+
+	class InboundNotification implements IInboundMessageNotification {
+		public void process(AGateway gateway, MessageTypes msgType,
+				InboundMessage msg) {
+			InboundMessage[] arr;
+			StringTokenizer stk;
+			try {
+				arr = Service.getInstance().readMessages(MessageClasses.ALL);
+				Service.getInstance().deleteMessage(msg);
+				for (int i = 0; i < arr.length; i++) {
+					stk = new StringTokenizer(arr[i].getText());
+					if (stk.countTokens() != 2) {
+						sendMess(arr[i].getOriginator(), "Tin nhan sai cu phap");
+					} else {
+						
+					}
+				}
+			} catch (TimeoutException | GatewayException | IOException
+					| InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * @return the veDAO
+	 */
+	public VeDAO getVeDAO() {
+		veDAO = (VeDAO) (veDAO == null ? new FactoryDAOImp()
+				.createDAO(FactoryDao.VE_DAO) : veDAO);
+		return veDAO;
+	}
+
 }
