@@ -40,4 +40,6 @@ public interface VeDAO extends DAO {
 	 * @return true nếu đã tồn tài, ngược lại false
 	 */
 	public boolean checkMaVe(String maVe);
+	
+	public String thanhToanVe(String maVe);
 }

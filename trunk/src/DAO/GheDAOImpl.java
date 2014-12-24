@@ -68,7 +68,7 @@ public class GheDAOImpl implements GheDAO {
 	}
 
 	@Override
-	public String setGiuCho(Ve datVe) {
+	public String setGiuCho(Ve datVe, byte trangThais) {
 		List<Ghe> listGhe = datVe.getDanhSachGhe();
 		Connection con = ConnectionPool.getInstance().getConnection();
 		String sqlCheck = "select trangthai, giucho , mave from ghe where idghe=?";
@@ -93,7 +93,7 @@ public class GheDAOImpl implements GheDAO {
 					trangThai = res.getByte("trangthai");
 					switch (trangThai) {
 					case Ghe.CHUA_DAT:
-						preSet.setByte(1, Ghe.DANG_GIU);
+						preSet.setByte(1, trangThais);
 						preSet.setTimestamp(2, new Timestamp(datCho.getTime()));
 						preSet.setString(3, datVe.getMaVe());
 						preSet.setLong(4, ghe.getIdGhe());
@@ -110,7 +110,7 @@ public class GheDAOImpl implements GheDAO {
 								throw new SQLException("dadat");
 							} else {
 								getVeDAO().deleteVe(res.getString("mave"));
-								preSet.setByte(1, Ghe.DANG_GIU);
+								preSet.setByte(1, trangThais);
 								preSet.setTimestamp(2,
 										new Timestamp(datCho.getTime()));
 								preSet.setString(3, datVe.getMaVe());

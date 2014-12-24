@@ -10,8 +10,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/timve.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
-<script src="/BanVeXe/js/util.js"></script>
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/util.js"></script>
 <script src="/BanVeXe/js/sweet-alert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/sweet-alert.css">

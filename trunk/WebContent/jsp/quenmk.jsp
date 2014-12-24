@@ -38,15 +38,15 @@
 					<tr>
 						<td><span>Quên mật khẩu</span></td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<td><span>Nhập số điện thoại:</span><span class="req">*</span></td> -->
-<!-- 						<td><input type="number" name="hoten" required="required" -->
-<!-- 							style="width: 310px;" placeholder="số điện thoại" /></td> -->
-<!-- 					</tr> -->
 					<tr>
-						<td><span>Nhập tên tài khoản:</span><span class="req">*</span></td>
-						<td><input type="text" name="hoten" required="required"
-							style="width: 310px; height: 25px;" placeholder="Tên tài khoản" /></td>
+						<td><span>Nhập số điện thoại:</span><span class="req">*</span></td>
+						<td><input type="number" name="hoten" required="required"
+							style="width: 310px;" placeholder="số điện thoại" /></td>
+					</tr>
+					<tr>
+						<td><span>Nhập số CMND:</span><span class="req">*</span></td>
+						<td><input type="number" name="hoten" required="required"
+							style="width: 310px;" placeholder="số CMND" /></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -57,7 +57,7 @@
 					</tr>
 					<tr>
 						<td><span>Nhập mã xác nhận:</span><span class="req">*</span></td>
-						<td><input type="text" name="maXN" size="40" style="width: 310px; height: 25px;"
+						<td><input type="text" name="maXN" size="40"
 							placeholder=" Nhập mã xác nhận" required="required"></td>
 					</tr>
 					<tr>
