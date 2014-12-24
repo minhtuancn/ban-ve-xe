@@ -67,7 +67,7 @@
 				%>
 				<input type="hidden" value="<%=mes%>" id="error" />
 			
-				<form action="/BanVeXe/SuaThongTin" id="form-thongtin">
+				<form action="/BanVeXe/SuaThongTin" id="form-thongtin" method="post" accept-charset="UTF-8">
 					<fieldset>
 						<div class="kt-ve">
 							<div class="ktve-p pd mg kt-ve">

@@ -1,6 +1,9 @@
 package controller.admin.themchuyen;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,57 +16,81 @@ import model.Chuyen;
 import model.Tuyen;
 import util.DuongDan;
 import DAO.ChuyenDAO;
-import DAO.ChuyenDAOImpl;
 import DAO.TuyenDAO;
-import DAO.TuyenDAOImpl;
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 
 /**
  * Servlet implementation class ListChuyen
  */
 public class ListChuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListChuyen() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private ChuyenDAO chuyenDAO;
+	private TuyenDAO tuyenDAO;
+	private SimpleDateFormat format;
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ListChuyen() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		FactoryDao f = new FactoryDAOImp();
+		chuyenDAO = (ChuyenDAO) f.createDAO(FactoryDao.CHUYEN_DAO);
+		tuyenDAO = (TuyenDAO) f.createDAO(FactoryDao.TUYEN_DAO);
+		format = new SimpleDateFormat("yyyy-MM-dd");
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doAction(request, response);
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		doAction(request, response);
 	}
 
-	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doAction(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String date = request.getParameter("date");
-		String tenTuyenXe = request.getParameter("tuyen");
-		System.out.println(date);
-		List<Tuyen> tuyen = (List<Tuyen>) session.getAttribute("listTuyen");
-		ChuyenDAO chuyenDAO = new ChuyenDAOImpl();
-		Tuyen t = null;
-		System.out.println(tenTuyenXe);
-		for (Tuyen tuyen2 : tuyen) {
-		if(tuyen2.getTuyenXe().equalsIgnoreCase(tenTuyenXe))
-			 t = tuyen2;
+		List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
+		session.setAttribute("listTuyen", listTuyen);
+
+		//
+		String tuyen = "";
+		if (request.getParameter("tuyen") != null)
+			tuyen = request.getParameter("tuyen");
+		String date = "";
+		if (request.getParameter("date") != null)
+			date = request.getParameter("date");
+		if(!date.equals("") && !tuyen.equals("")){
+			try {
+				Long idTuyen = Long.parseLong(tuyen);
+				Date dateS = format.parse(date);
+				List<Chuyen> listChuyen = chuyenDAO.getAllChuyen(tuyenDAO.getTuyen(idTuyen), dateS);
+				System.out.println(tuyenDAO.getTuyen(idTuyen).getIdTuyen());
+				System.out.println("ListChuyen " + listChuyen.size());
+				session.setAttribute("listChuyen", listChuyen);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
-		request.setAttribute("date", date);
-		session.setAttribute("tuyen", t);
-		List<Chuyen> list = chuyenDAO.getAllChuyen(t);
-		request.setAttribute("listChuyen", list);
-		request.getRequestDispatcher(DuongDan.THEM_CHUYEN_SVL).forward(request, response);
+		request.getRequestDispatcher(DuongDan.DSCHUYEN_SVL).forward(request,
+				response);
 	}
 
 }

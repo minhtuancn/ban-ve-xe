@@ -98,26 +98,26 @@
 		});
 	});
 
-	function timchuyen() {
-		if ($('#date').val().length == 0) {
-			swal({
-				title : "Bạn chưa nhập ngày!",
-				type : "warning"
-			});
-		} else {
-			var tuyen = $('#tuyen option:selected').val();
-			while (tuyen.indexOf(" ") != -1) {
-				tuyen = tuyen.replace(" ", "+");
-			}
-			// 			$("#themchuyen").load("/BanVeXe/ListChuyen", {tuyen: tuyen,date : + $('#date').val()+""}, function() {
-			$("#themchuyen").html("AAAAA");
-			// 				$("#themchuyen").html("aaaaaaaaaaaaaaa");
-			$("#themchuyen").load(
-					"/BanVeXe/ListChuyen?tuyen=" + tuyen + "&date="
-							+ $('#date').val().replace(" ", "+"), function() {
-					});
-		}
-	};
+// 	function timchuyen() {
+// 		if ($('#date').val().length == 0) {
+// 			swal({
+// 				title : "Bạn chưa nhập ngày!",
+// 				type : "warning"
+// 			});
+// 		} else {
+// 			var tuyen = $('#tuyen option:selected').val();
+// 			while (tuyen.indexOf(" ") != -1) {
+// 				tuyen = tuyen.replace(" ", "+");
+// 			}
+// 			// 			$("#themchuyen").load("/BanVeXe/ListChuyen", {tuyen: tuyen,date : + $('#date').val()+""}, function() {
+// 			$("#themchuyen").html("AAAAA");
+// 			// 				$("#themchuyen").html("aaaaaaaaaaaaaaa");
+// 			$("#themchuyen").load(
+// 					"/BanVeXe/ListChuyen?tuyen=" + tuyen + "&date="
+// 							+ $('#date').val().replace(" ", "+"), function() {
+// 					});
+// 		}
+// 	};
 </script>
 </head>
 <body>
@@ -125,7 +125,6 @@
 		List<Tuyen> listTuyen;
 		if (session.getAttribute("listTuyen") != null) {
 			listTuyen = (List<Tuyen>) session.getAttribute("listTuyen");
-			session.setAttribute("listTuyen", listTuyen);
 		} else
 			listTuyen = new ArrayList<Tuyen>();
 		SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
@@ -133,6 +132,9 @@
 		Date today = new Date();
 		String date = "";
 		Date selectDate;
+		long idSelected = 2;
+		if(request.getParameter("tuyen") != null)
+			idSelected = Long.parseLong(request.getParameter("tuyen"));
 		if (request.getParameter("date") != null)
 			date = request.getParameter("date");
 		if (date.equals("")) {
@@ -146,22 +148,22 @@
 			<fieldset>
 				<legend>Thông tin chuyến</legend>
 				<div>
-					<form action="Kiemtrachuyen" id="form">
+					<form action="ListChuyen" id="form">
 
 						<label for="name">Tuyến Xe</label><br /> <select name="tuyen"
 							id="tuyen">
 							<%
-								for (Tuyen d : listTuyen) {
+								for (Tuyen t : listTuyen) {
 							%>
-							<option value="<%=d.getTuyenXe()%>">
-								<%=d.getTuyenXe()%></option>
+							<option value="<%=t.getIdTuyen()%>" <%= t.getIdTuyen() == idSelected ? "selected" : ""%>>
+								<%=t.getTuyenXe()%></option>
 							<%
 								}
 							%>
 						</select> <br /> <label for="name">Date</label><br /> <input type="date"
 							id="date" name="date" min="<%=f2.format(today)%>"
 							value="<%=f2.format(selectDate)%>" /> <br />
-						<button onclick="timchuyen()">click</button>
+						<button style="width: 100px;">Tìm Tuyến</button>
 						<br />
 					</form>
 				</div>
