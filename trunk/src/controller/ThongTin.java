@@ -81,21 +81,17 @@ public class ThongTin extends HttpServlet {
 		String scaptcha = "";
 		if (request.getParameter("captcha") != null)
 			scaptcha = request.getParameter("captcha");
+		System.out.println("ThongTin " + scaptcha);
 		boolean laKhuHoi = (Boolean) session.getAttribute("laKhuHoi");
 		if (scaptcha.equals(((String) session.getAttribute("captcha")))) {
 			Ve veDi = new Ve(kh, LayMaVe.getInstant().getMaVe(),
 					(DatVe) session.getAttribute("datVeDi"), sghiChu);
 			String luuVe = veDAO.addVe(veDi);
 			if (null != luuVe) {
-				// Chuyen c = chuyenDAO.getChuyen(((Chuyen )
-				// session.getAttribute("chuyenDi")).getIdChuyen(), (Tuyen)
-				// session.getAttribute("tuyenDi"));
-				// session.setAttribute("chuyenDi", c);
 				session.setAttribute("captcha", null);
 				request.setAttribute("mes", luuVe);
 				request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(
 						request, response);
-				// response.sendRedirect(DuongDan.TIM_CHUYEN + "?mes=" + luuVe);
 				return;
 			}
 			Ve veVe = null;
@@ -104,10 +100,6 @@ public class ThongTin extends HttpServlet {
 						(DatVe) session.getAttribute("datVeVe"), sghiChu);
 				luuVe = veDAO.addVe(veVe);
 				if (null != luuVe) {
-					// Chuyen c = chuyenDAO.getChuyen(((Chuyen )
-					// session.getAttribute("chuyenVe")).getIdChuyen(), (Tuyen)
-					// session.getAttribute("tuyenVe"));
-					// session.setAttribute("chuyenVe", c);
 					request.setAttribute("mes", luuVe);
 					request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL)
 							.forward(request, response);
@@ -115,8 +107,8 @@ public class ThongTin extends HttpServlet {
 				}
 			}
 			session.setAttribute("veDi", veDi);
-			SendMessageUtil.getInstance().sendTicket(
-					veDi.getKhachHang().getSdt(), veDi);
+//			SendMessageUtil.getInstance().sendTicket(
+//					veDi.getKhachHang().getSdt(), veDi);
 			if (laKhuHoi) {
 				session.setAttribute("veVe", veVe);
 				SendMessageUtil.getInstance().sendTicket(
