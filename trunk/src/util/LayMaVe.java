@@ -4,10 +4,15 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
+import DAO.VeDAO;
+
 public class LayMaVe {
 	private static LayMaVe instant = new LayMaVe();
 	private Set<String> listMaVe;
 	private Random random;
+	private VeDAO veDAO;
 	public static final int SO_KY_TU_MAVE = 4;
 
 	private LayMaVe() {
@@ -53,7 +58,7 @@ public class LayMaVe {
 	 * @return true: nếu vé chưa tồn tại, false: nếu vé đã tồn tại!
 	 */
 	public boolean kiemTraTontaiMaVe(String maVe) {
-		return checkMaVeDB(maVe) && !listMaVe.contains(maVe);
+		return !checkMaVeDB(maVe) && !listMaVe.contains(maVe);
 	}
 
 	/**
@@ -74,4 +79,13 @@ public class LayMaVe {
 	public void ungetMaVe(String maVe){
 		listMaVe.remove(maVe);
 	}
+
+	/**
+	 * @return the veDAO
+	 */
+	public VeDAO getVeDAO() {
+		veDAO = (VeDAO) (veDAO == null ? new FactoryDAOImp().createDAO(FactoryDao.VE_DAO): veDAO);
+		return veDAO;
+	}
+	
 }

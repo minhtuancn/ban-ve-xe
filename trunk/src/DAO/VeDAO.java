@@ -34,4 +34,10 @@ public interface VeDAO extends DAO {
 //			Date thoiHanThanhToan,long idChuyen,
 //			long idKhachHang);
 	public String addVe(Ve ve);
+	/**
+	 * Kiểm tra 1 mã vé đã sử dụng hay chưa
+	 * @param maVe
+	 * @return true nếu đã tồn tài, ngược lại false
+	 */
+	public boolean checkMaVe(String maVe);
 }

@@ -20,7 +20,7 @@
 
 	<div class="container">
 		<%@ include file="header.jsp"%>
-		<h1>Chúc mừng quý khách đã giữ chỗ thành công!</h1>
+		<h1>Chúc mừng quý khách đã đặt chỗ thành công!</h1>
 		<fieldset>
 			<legend>Thông tin vé</legend>
 			<div class="thongtinve">

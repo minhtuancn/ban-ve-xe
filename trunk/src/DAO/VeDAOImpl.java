@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import util.LayMaVe;
 import database.ConnectionPool;
 import database.Database;
 import factory.dao.FactoryDAOImp;
@@ -173,28 +174,35 @@ public class VeDAOImpl implements VeDAO {
 		String sql = "SELECT ve.idve, ve.dakhoihanh, ve.ghichu,ve.mave,ve.ngaydatve,ve.thoihanthanhtoan,ve.trangthaithanhtoan,ve.idchuyen,ve.lahuyve,ve.lidohuy,ve.idkhachhang FROM ve INNER JOIN khachhang ON ve.idkhachhang = khachhang.idkhachhang WHERE ve.mave = ?";
 		PreparedStatement pre = null;
 		Ve ve = null;
+		Date now = new Date();
+		Date thoiHanThanhToan;
 		try {
 			pre = con.prepareStatement(sql);
 			pre.setString(1, maVe);
 			ResultSet res = pre.executeQuery();
 			while (res.next()) {
-				ve = new Ve(res.getLong("idve"), res.getString("mave"),
-						res.getString("ghichu"), new Date(res.getTimestamp(
-								"ngaydatve").getTime()), getGheDAO()
-								.getGheOfVe(res.getLong("idve")),
-						res.getBoolean("dakhoihanh"),
-						res.getBoolean("trangthaithanhtoan"),
-						res.getDate("thoihanthanhtoan"),
-						res.getBoolean("lahuyve"), res.getString("lidohuy"));
-				ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
-						ve.getIdVe()));
-				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen")));
-				System.out.println("Vedaoiml "
-						+ ve.getChuyen().getTuyen().getNgayDi());
-				ve.setKhachHang(getKhachHangDAO().getKhachHang(
-						res.getLong("idkhachhang")));
+				thoiHanThanhToan = res.getTimestamp("thoihanthanhtoan");
+				if (thoiHanThanhToan.compareTo(now) < 0) {
+					deleteVe(maVe);
+				} else {
+					ve = new Ve(res.getLong("idve"), res.getString("mave"),
+							res.getString("ghichu"), new Date(res.getTimestamp(
+									"ngaydatve").getTime()), getGheDAO()
+									.getGheOfVe(res.getLong("idve")),
+							res.getBoolean("dakhoihanh"),
+							res.getBoolean("trangthaithanhtoan"),
+							res.getTimestamp("thoihanthanhtoan"),
+							res.getBoolean("lahuyve"), res.getString("lidohuy"));
+					ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
+							ve.getIdVe()));
+					ve.setChuyen(getChuyenDAO().getChuyen(
+							res.getLong("idchuyen")));
+					System.out.println("Vedaoiml " + ve.getThoiHanThanhToans());
+					System.out.println("Vedaoiml " + ve.getThoiHanThanhToan());
+					ve.setKhachHang(getKhachHangDAO().getKhachHang(
+							res.getLong("idkhachhang")));
+				}
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -214,6 +222,7 @@ public class VeDAOImpl implements VeDAO {
 			pre.setLong(1, ve.getIdVe());
 			pre.setString(2, ve.getMaVe());
 			pre.executeUpdate();
+			LayMaVe.getInstant().ungetMaVe(ve.getMaVe());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -238,6 +247,24 @@ public class VeDAOImpl implements VeDAO {
 			ConnectionPool.getInstance().closePre(pre);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
+	}
+	public boolean checkMaVe(String maVe){
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "select maVe from ve where mave = ?";
+		PreparedStatement pre = null;
+		boolean kq  = true;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, maVe);
+			kq = pre.executeQuery().next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return kq;
+		
 	}
 
 }

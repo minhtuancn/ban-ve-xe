@@ -36,13 +36,16 @@
 				String mes = "";
 				if ((String) request.getAttribute("mes") != null)
 					mes = (String) request.getAttribute("mes");
+				String maVe = "";;
+				if (request.getParameter("maVe") != null)
+					maVe = request.getParameter("maVe");
 			%>
 			<input type="hidden" value="<%=mes%>" id="error" />
 			<form action="/BanVeXe/TimVe">
 				<p id="h3">Bạn vui lòng nhập thông tin để tìm vé!</p>
 				<div id="divtrai">
 					<input type="text" class="text"
-						style="width: 400px; margin-bottom: 20px;" name="maVe" />
+						style="width: 400px; margin-bottom: 20px;" name="maVe" value="<%= maVe %>"/>
 					<div style="margin-left: 140px;">
 						<input type="submit" id="button_s" value="Tìm vé " />
 					</div>
