@@ -16,6 +16,7 @@ import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
 import model.DatVe;
 import model.DiaDiem;
+import model.Ghe;
 import model.KhachHang;
 import model.KhachHangThuongXuyen;
 import model.KhachHangVangLai;
@@ -137,7 +138,7 @@ public class VeDAOImpl implements VeDAO {
 		String sql = "INSERT into Ve(dakhoihanh, ghichu,mave,ngaydatve, thoihanthanhtoan, trangthaithanhtoan, idchuyen, idkhachhang, lahuyve) VALUES (?,?,?,?,?,?,?,?,?)";
 		String giuCho = null;
 		try {
-			giuCho = getGheDAO().setGiuCho(ve);
+			giuCho = getGheDAO().setGiuCho(ve, Ghe.DANG_GIU);
 			if (giuCho != null) {
 				throw new SQLException("error");
 			} else {
@@ -248,11 +249,12 @@ public class VeDAOImpl implements VeDAO {
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 	}
-	public boolean checkMaVe(String maVe){
+
+	public boolean checkMaVe(String maVe) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql = "select maVe from ve where mave = ?";
 		PreparedStatement pre = null;
-		boolean kq  = true;
+		boolean kq = true;
 		try {
 			pre = con.prepareStatement(sql);
 			pre.setString(1, maVe);
@@ -264,7 +266,39 @@ public class VeDAOImpl implements VeDAO {
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return kq;
-		
+
+	}
+
+	@Override
+	public String thanhToanVe(String maVe) {
+		Ve ve = timVeOfMaVe(maVe);
+		String mes = null;
+		if (ve != null) {
+			mes = getGheDAO().setGiuCho(ve, Ghe.DA_DAT);
+			if (mes == null) {
+				mes = getKhachHangDAO().thanhToanVe(ve);
+				if (mes == null) {
+					Connection con = ConnectionPool.getInstance()
+							.getConnection();
+					String sql = "update ve set trangthaithanhtoan = ? where mave =?";
+					PreparedStatement pre = null;
+					try {
+						pre = con.prepareStatement(sql);
+						pre.setBoolean(1, true);
+						pre.setString(2, maVe);
+						pre.executeUpdate();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						ConnectionPool.getInstance().closePre(pre);
+						ConnectionPool.getInstance().freeConnection(con);
+					}
+				}
+			}
+		} else {
+			mes = "Vé đã bị hủy do hết hạn thanh toán!";
+		}
+		return mes;
 	}
 
 }

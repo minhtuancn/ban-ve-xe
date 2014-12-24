@@ -39,8 +39,10 @@ public class KhachHangDAOIml implements KhachHangDAO {
 						res.getString("tenkhachhang"), res.getString("sdt"),
 						res.getString("cmnd"), res.getString("diachi"),
 						res.getString("email"), res.getLong("sotien"));
-				((KhachHangThuongXuyen) kh).setTaiKhoan(new TaiKhoan(res.getString("tentk"), res.getString("matkhau"), true));
-				kh.setDanhSachVeDaDat(getVeDao().getAllVe(res.getLong("idkhachhang")));
+				((KhachHangThuongXuyen) kh).setTaiKhoan(new TaiKhoan(res
+						.getString("tentk"), res.getString("matkhau"), true));
+				kh.setDanhSachVeDaDat(getVeDao().getAllVe(
+						res.getLong("idkhachhang")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -386,7 +388,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		String sql = "update khachhang set tenkhachhang=? , sdt=? , diachi=? , email =? , cmnd=? where idkhachhang =?";
 		KhachHang khachhang = null;
 		PreparedStatement pre = null;
-		long idKhachHang =-1;
+		long idKhachHang = -1;
 		try {
 			pre = con.prepareStatement(sql);
 			pre.setString(1, kh.getTenKhachHang());
@@ -406,8 +408,48 @@ public class KhachHangDAOIml implements KhachHangDAO {
 	}
 
 	public VeDAO getVeDao() {
-		veDao = (VeDAO) (veDao ==null? new FactoryDAOImp().createDAO(FactoryDao.VE_DAO): veDao);
+		veDao = (VeDAO) (veDao == null ? new FactoryDAOImp()
+				.createDAO(FactoryDao.VE_DAO) : veDao);
 		return veDao;
 	}
-	
+
+	@Override
+	public String thanhToanVe(Ve ve) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		PreparedStatement pre = null;
+		ResultSet res = null;
+		String mes = null;
+		int soTien = -1;
+		try {
+			con.setAutoCommit(false);
+			String sqlUpdate = "update khachhangthuongxuyen set sotien = sotien - ? ";
+			String sqlKiemTraTien = "select sotien from khachhangthuongxuyen where idkhachhang=?";
+			pre = con.prepareStatement(sqlKiemTraTien);
+			pre.setLong(1, ve.getKhachHang().getIdKhachHang());
+			res = pre.executeQuery();
+			if (res.next()) {
+				soTien = res.getInt("sotien");
+			}
+			if (soTien >= ve.getTongTien()) {
+				pre.close();
+				pre = con.prepareStatement(sqlUpdate);
+				pre.setInt(1, ve.getTongTien());
+				if (pre.executeUpdate() == 0) {
+					mes = "Không tìm thấy khách hàng!";
+				}
+			} else {
+				mes = "Số tiền trong tài khoản quý khách không đủ để thực hiện giao dịch này!";
+				throw new SQLException("error");
+			}
+		} catch (SQLException e) {
+			if(!e.getMessage().equalsIgnoreCase("error"))
+				mes="Lỗi hệ thống!";
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return mes;
+	}
+
 }

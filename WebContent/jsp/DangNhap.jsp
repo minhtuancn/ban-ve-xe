@@ -8,54 +8,25 @@
 <title>Đăng nhập</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/DangNhap.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
-<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
-<script src="/BanVeXe/js/sweet-alert.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="/BanVeXe/css/sweet-alert.css">
-<script type="text/javascript">
-	function al(mes, type) {
-		swal({
-			title : mes,
-			type : type
-		});
-	}
-
-	function checkEr() {
-		if ($("#error").val().length != 0) {
-			al($("#error").val(), "error");
-		}
-	};
-
-	$(window).load(function() {
-		checkEr();
-	});
-</script>
 </head>
 
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="containerdn">
-	<%
-			String mes = "";
-			if (request.getAttribute("mes") != null)
-				mes = (String) request.getAttribute("mes");
-		%>
-		<input type="hidden" value="<%=mes%>" id="error" />
 		<div class="bg title">
 			<marquee behavior="alternate" width="10%">>></marquee>
 			Đăng nhập
 			<marquee behavior="alternate" width="10%"> << </marquee>
 		</div>
 		<div id="dangki">
-			<%
-				String pageForward = DuongDan.TRANG_CHU;
-				if (request.getParameter("pageForward") != null)
-					pageForward = request.getParameter("pageForward");
-			%>
+			<% String pageForward = DuongDan.TRANG_CHU ;
+			if(request.getParameter("pageForward") != null)
+				pageForward = request.getParameter("pageForward");
+		%>
 			<h1>Đăng Nhập</h1>
 			<form id="contactform" name="contact" method="post"
 				action="/BanVeXe/DangNhap">
-				<input type="hidden" name="pageForward" value="<%=pageForward%>" />
+				<input type="hidden" name="pageForward" value="<%= pageForward%>" />
 				<div class="row">
 					<label for="name">Tên Đăng Nhập: <span class="req">*</span></label>
 					<input type="text" name="user" id="name" class="txt" tabindex="1"
@@ -72,10 +43,10 @@
 						value="Đăng Nhập" />
 				</div>
 				<div class="dong">
-					<a class="dangki" href="<%=DuongDan.DANG_KY%>">Đăng kí</a>
+					<a class="dangki" href="DangKi.jsp">Đăng kí</a>
 				</div>
 				<div class="dong">
-					<a class="quenmk" href="<%=DuongDan.QUEN_MAT_KHAU %>">Quên mật khẩu</a>
+					<a class="quenmk" href="quenmk.jsp">Quên mật khẩu</a>
 				</div>
 			</form>
 		</div>

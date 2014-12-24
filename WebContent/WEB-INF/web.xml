@@ -355,11 +355,31 @@
     <listener-class>util.CenterMessage</listener-class>
   </listener>
   <context-param>
-	<param-name>centerNumber</param-name>
-	<param-value>+84980200030</param-value>
-	</context-param>
+    <param-name>centerNumber</param-name>
+    <param-value>+84980200030</param-value>
+  </context-param>
   <context-param>
-	<param-name>comPort</param-name>
-	<param-value>COM9</param-value>
-	</context-param>
+    <param-name>comPort</param-name>
+    <param-value>COM9</param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>ThanhToan</display-name>
+    <servlet-name>ThanhToan</servlet-name>
+    <servlet-class>controller.ThanhToan</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThanhToan</servlet-name>
+    <url-pattern>/ThanhToan</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ThanhToanTien</display-name>
+    <servlet-name>ThanhToanTien</servlet-name>
+    <servlet-class>controller.ThanhToanTien</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThanhToanTien</servlet-name>
+    <url-pattern>/ThanhToanTien</url-pattern>
+  </servlet-mapping>
 </web-app>

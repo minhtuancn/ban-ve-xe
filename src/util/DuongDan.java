@@ -38,6 +38,7 @@ public class DuongDan {
 	public static final String DOI_MAT_KHAU_SVL = "/jsp/DoiMatKhau.jsp";
 	public static final String DANG_NHAP_SVL = "/jsp/DangNhap.jsp";
 	public static final String DANG_KI_SVL = "/jsp/DangKi.jsp";
+	public static final String THANH_TOAN_VE_SVL = "/jsp/ThanhToanVe.jsp";
 	//
 	public static final String DANG_XUAT = "/BanVeXe/DangXuat";
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
@@ -55,5 +56,6 @@ public class DuongDan {
 	public static final String SUA_DIADIEM_SV = "/BanVeXe/UpdateDiaDiem";
 	public static final String XOA_KHACHHANG_SV = "/BanVeXe/DeleteKhachHang";
 	public static final String SUA_KHACHHANG_SV = "/BanVeXe/UpdateKhachHang";
+	public static final String THANH_TOAN_SV = "/BanVeXe/ThanhToan";
 	
 }

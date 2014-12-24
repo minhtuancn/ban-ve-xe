@@ -37,15 +37,15 @@
 			<p id="h3">Bạn vui lòng nhập thông tin để kiểm tra vé!</p>
 				<span id ="error-pass-old" style="color: red;" ><%=mes %></span>
 			<div id="divtrai">
-				<label id="lsdt">Nhập mật khẩu hiện tại:</label><br> 
+				<label id="slable">Nhập mật khẩu hiện tại:</label><br> 
 				<input type="password" class="text" required="required" id="pass-old" name="pass-old"/>
 			</div>
 			<div id="divphai">
-				<label id="lcmnd">Nhập mật khẩu mới:</label><br>
+				<label id="slable">Nhập mật khẩu mới:</label><br>
 				<input type="password" class="text" required="required" id="pass" name="pass"/>
 			</div>
 			<div id="divphai">
-				<label id="lcmnd">Nhập lại mật khẩu mới:</label><br>
+				<label id="slable">Nhập lại mật khẩu mới:</label><br>
 			<span id ="error-pass" style="color: red;"></span>
 				<input type="password" class="text" required="required" id="re-pass" name="re-pass"/>
 			</div>
