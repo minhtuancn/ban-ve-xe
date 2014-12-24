@@ -21,7 +21,7 @@ import model.Ve;
 
 public class GheDAOImpl implements GheDAO {
 	private VeDAO veDAO;
-	
+
 	@Override
 	public List<Ghe> getAllGhe(long idChuyen) {
 		Connection con = ConnectionPool.getInstance().getConnection();
@@ -44,7 +44,8 @@ public class GheDAOImpl implements GheDAO {
 					break;
 				case Ghe.DANG_GIU:
 					// kiểm tra thời gian giữ ghế còn hiệu lực không
-					System.out.println("GheDAOImpl : "+ res.getTimestamp("giucho"));
+					System.out.println("GheDAOImpl : "
+							+ res.getTimestamp("giucho"));
 					dateGiuCho = new Date(res.getTimestamp("giucho").getTime());
 					trangThai = dateGiuCho.compareTo(now) < 0 ? Ghe.CHUA_DAT
 							: Ghe.DA_DAT;
@@ -131,8 +132,8 @@ public class GheDAOImpl implements GheDAO {
 			}
 			con.commit();
 		} catch (SQLException e) {
-			if(!"dadat".equals(e.getMessage()))
-			mes = "Lỗi hệ thống, xin vui lòng thử lại sau vài phút!";
+			if (!"dadat".equals(e.getMessage()))
+				mes = "Lỗi hệ thống, xin vui lòng thử lại sau vài phút!";
 			e.printStackTrace();
 			try {
 				con.rollback();
@@ -175,7 +176,6 @@ public class GheDAOImpl implements GheDAO {
 		return list;
 	}
 
-
 	@Override
 	public String setNonGiuCho(Ve datVe) {
 		List<Ghe> listGhe = datVe.getDanhSachGhe();
@@ -187,10 +187,10 @@ public class GheDAOImpl implements GheDAO {
 		try {
 			con.setAutoCommit(false);
 			preSet = con.prepareStatement(sqlSet);
-			for (Ghe ghe : listGhe){
+			for (Ghe ghe : listGhe) {
 				preSet.setByte(1, Ghe.DANG_GIU);
 				preSet.setLong(2, ghe.getIdGhe());
-				if (preSet.executeUpdate() == 0){
+				if (preSet.executeUpdate() == 0) {
 					throw new SQLException();
 				}
 			}
@@ -214,7 +214,8 @@ public class GheDAOImpl implements GheDAO {
 	 * @return the veDAO
 	 */
 	public VeDAO getVeDAO() {
-		veDAO = (VeDAO) (veDAO == null ? new FactoryDAOImp().createDAO(FactoryDao.VE_DAO): veDAO);
+		veDAO = (VeDAO) (veDAO == null ? new FactoryDAOImp()
+				.createDAO(FactoryDao.VE_DAO) : veDAO);
 		return veDAO;
 	}
 
@@ -226,18 +227,55 @@ public class GheDAOImpl implements GheDAO {
 		String mes = null;
 		int i = 0;
 		try {
+			con.setAutoCommit(false);
 			preSet = con.prepareStatement(sqlSet);
 			preSet.setByte(1, Ghe.DA_DAT);
 			preSet.setString(2, ve.getMaVe());
-			if(preSet.executeUpdate() ==0)
+			if (preSet.executeUpdate() == 0)
 				mes = "Ghế đã đặt!";
+			con.commit();
 		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
+			ConnectionPool.getInstance().setDefaulAutoCommit(con);
 			ConnectionPool.getInstance().closePre(preSet);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return mes;
 	}
-	
+
+	@Override
+	public String giaHan(String maVe, Date date) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sqlSet = "update ghe set giucho = ? where mave=?";
+		PreparedStatement preSet = null;
+		String mes = null;
+		try {
+			con.setAutoCommit(false);
+			preSet = con.prepareStatement(sqlSet);
+			preSet.setTimestamp(1, new Timestamp(date.getTime()));
+			preSet.setString(2, maVe);
+			preSet.executeUpdate();
+			con.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			mes = "Lỗi hệ thống";
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			ConnectionPool.getInstance().setDefaulAutoCommit(con);
+			ConnectionPool.getInstance().closePre(preSet);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return mes;
+	}
+
 }

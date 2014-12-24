@@ -136,7 +136,7 @@ public class VeDAOImpl implements VeDAO {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		System.out.println("VeDAOImlp " + ve.getTenGhe());
 		PreparedStatement pre = null;
-		String sql = "INSERT into Ve(dakhoihanh, ghichu,mave,ngaydatve, thoihanthanhtoan, trangthaithanhtoan, idchuyen, idkhachhang, lahuyve) VALUES (?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT into Ve(dakhoihanh, ghichu,mave,ngaydatve, thoihanthanhtoan, trangthaithanhtoan, idchuyen, idkhachhang, lahuyve, dagiahan) VALUES (?,?,?,?,?,?,?,?,?,0)";
 		String giuCho = null;
 		try {
 			giuCho = getGheDAO().setGiuCho(ve, Ghe.DANG_GIU);
@@ -309,33 +309,50 @@ public class VeDAOImpl implements VeDAO {
 		Date date;
 		Date now = new Date();
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sql = "select giucho from ghe where mave = ?";
-		String sqlUpdate = "update ghe set giucho = ? where mave = ?";
+		String sql = "select thoihanthanhtoan, dagiahan from ve where mave = ?";
+		String sqlUpdate = "update ve set thoihanthanhtoan = ?, dagiahan = ? where mave = ?";
 		PreparedStatement pre = null;
 		ResultSet res;
 		try {
 			pre = con.prepareStatement(sql);
 			pre.setString(1, maVe);
 			res = pre.executeQuery();
-			if(res.next()){
-				date = res.getTimestamp("giucho");
-				if(date.compareTo(now) < 0){
-					mes = "Mã vé không tồn tại hoặc đã bị huỷ do hết hạn thanh toán!";
-					throw new SQLException("daxoa");
-				}else{
-					pre.close();
-					pre = con.prepareStatement(sqlUpdate);
-					pre.setTimestamp(1, new Timestamp(date.getTime() + 2*60*60*1000));
-					if(pre.executeUpdate() == 0 ){
+			if (res.next()) {
+				if (!res.getBoolean("dagiahan")) {
+					date = new Date(res.getTimestamp("thoihanthanhtoan")
+							.getTime());
+					if (date.compareTo(now) < 0) {
 						mes = "Mã vé không tồn tại hoặc đã bị huỷ do hết hạn thanh toán!";
+						deleteVe(maVe);
 						throw new SQLException("daxoa");
+					} else {
+						date.setTime(date.getTime() +  2 * 60 * 60 * 1000);
+						mes = getGheDAO().giaHan(maVe, date);
+						if (mes == null) {
+							pre.close();
+							pre = con.prepareStatement(sqlUpdate);
+							pre.setTimestamp(1, new Timestamp(date.getTime()));
+							pre.setBoolean(2, true);
+							pre.setString(3, maVe);
+							if (pre.executeUpdate() == 0) {
+								mes = "Mã vé không tồn tại hoặc đã bị huỷ do hết hạn thanh toán!";
+								throw new SQLException("daxoa");
+							}
+						}else{
+							throw new SQLException("daxoa");
+						}
 					}
+				} else {
+					mes = "Gia hạn không thành công! Vé đã 1 lần gia han!";
+					throw new SQLException("daxoa");
 				}
-			}else{
+			} else {
 				mes = "Mã vé không tồn tại hoặc đã bị huỷ do hết hạn thanh toán!";
 				throw new SQLException("daxoa");
 			}
 		} catch (SQLException e) {
+			if (!e.getMessage().equals("daxoa"))
+				mes = "Lỗi hệ thống!";
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);

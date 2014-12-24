@@ -42,6 +42,6 @@ public interface VeDAO extends DAO {
 	public boolean checkMaVe(String maVe);
 	
 	public String thanhToanVe(String maVe);
-	
+	public String giaHan(String maVe);
 
 }

@@ -34,6 +34,7 @@ public class LayMaVe {
 			for (int i = 0; i < SO_KY_TU_MAVE; i++) {
 				s += random();
 			}
+			System.out.println("LayMaVe " + s);
 		} while (!kiemTraTontaiMaVe(s));
 		listMaVe.add(s);
 		return s;
@@ -58,7 +59,7 @@ public class LayMaVe {
 	 * @return true: nếu vé chưa tồn tại, false: nếu vé đã tồn tại!
 	 */
 	public boolean kiemTraTontaiMaVe(String maVe) {
-		return !checkMaVeDB(maVe) && !listMaVe.contains(maVe);
+		return checkMaVeDB(maVe) && !listMaVe.contains(maVe);
 	}
 
 	/**
@@ -70,7 +71,8 @@ public class LayMaVe {
 	 * @return true: nếu vé chưa tồn tại, false: nếu vé đã tồn tại!
 	 */
 	public boolean checkMaVeDB(String maVe) {
-		return true;
+		return !getVeDAO().checkMaVe(maVe);
+	
 	}
 	/**
 	 * phương thức thu hồi 1 mã vé không sữ dụng

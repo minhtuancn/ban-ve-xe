@@ -45,7 +45,6 @@ public class SendMessageUtil {
 					inboundNotification);
 			Service.getInstance().addGateway(gateway);
 			Service.getInstance().startService();
-			instance = new SendMessageUtil();
 		} catch (GatewayException e) {
 			e.printStackTrace();
 		} catch (TimeoutException e) {
@@ -97,8 +96,6 @@ public class SendMessageUtil {
 	}
 
 	public void sendTicket(String phoneNumber, Ve ve) {
-		if (instance == null)
-			return;
 		String mes = "Thong tin ve cua quy khach vua dat la:\n-Ma Ve : "
 				+ ve.getMaVe()
 				+ "\n-Tuyen : "
@@ -118,7 +115,7 @@ public class SendMessageUtil {
 		String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
 		Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
 		return pattern.matcher(temp).replaceAll("").replaceAll("Đ", "D")
-				.replace("đ", "");
+				.replace("đ", "d");
 	}
 
 	class InboundNotification implements IInboundMessageNotification {
@@ -137,7 +134,7 @@ public class SendMessageUtil {
 					} else {
 						if ("ve".equalsIgnoreCase(stk.nextToken())) {
 							System.out.println(msg.getOriginator() + " : " + msg.getText());
-							String mes = veDAO.giaHan(stk.nextToken());
+							String mes = getVeDAO().giaHan(stk.nextToken());
 							System.out.println(mes);
 							if(mes == null)
 								sendMess("+" +arr[i].getOriginator(), "Gia hạn vé thanh công");
