@@ -422,7 +422,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		int soTien = -1;
 		try {
 			con.setAutoCommit(false);
-			String sqlUpdate = "update khachhangthuongxuyen set sotien = sotien - ? ";
+			String sqlUpdate = "update khachhangthuongxuyen set sotien = sotien - ? where idkhachhang=?";
 			String sqlKiemTraTien = "select sotien from khachhangthuongxuyen where idkhachhang=?";
 			pre = con.prepareStatement(sqlKiemTraTien);
 			pre.setLong(1, ve.getKhachHang().getIdKhachHang());
@@ -434,6 +434,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 				pre.close();
 				pre = con.prepareStatement(sqlUpdate);
 				pre.setInt(1, ve.getTongTien());
+				pre.setLong(2, ve.getKhachHang().getIdKhachHang());
 				if (pre.executeUpdate() == 0) {
 					mes = "Không tìm thấy khách hàng!";
 				}
@@ -441,11 +442,13 @@ public class KhachHangDAOIml implements KhachHangDAO {
 				mes = "Số tiền trong tài khoản quý khách không đủ để thực hiện giao dịch này!";
 				throw new SQLException("error");
 			}
+		con.commit();
 		} catch (SQLException e) {
 			if(!e.getMessage().equalsIgnoreCase("error"))
 				mes="Lỗi hệ thống!";
 			e.printStackTrace();
 		} finally {
+			ConnectionPool.getInstance().setDefaulAutoCommit(con);
 			ConnectionPool.getInstance().closePre(pre);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
