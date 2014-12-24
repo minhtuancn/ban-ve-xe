@@ -136,27 +136,23 @@ public class VeDAOImpl implements VeDAO {
 		String sql = "INSERT into Ve(dakhoihanh, ghichu,mave,ngaydatve, thoihanthanhtoan, trangthaithanhtoan, idchuyen, idkhachhang, lahuyve) VALUES (?,?,?,?,?,?,?,?,?)";
 		String giuCho = null;
 		try {
-
-			pre = con.prepareStatement(sql);
-			pre.setByte(1, (byte) 0);
-			pre.setString(2, ve.getGhiChu());
-			pre.setString(3, ve.getMaVe());
-			pre.setTimestamp(4, new Timestamp(ve.getNgayDatVes().getTime()));
-			pre.setTimestamp(5, new Timestamp(ve.getThoiHanThanhToans()
-					.getTime()));
-			pre.setByte(6, (byte) 0);
-			pre.setLong(7, ve.getChuyen().getIdChuyen());
-			pre.setLong(8, ve.getKhachHang().getIdKhachHang());
-			pre.setByte(9, (byte) 0);
-			if (pre.executeUpdate() == 0) {
-				giuCho = "Thêm vé không thành công!";
+			giuCho = getGheDAO().setGiuCho(ve);
+			if (giuCho != null) {
 				throw new SQLException("error");
 			} else {
-				gheDAO = getGheDAO();
-				giuCho = gheDAO.setGiuCho(ve);
-				if (null != giuCho) {
-					// gheDAO.setNonGiuCho(ve);
-					deleteVe(ve);
+				pre = con.prepareStatement(sql);
+				pre.setByte(1, (byte) 0);
+				pre.setString(2, ve.getGhiChu());
+				pre.setString(3, ve.getMaVe());
+				pre.setTimestamp(4, new Timestamp(ve.getNgayDatVes().getTime()));
+				pre.setTimestamp(5, new Timestamp(ve.getThoiHanThanhToans()
+						.getTime()));
+				pre.setByte(6, (byte) 0);
+				pre.setLong(7, ve.getChuyen().getIdChuyen());
+				pre.setLong(8, ve.getKhachHang().getIdKhachHang());
+				pre.setByte(9, (byte) 0);
+				if (pre.executeUpdate() == 0) {
+					giuCho = "Thêm vé không thành công!";
 					throw new SQLException("error");
 				}
 			}
@@ -211,7 +207,7 @@ public class VeDAOImpl implements VeDAO {
 	@Override
 	public void deleteVe(Ve ve) {
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sql = "delete from khachhang where idve = ? or mave = ?";
+		String sql = "delete from ve where idve = ? or mave = ?";
 		PreparedStatement pre = null;
 		try {
 			pre = con.prepareStatement(sql);
@@ -225,6 +221,23 @@ public class VeDAOImpl implements VeDAO {
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 
+	}
+
+	@Override
+	public void deleteVe(String maVe) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "delete from ve where mave = ?";
+		PreparedStatement pre = null;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, maVe);
+			pre.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
 	}
 
 }

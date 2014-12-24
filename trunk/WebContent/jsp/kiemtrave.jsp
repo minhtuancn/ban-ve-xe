@@ -1,3 +1,4 @@
+<%@page import="model.KhachHang"%>
 <%@page import="model.Ve"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -9,7 +10,9 @@
 <title>Kiểm tra vé</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/kiemtrave.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
-<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
 <script>
 	function removeReadonly() {
 		$('.input-txt').removeAttr('readonly');
