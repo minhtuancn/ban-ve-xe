@@ -134,6 +134,7 @@ public class VeDAOImpl implements VeDAO {
 	@Override
 	public String addVe(Ve ve) {
 		Connection con = ConnectionPool.getInstance().getConnection();
+		System.out.println("VeDAOImlp " + ve.getTenGhe());
 		PreparedStatement pre = null;
 		String sql = "INSERT into Ve(dakhoihanh, ghichu,mave,ngaydatve, thoihanthanhtoan, trangthaithanhtoan, idchuyen, idkhachhang, lahuyve) VALUES (?,?,?,?,?,?,?,?,?)";
 		String giuCho = null;
@@ -297,6 +298,48 @@ public class VeDAOImpl implements VeDAO {
 			}
 		} else {
 			mes = "Vé đã bị hủy do hết hạn thanh toán!";
+		}
+		return mes;
+	}
+
+	@Override
+	public String giaHan(String maVe) {
+		System.out.println("VeDaoImpl " + maVe);
+		String mes = null;
+		Date date;
+		Date now = new Date();
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "select giucho from ghe where mave = ?";
+		String sqlUpdate = "update ghe set giucho = ? where mave = ?";
+		PreparedStatement pre = null;
+		ResultSet res;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, maVe);
+			res = pre.executeQuery();
+			if(res.next()){
+				date = res.getTimestamp("giucho");
+				if(date.compareTo(now) < 0){
+					mes = "Mã vé không tồn tại hoặc đã bị huỷ do hết hạn thanh toán!";
+					throw new SQLException("daxoa");
+				}else{
+					pre.close();
+					pre = con.prepareStatement(sqlUpdate);
+					pre.setTimestamp(1, new Timestamp(date.getTime() + 2*60*60*1000));
+					if(pre.executeUpdate() == 0 ){
+						mes = "Mã vé không tồn tại hoặc đã bị huỷ do hết hạn thanh toán!";
+						throw new SQLException("daxoa");
+					}
+				}
+			}else{
+				mes = "Mã vé không tồn tại hoặc đã bị huỷ do hết hạn thanh toán!";
+				throw new SQLException("daxoa");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return mes;
 	}

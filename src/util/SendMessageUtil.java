@@ -24,7 +24,7 @@ import factory.dao.FactoryDao;
 import DAO.VeDAO;
 
 public class SendMessageUtil {
-	private static SendMessageUtil instance;
+	private static SendMessageUtil instance = new SendMessageUtil();
 	private VeDAO veDAO;
 
 	private SendMessageUtil() {
@@ -126,6 +126,7 @@ public class SendMessageUtil {
 				InboundMessage msg) {
 			InboundMessage[] arr;
 			StringTokenizer stk;
+			System.out.println(msg.getOriginator() + " : " + msg.getText());
 			try {
 				arr = Service.getInstance().readMessages(MessageClasses.ALL);
 				Service.getInstance().deleteMessage(msg);
@@ -134,7 +135,16 @@ public class SendMessageUtil {
 					if (stk.countTokens() != 2) {
 						sendMess(arr[i].getOriginator(), "Tin nhan sai cu phap");
 					} else {
-						
+						if ("ve".equalsIgnoreCase(stk.nextToken())) {
+							System.out.println(msg.getOriginator() + " : " + msg.getText());
+							String mes = veDAO.giaHan(stk.nextToken());
+							System.out.println(mes);
+							if(mes == null)
+								sendMess("+" +arr[i].getOriginator(), "Gia hạn vé thanh công");
+							else{
+								sendMess("+" +arr[i].getOriginator(), mes);
+							}
+						}
 					}
 				}
 			} catch (TimeoutException | GatewayException | IOException
@@ -143,10 +153,6 @@ public class SendMessageUtil {
 			}
 		}
 	}
-
-	/**
-	 * @return the veDAO
-	 */
 	public VeDAO getVeDAO() {
 		veDAO = (VeDAO) (veDAO == null ? new FactoryDAOImp()
 				.createDAO(FactoryDao.VE_DAO) : veDAO);
