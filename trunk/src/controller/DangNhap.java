@@ -48,8 +48,8 @@ public class DangNhap extends HttpServlet {
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String pageForward = DuongDan.TRANG_CHU;
-		if (request.getParameter("pageForward") != null)
-			pageForward = request.getParameter("pageForward");
+		if (request.getParameter("pageFoward") != null)
+			pageForward = request.getParameter("pageFoward");
 		String user = request.getParameter("user");
 		String password = request.getParameter("password");
 		//

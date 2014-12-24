@@ -217,5 +217,27 @@ public class GheDAOImpl implements GheDAO {
 		veDAO = (VeDAO) (veDAO == null ? new FactoryDAOImp().createDAO(FactoryDao.VE_DAO): veDAO);
 		return veDAO;
 	}
+
+	@Override
+	public String setGheDaDat(Ve ve) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sqlSet = "update ghe set trangthai=? where mave=?";
+		PreparedStatement preSet = null;
+		String mes = null;
+		int i = 0;
+		try {
+			preSet = con.prepareStatement(sqlSet);
+			preSet.setByte(1, Ghe.DA_DAT);
+			preSet.setString(2, ve.getMaVe());
+			if(preSet.executeUpdate() ==0)
+				mes = "Ghế đã đặt!";
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(preSet);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return mes;
+	}
 	
 }

@@ -135,13 +135,27 @@
 					2/ Thanh toán bằng tiền mặt tại văn phòng Công ty TNHH SiGlaz Việt
 					Nam.<br> 3/ Thanh toán bằng tiền mặt tại phòng vé chính thức
 					của Hãng xe.<br> 4/ Chuyển khoản ngân hàng.<br>
-				<p>
-					Quý khách vui lòng nhắn tin với cú pháp "VE &ltmave&gt" gửi 0169xxxxx để gia hạn thời gian thanh toán <a href="<%=DuongDan.THANH_TOAN_SV + "?pageFoward="+DuongDan.CHI_TIET_VE_SVL+ "&mave=" + veDi.getMaVe()%>" style="color: red;">Quý khách nhấp link để thanh toán vé đi</a><br>
-					<%if(veVe != null){%>
-					
-					<a href="<%=DuongDan.THANH_TOAN_SV + "?pageFoward="+DuongDan.CHI_TIET_VE_SVL+ "&mave=" + veVe.getMaVe()%>" style="color: red;">Quý khách nhấp link để thanh toán vé về</a><br>
-					<%} %>
-				</p>
+
+					<%
+					if (!veDi.isTrangThaiThanhToan()) {
+				%>
+				
+				<p>Quý khách vui lòng nhắn tin với cú pháp "VE &ltmave&gt" gửi
+					0169xxxxx để gia hạn thời gian thanh toán</p>
+
+				<a href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veDi.getMaVe()%>"
+						style="color: red;">Quý khách nhấp link để thanh toán vé đi</a><br>
+					<%
+						}
+
+						if (veVe != null && !veVe.isTrangThaiThanhToan()) {
+					%>
+
+					<a href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veVe.getMaVe()%>"
+						style="color: red;">Quý khách nhấp link để thanh toán vé về</a><br>
+					<%
+						}
+					%>
 			</div>
 		</fieldset>
 	</div>

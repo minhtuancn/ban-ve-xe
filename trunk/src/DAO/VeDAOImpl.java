@@ -274,7 +274,7 @@ public class VeDAOImpl implements VeDAO {
 		Ve ve = timVeOfMaVe(maVe);
 		String mes = null;
 		if (ve != null) {
-			mes = getGheDAO().setGiuCho(ve, Ghe.DA_DAT);
+			mes = getGheDAO().setGheDaDat(ve);
 			if (mes == null) {
 				mes = getKhachHangDAO().thanhToanVe(ve);
 				if (mes == null) {

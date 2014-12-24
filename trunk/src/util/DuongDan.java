@@ -39,6 +39,7 @@ public class DuongDan {
 	public static final String DANG_NHAP_SVL = "/jsp/DangNhap.jsp";
 	public static final String DANG_KI_SVL = "/jsp/DangKi.jsp";
 	public static final String THANH_TOAN_VE_SVL = "/jsp/ThanhToanVe.jsp";
+	public static final String THANH_TOAN_VE = "/BanVeXe/jsp/ThanhToanVe.jsp";
 	//
 	public static final String DANG_XUAT = "/BanVeXe/DangXuat";
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
