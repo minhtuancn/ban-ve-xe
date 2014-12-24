@@ -58,7 +58,7 @@ public class TimVe extends HttpServlet {
 			response.sendRedirect(DuongDan.CHI_TIET_VE);
 		}else{
 			response.setCharacterEncoding("utf-8");
-			mes = "Mã vé không tồn tại, vui lòng kiểm tra lại!";
+			mes = "Mã vé không tồn tại hoặc đã bị hủy do quá thời hạn thanh toán, vui lòng kiểm tra lại!";
 			request.setAttribute("mes", mes);
 			request.getRequestDispatcher(DuongDan.TIM_VE_SVL).forward(request, response);
 		}

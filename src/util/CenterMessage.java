@@ -29,13 +29,13 @@ public class CenterMessage implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent ev) {
-    	ServletContext contex = ev.getServletContext();
-    	System.out.println( "listener " + contex.getInitParameter("comPort") + " : " +  contex.getInitParameter("centerNumber"));
-		SendMessageUtil.init(contex.getInitParameter("comPort"), contex.getInitParameter("centerNumber"));
+//    	ServletContext contex = ev.getServletContext();
+//    	System.out.println( "listener " + contex.getInitParameter("comPort") + " : " +  contex.getInitParameter("centerNumber"));
+//		SendMessageUtil.init(contex.getInitParameter("comPort"), contex.getInitParameter("centerNumber"));
     }
 
     public void contextDestroyed(ServletContextEvent arg0) {
-        // TODO Auto-generated method stub
+       SendMessageUtil.detroy();
     }
 	
 }
