@@ -42,18 +42,18 @@ public class AddChuyen extends HttpServlet {
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sesstion = request.getSession();
-		Tuyen t = (Tuyen) sesstion.getAttribute("tuyen");
-		String gioKhoiHanh = request.getParameter("giokhoihanh");
-		String xe = request.getParameter("xe");
-		Xe xes = null;
-		if(xe.equalsIgnoreCase("xe45"))
-			 xes = new Xe("", "", 45);
-		xes = new Xe("", "", 16);
-		int gia = Integer.parseInt(request.getParameter("gia"));
-		ChuyenDAO dao = new ChuyenDAOImpl();
-		dao.addChuyen(t, gioKhoiHanh,xes, t.getDiemDi().getTenDiaDiem(), gia);
-		response.getWriter().print("1");
+//		HttpSession sesstion = request.getSession();
+//		Tuyen t = (Tuyen) sesstion.getAttribute("tuyen");
+//		String gioKhoiHanh = request.getParameter("giokhoihanh");
+//		String xe = request.getParameter("xe");
+//		Xe xes = null;
+//		if(xe.equalsIgnoreCase("xe45"))
+//			 xes = new Xe("", "", 45);
+//		xes = new Xe("", "", 16);
+//		int gia = Integer.parseInt(request.getParameter("gia"));
+//		ChuyenDAO dao = new ChuyenDAOImpl();
+//		dao.addChuyen(t, gioKhoiHanh,xes, t.getDiemDi().getTenDiaDiem(), gia);
+//		response.getWriter().print("1");
 	}
 
 }

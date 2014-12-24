@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -110,6 +111,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 			ConnectionPool.getInstance().closePre(pre2);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
+		Collections.sort(listAllTuyen);
 		return listAllTuyen;
 	}
 
@@ -216,6 +218,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 				while (res2.next()) {
 					tuyen = new Tuyen(diaDiem, new DiaDiem(iddiadiem,
 							res2.getString("tendiadiem")));
+					tuyen.setIdTuyen(id);
 				}
 				pre3 =con.prepareStatement(sql3);
 				pre3.setLong(1, id);
