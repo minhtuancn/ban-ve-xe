@@ -1,5 +1,6 @@
 package DAO;
 
+import java.util.Date;
 import java.util.List;
 
 import model.Ghe;
@@ -15,4 +16,5 @@ public interface GheDAO extends DAO{
 	public String setGheDaDat(Ve ve);
 	public String setNonGiuCho(Ve datVe);
 	public List<Ghe> getGheOfVe(long idVe);
+	public String giaHan(String maVe, Date date);
 }

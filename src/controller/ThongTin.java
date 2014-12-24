@@ -107,8 +107,8 @@ public class ThongTin extends HttpServlet {
 				}
 			}
 			session.setAttribute("veDi", veDi);
-//			SendMessageUtil.getInstance().sendTicket(
-//					veDi.getKhachHang().getSdt(), veDi);
+			SendMessageUtil.getInstance().sendTicket(
+					veDi.getKhachHang().getSdt(), veDi);
 			if (laKhuHoi) {
 				session.setAttribute("veVe", veVe);
 				SendMessageUtil.getInstance().sendTicket(
