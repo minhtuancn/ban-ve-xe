@@ -12,13 +12,16 @@ import java.util.List;
 import controller.DangNhap;
 import database.ConnectionPool;
 import database.Database;
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 import model.Chuyen;
 import model.DatVe;
 import model.Ghe;
 import model.Ve;
 
 public class GheDAOImpl implements GheDAO {
-
+	private VeDAO veDAO;
+	
 	@Override
 	public List<Ghe> getAllGhe(long idChuyen) {
 		Connection con = ConnectionPool.getInstance().getConnection();
@@ -68,7 +71,7 @@ public class GheDAOImpl implements GheDAO {
 	public String setGiuCho(Ve datVe) {
 		List<Ghe> listGhe = datVe.getDanhSachGhe();
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sqlCheck = "select trangthai, giucho from ghe where idghe=?";
+		String sqlCheck = "select trangthai, giucho , mave from ghe where idghe=?";
 		String sqlSet = "update ghe set trangthai=?, giucho = ? , mave=? where idghe=?";
 		PreparedStatement preCheck = null;
 		PreparedStatement preSet = null;
@@ -106,6 +109,7 @@ public class GheDAOImpl implements GheDAO {
 										+ " đã có người đặt trước!";
 								throw new SQLException("dadat");
 							} else {
+								getVeDAO().deleteVe(res.getString("mave"));
 								preSet.setByte(1, Ghe.DANG_GIU);
 								preSet.setTimestamp(2,
 										new Timestamp(datCho.getTime()));
@@ -148,7 +152,7 @@ public class GheDAOImpl implements GheDAO {
 	public List<Ghe> getGheOfVe(long idVe) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		ArrayList<Ghe> list = new ArrayList<Ghe>();
-		String sql1 = "SELECT idghe,soghe,trangthai,idve, giucho FROM ghe WHERE idve = ?";
+		String sql1 = "SELECT ve.idve, ghe.idghe, ghe.soghe, ghe.trangthai, ghe.mave, ghe.idchuyen, ghe.giucho FROM ve INNER JOIN ghe ON ghe.mave = ve.mave where ve.idve = ?;";
 		PreparedStatement pre = null;
 		ResultSet res;
 		Date now = new Date();
@@ -205,4 +209,13 @@ public class GheDAOImpl implements GheDAO {
 		}
 		return mes;
 	}
+
+	/**
+	 * @return the veDAO
+	 */
+	public VeDAO getVeDAO() {
+		veDAO = (VeDAO) (veDAO == null ? new FactoryDAOImp().createDAO(FactoryDao.VE_DAO): veDAO);
+		return veDAO;
+	}
+	
 }

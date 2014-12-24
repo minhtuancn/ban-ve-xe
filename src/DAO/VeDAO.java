@@ -26,6 +26,7 @@ public interface VeDAO extends DAO {
 	public List<Ve> searchVe(String maSearch);
 	
 	public void deleteVe(Ve ve);
+	public void deleteVe(String maVe);
 	
 	public Ve timVeOfMaVe(String maVe);
 

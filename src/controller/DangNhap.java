@@ -54,8 +54,18 @@ public class DangNhap extends HttpServlet {
 		String password = request.getParameter("password");
 		//
 		String mes = "";
-		if(user.trim().length() == 0)
+		if(user.trim().length() == 0){
 			mes = "Bạn chưa nhập tên tài khoản!";
+			request.setAttribute("mes", mes);
+			request.getRequestDispatcher(DuongDan.DANG_NHAP_SVL).forward(request, response);
+			return;
+		}
+		if(password.trim().length() == 0){
+			mes = "Bạn chưa nhập mật khẩu!";
+			request.setAttribute("mes", mes);
+			request.getRequestDispatcher(DuongDan.DANG_NHAP_SVL).forward(request, response);
+			return;
+		}
 //		else
 //			if(user.trim().length() == 0)
 //				mes=""
@@ -67,7 +77,10 @@ public class DangNhap extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("khachHang", kh);
 		} else {
-			pageForward = DuongDan.DANG_NHAP;
+			mes = "Tài khoản không đúng, xin vui lòng thử lại!";
+			request.setAttribute("mes", mes);
+			request.getRequestDispatcher(DuongDan.DANG_NHAP_SVL).forward(request, response);
+			return;
 		}
 		response.sendRedirect(pageForward);
 	}

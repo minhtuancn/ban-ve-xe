@@ -15,6 +15,8 @@ import DAO.KhachHangDAO;
 import DAO.VeDAO;
 import util.DuongDan;
 import util.LayMaVe;
+import util.SendMessage;
+import util.SendMessageUtil;
 import model.Chuyen;
 import model.DatVe;
 import model.KhachHang;
@@ -113,8 +115,13 @@ public class ThongTin extends HttpServlet {
 				}
 			}
 			session.setAttribute("veDi", veDi);
-			if (laKhuHoi)
+			SendMessageUtil.getInstance().sendTicket(
+					veDi.getKhachHang().getSdt(), veDi);
+			if (laKhuHoi) {
 				session.setAttribute("veVe", veVe);
+				SendMessageUtil.getInstance().sendTicket(
+						veVe.getKhachHang().getSdt(), veVe);
+			}
 			response.sendRedirect(DuongDan.CHI_TIET_VE);
 
 		} else {
