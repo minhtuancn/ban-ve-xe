@@ -7,9 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Vé xe online</title>
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/thongtinve.css">
+	<script type="text/javascript">
+	function checkEr() {
+		if ($("#error").val().length != 0) {
+			al($("#error").val(), "error");
+		}
+	};
+	function al(mes, type) {
+		swal({
+			title : mes ,
+			type : type
+		});
+	}
+	$(window).load(function() {
+	    checkEr();
+	  });
+	</script>
 </head>
 <body>
 	<%
@@ -17,7 +37,12 @@
 		KhachHang kh = veDi.getKhachHang();
 		;
 	%>
-
+<%
+					String mes = "";
+						if((String) request.getAttribute("mes")!= null)
+					mes = (String) request.getAttribute("mes");
+				%>
+				<input type="hidden" value="<%=mes%>" id="error" />
 	<div class="container">
 		<%@ include file="header.jsp"%>
 		<h1>Chúc mừng quý khách đã đặt chỗ thành công!</h1>

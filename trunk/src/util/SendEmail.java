@@ -49,6 +49,20 @@ public class SendEmail {
 			e.printStackTrace();
 		}
 	}
+	public void guiMailLienHeAdmin(String tenKhachHang,String to, String noiDung ){
+		MimeMessage message = new MimeMessage(session);
+		try {
+			message.setFrom(new InternetAddress(USER));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(USER));
+			message.setSubject("Khách hàng liên hệ!!");
+			message.setText("Có 1 khách hàng đã gửi yêu cầu liên hệ với email là : " + to +
+					".\nVới nội dung là:\n" + noiDung);
+			Transport.send(message);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
 	public static void main(String[] args) {
 		SendEmail.getInstant().guiMailLienHe("Hoang Nhuoc Quy", "12130010@st.hcmuaf.edu.vn", "aaaaaaaaaaaaaaaa");
 	}

@@ -33,6 +33,7 @@ public class DuongDan {
 	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
 	
 	public static final String TIM_VE_SVL = "/jsp/timve.jsp";
+	public static final String LIEN_HE_SVL = "/jsp/lienhe.jsp";
 	public static final String CHI_TIET_VE_SVL = "/jsp/chitietve.jsp";
 	public static final String KIEM_TRA_THONG_TIN_SVL = "/jsp/kiemtrave.jsp";
 	public static final String DOI_MAT_KHAU_SVL = "/jsp/DoiMatKhau.jsp";
@@ -58,5 +59,7 @@ public class DuongDan {
 	public static final String XOA_KHACHHANG_SV = "/BanVeXe/DeleteKhachHang";
 	public static final String SUA_KHACHHANG_SV = "/BanVeXe/UpdateKhachHang";
 	public static final String THANH_TOAN_SV = "/BanVeXe/ThanhToan";
+	public static final String CHECK_OTP = "/BanVeXe/CheckOTP";
+	public static final String LIEN_HE_SV = "/BanVeXe/LienHe";
 	
 }

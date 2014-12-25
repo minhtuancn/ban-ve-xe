@@ -1,13 +1,16 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import util.DuongDan;
+import util.SendMessageUtil;
 import model.KhachHang;
 import model.Ve;
 import factory.dao.FactoryDAOImp;
@@ -72,8 +75,13 @@ public class ThanhToan extends HttpServlet {
 			Ve ve = veDAO.timVeOfMaVe(maVe);
 			if (ve != null) {
 				request.setAttribute("veThanhToan", ve);
-				 request.getRequestDispatcher(DuongDan.THANH_TOAN_VE_SVL).forward(request,
+				request.getRequestDispatcher(DuongDan.THANH_TOAN_VE_SVL)
+						.forward(request,
 				 response);
+				 int n = new Random().nextInt(8999)+1000;
+					HttpSession session = request.getSession();
+					session.setAttribute("maOTP", n+"");
+					SendMessageUtil.getInstance().sendMess(((KhachHang)session.getAttribute("khachHang")).getSdt(),"Ma OTP cua quy khach la: "+ n );
 //				response.sendRedirect(DuongDan.CHI_TIET_VE);
 			} else {
 				mes = "Vé đã bị hủy do quá thời hạn thanh toán!";
