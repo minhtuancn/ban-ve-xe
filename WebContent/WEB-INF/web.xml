@@ -382,4 +382,24 @@
     <servlet-name>ThanhToanTien</servlet-name>
     <url-pattern>/ThanhToanTien</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckOTP</display-name>
+    <servlet-name>CheckOTP</servlet-name>
+    <servlet-class>controller.CheckOTP</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckOTP</servlet-name>
+    <url-pattern>/CheckOTP</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LienHe</display-name>
+    <servlet-name>LienHe</servlet-name>
+    <servlet-class>controller.LienHe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LienHe</servlet-name>
+    <url-pattern>/LienHe</url-pattern>
+  </servlet-mapping>
 </web-app>
