@@ -43,8 +43,12 @@
 			<marquee behavior="alternate" width="10%"> << </marquee>
 		</div>
 		<%
+		 
+	
 			Ve ve = (Ve) request.getAttribute("veThanhToan");
 			KhachHang khachHangTT = ve.getKhachHang();
+		
+		
 		%>
 
 		<div id="center"

@@ -13,6 +13,7 @@ public interface GheDAO extends DAO{
 	FactoryDao factoryDao = new FactoryDAOImp();
 	public List<Ghe> getAllGhe(long idChuyen);
 	public String setGiuCho(Ve datVe, byte trangThai);
+	public int setNonGheDadat(String maVe);
 	public String setGheDaDat(Ve ve);
 	public String setNonGiuCho(Ve datVe);
 	public List<Ghe> getGheOfVe(long idVe);

@@ -29,5 +29,6 @@ public interface KhachHangDAO extends DAO{
 	public boolean deleteKhachHang(long id);
 	public boolean deleteKhachHang(KhachHang kh);
 	public boolean editKhachHang(long idKH, String value, int columnPosition);
+	public String huyVe(Ve ve);
 	public String thanhToanVe(Ve ve);
 }

@@ -10,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/kiemtrave.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
 <script>
 	function removeReadonly() {
 		$('.input-txt').removeAttr('readonly');
@@ -24,6 +27,9 @@
 	function checkEr() {
 		if ($("#error").val().length != 0) {
 			al($("#error").val(), "error");
+		}
+		if ($("#success").val().length != 0) {
+			al($("#success").val(), "success");
 		}
 	};
 	function al(mes, type) {
@@ -64,8 +70,13 @@
 					String mes = "";
 					if ((String) request.getAttribute("mes") != null)
 						mes = (String) request.getAttribute("mes");
+					String mesSuccess = "";
+					if ((String) request.getAttribute("mesSuccess") != null)
+						mesSuccess = (String) request.getAttribute("mesSuccess");
+					
 				%>
 				<input type="hidden" value="<%=mes%>" id="error" />
+				<input type="hidden" value="<%=mesSuccess%>" id="success" />
 
 				<form action="/BanVeXe/SuaThongTin" id="form-thongtin" method="post"
 					accept-charset="UTF-8">
@@ -119,9 +130,7 @@
 								</div>
 								<div id="timkiem">
 									<input type="text" id="text_timkiem" /> &nbsp;
-									<button>
-										<img alt="hinhsearch" src="">
-									</button>
+										<input type="image" src="/BanVeXe/image/search1.png" style="margin-top:5px;margin-left:5px;">
 								</div>
 								<div></div>
 								<table id="ktv">
@@ -151,8 +160,20 @@
 										<td class="tr1" align="center"><%=v.getLoaiGhe()%></td>
 										<td class="tr1" align="center"><%=v.getLoaiXe()%></td>
 										<td class="tr1" align="center"><%=v.getTenGhe()%></td>
-										<td class="tr1" align="center"><%=v.getTrangThaiThanhToan()%></td>
-										<td class="tr1" align="center"><%=v.getTrangThaiKhoiHanh()%></td>
+										<td class="tr1" align="center">
+										<%if(!v.isTrangThaiThanhToan()){ 
+										%>
+										 <a href="/BanVeXe/ThanhToan?mave=<%=v.getMaVe() %>"><%=v.getTrangThaiThanhToan()%></a>
+										<%} else{%>
+										<%=v.getTrangThaiThanhToan()%>
+										<%} %>
+										</td>
+										<td class="tr1" align="center"><%=v.getTrangThaiKhoiHanh()%>
+										<%if(v.isTrangThaiThanhToan() && !v.isDaKhoiHanh()) {%>
+										 <a href="/BanVeXe/HuyVe?mave=<%=v.getMaVe() %>" style="font-size:9px;">Hủy vé</a>
+										<%} %>
+										</td>
+								
 									</tr>
 									<%
 										}

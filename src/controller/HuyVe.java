@@ -7,32 +7,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Ve;
 import util.DuongDan;
+import model.Ve;
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
+import DAO.GheDAO;
+import DAO.KhachHangDAO;
+import DAO.ThanhToanDAO;
 import DAO.VeDAO;
 
 /**
- * Servlet implementation class ThanhToanTien
+ * Servlet implementation class HuyVe
  */
-public class ThanhToanTien extends HttpServlet {
+public class HuyVe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	VeDAO veDAO;
+	private VeDAO veDAO;
+	private KhachHangDAO khachHangDAO;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ThanhToanTien() {
+	public HuyVe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void init() throws ServletException {
-		// TODO Auto-generated method stub
 		super.init();
-		veDAO = (VeDAO) new FactoryDAOImp().createDAO(FactoryDao.VE_DAO);
+		FactoryDao f = new FactoryDAOImp();
+		veDAO = (VeDAO) f.createDAO(FactoryDao.VE_DAO);
+		khachHangDAO = (KhachHangDAO) f.createDAO(FactoryDao.KHACH_HANG_DAO);
 	}
 
 	/**
@@ -41,8 +46,8 @@ public class ThanhToanTien extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		doAction(request, response);
 		// TODO Auto-generated method stub
+		doAction(request, response);
 	}
 
 	/**
@@ -51,35 +56,22 @@ public class ThanhToanTien extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String maVe = request.getParameter("maVeThanhToan");
-		String maOTP = request.getParameter("maOTP");
-		String maOTPCheck = (String) request.getSession().getAttribute("maOTP");
-		String mes = null;
-		Ve ve = null;
-		if (maOTPCheck.equalsIgnoreCase(maOTP)) {
-			mes = veDAO.thanhToanVe(maVe);
-			System.out.println("ThanhToanTien : " + mes);
-			if (mes == null) {
-				ve = veDAO.timVeOfMaVe(maVe);
-				request.getSession().setAttribute("veDi", ve);
-				request.getRequestDispatcher(DuongDan.CHI_TIET_VE_SVL).forward(
-						request, response);
-				return;
-			}
-		}else{
-			mes = "Mã OTP không chính xác!";
-		}
-		
-		System.out.println("ThanhToaTien " + mes);
+		String mave = request.getParameter("mave");
+		Ve ve = (Ve) veDAO.timVeOfMaVe(mave);
+		System.out.println("Huy ve : "+ve);
+		String mes = khachHangDAO.huyVe(ve);
+		String mesSucces = mes == null ? "Hủy Vé thành công!" : null;
+
 		request.setAttribute("mes", mes);
-		request.getRequestDispatcher(DuongDan.CHI_TIET_VE_SVL).forward(request,
-				response);
+		request.setAttribute("mesSuccess", mesSucces);
+		request.getRequestDispatcher(DuongDan.KIEM_TRA_THONG_TIN_SVL).forward(
+				request, response);
 
 	}
-
 }
