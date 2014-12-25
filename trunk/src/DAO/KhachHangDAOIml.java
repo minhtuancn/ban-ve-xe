@@ -12,6 +12,7 @@ import database.Database;
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
 import model.DiaDiem;
+import model.Ghe;
 import model.KhachHang;
 import model.KhachHangThuongXuyen;
 import model.KhachHangVangLai;
@@ -21,6 +22,8 @@ import model.Ve;
 
 public class KhachHangDAOIml implements KhachHangDAO {
 	private VeDAO veDao;
+	private GheDAO gheDAO;
+	private ThanhToanDAO thanhToanDAO;
 
 	@Override
 	public KhachHang checkLogIn(String user, String password) {
@@ -413,6 +416,18 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		return veDao;
 	}
 
+	public GheDAO getGheDAO() {
+		gheDAO = (GheDAO) (gheDAO == null ? new FactoryDAOImp()
+				.createDAO(FactoryDao.GHE_DAO) : gheDAO);
+		return gheDAO;
+	}
+
+	public ThanhToanDAO getThanhToanDAO() {
+		thanhToanDAO = (ThanhToanDAO) (thanhToanDAO == null ? new FactoryDAOImp()
+				.createDAO(FactoryDao.THANH_TOAN_DAO) : thanhToanDAO);
+		return thanhToanDAO;
+	}
+
 	@Override
 	public String thanhToanVe(Ve ve) {
 		Connection con = ConnectionPool.getInstance().getConnection();
@@ -422,6 +437,8 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		int soTien = -1;
 		try {
 			con.setAutoCommit(false);
+//			String sqlThanhToan = "insert into thanhtoan (ngaythanhtoan,sotien,mave) values(?,?,?); ";
+//			String sqlTTWeb ="insert int"
 			String sqlUpdate = "update khachhangthuongxuyen set sotien = sotien - ? where idkhachhang=?";
 			String sqlKiemTraTien = "select sotien from khachhangthuongxuyen where idkhachhang=?";
 			pre = con.prepareStatement(sqlKiemTraTien);
@@ -442,10 +459,79 @@ public class KhachHangDAOIml implements KhachHangDAO {
 				mes = "Số tiền trong tài khoản quý khách không đủ để thực hiện giao dịch này!";
 				throw new SQLException("error");
 			}
-		con.commit();
+			con.commit();
 		} catch (SQLException e) {
-			if(!e.getMessage().equalsIgnoreCase("error"))
-				mes="Lỗi hệ thống!";
+			if (!e.getMessage().equalsIgnoreCase("error"))
+				mes = "Lỗi hệ thống!";
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().setDefaulAutoCommit(con);
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return mes;
+	}
+
+	@Override
+	public String huyVe(Ve ve) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		PreparedStatement pre = null, preSet = null, preDel = null, preKh = null;
+		ResultSet res = null;
+		String mes = null;
+		int soTien = -1;
+		String sql = "delete from ve where mave = ?";
+		String sqlSet = "update ghe set trangthai=? where mave=?";
+//		String sqlDel = "delete from thanhtoan where mave = ?";
+		String sqlKh = "update khachhangthuongxuyen set sotien = sotien + ? where idkhachhang = ?";
+		int iGhe = 0, iVe = 0, iDel = 0, iKh = 0;
+		try {
+			con.setAutoCommit(false);
+			pre = con.prepareStatement(sql);
+			pre.setString(1, ve.getMaVe());
+			iVe = pre.executeUpdate();
+			if (iVe > 0) {
+				preSet = con.prepareStatement(sqlSet);
+				preSet.setByte(1, Ghe.CHUA_DAT);
+				preSet.setString(2, ve.getMaVe());
+				iGhe = preSet.executeUpdate();
+				if (iGhe > 0) {
+//					preDel = con.prepareStatement(sqlDel);
+//					preDel.setString(1, ve.getMaVe());
+//					iDel = preDel.executeUpdate();
+//					if (iDel > 0) {
+						preKh = con.prepareStatement(sqlKh);
+						preKh.setInt(1, ve.getTongTien());
+						preKh.setLong(2, ve.getKhachHang().getIdKhachHang());
+						iKh = preKh.executeUpdate();
+						if (iKh > 0) {
+							con.commit();
+						}else{
+							mes = "Hủy vé không thành công do sai thông tin khách hàng!";
+							throw new SQLException("error");
+						}
+					}else{
+						mes = "hủy vé không thành công!";
+						throw new SQLException("error");
+					}
+
+//				}else{
+//					mes = "hủy vé không thành công!";
+//					throw new SQLException("error");
+//				}
+
+			}else{
+				mes = "hủy vé không thành công do sai thông tin vé!";
+			throw new SQLException("error");
+			}
+		} catch (SQLException e) {
+			if (!e.getMessage().equalsIgnoreCase("error")){
+				mes = "Lỗi hệ thống!";
+			}
+				try {
+					con.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().setDefaulAutoCommit(con);

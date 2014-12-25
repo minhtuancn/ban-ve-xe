@@ -73,6 +73,7 @@ public class ThanhToan extends HttpServlet {
 		} else {
 			String mes = "";
 			Ve ve = veDAO.timVeOfMaVe(maVe);
+			request.getSession().setAttribute("veDi", ve);
 			if (ve != null) {
 				request.setAttribute("veThanhToan", ve);
 				request.getRequestDispatcher(DuongDan.THANH_TOAN_VE_SVL)
@@ -81,6 +82,7 @@ public class ThanhToan extends HttpServlet {
 				 int n = new Random().nextInt(8999)+1000;
 					HttpSession session = request.getSession();
 					session.setAttribute("maOTP", n+"");
+					System.out.println("ThanhToan OTP" + n);
 					SendMessageUtil.getInstance().sendMess(((KhachHang)session.getAttribute("khachHang")).getSdt(),"Ma OTP cua quy khach la: "+ n );
 //				response.sendRedirect(DuongDan.CHI_TIET_VE);
 			} else {

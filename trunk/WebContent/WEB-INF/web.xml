@@ -402,4 +402,14 @@
     <servlet-name>LienHe</servlet-name>
     <url-pattern>/LienHe</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HuyVe</display-name>
+    <servlet-name>HuyVe</servlet-name>
+    <servlet-class>controller.HuyVe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HuyVe</servlet-name>
+    <url-pattern>/HuyVe</url-pattern>
+  </servlet-mapping>
 </web-app>

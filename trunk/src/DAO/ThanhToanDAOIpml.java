@@ -59,4 +59,22 @@ public class ThanhToanDAOIpml implements ThanhToanDAO{
 		return thanhToan;
 	}
 
+	@Override
+	public int deleteThanhToan(String maVe) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "delete from thanhtoan where mave = ?";
+		PreparedStatement pre = null;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setString(1, maVe);
+			pre.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return 0;
+	}
+
 }

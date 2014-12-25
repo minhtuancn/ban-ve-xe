@@ -29,10 +29,6 @@ public class VeDAOImpl implements VeDAO {
 	private ThanhToanDAO thanhToanDAO;
 	private KhachHangDAO khachHangDAO;
 
-	@Override
-	public List<Ve> getVe(String maVe) {
-		return null;
-	}
 
 	@Override
 	public List<Ve> getAllVe(long idKhachHang) {
@@ -184,7 +180,7 @@ public class VeDAOImpl implements VeDAO {
 			ResultSet res = pre.executeQuery();
 			while (res.next()) {
 				thoiHanThanhToan = res.getTimestamp("thoihanthanhtoan");
-				if (thoiHanThanhToan.compareTo(now) < 0) {
+				if (thoiHanThanhToan.compareTo(now) < 0 && !res.getBoolean("trangthaithanhtoan")) {
 					deleteVe(maVe);
 				} else {
 					ve = new Ve(res.getLong("idve"), res.getString("mave"),
