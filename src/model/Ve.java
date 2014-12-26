@@ -113,7 +113,7 @@ public class Ve {
 	}
 
 	public String getNgayKhoiHanh() {
-		return formats.format(chuyen.getNgayKhoiHanh());
+		return chuyen.getNgayGioKhoiHanh();
 	}
 
 	public String getTenGhe() {

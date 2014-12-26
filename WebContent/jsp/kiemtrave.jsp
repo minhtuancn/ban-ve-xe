@@ -1,3 +1,4 @@
+<%@page import="model.KhachHangThuongXuyen"%>
 <%@page import="model.Ve"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -15,11 +16,11 @@
 	href="/BanVeXe/css/sweet-alert.css">
 <script>
 	function removeReadonly() {
-		$('.input-txt').removeAttr('readonly');
+		$('.editable').removeAttr('readonly');
 		$(".tv").css("visibility", "visible");
 	}
 	function addReadonly() {
-		$('.input-txt').attr("readonly", "readonly");
+		$('.editable').attr("readonly", "readonly");
 		$(".tv").css("visibility", "hidden");
 		$("#form-thongtin").submit();
 	}
@@ -41,12 +42,27 @@
 	$(window).load(function() {
 		checkEr();
 	});
+	function huyVe(mave) {
+		swal({
+			title : "Bạn có chắc chắn hủy vé?",
+			type : "warning",
+			showCancelButton : true,
+			confirmButtonColor : "#DD6B55",
+			confirmButtonText : "Ok",
+			cancelButtonText : "Cancel",
+			closeOnConfirm : false,
+		}, function(isConfirm) {
+			if (isConfirm) {
+				window.location.href = "<%=DuongDan.HUYVE%>?mave="+mave;
+			}
+		});
+	}
 </script>
 </head>
 
 <body>
 	<%@ include file="header.jsp"%>
-	<div style="width: 100%; height: 800px;">
+	<div style="width: 100%; height: 950px;">
 		<div class="bg title">
 			<marquee behavior="alternate" width="10%">>></marquee>
 			Kiểm tra vé
@@ -63,6 +79,7 @@
 					String email = kh.getEmail();
 					String cmnd = kh.getCmnd();
 					String diaChi = kh.getDiaChi();
+					long soTien = ((KhachHangThuongXuyen) kh).getSoTien();
 					List<Ve> listVe = kh.getDanhSachVeDaDat();
 				%>
 
@@ -73,10 +90,9 @@
 					String mesSuccess = "";
 					if ((String) request.getAttribute("mesSuccess") != null)
 						mesSuccess = (String) request.getAttribute("mesSuccess");
-					
 				%>
-				<input type="hidden" value="<%=mes%>" id="error" />
-				<input type="hidden" value="<%=mesSuccess%>" id="success" />
+				<input type="hidden" value="<%=mes%>" id="error" /> <input
+					type="hidden" value="<%=mesSuccess%>" id="success" />
 
 				<form action="/BanVeXe/SuaThongTin" id="form-thongtin" method="post"
 					accept-charset="UTF-8">
@@ -87,28 +103,33 @@
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Tên Khách hàng:</label>
 									<%-- 									<textarea rows="10" cols="100"><%=tenDangKi %></textarea> --%>
-									<input class="input-txt wd-240" name="name" type="text"
-										readonly value="<%=tenDangKi%>">
+									<input class="input-txt editable wd-240" name="name"
+										type="text" readonly value="<%=tenDangKi%>">
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Địa chỉ Email:</label> <input
-										class="input-txt wd-240" readonly name="email" type="text"
-										value=<%=email%>>
+										class="input-txt editable wd-240" readonly name="email"
+										type="text" value=<%=email%>>
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Số điện thoại:</label> <input
+										class="input-txt editable wd-240" readonly name="sdt"
+										type="text" value=<%=sdt%>>
+								</div>
+								<div class="ktve-dong kt-ve">
+									<label class="wd-110 fl-l">Số dư trong tài khoản:</label> <input
 										class="input-txt wd-240" readonly name="sdt" type="text"
-										value=<%=sdt%>>
+										value=<%=soTien%>>
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Số Cmnd:</label> <input
-										class="input-txt wd-240" name="cmnd" type="text" readonly
-										value=<%=cmnd%>>
+										class="input-txt editable wd-240" name="cmnd" type="text"
+										readonly value=<%=cmnd%>>
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Địa chỉ:</label> <input
-										class="input-txt wd-240" readonly name="diachi" type="text"
-										value=<%=diaChi%>>
+										class="input-txt editable wd-240" readonly name="diachi"
+										type="text" value=<%=diaChi%>>
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">&nbsp;</label> <input
@@ -129,8 +150,9 @@
 									<p>Thông tin vé đã đặt</p>
 								</div>
 								<div id="timkiem">
-									<input type="text" id="text_timkiem" /> &nbsp;
-										<input type="image" src="/BanVeXe/image/search1.png" style="margin-top:5px;margin-left:5px;">
+									<input type="text" id="text_timkiem" /> &nbsp; <input
+										type="image" src="/BanVeXe/image/search1.png"
+										style="margin-top: 5px; margin-left: 5px;">
 								</div>
 								<div></div>
 								<table id="ktv">
@@ -148,37 +170,42 @@
 
 								</table>
 								<div id="divroll">
-								<table id="ktv">
+									<table id="ktv">
 
-									<%
-										for (Ve v : listVe) {
-									%>
-									<tr id="dong2">
-										<td class="tr1" align="center"><%=v.getTuyenXe()%></td>
-										<td class="tr1" align="center"><%=v.getBenXuatPhat()%></td>
-										<td class="tr1" align="center"><%=v.getGia()%></td>
-										<td class="tr1" align="center"><%=v.getLoaiGhe()%></td>
-										<td class="tr1" align="center"><%=v.getLoaiXe()%></td>
-										<td class="tr1" align="center"><%=v.getTenGhe()%></td>
-										<td class="tr1" align="center">
-										<%if(!v.isTrangThaiThanhToan()){ 
+										<%
+											for (Ve v : listVe) {
 										%>
-										 <a href="/BanVeXe/ThanhToan?mave=<%=v.getMaVe() %>"><%=v.getTrangThaiThanhToan()%></a>
-										<%} else{%>
-										<%=v.getTrangThaiThanhToan()%>
-										<%} %>
-										</td>
-										<td class="tr1" align="center"><%=v.getTrangThaiKhoiHanh()%>
-										<%if(v.isTrangThaiThanhToan() && !v.isDaKhoiHanh()) {%>
-										 <a href="/BanVeXe/HuyVe?mave=<%=v.getMaVe() %>" style="font-size:9px;">Hủy vé</a>
-										<%} %>
-										</td>
-								
-									</tr>
-									<%
-										}
-									%>
-								</table>
+										<tr id="dong2">
+											<td class="tr1" align="center"><%=v.getTuyenXe()%></td>
+											<td class="tr1" align="center"><%=v.getNgayKhoiHanh()%></td>
+											<td class="tr1" align="center"><%=v.getTongTien()%></td>
+											<td class="tr1" align="center"><%=v.getLoaiGhe()%></td>
+											<td class="tr1" align="center"><%=v.getLoaiXe()%></td>
+											<td class="tr1" align="center"><%=v.getTenGhe()%></td>
+											<td class="tr1" align="center">
+												<%
+													if (!v.isTrangThaiThanhToan()) {
+												%> <a
+												href="/BanVeXe/ThanhToan?mave=<%=v.getMaVe()%>&pageFoward=KiemTraVe"><%=v.getTrangThaiThanhToan()%></a>
+												<%
+													} else {
+												%> <%=v.getTrangThaiThanhToan()%> <%
+ 	}
+ %>
+											</td>
+											<td class="tr1" align="center"><%=v.getTrangThaiKhoiHanh()%>
+												<%
+													if (v.isTrangThaiThanhToan() && !v.isDaKhoiHanh()) {
+												%> <a href="#" style="font-size: 9px;"
+												onclick="huyVe('<%=v.getMaVe()%>')">Hủy vé</a> <%
+ 	}
+ %></td>
+
+										</tr>
+										<%
+											}
+										%>
+									</table>
 								</div>
 							</div>
 						</div>

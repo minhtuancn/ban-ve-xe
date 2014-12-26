@@ -14,10 +14,10 @@ import model.TraTienTrucTiep;
 public class ThanhToanDAOIpml implements ThanhToanDAO{
 
 	@Override
-	public ThanhToan getThanhToan(long idve) {
+	public ThanhToan getThanhToan(String mave) {
 		ThanhToan thanhToan= null;
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sql = "SELECT idthanhtoan,sotien,ngaythanhtoan FROM thanhtoan WHERE idve=?";
+		String sql = "SELECT idthanhtoan,sotien,ngaythanhtoan FROM thanhtoan WHERE mave=?";
 		String sql1 = "SELECT idthanhtoan FROM chuyenkhoanweb WHERE idthanhtoan=?";
 		String sql2 = "SELECT idthanhtoan,nhanvienthanhtoan,tennguoithanhtoan FROM tratientructiep WHERE idthanhtoan=?";
 		String sql3 = "SELECT idthanhtoan,sotaikhoan,tennganhang,tennguoithanhtoan FROM chuyenkhoanatm WHERE idthanhtoan=?";
@@ -25,7 +25,7 @@ public class ThanhToanDAOIpml implements ThanhToanDAO{
 		ResultSet res, res1;
 		try {
 			pre = con.prepareStatement(sql);
-			pre.setLong(1, idve);
+			pre.setString(1, mave);
 			res = pre.executeQuery();
 			while(res.next()){
 				pre1= con.prepareStatement(sql1);

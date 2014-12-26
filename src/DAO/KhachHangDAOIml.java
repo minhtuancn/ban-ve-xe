@@ -369,6 +369,8 @@ public class KhachHangDAOIml implements KhachHangDAO {
 			ResultSet res = pre.executeQuery();
 			while (res.next()) {
 				khachhang = getKhachHang(res.getString("sdt"));
+				khachhang.setDanhSachVeDaDat(getVeDao().getAllVe(
+						res.getLong("idkhachhang")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

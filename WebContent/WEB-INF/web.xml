@@ -412,4 +412,14 @@
     <servlet-name>HuyVe</servlet-name>
     <url-pattern>/HuyVe</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KiemTraVe</display-name>
+    <servlet-name>KiemTraVe</servlet-name>
+    <servlet-class>controller.KiemTraVe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KiemTraVe</servlet-name>
+    <url-pattern>/KiemTraVe</url-pattern>
+  </servlet-mapping>
 </web-app>

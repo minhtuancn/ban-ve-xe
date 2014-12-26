@@ -6,28 +6,25 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import util.DuongDan;
-import model.Ve;
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
-import DAO.GheDAO;
 import DAO.KhachHangDAO;
-import DAO.ThanhToanDAO;
-import DAO.VeDAO;
+import util.DuongDan;
+import model.KhachHang;
 
 /**
- * Servlet implementation class HuyVe
+ * Servlet implementation class KiemTraVe
  */
-public class HuyVe extends HttpServlet {
+public class KiemTraVe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private VeDAO veDAO;
 	private KhachHangDAO khachHangDAO;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public HuyVe() {
+	public KiemTraVe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,9 +32,7 @@ public class HuyVe extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		FactoryDao f = new FactoryDAOImp();
-		veDAO = (VeDAO) f.createDAO(FactoryDao.VE_DAO);
-		khachHangDAO = (KhachHangDAO) f.createDAO(FactoryDao.KHACH_HANG_DAO);
+		khachHangDAO = (KhachHangDAO) new FactoryDAOImp().createDAO(FactoryDao.KHACH_HANG_DAO);
 	}
 
 	/**
@@ -46,7 +41,6 @@ public class HuyVe extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 
@@ -56,22 +50,22 @@ public class HuyVe extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String mave = request.getParameter("mave");
-		Ve ve = (Ve) veDAO.timVeOfMaVe(mave);
-		System.out.println("Huy ve : "+ve);
-		String mes = khachHangDAO.huyVe(ve);
-		String mesSucces = mes == null ? "Hủy Vé thành công!" : null;
-
-		request.setAttribute("mes", mes);
-		request.setAttribute("mesSuccess", mesSucces);
-		request.getRequestDispatcher("KiemTraVe").forward(
-				request, response);
-
+		HttpSession session = request.getSession();
+		String pageFoward = DuongDan.TRANG_CHU;
+		if (request.getParameter("pageFoward") != null)
+			pageFoward = request.getParameter("pageFoward");
+		KhachHang kh = (KhachHang) session.getAttribute("khachHang");
+		if (kh == null) {
+			response.sendRedirect(DuongDan.DANG_NHAP + "?pageFoward="+pageFoward);
+		} else {
+			kh = khachHangDAO.getKhachHang(kh.getIdKhachHang());
+			session.setAttribute("khachHang", kh);
+			request.getRequestDispatcher(DuongDan.KIEM_TRA_THONG_TIN_SVL).forward(request, response);;
+		}
 	}
 }

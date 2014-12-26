@@ -44,15 +44,14 @@ public class VeDAOImpl implements VeDAO {
 			while (res.next()) {
 				ve = new Ve(res.getString("mave"), res.getString("ghichu"),
 						res.getDate("ngaydatve"),
-						((GheDAO) new FactoryDAOImp()
-								.createDAO(FactoryDao.GHE_DAO)).getGheOfVe(res
+						getGheDAO().getGheOfVe(res
 								.getLong("idve")),
 						res.getBoolean("dakhoihanh"),
 						res.getBoolean("trangthaithanhtoan"),
 						res.getDate("thoihanthanhtoan"),
 						res.getBoolean("lahuyve"), res.getString("lidohuy"));
 				ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
-						ve.getIdVe()));
+						ve.getMaVe()));
 				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen")));
 				listVe.add(ve);
 			}
@@ -88,7 +87,7 @@ public class VeDAOImpl implements VeDAO {
 						res.getBoolean("trangthaihuyve"),
 						res.getString("lidohuyve"));
 				ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
-						ve.getIdVe()));
+						ve.getMaVe()));
 				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen")));
 				listVe.add(ve);
 			}
@@ -182,6 +181,7 @@ public class VeDAOImpl implements VeDAO {
 				thoiHanThanhToan = res.getTimestamp("thoihanthanhtoan");
 				if (thoiHanThanhToan.compareTo(now) < 0 && !res.getBoolean("trangthaithanhtoan")) {
 					deleteVe(maVe);
+					getGheDAO().setNonGheDadat(maVe);
 				} else {
 					ve = new Ve(res.getLong("idve"), res.getString("mave"),
 							res.getString("ghichu"), new Date(res.getTimestamp(
@@ -192,7 +192,7 @@ public class VeDAOImpl implements VeDAO {
 							res.getTimestamp("thoihanthanhtoan"),
 							res.getBoolean("lahuyve"), res.getString("lidohuy"));
 					ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
-							ve.getIdVe()));
+							ve.getMaVe()));
 					ve.setChuyen(getChuyenDAO().getChuyen(
 							res.getLong("idchuyen")));
 					System.out.println("Vedaoiml " + ve.getThoiHanThanhToans());

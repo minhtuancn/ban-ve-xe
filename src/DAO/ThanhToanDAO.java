@@ -5,6 +5,6 @@ import factory.dao.DAO;
 
 public interface ThanhToanDAO extends DAO{
 
-	public ThanhToan getThanhToan(long idve );
+	public ThanhToan getThanhToan(String mave);
 	public int deleteThanhToan(String maVe);
 }
