@@ -69,7 +69,7 @@ public class DiaDiemDAOImpl implements DiaDiemDAO, DAO {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null, pre1 = null;
 		String sql = "INSERT into diadiem(tendiadiem) VALUES (?)";
-		String sql1 = "select iddiadiem from diadiem where iddiadiem = ?";
+		String sql1 = "select iddiadiem from diadiem where tendiadiem = ?";
 		ResultSet res;
 		long len = 1;
 		try {

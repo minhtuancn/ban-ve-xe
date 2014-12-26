@@ -422,4 +422,14 @@
     <servlet-name>LienHe</servlet-name>
     <url-pattern>/LienHe</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CapNhatKhoiHanh</display-name>
+    <servlet-name>CapNhatKhoiHanh</servlet-name>
+    <servlet-class>controller.admin.themchuyen.CapNhatKhoiHanh</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CapNhatKhoiHanh</servlet-name>
+    <url-pattern>/CapNhatKhoiHanh</url-pattern>
+  </servlet-mapping>
 </web-app>

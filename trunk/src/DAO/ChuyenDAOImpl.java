@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +14,7 @@ import database.ConnectionPool;
 import factory.dao.FactoryDao;
 import model.Chuyen;
 import model.DiaDiem;
+import model.Ghe;
 import model.Tuyen;
 import model.Xe;
 
@@ -37,9 +39,9 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 			pre.setLong(1, id);
 			res = pre.executeQuery();
 			while (res.next()) {
-				chuyen = getChuyen(id,getTuyenDAO()
-						.getTuyen(res.getLong("idTuyen")));
-						
+				chuyen = getChuyen(id,
+						getTuyenDAO().getTuyen(res.getLong("idTuyen")));
+
 			}
 			chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 		} catch (SQLException e) {
@@ -67,6 +69,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 						res.getString("giokhoihanh"), getXeDAO().getXe(
 								res.getLong("idxe")),
 						res.getString("benxuatphat"), res.getInt("gia"));
+				chuyen.setChuaKhoiHanh(res.getBoolean("chuakhoihanh"));
 			}
 			chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 		} catch (SQLException e) {
@@ -103,39 +106,116 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 	}
 
 	@Override
-	public int addChuyen(Tuyen tuyen, String gioKhoiHanh, long idXe,
-			String benXuatPhat, int gia) {
+	public long addChuyen(Tuyen tuyen, String gioKhoiHanh, long idXe, int gia) {
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sql1 = "INSERT into chuyen(benxuatphat,chuakhoihanh,gia,giokhoihanh,idtuyen,idxe) VALUES (?,?,?,?,?,?)";
+		String sql1 = "INSERT into chuyen(benxuatphat,chuakhoihanh,gia,giokhoihanh,idxe) VALUES (?,?,?,?,?)";
+		String sqlIdChuyen = " SHOW TABLE STATUS LIKE 'chuyen'";
+		String sqlPhanCong = "insert into phancong (idtuyen, idchuyen, ngaydi) values (?,?,?)";
+		String sqlGhe = "insert into ghe (soghe, trangthai, idchuyen) values (?,0,? )";
 		String sql2 = "SELECT giokhoihanh FROM chuyen Where ";
+		Xe xe = null;
 		PreparedStatement pre = null;
-		int res;
+		ResultSet res = null;
+		long id = 0;
 		try {
-			// if()
+			con.setAutoCommit(false);
 			pre = con.prepareStatement(sql1);
-			pre.setString(1, benXuatPhat);
+			pre.setString(1, tuyen.getDiemDi().getTenDiaDiem());
 			pre.setBoolean(2, false);
 			pre.setInt(3, gia);
 			pre.setString(4, gioKhoiHanh);
-			pre.setLong(4, tuyen.getIdTuyen());
-			pre.setLong(6, idXe);
-			res = pre.executeUpdate();
-
+			pre.setLong(5, idXe);
+			id = pre.executeUpdate();
+			if (id != 0) {
+				pre.close();
+				pre = con.prepareStatement(sqlIdChuyen);
+				res = pre.executeQuery();
+				if (res.next()) {
+					id = res.getLong("Auto_increment") - 1;
+					pre.close();
+					xe = getXeDAO().getXe(idXe);
+					pre = con.prepareStatement(sqlGhe);
+					pre.setLong(2, id);
+					for (int i = 0; i < xe.getSoGhe(); i++) {
+						pre.setInt(1, i + 1);
+						pre.executeUpdate();
+					}
+					pre.close();
+					pre = con.prepareStatement(sqlPhanCong);
+					pre.setLong(1, tuyen.getIdTuyen());
+					pre.setLong(2, id);
+					pre.setTimestamp(3, new Timestamp(tuyen.getNgayDi()
+							.getTime()));
+					pre.executeUpdate();
+				} else {
+					id = -1;
+				}
+			}
+			con.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		} finally {
+			ConnectionPool.getInstance().setDefaulAutoCommit(con);
 			ConnectionPool.getInstance().closePre(pre);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 
-		return 1;
+		return id;
 	}
 
 	@Override
-	public boolean deleteChuyen(int id) {
-		// list.remove(id);
-		// System.out.println(id);
-		return true;
+	public String deleteChuyen(int id) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String mes = null;
+		String sqlCheckGhe = "select trangthai from ghe where idchuyen = ?";
+		String sqlDeleteGhe = "delete from ghe where idchuyen  = ?";
+		String sqlDeletePhanCong = "Delete from phancong where idchuyen = ?";
+		String sqlDeleteChuyen = "Delete from chuyen where idchuyen = ?";
+		PreparedStatement pre = null;
+		ResultSet res;
+		try {
+			con.setAutoCommit(false);
+			pre = con.prepareStatement(sqlCheckGhe);
+			pre.setLong(1, id);
+			res = pre.executeQuery();
+			while (res.next())
+				if (res.getByte("trangthai") != Ghe.CHUA_DAT)
+					mes = "Xóa chuyến không thành công, chuyến đã có người đặt vé";
+			if (mes == null) {
+				pre.close();
+				pre = con.prepareStatement(sqlDeleteGhe);
+				pre.setLong(1, id);
+				pre.executeUpdate();//
+				pre.close();
+				pre = con.prepareStatement(sqlDeletePhanCong);
+				pre.setLong(1, id);
+				pre.executeUpdate();//
+				pre.close();
+				pre = con.prepareStatement(sqlDeleteChuyen);
+				pre.setLong(1, id);
+				pre.executeUpdate();
+			}
+			con.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			mes = "Lỗi hệ thống!";
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} finally {
+			ConnectionPool.getInstance().setDefaulAutoCommit(con);
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return mes;
 	}
 
 	@Override
@@ -212,6 +292,26 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().closePre(pre1);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return kq;
+	}
+
+	@Override
+	public boolean capNhatKhoiHanh(long id) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "update chuyen set chuakhoihanh = ? where idchuyen = ?";
+		PreparedStatement pre = null, pre1 = null;
+		boolean kq = false;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setBoolean(1, true);
+			pre.setLong(2, id);
+			kq = pre.executeUpdate() != 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			ConnectionPool.getInstance().closePre(pre1);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
