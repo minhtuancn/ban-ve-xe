@@ -7,28 +7,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 import DAO.ChuyenDAO;
-import DAO.ChuyenDAOImpl;
 
 /**
- * Servlet implementation class DeleteChuyen
+ * Servlet implementation class CapNhatKhoiHanh
  */
-public class DeleteChuyen extends HttpServlet {
+public class CapNhatKhoiHanh extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      private ChuyenDAO chuyenDAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteChuyen() {
+    public CapNhatKhoiHanh() {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	chuyenDAO = (ChuyenDAO) new FactoryDAOImp().createDAO(FactoryDao.CHUYEN_DAO);
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 
@@ -39,13 +43,12 @@ public class DeleteChuyen extends HttpServlet {
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		ChuyenDAO chuyenDao = new ChuyenDAOImpl();
-		String mes = chuyenDao.deleteChuyen(id);
-		response.setCharacterEncoding("utf-8");
-		if ( mes != null) {
-			response.getWriter().println(mes);
+		String idChuyen = request.getParameter("idChuyen");
+		long id = Long.parseLong(idChuyen);
+		if(chuyenDAO.capNhatKhoiHanh(id)){
+			response.getWriter().print("ok");
+		}else{
+			response.getWriter().print("error");
 		}
 	}
 

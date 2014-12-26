@@ -59,6 +59,7 @@ public class AddDiaDiem extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String tenDiaDiem = request.getParameter("tendiadiem");
 		long id = diaDiemDAO.addDiaDiem(tenDiaDiem);
+		System.out.println(id);
 		if (id > 0)
 			response.getWriter().print(id);
 		response.getWriter().flush();

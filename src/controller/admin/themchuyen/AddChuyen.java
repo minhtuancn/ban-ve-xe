@@ -21,37 +21,46 @@ import DAO.TuyenDAO;
  */
 public class AddChuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      private ChuyenDAO chuyenDAO;
-      private TuyenDAO tuyenDAO;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddChuyen() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    @Override
-    public void init() throws ServletException {
-    	super.init();
-    	FactoryDao f = new FactoryDAOImp();
-    	chuyenDAO = (ChuyenDAO) f.createDAO(FactoryDao.CHUYEN_DAO);
-    	tuyenDAO = (TuyenDAO) f.createDAO(FactoryDao.TUYEN_DAO);
-    }
+	private ChuyenDAO chuyenDAO;
+	private TuyenDAO tuyenDAO;
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AddChuyen() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		FactoryDao f = new FactoryDAOImp();
+		chuyenDAO = (ChuyenDAO) f.createDAO(FactoryDao.CHUYEN_DAO);
+		tuyenDAO = (TuyenDAO) f.createDAO(FactoryDao.TUYEN_DAO);
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
 	}
-	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doAction(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesstion = request.getSession();
 		Long idTuyen = (Long) sesstion.getAttribute("idTuyen");
 		String gioKhoiHanh = request.getParameter("giokhoihanh");
@@ -59,8 +68,8 @@ public class AddChuyen extends HttpServlet {
 		long idXe = Long.parseLong(xe);
 		int gia = Integer.parseInt(request.getParameter("gia"));
 		Tuyen tuyen = tuyenDAO.getTuyen(idTuyen);
-		chuyenDAO.addChuyen(tuyen,gioKhoiHanh,idXe,tuyen.getDiemDi().getTenDiaDiem(), gia);
-		response.getWriter().print("1");
+		long id = chuyenDAO.addChuyen(tuyen, gioKhoiHanh, idXe, gia);
+		response.getWriter().print(id);
 	}
 
 }

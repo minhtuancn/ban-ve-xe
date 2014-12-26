@@ -22,7 +22,8 @@ public interface ChuyenDAO extends DAO{
 	public String getTenChuyen(long idVe);
 	
 	public List<Chuyen> getAllChuyen(Tuyen tuyen, Date ngayDi);
-	public int addChuyen(Tuyen tuyen, String gioKhoiHanh, long idXe, String benXuatPhat, int gia);
-	public boolean deleteChuyen(int id);
+	public long addChuyen(Tuyen tuyen, String gioKhoiHanh, long idXe, int gia);
+	public String deleteChuyen(int id);
 	public boolean editChuyen(int id, String value, int columnPosition);
+	public boolean capNhatKhoiHanh(long id);
 }

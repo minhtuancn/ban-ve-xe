@@ -96,12 +96,15 @@
 							<td><%=chuyen.getLoaiXe()%></td>
 							<td><%=chuyen.getBenXuatPhat()%></td>
 							<td><%=chuyen.getGia()%></td>
-							<td><%=chuyen.isChuaKhoiHanh()%> <%
- 	if (!chuyen.isChuaKhoiHanh()){
- %> <input type="button" value="cập nhật" /></td>
+							<td><%=(!chuyen.isChuaKhoiHanh() ? "Chưa khởi hành"
+						: "Đã khởi hành")%>
+								<%
+									if (!chuyen.isChuaKhoiHanh()) {
+								%> <input type="button" value="cập nhật"
+								onclick="capnhat(<%=chuyen.getIdChuyen()%>)" /></td>
 							<%
 								}
-							}
+								}
 							%>
 						</tr>
 					</tbody>

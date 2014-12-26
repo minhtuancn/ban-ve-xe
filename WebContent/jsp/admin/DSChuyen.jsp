@@ -17,7 +17,7 @@
 <script src="/BanVeXe/js/sweet-alert.min.js"></script>
 <script src="/BanVeXe/js/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
+	function set() {
 		$("#myDataTable").dataTable({
 			"sPaginationType" : "full_numbers",
 			"bJQueryUI" : true
@@ -32,9 +32,7 @@
 			sDeleteURL :
 <%="'" + DuongDan.XOA_CHUYEN_SV + "'"%>
 	,
-			"aoColumns" : [
-			               null, null, null, null, null
-			 ],
+			"aoColumns" : [ null, null, null, null, null ],
 			sAddNewRowFormId : "formThemChuyen",
 			sAddNewRowButtonId : "btThemChuyen",
 			sAddNewRowOkButtonId : "btOk",
@@ -71,28 +69,52 @@
 		//										}
 		//									}
 		});
-	});
+	};
 
-// 	function timchuyen() {
-// 		if ($('#date').val().length == 0) {
-// 			swal({
-// 				title : "Bạn chưa nhập ngày!",
-// 				type : "warning"
-// 			});
-// 		} else {
-// 			var tuyen = $('#tuyen option:selected').val();
-// 			while (tuyen.indexOf(" ") != -1) {
-// 				tuyen = tuyen.replace(" ", "+");
-// 			}
-// 			// 			$("#themchuyen").load("/BanVeXe/ListChuyen", {tuyen: tuyen,date : + $('#date').val()+""}, function() {
-// 			$("#themchuyen").html("AAAAA");
-// 			// 				$("#themchuyen").html("aaaaaaaaaaaaaaa");
-// 			$("#themchuyen").load(
-// 					"/BanVeXe/ListChuyen?tuyen=" + tuyen + "&date="
-// 							+ $('#date').val().replace(" ", "+"), function() {
-// 					});
-// 		}
-// 	};
+	// 	function timchuyen() {
+	// 		if ($('#date').val().length == 0) {
+	// 			swal({
+	// 				title : "Bạn chưa nhập ngày!",
+	// 				type : "warning"
+	// 			});
+	// 		} else {
+	// 			var tuyen = $('#tuyen option:selected').val();
+	// 			while (tuyen.indexOf(" ") != -1) {
+	// 				tuyen = tuyen.replace(" ", "+");
+	// 			}
+	// 			// 			$("#themchuyen").load("/BanVeXe/ListChuyen", {tuyen: tuyen,date : + $('#date').val()+""}, function() {
+	// 			$("#themchuyen").html("AAAAA");
+	// 			// 				$("#themchuyen").html("aaaaaaaaaaaaaaa");
+	// 			$("#themchuyen").load(
+	// 					"/BanVeXe/ListChuyen?tuyen=" + tuyen + "&date="
+	// 							+ $('#date').val().replace(" ", "+"), function() {
+	// 					});
+	// 		}
+	// 	};
+</script>
+<script type="text/javascript">
+	function capnhat(idChuyen) {
+		$.get("<%=DuongDan.CAP_NHAP_KHOI_HANH%>?idChuyen=" + idChuyen,
+				function(data, status) {
+					if (status == "success" && data == "ok") {
+						al("Cập nhật thành công", "success");
+						$("#themchuyen").load("<%=DuongDan.THEM_CHUYEN%>");
+						 location.reload();
+					} else {
+						al("Cập nhật không thành công", "warning");
+					}
+				});
+	}
+	
+	function al(mes, type) {
+		swal({
+			title : mes,
+			type : type
+		});
+	}
+	$(document).ready(function() {
+		set();
+	});
 </script>
 </head>
 <body>
@@ -108,7 +130,7 @@
 		String date = "";
 		Date selectDate;
 		long idSelected = 2;
-		if(request.getParameter("tuyen") != null)
+		if (request.getParameter("tuyen") != null)
 			idSelected = Long.parseLong(request.getParameter("tuyen"));
 		if (request.getParameter("date") != null)
 			date = request.getParameter("date");
@@ -130,7 +152,8 @@
 							<%
 								for (Tuyen t : listTuyen) {
 							%>
-							<option value="<%=t.getIdTuyen()%>" <%= t.getIdTuyen() == idSelected ? "selected" : ""%>>
+							<option value="<%=t.getIdTuyen()%>"
+								<%=t.getIdTuyen() == idSelected ? "selected" : ""%>>
 								<%=t.getTuyenXe()%></option>
 							<%
 								}
@@ -155,12 +178,12 @@
 				for="name">Xe</label><br /> <select name="xe" id="xe" rel="1">
 				<option value="2">xe 45</option>
 				<option value="1">xe 16</option>
-			</select> <br /> <label for="name"/label><br /> <input type="number"
-				name="gia" id="gia" rel="3" value="" /> <input type="hidden"
-				value="false" rel="4" /> <br /> <input type="hidden" value=""
-				rel="2" /> <br />
-			<button id="btOk">Thêm</button>
-			<button id="btCancel">Hủy</button>
+			</select> <br /> <label for="name" /label><br /> <input type="text"
+				name="gia" id="gia" rel="3" value="11111111" /> <input
+				type="hidden" value="false" rel="4" /> <br /> <input type="hidden"
+				value="aaaaa" rel="2" /> <br />
+				<button id="btOk">Thêm</button>
+				<button id="btCancel">Hủy</button>
 		</form>
 	</div>
 </body>
