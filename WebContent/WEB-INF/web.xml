@@ -394,16 +394,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>LienHe</display-name>
-    <servlet-name>LienHe</servlet-name>
-    <servlet-class>controller.LienHe</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LienHe</servlet-name>
-    <url-pattern>/LienHe</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>HuyVe</display-name>
     <servlet-name>HuyVe</servlet-name>
     <servlet-class>controller.HuyVe</servlet-class>
@@ -421,5 +411,15 @@
   <servlet-mapping>
     <servlet-name>KiemTraVe</servlet-name>
     <url-pattern>/KiemTraVe</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LienHe</display-name>
+    <servlet-name>LienHe</servlet-name>
+    <servlet-class>controller.LienHe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LienHe</servlet-name>
+    <url-pattern>/LienHe</url-pattern>
   </servlet-mapping>
 </web-app>

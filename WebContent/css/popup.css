@@ -1,21 +1,21 @@
 /* Mask for background, by default is not display */
 #mask {
-    display: none;
-    background: #0000ff;
+/*     display: none; */
+    background: gray;
     position: fixed;
     left: 0;
     top: 0;
     z-index: 10;
     width: 100%;
     height: 100%;
-    opacity: 0.1;
+    opacity: 0.2;
     z-index: 999;
 }
 
 /* You can customize to your needs  */
 .login-popup {
-    display: none;
-    background: #8000ff;
+/*     display: none; */
+    background: white;
     padding: 10px;
     border: 2px solid #ddd;
     float: left;
@@ -56,8 +56,7 @@ form.signin .textbox span {
     display: block;
 }
 
-form.signin p, form.signin span {
-    color: #999;
+form.signin , form.signin span {
     font-size: 11px;
     line-height: 18px;
 }

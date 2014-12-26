@@ -82,9 +82,8 @@ public class ListChuyen extends HttpServlet {
 				Long idTuyen = Long.parseLong(tuyen);
 				Date dateS = format.parse(date);
 				List<Chuyen> listChuyen = chuyenDAO.getAllChuyen(tuyenDAO.getTuyen(idTuyen), dateS);
-				System.out.println(tuyenDAO.getTuyen(idTuyen).getIdTuyen());
-				System.out.println("ListChuyen " + listChuyen.size());
 				session.setAttribute("listChuyen", listChuyen);
+				session.setAttribute("idTuyen", idTuyen);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}

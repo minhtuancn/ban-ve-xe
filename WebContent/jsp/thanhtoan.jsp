@@ -9,6 +9,7 @@
 <title>Thanh toán</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/thanhtoan.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/popup.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -17,6 +18,23 @@
 			var newSrc = "/BanVeXe/GenerateCaptcha?" + d.getTime();
 			$('#captcha').attr("src", newSrc);
 		});
+		
+		//
+		var loginBox = "#login-box";
+
+		//Fade in the Popup
+		$(loginBox).fadeIn(300);
+
+		//Set the center alignment padding + border see css style
+		var popMargTop = ($(loginBox).height() + 24) / 2;
+		var popMargLeft = ($(loginBox).width() + 24) / 2;
+
+		$(loginBox).css({
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+
+		// Add the mask to body
 	});
 </script>
 </head>
@@ -55,16 +73,6 @@
 			<p class="p-thongtin">Thông tin khách hàng:</p>
 			<hr />
 			<div class="login">
-				<div class="dangnhap">
-					<p class="p-dangnhap">- Bạn nên đăng nhập để có thể tích điểm
-						tích lũy, nhấp vào&nbsp;</p>
-					<a
-						href="/BanVeXe/jsp/DangNhap.jsp?pageForward=<%=DuongDan.THANH_TOAN%>"
-						class="dn">ĐÂY</a>
-					<p class="p-dangnhap">. Hoặc nhấp vào&nbsp;</p>
-					<a href="/BanVeXe/jsp/DangKi.jsp" class="dn">ĐÂY</a>
-					<p class="p-dangnhap">để đăng kí.</p>
-				</div>
 				<p class="p-KCdangnhap">
 					Thông tin chi tiết của Quý khách sẽ giúp chúng tôi và công ty vận
 					chuyển phục vụ một cách tốt nhất.<br> - Xin vui lòng kiểm tra
@@ -84,23 +92,23 @@
 						<tr>
 							<td><span>Họ tên:</span><span class="req">*</span></td>
 							<td><input type="text" name="hoten" size="58"
-								required="required" placeholder="Họ tên" value="<%= shoten%>" /></td>
+								required="required" placeholder="Họ tên" value="<%= shoten%>" readonly="readonly"/></td>
 						</tr>
 						<tr>
 							<td><span>Di động:</span><span class="req">*</span></td>
 							<td><input type="number" name="didong" size="100"
-								required="required" placeholder="Di động" value="<%= sdidong%>" /></td>
+								required="required" placeholder="Di động" value="<%= sdidong%>" readonly="readonly"/></td>
 						</tr>
 						<tr>
 							<td><span>Số CMND:</span><span class="req">*</span></td>
 							<td><input type="number" name="cmnd" size="80"
-								required="required" placeholder="Số CMND" value="<%= scmnd%>" /></td>
+								required="required" placeholder="Số CMND" value="<%= scmnd%>" readonly="readonly"/></td>
 						</tr>
 						<tr>
 							<td><span>Email:</span><span class="req">*</span></td>
 							<td><input type="email" name="email" size="50"
 								required="required" placeholder="abc@gmail.com"
-								value="<%= semail%>" /></td>
+								value="<%= semail%>" readonly="readonly"/></td>
 						</tr>
 						<tr>
 							<td><span>Ghi chú:</span></td>
@@ -128,6 +136,25 @@
 			</div>
 		</div>
 	</div>
+	<% if (kh == null) { %>
+	<div id="mask"></div>
+	<div id="login-box" class="login-popup">
+				<form method="post" class="signin" action="#">
+			<fieldset class="textbox">
+				<div class="dangnhap">
+					<p class="p-dangnhap">- Bạn nên đăng nhập để có thể tích điểm
+						tích lũy, nhấp vào&nbsp;</p>
+					<a
+						href="/BanVeXe/jsp/DangNhap.jsp?pageFoward=<%=DuongDan.THANH_TOAN%>"
+						class="dn">ĐÂY</a><p class="p-dangnhap">để đăng nhập.</p>
+					<p class="p-dangnhap">. Hoặc nhấp vào&nbsp;</p>
+					<a href="/BanVeXe/jsp/DangKi.jsp" class="dn">ĐÂY</a>
+					<p class="p-dangnhap">để đăng kí.</p>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<% } %>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
