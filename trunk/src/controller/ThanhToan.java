@@ -60,8 +60,12 @@ public class ThanhToan extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		// String maVe = (String) request.getAttribute("maVeThanhToan");
-		String maVe = (String) request.getParameter("mave");
+		String maVe =  request.getParameter("mave");
+		String pageFoward = DuongDan.TIM_VE_SVL;
+		if(request.getParameter("pageFoward") != null)
+			pageFoward = request.getParameter("pageFoward");
 //		String pageFoward = request.getParameter("pageFoward");
 		KhachHang kh = (KhachHang) request.getSession().getAttribute(
 				"khachHang");
@@ -71,6 +75,10 @@ public class ThanhToan extends HttpServlet {
 //					.forward(request, response);
 			response.sendRedirect(DuongDan.DANG_NHAP);
 		} else {
+			//
+			session.removeAttribute("veDi");
+			session.removeAttribute("veVe");
+			//
 			String mes = "";
 			Ve ve = veDAO.timVeOfMaVe(maVe);
 			request.getSession().setAttribute("veDi", ve);
@@ -80,7 +88,6 @@ public class ThanhToan extends HttpServlet {
 						.forward(request,
 				 response);
 				 int n = new Random().nextInt(8999)+1000;
-					HttpSession session = request.getSession();
 					session.setAttribute("maOTP", n+"");
 					System.out.println("ThanhToan OTP" + n);
 					SendMessageUtil.getInstance().sendMess(((KhachHang)session.getAttribute("khachHang")).getSdt(),"Ma OTP cua quy khach la: "+ n );
@@ -88,7 +95,7 @@ public class ThanhToan extends HttpServlet {
 			} else {
 				mes = "Vé đã bị hủy do quá thời hạn thanh toán!";
 				request.setAttribute("mes", mes);
-				request.getRequestDispatcher(DuongDan.TIM_VE_SVL).forward(request,
+				request.getRequestDispatcher(pageFoward).forward(request,
 						response);
 			}
 		}

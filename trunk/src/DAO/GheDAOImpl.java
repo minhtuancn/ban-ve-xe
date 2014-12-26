@@ -281,15 +281,13 @@ public class GheDAOImpl implements GheDAO {
 	@Override
 	public int setNonGheDadat(String maVe) {
 		Connection con = ConnectionPool.getInstance().getConnection();
-		String sqlSet = "update ghe set trangthai=?,giucho=?,mave=? where mave=?";
+		String sqlSet = "update ghe set trangthai=? where mave=?";
 		PreparedStatement preSet = null;
 		int i = 0;
 		try {
 			preSet = con.prepareStatement(sqlSet);
 			preSet.setByte(1, Ghe.CHUA_DAT);
-			preSet.setDate(2, null);
-			preSet.setString(3, null);
-			preSet.setString(4, maVe);
+			preSet.setString(2, maVe);
 		i = preSet.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

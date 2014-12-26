@@ -43,6 +43,7 @@ public class DuongDan {
 	public static final String THANH_TOAN_VE = "/BanVeXe/jsp/ThanhToanVe.jsp";
 	//
 	public static final String DANG_XUAT = "/BanVeXe/DangXuat";
+	public static final String DANG_NHAP_SV = "/BanVeXe/DangNhap";
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
 	public static final String TIM_TUYEN = "/BanVeXe/TimTuyen";
 	public static final String CAPTCHA = "/BanVeXe/GenerateCaptcha";
@@ -61,5 +62,7 @@ public class DuongDan {
 	public static final String THANH_TOAN_SV = "/BanVeXe/ThanhToan";
 	public static final String CHECK_OTP = "/BanVeXe/CheckOTP";
 	public static final String LIEN_HE_SV = "/BanVeXe/LienHe";
+	public static final String KIEM_TRA_VE_SV = "/BanVeXe/KiemTraVe";
+	public static final String HUYVE = "/BanVeXe/HuyVe";
 	
 }

@@ -35,7 +35,6 @@
 	<%
 		Ve veDi = (Ve) session.getAttribute("veDi");
 		KhachHang kh = veDi.getKhachHang();
-		;
 	%>
 <%
 					String mes = "";

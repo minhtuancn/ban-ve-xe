@@ -19,14 +19,14 @@
 			<marquee behavior="alternate" width="10%"> << </marquee>
 		</div>
 		<div id="dangki">
-			<% String pageForward = DuongDan.TRANG_CHU ;
+			<% String pageFoward = DuongDan.TRANG_CHU ;
 			if(request.getParameter("pageFoward") != null)
-				pageForward = request.getParameter("pageFoward");
+				pageFoward = request.getParameter("pageFoward");
 		%>
 			<h1>Đăng Nhập</h1>
 			<form id="contactform" name="contact" method="post"
-				action="/BanVeXe/DangNhap">
-				<input type="hidden" name="pageFoward" value="<%= pageForward%>" />
+				action="<%=DuongDan.DANG_NHAP_SV %>">
+				<input type="hidden" name="pageFoward" value="<%= pageFoward%>" />
 				<div class="row">
 					<label for="name">Tên Đăng Nhập: <span class="req">*</span></label>
 					<input type="text" name="user" id="name" class="txt" tabindex="1"

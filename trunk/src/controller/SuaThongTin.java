@@ -62,6 +62,7 @@ public class SuaThongTin extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String mes = null;
+		String mesSuccess = null;
 		KhachHang khachHang = (KhachHang) request.getSession().getAttribute(
 				"khachHang");
 
@@ -83,8 +84,8 @@ public class SuaThongTin extends HttpServlet {
 			khachHang.setEmail(email);
 			request.getSession().setAttribute("khachHang", khachHang);
 			
-			mes = "Cập nhật thành công!";
-			request.setAttribute("mes", mes);
+			mesSuccess = "Cập nhật thành công!";
+			request.setAttribute("mesSuccess", mesSuccess);
 			request.getRequestDispatcher(DuongDan.KIEM_TRA_THONG_TIN_SVL).forward(request, response);
 		}
 		else{

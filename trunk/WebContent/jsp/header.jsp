@@ -13,12 +13,6 @@
 </script>
 </head>
 <body>
-<%KhachHang khachHang= (KhachHang)session.getAttribute("khachHang");
-String pageLink = "";
-if(khachHang!=null)
-	pageLink = DuongDan.KIEM_TRA_VE;
-else pageLink =DuongDan.DANG_NHAP + "?pageFoward=" + DuongDan.KIEM_TRA_THONG_TIN;
-%>
 	<div id="container">
 		<header class="bg overflow">
 		<a href=<%=DuongDan.TRANG_CHU %>>
@@ -39,7 +33,7 @@ else pageLink =DuongDan.DANG_NHAP + "?pageFoward=" + DuongDan.KIEM_TRA_THONG_TIN
 			<ul>
 				<li><a href="/BanVeXe/jsp/body.jsp">Trang chủ</a></li>
 				<li><a href="/BanVeXe/jsp/gioithieu.jsp">Giới thiệu</a></li>
-				<li><a href=<%=pageLink %>>Kiểm tra thông tin</a></li>
+				<li><a href=<%=DuongDan.KIEM_TRA_VE_SV %>>Kiểm tra thông tin</a></li>
 				<li><a href="/BanVeXe/jsp/timve.jsp">Kiểm tra vé</a></li>
 				<li><a href="/BanVeXe/jsp/tintuc.jsp">Tin tức</a></li>
 				<li><a href="/BanVeXe/jsp/lienhe.jsp">Liên hệ</a></li>

@@ -54,7 +54,7 @@ body {
 
 #divroll {
 	width:101%;
-	height:200px;
+	height:250px;
 	padding-left: 5px;
 	overflow:scroll;
 }
