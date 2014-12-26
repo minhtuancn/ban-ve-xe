@@ -8,17 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 import model.Tuyen;
 import model.Xe;
 import DAO.ChuyenDAO;
 import DAO.ChuyenDAOImpl;
+import DAO.TuyenDAO;
 
 /**
  * Servlet implementation class AddChuyen
  */
 public class AddChuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      private ChuyenDAO chuyenDAO;
+      private TuyenDAO tuyenDAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,7 +30,13 @@ public class AddChuyen extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	FactoryDao f = new FactoryDAOImp();
+    	chuyenDAO = (ChuyenDAO) f.createDAO(FactoryDao.CHUYEN_DAO);
+    	tuyenDAO = (TuyenDAO) f.createDAO(FactoryDao.TUYEN_DAO);
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -42,18 +52,15 @@ public class AddChuyen extends HttpServlet {
 		doAction(request, response);
 	}
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession sesstion = request.getSession();
-//		Tuyen t = (Tuyen) sesstion.getAttribute("tuyen");
-//		String gioKhoiHanh = request.getParameter("giokhoihanh");
-//		String xe = request.getParameter("xe");
-//		Xe xes = null;
-//		if(xe.equalsIgnoreCase("xe45"))
-//			 xes = new Xe("", "", 45);
-//		xes = new Xe("", "", 16);
-//		int gia = Integer.parseInt(request.getParameter("gia"));
-//		ChuyenDAO dao = new ChuyenDAOImpl();
-//		dao.addChuyen(t, gioKhoiHanh,xes, t.getDiemDi().getTenDiaDiem(), gia);
-//		response.getWriter().print("1");
+		HttpSession sesstion = request.getSession();
+		Long idTuyen = (Long) sesstion.getAttribute("idTuyen");
+		String gioKhoiHanh = request.getParameter("giokhoihanh");
+		String xe = request.getParameter("xe");
+		long idXe = Long.parseLong(xe);
+		int gia = Integer.parseInt(request.getParameter("gia"));
+		Tuyen tuyen = tuyenDAO.getTuyen(idTuyen);
+		chuyenDAO.addChuyen(tuyen,gioKhoiHanh,idXe,tuyen.getDiemDi().getTenDiaDiem(), gia);
+		response.getWriter().print("1");
 	}
 
 }

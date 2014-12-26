@@ -43,15 +43,20 @@
 	type="text/javascript"></script>
 <script src="/BanVeXe/js/scripts/jquery-ui.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		var table = $("#myDataTable").dataTable({
-			"sPaginationType" : "full_numbers",
-			"bJQueryUI" : true
-		});
-		table.makeEditable({
-
-		});
-	});
+// 	$(document).ready(function() {
+// 		var table = $("#myDataTable").dataTable({
+// 			"sPaginationType" : "full_numbers",
+// 			"bJQueryUI" : true
+// 		});
+// 		table.makeEditable({
+// 			sAddNewRowFormId : "formThemTuyen",
+// 			sAddNewRowButtonId : "btThemChuyen",
+// 			sAddNewRowOkButtonId : "btOk",
+// 			sAddNewRowCancelButtonId : "btCancel",
+// 			sDeleteHttpMethod : "POST",
+// 			sDeleteRowButtonId : "btXoaTuyen"
+// 		});
+// 	});
 </script>
 </head>
 <body id="dt_example">
@@ -85,18 +90,19 @@
 					<tbody>
 						<%
 							for (Chuyen chuyen : listChuyen) {
-								%>
+						%>
 						<tr id="<%=chuyen.getIdChuyen()%>">
 							<td><%=chuyen.getGioKhoiHanh()%></td>
 							<td><%=chuyen.getLoaiXe()%></td>
 							<td><%=chuyen.getBenXuatPhat()%></td>
 							<td><%=chuyen.getGia()%></td>
 							<td><%=chuyen.isChuaKhoiHanh()%> <%
- 	if (!chuyen.isChuaKhoiHanh())
+ 	if (!chuyen.isChuaKhoiHanh()){
  %> <input type="button" value="cập nhật" /></td>
 							<%
+								}
 							}
-						%>
+							%>
 						</tr>
 					</tbody>
 				</table>

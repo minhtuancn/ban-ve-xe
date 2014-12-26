@@ -60,8 +60,7 @@ public class ListTuyen extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		TuyenDAO tuyenDao = new TuyenDAOImpl();
-		List<Tuyen> listTuyen = tuyenDao.getAllTuyen();
+		List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
 		List<DiaDiem> listDiaDiem = diaDiemDAO.getAllDiaDiem();
 		String dataDiaDiem = "\"{";
 		DiaDiem d;

@@ -18,12 +18,11 @@
 <script src="/BanVeXe/js/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".myDataTable").dataTable({
+		$("#myDataTable").dataTable({
 			"sPaginationType" : "full_numbers",
 			"bJQueryUI" : true
 		});
-		$(".myDataTable").dataTable().makeEditable({
-
+		$("#myDataTable").dataTable().makeEditable({
 			sUpdateURL :
 <%="'" + DuongDan.SUA_CHUYEN_SV + "'"%>
 	,
@@ -34,32 +33,8 @@
 <%="'" + DuongDan.XOA_CHUYEN_SV + "'"%>
 	,
 			"aoColumns" : [
-			//Empty object is used for the default editable settings
-
-			{}, {
-				indicator : 'Saving...',
-				tooltip : 'Click to select town',
-				loadtext : 'loading...',
-				type : 'select',
-				onblur : 'submit',
-				data : "{'45':'45','16':'16'}"
-			}, {
-				indicator : 'Saving...',
-				tooltip : 'Click to select town',
-				loadtext : 'loading...',
-				type : 'select',
-				onblur : 'submit',
-				data : "{'London':'London','Liverpool':'Liverpool'}"
-			},
-
-			{
-				indicator : 'Saving...',
-				tooltip : 'Click to select town',
-				loadtext : 'loading...',
-				type : 'select',
-				onblur : 'submit',
-				data : "{'London':'London','Liverpool':'Liverpool'}"
-			}, null ],
+			               null, null, null, null, null
+			 ],
 			sAddNewRowFormId : "formThemChuyen",
 			sAddNewRowButtonId : "btThemChuyen",
 			sAddNewRowOkButtonId : "btOk",
@@ -178,10 +153,10 @@
 				for="name">Giờ khởi hành:</label><br /> <input type="text"
 				name="giokhoihanh" id="giokhoihanh" rel="0" /><br> <label
 				for="name">Xe</label><br /> <select name="xe" id="xe" rel="1">
-				<option value="xe45">xe 45</option>
-				<option value="xe16">xe 16</option>
-			</select> <br /> <label for="name">Giá:</label><br /> <input type="number"
-				name="gia" id="gia" rel="3" value="1222221" /> <input type="hidden"
+				<option value="2">xe 45</option>
+				<option value="1">xe 16</option>
+			</select> <br /> <label for="name"/label><br /> <input type="number"
+				name="gia" id="gia" rel="3" value="" /> <input type="hidden"
 				value="false" rel="4" /> <br /> <input type="hidden" value=""
 				rel="2" /> <br />
 			<button id="btOk">Thêm</button>
