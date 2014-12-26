@@ -5,7 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/popup.css">
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/sweet-alert.css">
 <script type="text/javascript">
@@ -18,7 +20,7 @@
 			confirmButtonColor : "#DD6B55",
 			confirmButtonText : "Yes, delete it!",
 			closeOnConfirm : false,
-			closeOnCancel: false
+			closeOnCancel : false
 		}, function(isConfirm) {
 			if (isConfirm) {
 				swal("Deleted!", "Your imaginary file has been deleted.",
@@ -28,10 +30,60 @@
 			}
 		});
 	}
+
+	$(document).ready(function() {
+		$('a.login-window').click(function() {
+
+			//Getting the variable's value from a link 
+			var loginBox = $(this).attr('href');
+
+			//Fade in the Popup
+			$(loginBox).fadeIn(300);
+
+			//Set the center alignment padding + border see css style
+			var popMargTop = ($(loginBox).height() + 24) / 2;
+			var popMargLeft = ($(loginBox).width() + 24) / 2;
+
+			$(loginBox).css({
+				'margin-top' : -popMargTop,
+				'margin-left' : -popMargLeft
+			});
+
+			// Add the mask to body
+			$('body').append('<div id="mask"></div>');
+			$('#mask').fadeIn(300);
+			return false;
+		});
+
+		// When clicking on the button close or the mask layer the popup closed
+		$('a.close').click(function() {
+			$('#mask , .login-popup').fadeOut(300, function() {
+				$('#mask').remove();
+			});
+			return false;
+		});
+		
+	});
 </script>
 </head>
 <body>
-<!-- 	<button onclick="mes()">abc</button> -->
-<img alt="gjhadsg" src="/BanVeXe/GenerateCaptcha">
+	<a href="#login-box" class="login-window">Login / Sign In</a>
+	<div id="login-box" class="login-popup">
+				<form method="post" class="signin" action="#">
+			<fieldset class="textbox">
+				<label class="username"> <span>Username or email</span> <input
+					id="username" name="username" value="" type="text"
+					autocomplete="on" placeholder="Username">
+				</label> <label class="password"> <span>Password</span> <input
+					id="password" name="password" value="" type="password"
+					placeholder="Password">
+				</label>
+				<button class="submit button" type="button">Sign in</button>
+				<p>
+					<a class="forgot" href="#">Forgot your password?</a>
+				</p>
+			</fieldset>
+		</form>
+	</div>
 </body>
 </html>
