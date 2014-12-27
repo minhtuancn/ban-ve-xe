@@ -2,11 +2,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 
 public class Test {
 	public static void main(String[] args) throws ParseException {
-		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = f.parse("2014-12-25");
-		System.out.println(date);
+		String pass = "123456";
+		System.out.println(DigestUtils.md5Hex(pass));
 	}
 }
