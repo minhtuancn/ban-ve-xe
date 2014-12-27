@@ -52,7 +52,7 @@ public class VeDAOImpl implements VeDAO {
 						res.getBoolean("lahuyve"), res.getString("lidohuy"));
 				ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
 						ve.getMaVe()));
-				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen")));
+				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen"), true));
 				listVe.add(ve);
 			}
 		} catch (SQLException e) {
@@ -88,7 +88,7 @@ public class VeDAOImpl implements VeDAO {
 						res.getString("lidohuyve"));
 				ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
 						ve.getMaVe()));
-				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen")));
+				ve.setChuyen(getChuyenDAO().getChuyen(res.getLong("idchuyen"), true));
 				listVe.add(ve);
 			}
 
@@ -194,7 +194,7 @@ public class VeDAOImpl implements VeDAO {
 					ve.setPhuongThucThanhToan(getThanhToanDAO().getThanhToan(
 							ve.getMaVe()));
 					ve.setChuyen(getChuyenDAO().getChuyen(
-							res.getLong("idchuyen")));
+							res.getLong("idchuyen"), true));
 					System.out.println("Vedaoiml " + ve.getThoiHanThanhToans());
 					System.out.println("Vedaoiml " + ve.getThoiHanThanhToan());
 					ve.setKhachHang(getKhachHangDAO().getKhachHang(

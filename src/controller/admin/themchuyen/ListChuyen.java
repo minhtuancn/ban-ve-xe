@@ -33,7 +33,6 @@ public class ListChuyen extends HttpServlet {
 	 */
 	public ListChuyen() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -81,7 +80,7 @@ public class ListChuyen extends HttpServlet {
 			try {
 				Long idTuyen = Long.parseLong(tuyen);
 				Date dateS = format.parse(date);
-				List<Chuyen> listChuyen = chuyenDAO.getAllChuyen(tuyenDAO.getTuyen(idTuyen), dateS);
+				List<Chuyen> listChuyen = chuyenDAO.getAllChuyen(tuyenDAO.getTuyen(idTuyen), dateS, true);
 				session.setAttribute("listChuyen", listChuyen);
 				session.setAttribute("idTuyen", idTuyen);
 			} catch (ParseException e) {

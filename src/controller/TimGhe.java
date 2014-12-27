@@ -67,7 +67,7 @@ public class TimGhe extends HttpServlet {
 //				Chuyen c = ((Tuyen) session.getAttribute("tuyenDi"))
 //						.getDanhSachChuyen().get(id);
 				Tuyen tuyen  = (Tuyen) session.getAttribute("tuyenDi");
-				Chuyen c = chuyenDAO.getChuyen(tuyen.getDanhSachChuyen().get(id).getIdChuyen(), tuyen);
+				Chuyen c = chuyenDAO.getChuyen(tuyen.getDanhSachChuyen().get(id).getIdChuyen(), tuyen, false);
 				session.setAttribute("chuyenDi", c);
 				DatVe datVeDi = new DatVe(c);
 				session.setAttribute("datVeDi", datVeDi);
@@ -78,7 +78,7 @@ public class TimGhe extends HttpServlet {
 //				Chuyen c = ((Tuyen) session.getAttribute("tuyenVe"))
 //						.getDanhSachChuyen().get(id);
 				Tuyen tuyen  = (Tuyen) session.getAttribute("tuyenVe");
-				Chuyen c = chuyenDAO.getChuyen(tuyen.getDanhSachChuyen().get(id).getIdChuyen(), tuyen);
+				Chuyen c = chuyenDAO.getChuyen(tuyen.getDanhSachChuyen().get(id).getIdChuyen(), tuyen,false);
 				session.setAttribute("chuyenVe", c); 
 				DatVe datVeDi = new DatVe(c); 
 				session.setAttribute("datVeVe", datVeDi);

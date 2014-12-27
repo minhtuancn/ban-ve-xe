@@ -46,7 +46,7 @@ public class Ghe implements Comparable<Ghe>{
 
 	@Override
 	public int compareTo(Ghe o) {
-		return (int) (idGhe - o.idGhe);
+		return this.soGhe - o.soGhe;
 	}
 
 	@Override

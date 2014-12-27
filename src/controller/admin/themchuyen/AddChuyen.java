@@ -69,7 +69,11 @@ public class AddChuyen extends HttpServlet {
 		int gia = Integer.parseInt(request.getParameter("gia"));
 		Tuyen tuyen = tuyenDAO.getTuyen(idTuyen);
 		long id = chuyenDAO.addChuyen(tuyen, gioKhoiHanh, idXe, gia);
-		response.getWriter().print(id);
+		if (id >= 0)
+			response.getWriter().print(id);
+		else
+			response.getWriter().print("Thêm chuyến không thành công!");
+
 	}
 
 }

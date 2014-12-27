@@ -45,8 +45,9 @@ public class UpdateChuyen extends HttpServlet {
 				.getParameter("columnPosition"));
 		String value = request.getParameter("value");
 		ChuyenDAO chuyenDao = new ChuyenDAOImpl();
+		response.setCharacterEncoding("UTF-8");
 		if (!chuyenDao.editChuyen(id, value, columnPosition))
-			response.getWriter().print("Error - company cannot be found");
+			response.getWriter().print("Update chuyến không thành công!");
 		else{
 			response.getWriter().print(value);
 		}

@@ -17,11 +17,10 @@ public interface ChuyenDAO extends DAO{
 	 * @param id
 	 * @return: 
 	 */
-	public Chuyen getChuyen(long id);
-	public Chuyen getChuyen(long id, Tuyen tuyen);
+	public Chuyen getChuyen(long id,boolean isAdmin);
+	public Chuyen getChuyen(long id, Tuyen tuyen, boolean isAdmin);
 	public String getTenChuyen(long idVe);
-	
-	public List<Chuyen> getAllChuyen(Tuyen tuyen, Date ngayDi);
+	public List<Chuyen> getAllChuyen(Tuyen tuyen, Date ngayDi, boolean isAdmin);
 	public long addChuyen(Tuyen tuyen, String gioKhoiHanh, long idXe, int gia);
 	public String deleteChuyen(int id);
 	public boolean editChuyen(int id, String value, int columnPosition);

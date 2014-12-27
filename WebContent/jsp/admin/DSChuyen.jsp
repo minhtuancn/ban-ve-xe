@@ -32,42 +32,58 @@
 			sDeleteURL :
 <%="'" + DuongDan.XOA_CHUYEN_SV + "'"%>
 	,
-			"aoColumns" : [ null, null, null, null, null ],
+	"aoColumns" : [null, null, null,
+					{
+						ndicator : 'Saving...',
+						tooltip : 'Click để sữa giá tiền',
+						loadtext : 'loading...',
+						type : 'text',
+						onblur : 'cancel',
+						submit : 'Ok',
+					},null
+					],
 			sAddNewRowFormId : "formThemChuyen",
 			sAddNewRowButtonId : "btThemChuyen",
 			sAddNewRowOkButtonId : "btOk",
 			sAddNewRowCancelButtonId : "btCancel",
 			sDeleteHttpMethod : "POST",
 			sDeleteRowButtonId : "btXoaChuyen",
-		//									fnOnDeleted : function(status) {
-		//										if (status.indexOf("success") != -1) {
-		//											swal({
-		//												title : "Xóa tuyến thành công!",
-		//												timer : 2000,
-		//												type : "success"
-		//											});
-		//										}
-		//									},
-		//									fnOnAdded : function(status) {
-		//										if (status.indexOf("success") != -1) {
-		//											swal({
-		//												title : "Thêm tuyến thành công!",
-		//												timer : 2000,
-		//												type : "success"
-		//											});
-		//										}
-		//									},
+											
+	fnOnDeleted : function(status) {
+				if (status == "success") {
+					swal({
+						title : "Xóa tuyến thành công!",
+						timer : 2000,
+						type : "success"
+					});
+				}
+			},
+											
+	fnOnAdded : function(status) {
+				if (status == "success") {
+					swal({
+						title : "Thêm tuyến thành công!",
+						timer : 2000,
+						type : "success"
+					});
+					setTimeout(reloads, 2000);
+				}
+			},
 		//									fnOnEditing : function(jInput,
 		//											oEditableSettings,
 		//											sOriginalText, id) {
 
 		//										return true;
 		//									},
-		//									fnOnEdited : function(status) {
-		//										if (status.indexOf("success") != 1) {
-
-		//										}
-		//									}
+											fnOnEdited : function(status) {
+												if (status == "success") {
+													swal({
+														title : "Thêm tuyến thành công!",
+														timer : 2000,
+														type : "success"
+													});
+												}
+											}
 		});
 	};
 
@@ -93,19 +109,19 @@
 	// 	};
 </script>
 <script type="text/javascript">
-	function capnhat(idChuyen) {
-		$.get("<%=DuongDan.CAP_NHAP_KHOI_HANH%>?idChuyen=" + idChuyen,
-				function(data, status) {
-					if (status == "success" && data == "ok") {
-						al("Cập nhật thành công", "success");
-						$("#themchuyen").load("<%=DuongDan.THEM_CHUYEN%>");
-						 location.reload();
-					} else {
-						al("Cập nhật không thành công", "warning");
-					}
-				});
-	}
-	
+// function capnhat(idChuyen) {
+<%-- 	$.get("<%=DuongDan.CAP_NHAP_KHOI_HANH%>?idChuyen=" + idChuyen, --%>
+// 			function(data, status) {
+// 				if (status == "success" && data == "ok") {
+// 					al("Cập nhật thành công", "success");
+<%-- 					$("#themchuyen").load("<%=DuongDan.THEM_CHUYEN%> --%>
+// ");
+// 					location.reload();
+// 				} else {
+// 					al("Cập nhật không thành công", "warning");
+// 				}
+// 			});
+// }
 	function al(mes, type) {
 		swal({
 			title : mes,
@@ -115,6 +131,9 @@
 	$(document).ready(function() {
 		set();
 	});
+	function reloads() {
+		location.reload();
+	}
 </script>
 </head>
 <body>

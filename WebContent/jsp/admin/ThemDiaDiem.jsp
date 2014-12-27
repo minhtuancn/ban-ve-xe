@@ -56,7 +56,6 @@
 					"bJQueryUI" : true
 				});
 				$("#myDataTable").dataTable().makeEditable({
-					
 					sUpdateURL :
 <%="'" + DuongDan.SUA_DIADIEM_SV + "'"%>
 	,
@@ -77,7 +76,6 @@
 					sAddNewRowCancelButtonId : "btCancel",
 					sDeleteHttpMethod : "POST",
 					sDeleteRowButtonId : "btXoaTuyen",
-		
 	oAddNewRowButtonOptions : {
 		icons : {
 			primary : 'ui-icon-plus'
