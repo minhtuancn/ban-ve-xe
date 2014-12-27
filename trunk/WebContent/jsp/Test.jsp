@@ -10,9 +10,8 @@
 <script src="/BanVeXe/js/jquery.md5.js"></script>
 <script type="text/javascript">
 	function check() {
-		var md5 = $.md5('hoang nhuoc quy');
+		var md5 = $.md5('123456`');
 		alert(md5);
-		alert($.md5(md5));
 	}
 	function eq() {
 		if ("abc" == "abc")
@@ -24,37 +23,10 @@
 		$("#passmd5").val($.md5($("#pass").val()));
 	}
 </script>
-<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
-<script src="/BanVeXe/js/sweet-alert.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="/BanVeXe/css/sweet-alert.css">
-<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
-<link rel="stylesheet" type="text/css" href="/BanVeXe/css/kiemtrave.css">
-<link rel="stylesheet" type="text/css" href="/BanVeXe/css/timve.css">
-<link rel="stylesheet" type="text/css" href="/BanVeXe/css/lienhe.css">
-<link rel="stylesheet" type="text/css"
-	href="/BanVeXe/css/NhapTTVangLai.css">
-<script type="text/javascript">
-	function sendOTP() {
-		$.get(
-<%=DuongDan.CHECK_OTP%>
-	, function(data, status) {
-			alert(status + " : " + data);
-			if (status == "success") {
-				if (data == "ok") {
-					swal({
-						title : "Mã OTP đã được gửi cho quý khách",
-						type : "success"
-					});
-				}
-			}
-		});
-	}
-</script>
 </head>
 <body>
 	<input type="text" id="pass" onblur="change()" />
 	<input type="hidden" id="passmd5" />
-	<button onclick="sendOTP()">click</button>
+	<button onclick="check()">click</button>
 </body>
 </html>
