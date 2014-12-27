@@ -23,7 +23,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 //		 f_yyyy_MM_dd= new SimpleDateFormat("yyyy-MM-dd");
 	}
 	@Override
-	public Tuyen getTuyen(long diemDi, long diemDen, Date ngayDi) { // yyyy-MM-dd
+	public Tuyen getTuyen(long diemDi, long diemDen, Date ngayDi,boolean isAdmin) { // yyyy-MM-dd
 		Connection con = ConnectionPool.getInstance().getConnection();
 		Tuyen tuyen = null;
 		String diemDenRs = "", diemDiRs = "";
@@ -55,7 +55,8 @@ public class TuyenDAOImpl implements TuyenDAO {
 					tuyen = new Tuyen(new DiaDiem(diemDi, diemDiRs), new DiaDiem(diemDen, diemDenRs));
 					tuyen.setNgayDi(ngayDi);
 					tuyen.setIdTuyen(idTuyen);
-					tuyen.setDanhSachChuyen(getChuyenDAO().getAllChuyen(tuyen, ngayDi));
+					tuyen.setDanhSachChuyen(getChuyenDAO().getAllChuyen(tuyen, ngayDi, isAdmin));
+					System.out.println("TuyenDAOImp " + tuyen.getDanhSachChuyen().size());
 				}
 
 		} catch (SQLException e) {

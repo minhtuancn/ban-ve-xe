@@ -120,7 +120,7 @@ public class TimTuyen extends HttpServlet {
 				return;
 			}
 		}
-		Tuyen tuyen = tuyenDAO.getTuyen(idNoiDi, idNoiDen, dateNgayDi);
+		Tuyen tuyen = tuyenDAO.getTuyen(idNoiDi, idNoiDen, dateNgayDi, false);
 		if (tuyen == null) {
 			mes = "Tuyến Đi không có, xin vui lòng chọn chuyến khác!";
 			request.setAttribute("mes", mes);
@@ -131,7 +131,7 @@ public class TimTuyen extends HttpServlet {
 			session.setAttribute("tuyenDi", tuyen);
 		}
 		if (laKhuHoi_bool) {
-			tuyen = tuyenDAO.getTuyen(idNoiDen, idNoiDi, dateNgayVe);
+			tuyen = tuyenDAO.getTuyen(idNoiDen, idNoiDi, dateNgayVe, false);
 			if (tuyen == null) {
 				mes = "Tuyến Về không có, xin vui lòng chọn chuyến khác!";
 				request.setAttribute("mes", mes);

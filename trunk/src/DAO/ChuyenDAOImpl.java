@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -27,23 +28,25 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 	}
 
 	@Override
-	public Chuyen getChuyen(long id) {
+	public Chuyen getChuyen(long id, boolean isAdmin) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		Chuyen chuyen = null;
 		String sql1 = "SELECT phancong.idtuyen, chuyen.idchuyen, chuyen.benxuatphat,  chuyen.chuakhoihanh, chuyen.gia,  chuyen.giokhoihanh,chuyen.idxe, phancong.ngaydi  FROM chuyen INNER JOIN phancong ON phancong.idchuyen = chuyen.idchuyen  WHERE chuyen.idchuyen = ?";
 		PreparedStatement pre = null;
 		ResultSet res;
-		Tuyen tuyen = null;
 		try {
 			pre = con.prepareStatement(sql1);
 			pre.setLong(1, id);
 			res = pre.executeQuery();
 			while (res.next()) {
+				if (!isAdmin && res.getBoolean("chuakhoihanh")) {
+					System.out.println("aaaa");
+					continue;
+				}
 				chuyen = getChuyen(id,
-						getTuyenDAO().getTuyen(res.getLong("idTuyen")));
-
+						getTuyenDAO().getTuyen(res.getLong("idTuyen")), isAdmin);
+				chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 			}
-			chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -54,7 +57,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 	}
 
 	@Override
-	public Chuyen getChuyen(long id, Tuyen tuyen) {
+	public Chuyen getChuyen(long id, Tuyen tuyen, boolean isAdmin) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		Chuyen chuyen = null;
 		String sql1 = "SELECT phancong.idtuyen, chuyen.idchuyen, chuyen.benxuatphat,  chuyen.chuakhoihanh, chuyen.gia,  chuyen.giokhoihanh,chuyen.idxe, phancong.ngaydi  FROM chuyen INNER JOIN phancong ON phancong.idchuyen = chuyen.idchuyen  WHERE chuyen.idchuyen = ?";
@@ -65,13 +68,15 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 			pre.setLong(1, id);
 			res = pre.executeQuery();
 			while (res.next()) {
+				if (!isAdmin && res.getBoolean("chuakhoihanh"))
+					continue;
 				chuyen = new Chuyen(res.getLong("idchuyen"), tuyen,
 						res.getString("giokhoihanh"), getXeDAO().getXe(
 								res.getLong("idxe")),
 						res.getString("benxuatphat"), res.getInt("gia"));
 				chuyen.setChuaKhoiHanh(res.getBoolean("chuakhoihanh"));
+				chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 			}
-			chuyen.setDanhSachGheNgoi(getGheDAO().getAllGhe(id));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -82,19 +87,22 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 	}
 
 	@Override
-	public List<Chuyen> getAllChuyen(Tuyen tuyen, Date ngayDi) {
+	public List<Chuyen> getAllChuyen(Tuyen tuyen, Date ngayDi, boolean isAdmin) {
 		List<Chuyen> list = new ArrayList<Chuyen>();
 		Connection con = ConnectionPool.getInstance().getConnection();
 		String sql1 = "SELECT idchuyen FROM phancong WHERE idtuyen = ? and Date(ngaydi) = ?";
 		PreparedStatement pre = null;
 		ResultSet res;
+		Chuyen chuyen = null;
 		try {
 			pre = con.prepareStatement(sql1);
 			pre.setLong(1, tuyen.getIdTuyen());
 			pre.setDate(2, new java.sql.Date(ngayDi.getTime()));
 			res = pre.executeQuery();
 			while (res.next()) {
-				list.add(getChuyen(res.getLong("idchuyen"), tuyen));
+				chuyen = getChuyen(res.getLong("idchuyen"), tuyen, isAdmin);
+				if (chuyen != null)
+					list.add(chuyen);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,6 +110,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 			ConnectionPool.getInstance().closePre(pre);
 			ConnectionPool.getInstance().freeConnection(con);
 		}
+		Collections.sort(list);
 		return list;
 	}
 
@@ -116,7 +125,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 		Xe xe = null;
 		PreparedStatement pre = null;
 		ResultSet res = null;
-		long id = 0;
+		long id = -1;
 		try {
 			con.setAutoCommit(false);
 			pre = con.prepareStatement(sql1);
@@ -220,9 +229,7 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 
 	@Override
 	public boolean editChuyen(int id, String value, int columnPosition) {
-		// Chuyen c = list.get(id);
-		Xe xe = null;
-		System.out.println(columnPosition);
+		Chuyen c = getChuyen(id, true);
 		switch (columnPosition) {
 		case 0:
 			// c.setGioKhoiHanh(value);
@@ -239,12 +246,35 @@ public class ChuyenDAOImpl implements ChuyenDAO {
 			// c.setBenXuatPhat(value);
 			break;
 		case 3:
-			// c.setGia(Integer.parseInt(value));
-			break;
+			try{
+				c.setGia(Integer.parseInt(value));
+				return updateChuyen(c);
+			}catch (NumberFormatException e) {
+				return false;
+			}
 		default:
 			break;
 		}
 		return true;
+	}
+
+	private boolean updateChuyen(Chuyen chuyen) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "update chuyen set gia = ? where idchuyen = ?";
+		PreparedStatement pre = null;
+		boolean kq = false;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setInt(1, chuyen.getGia());
+			pre.setLong(2, chuyen.getIdChuyen());
+			kq = pre.executeUpdate() != 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return kq;
 	}
 
 	public TuyenDAO getTuyenDAO() {

@@ -20,7 +20,7 @@ public interface TuyenDAO extends DAO{
 	 *            : địa điểm đến
 	 * @return: tuyến xe
 	 */
-	public Tuyen getTuyen(long diemDi, long diemDen, Date ngayDi);
+	public Tuyen getTuyen(long diemDi, long diemDen, Date ngayDi, boolean isAdmin);
 	
 	/**
 	 * 
