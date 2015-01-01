@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnJTp_L3nQyoa9MjQAeFXiKg6RxTH2aek">
@@ -26,13 +26,13 @@
 		var to = new google.maps.LatLng(toLatitude, toLongitude);
 		var from = new google.maps.LatLng(fromLatitude, fromLongitude);
 		
-		//Khai báo các biến và đối tượng cần thiết
+		//Khai bÃ¡o cÃ¡c biáº¿n vÃ  Äá»i tÆ°á»£ng cáº§n thiáº¿t
 		
 		var map;
 		var directionsService = new google.maps.DirectionsService();
 		var directionsDisplay;
 
-		// Thẻ div chứa bản đồ
+		// Tháº» div chá»©a báº£n Äá»
 		var map_canvas = document.getElementById("google-map");
 		map_canvas.style.width = '100%';
 		map_canvas.style.height = '500px';
@@ -44,7 +44,7 @@
 			mapTypeId : google.maps.MapTypeId.HYBRID
 		};
 
-		// Đối tương map
+		// Äá»i tÆ°Æ¡ng map
 		map = new google.maps.Map(map_canvas, map_options);
 
 		directionsDisplay = new google.maps.DirectionsRenderer();
@@ -64,12 +64,12 @@
 		});
 		var marker = new google.maps.Marker({
 			position : from,
-			icon : '/BanVeXe/image/ghe1.png'
+			icon : '/BanVeXe/image/user_icon.jpg'
 		});
 		marker.setMap(map);
 		marker = new google.maps.Marker({
 			position : to,
-			icon : '/BanVeXe/image/ghe3.png'
+			icon : '/BanVeXe/image/icon_nlu.png'
 		});
 		marker.setMap(map);
 		};
