@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/BanVeXe/css/datatable/ThemChuyen.css" rel="stylesheet"
 	type="text/css" media="all" />

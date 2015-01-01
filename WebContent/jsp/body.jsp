@@ -88,6 +88,7 @@
 			var ngayDi = new Date(($("input[name='ngaydi']").val()));
 			var ngayVe = new Date(($("input[name='ngayve']").val()));
 			var now = new Date();
+			now.setHours(0,0,0,0);
 			if (ngayDi < now) {
 					al("Ngày đi không được nhỏ hơn ngày hiện tại!", "warning");
 			} else {
@@ -118,11 +119,11 @@
 							alt="Css Template Preview" id="img-1" alt="home" /></a></li>
 					<li><a href="#"><img src="/BanVeXe/image/slider/06.jpg"
 							alt="Css Template Preview" id="img-1" alt="home" /></a></li>
-					<li><a href="#"><img src="/BanVeXe/image/slider/06.jpg"
+					<li><a href="#"><img src="/BanVeXe/image/slider/05.jpg"
 							alt="Css Template Preview" id="img-1" alt="home" /></a></li>
 					<li><a href="#"><img src="/BanVeXe/image/slider/06.jpg"
 							alt="Css Template Preview" id="img-1" alt="home" /></a></li>
-					<li><a href="#"><img src="/BanVeXe/image/slider/06.jpg"
+					<li><a href="#"><img src="/BanVeXe/image/slider/04.jpg"
 							alt="Css Template Preview" id="img-1" alt="home" /></a></li>
 
 				</ul>
