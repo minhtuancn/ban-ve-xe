@@ -79,10 +79,12 @@ public class ListChuyen extends HttpServlet {
 		if(!date.equals("") && !tuyen.equals("")){
 			try {
 				Long idTuyen = Long.parseLong(tuyen);
+				Tuyen t = tuyenDAO.getTuyen(idTuyen);
 				Date dateS = format.parse(date);
-				List<Chuyen> listChuyen = chuyenDAO.getAllChuyen(tuyenDAO.getTuyen(idTuyen), dateS, true);
+				t.setNgayDi(dateS);
+				List<Chuyen> listChuyen = chuyenDAO.getAllChuyen(t, dateS, true);
 				session.setAttribute("listChuyen", listChuyen);
-				session.setAttribute("idTuyen", idTuyen);
+				session.setAttribute("tuyen", t);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}

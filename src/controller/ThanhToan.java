@@ -62,17 +62,17 @@ public class ThanhToan extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		// String maVe = (String) request.getAttribute("maVeThanhToan");
-		String maVe =  request.getParameter("mave");
+		String maVe = request.getParameter("mave");
 		String pageFoward = DuongDan.TIM_VE_SVL;
-		if(request.getParameter("pageFoward") != null)
+		if (request.getParameter("pageFoward") != null)
 			pageFoward = request.getParameter("pageFoward");
-//		String pageFoward = request.getParameter("pageFoward");
+		// String pageFoward = request.getParameter("pageFoward");
 		KhachHang kh = (KhachHang) request.getSession().getAttribute(
 				"khachHang");
 		if (kh == null) {
-//			request.getRequestDispatcher(
-//					DuongDan.DANG_NHAP_SVL)
-//					.forward(request, response);
+			// request.getRequestDispatcher(
+			// DuongDan.DANG_NHAP_SVL)
+			// .forward(request, response);
 			response.sendRedirect(DuongDan.DANG_NHAP);
 		} else {
 			//
@@ -85,13 +85,17 @@ public class ThanhToan extends HttpServlet {
 			if (ve != null) {
 				request.setAttribute("veThanhToan", ve);
 				request.getRequestDispatcher(DuongDan.THANH_TOAN_VE_SVL)
-						.forward(request,
-				 response);
-				 int n = new Random().nextInt(8999)+1000;
-					session.setAttribute("maOTP", n+"");
-					System.out.println("ThanhToan OTP" + n);
-					SendMessageUtil.getInstance().sendMess(((KhachHang)session.getAttribute("khachHang")).getSdt(),"Ma OTP cua quy khach la: "+ n );
-//				response.sendRedirect(DuongDan.CHI_TIET_VE);
+						.forward(request, response);
+				int n = new Random().nextInt(8999) + 1000;
+				session.setAttribute("maOTP", n + "");
+				System.out.println("ThanhToan OTP" + n);
+				SendMessageUtil
+						.getInstance()
+						.sendMess(
+								((KhachHang) session.getAttribute("khachHang"))
+										.getSdt(),
+								"Ma OTP cua quy khach la: " + n);
+				// response.sendRedirect(DuongDan.CHI_TIET_VE);
 			} else {
 				mes = "Vé đã bị hủy do quá thời hạn thanh toán!";
 				request.setAttribute("mes", mes);

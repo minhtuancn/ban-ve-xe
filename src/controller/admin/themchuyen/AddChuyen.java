@@ -67,7 +67,8 @@ public class AddChuyen extends HttpServlet {
 		String xe = request.getParameter("xe");
 		long idXe = Long.parseLong(xe);
 		int gia = Integer.parseInt(request.getParameter("gia"));
-		Tuyen tuyen = tuyenDAO.getTuyen(idTuyen);
+//		Tuyen tuyen = tuyenDAO.getTuyen(idTuyen);
+		Tuyen tuyen = (Tuyen) sesstion.getAttribute("tuyen");
 		long id = chuyenDAO.addChuyen(tuyen, gioKhoiHanh, idXe, gia);
 		if (id >= 0)
 			response.getWriter().print(id);

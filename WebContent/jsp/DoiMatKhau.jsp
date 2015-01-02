@@ -19,7 +19,6 @@
 		else
 			$("#error-pass").text("Mật khẩu không trùng khớp!");
 	}
-	
 	function checkPassOld() {
 		
 	}
