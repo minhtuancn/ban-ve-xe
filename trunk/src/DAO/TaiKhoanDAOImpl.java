@@ -149,4 +149,25 @@ public class TaiKhoanDAOImpl implements TaiKhoanDAO {
 		}
 		return taiKhoan;
 	}
+
+	@Override
+	public boolean kichHoatTaiKhoan(long idTk) {
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql = "update taikhoan set dakichhoat= ? where idtaikhoan = ?";
+		PreparedStatement pre = null;
+		boolean res =false;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.setBoolean(1, true);
+			pre.setLong(2, idTk);
+			int t = pre.executeUpdate();
+			if(t>0)  res=true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return res;
+	}
 }

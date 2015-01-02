@@ -9,4 +9,5 @@ public interface TaiKhoanDAO extends DAO{
 	public boolean checkUser(String user);
 	public long upDateMatKhau(String tk, String pass);
 	public TaiKhoan layMatKhau(String tk);
+	public boolean kichHoatTaiKhoan(long idTk);
 }

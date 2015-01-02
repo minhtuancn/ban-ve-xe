@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import util.DuongDan;
+import util.SendMessageUtil;
 import DAO.KhachHangDAO;
 import DAO.KhachHangDAOIml;
 import model.KhachHang;
@@ -83,7 +85,16 @@ public class DangNhap extends HttpServlet {
 			request.getRequestDispatcher(DuongDan.DANG_NHAP_SVL).forward(request, response);
 			return;
 		}
+		if(((KhachHangThuongXuyen)kh).getTaiKhoan().isDaKichHoat())
 		response.sendRedirect(pageForward);
+		else{
+			int n = new Random().nextInt(8999)+1000;
+			System.out.println("DangKi:" +n);
+			HttpSession session = request.getSession();
+			session.setAttribute("maOTP", n+"");
+			SendMessageUtil.getInstance().sendMess(kh.getSdt(),"Ma OTP cua quy khach la: "+ n );
+			response.sendRedirect(DuongDan.KICH_HOAT_TAI_KHOAN);
+		}
 	}
 
 }
