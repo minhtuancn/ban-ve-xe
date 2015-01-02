@@ -11,13 +11,8 @@
 </head>
 
 <body>
-	<%@ include file="../header.jsp"%>
+	<%@ include file="HeaderAdmin.jsp"%>
 	<div class="containerdn">
-		<div class="bg title">
-			<marquee behavior="alternate" width="10%">>></marquee>
-			Đăng nhập
-			<marquee behavior="alternate" width="10%"> << </marquee>
-		</div>
 		<div id="dangki">
 			<% String pageFoward = DuongDan.TRANG_CHU ;
 			if(request.getParameter("pageFoward") != null)

@@ -160,6 +160,7 @@
 		}
 	%>
 	<div id="containers">
+<%@ include file="HeaderAdmin.jsp" %>
 		<div id="tt-chuyen">
 			<fieldset>
 				<legend>Thông tin chuyến</legend>
