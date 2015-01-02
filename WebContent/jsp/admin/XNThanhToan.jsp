@@ -13,13 +13,13 @@
 		<div>
 			<fieldset>
 				<legend>Thông tin khách hàng</legend>
-				<%@ include file="/ListKhachHang"%>
+<%-- 				<%@ include file="ListKhachHang"%> --%>
 			</fieldset>
 		</div>
 		<div>
 			<fieldset>
 				<legend>Thông tin vé</legend>
-				<%@ include file="/ListVe"%>
+<%-- 				<%@ include file="ListVe"%> --%>
 			</fieldset>
 		</div>
 	</div>

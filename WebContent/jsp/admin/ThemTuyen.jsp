@@ -187,6 +187,7 @@
 </script>
 </head>
 <body id="dt_example">
+<%@ include file="HeaderAdmin.jsp" %>
 	<div id="container">
 		<div id="demo_jui">
 			<button id="btThemTuyen" value="Ok">Thêm tuyến xe</button>
