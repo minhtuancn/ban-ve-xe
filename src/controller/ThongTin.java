@@ -84,7 +84,7 @@ public class ThongTin extends HttpServlet {
 		System.out.println("ThongTin " + scaptcha);
 		boolean laKhuHoi = (Boolean) session.getAttribute("laKhuHoi");
 		if (scaptcha.equals(((String) session.getAttribute("captcha")))) {
-			Ve veDi = new Ve(kh, LayMaVe.getInstant().getMaVe(),
+			Ve veDi = new Ve(kh, LayMaVe.getInstant().getMaVe(LayMaVe.SO_KY_TU_MAVE),
 					(DatVe) session.getAttribute("datVeDi"), sghiChu);
 			String luuVe = veDAO.addVe(veDi);
 			if (null != luuVe) {
@@ -96,7 +96,7 @@ public class ThongTin extends HttpServlet {
 			}
 			Ve veVe = null;
 			if (laKhuHoi) {
-				veVe = new Ve(kh, LayMaVe.getInstant().getMaVe(),
+				veVe = new Ve(kh, LayMaVe.getInstant().getMaVe(LayMaVe.SO_KY_TU_MAVE),
 						(DatVe) session.getAttribute("datVeVe"), sghiChu);
 				luuVe = veDAO.addVe(veVe);
 				if (null != luuVe) {

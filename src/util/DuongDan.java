@@ -68,5 +68,7 @@ public class DuongDan {
 	public static final String KIEM_TRA_VE_SV = "/BanVeXe/KiemTraVe";
 	public static final String HUYVE = "/BanVeXe/HuyVe";
 	public static final String CAP_NHAP_KHOI_HANH = "/BanVeXe/CapNhatKhoiHanh";
+	public static final String LAY_MAT_KHAU = "/BanVeXe/LayMatKhau";
+	
 	
 }

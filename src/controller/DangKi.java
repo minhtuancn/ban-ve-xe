@@ -65,12 +65,12 @@ public class DangKi extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String scaptcha = null;
 		String mes = null;
 		KhachHang khachHang = null;
 		if (request.getParameter("captcha") != null) {
 			scaptcha = request.getParameter("captcha");
-
 			String sdt = request.getParameter("sdt");
 			khachHang = khachHangDAO.getKhachHang(sdt);
 
@@ -90,16 +90,13 @@ public class DangKi extends HttpServlet {
 						String email = request.getParameter("email");
 						String cmnd = request.getParameter("cmnd");
 						String diaChi = request.getParameter("diachi");
+						System.out.println("DangKy " + tenDangKi + " : " + diaChi);
 						khachHang = new KhachHangThuongXuyen(0, tenDangKi, sdt,
 								cmnd, diaChi, email);
 
 						System.out.println(khachHang.toString());
-
+						((KhachHangThuongXuyen) khachHang).setTaiKhoan(new TaiKhoan(user, pass, false));
 						khachHangDAO.addKhachHang(khachHang);
-						taiKhoanDAO
-								.addTaiKhoan(new TaiKhoan(user, pass, false));
-						System.out
-								.println(khachHangDAO.addKhachHang(khachHang));
 						response.sendRedirect(DuongDan.TRANG_CHU);
 					} else {
 						mes = "Tài khoản đã tồn tại!";

@@ -58,5 +58,13 @@ public class TaiKhoan {
 	public void setDaKichHoat(boolean daKichHoat) {
 		this.daKichHoat = daKichHoat;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TaiKhoan [idTaiKhoan=" + idTaiKhoan + ", tenTK=" + tenTK
+				+ ", matKhau=" + matKhau + ", daKichHoat=" + daKichHoat + "]";
+	}
 	
 }

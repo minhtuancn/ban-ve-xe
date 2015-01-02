@@ -57,6 +57,7 @@ public class KiemTraVe extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String pageFoward = DuongDan.TRANG_CHU;
+		String mesSuccess = (String) request.getAttribute("mesSuccess");
 		if (request.getParameter("pageFoward") != null)
 			pageFoward = request.getParameter("pageFoward");
 		KhachHang kh = (KhachHang) session.getAttribute("khachHang");
@@ -65,6 +66,8 @@ public class KiemTraVe extends HttpServlet {
 		} else {
 			kh = khachHangDAO.getKhachHang(kh.getIdKhachHang());
 			session.setAttribute("khachHang", kh);
+			if(mesSuccess!= null)
+				request.setAttribute("mesSuccess", mesSuccess);
 			request.getRequestDispatcher(DuongDan.KIEM_TRA_THONG_TIN_SVL).forward(request, response);;
 		}
 	}
