@@ -449,4 +449,14 @@
     <servlet-name>LayMatKhau</servlet-name>
     <url-pattern>/LayMatKhau</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KichHoatTaiKhoan</display-name>
+    <servlet-name>KichHoatTaiKhoan</servlet-name>
+    <servlet-class>controller.KichHoatTaiKhoan</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KichHoatTaiKhoan</servlet-name>
+    <url-pattern>/KichHoatTaiKhoan</url-pattern>
+  </servlet-mapping>
 </web-app>

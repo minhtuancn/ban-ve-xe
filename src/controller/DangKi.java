@@ -1,11 +1,13 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
@@ -18,6 +20,7 @@ import model.TaiKhoan;
 import model.Ve;
 import util.DuongDan;
 import util.LayMaVe;
+import util.SendMessageUtil;
 
 /**
  * Servlet implementation class DangKi
@@ -94,10 +97,17 @@ public class DangKi extends HttpServlet {
 						khachHang = new KhachHangThuongXuyen(0, tenDangKi, sdt,
 								cmnd, diaChi, email);
 
-						System.out.println(khachHang.toString());
 						((KhachHangThuongXuyen) khachHang).setTaiKhoan(new TaiKhoan(user, pass, false));
 						khachHangDAO.addKhachHang(khachHang);
-						response.sendRedirect(DuongDan.TRANG_CHU);
+//						response.sendRedirect(DuongDan.TRANG_CHU);
+						int n = new Random().nextInt(8999)+1000;
+						System.out.println("DangKi:" +n);
+						HttpSession session = request.getSession();
+						session.setAttribute("khachHang", khachHang);
+						session.setAttribute("maOTP", n+"");
+						SendMessageUtil.getInstance().sendMess(khachHang.getSdt(),"Ma OTP cua quy khach la: "+ n );
+						response.sendRedirect(DuongDan.KICH_HOAT_TAI_KHOAN);
+						
 					} else {
 						mes = "Tài khoản đã tồn tại!";
 						request.setAttribute("mes", mes);

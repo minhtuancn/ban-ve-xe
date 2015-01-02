@@ -83,10 +83,10 @@
 						value="Đăng Nhập" />
 				</div>
 				<div class="dong">
-					<a class="dangki" href="DangKi.jsp">Đăng kí</a>
+					<a class="dangki" href="<%= DuongDan.DANG_KY%>">Đăng kí</a>
 				</div>
 				<div class="dong">
-					<a class="quenmk" href="quenmk.jsp">Quên mật khẩu</a>
+					<a class="quenmk" href="<%= DuongDan.QUEN_MAT_KHAU%>">Quên mật khẩu</a>
 				</div>
 			</form>
 		</div>

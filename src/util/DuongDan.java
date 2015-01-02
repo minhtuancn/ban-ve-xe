@@ -25,6 +25,7 @@ public class DuongDan {
 	public static final String CHI_TIET_VE = "/BanVeXe/jsp/chitietve.jsp";
 	public static final String THEM_TUYEN = "/BanVeXe/jsp/admin/ThemTuyen.jsp";
 	public static final String THEM_CHUYEN = "/BanVeXe/jsp/admin/ThemChuyen.jsp";
+	public static final String KICH_HOAT_TAI_KHOAN = "/BanVeXe/jsp/KichHoatTaiKhoan.jsp";
 	
 	
 	public static final String THEM_TUYEN_SVL = "/jsp/admin/ThemTuyen.jsp";

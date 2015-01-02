@@ -42,10 +42,10 @@ public class CheckOTP extends HttpServlet {
 	}
 
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("CheckOTP");
 		int n = new Random().nextInt(8999)+1000;
 		HttpSession session = request.getSession();
 		session.setAttribute("maOTP", n+"");
+		System.out.println("CheckOTP: "+n);
 		SendMessageUtil.getInstance().sendMess(((KhachHang)session.getAttribute("khachHang")).getSdt(),"Ma OTP moi cua quy khach la: "+ n );
 //		SendMessageUtil.getInstance().sendMess("01684651354","Ma OTP moi cua quy khach la: "+ n );
 		response.setContentType("text/plain");
