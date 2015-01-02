@@ -24,6 +24,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 	private VeDAO veDao;
 	private GheDAO gheDAO;
 	private ThanhToanDAO thanhToanDAO;
+	private TaiKhoanDAO taiKhoanDAO;
 
 	@Override
 	public KhachHang checkLogIn(String user, String password) {
@@ -42,8 +43,8 @@ public class KhachHangDAOIml implements KhachHangDAO {
 						res.getString("tenkhachhang"), res.getString("sdt"),
 						res.getString("cmnd"), res.getString("diachi"),
 						res.getString("email"), res.getLong("sotien"));
-				((KhachHangThuongXuyen) kh).setTaiKhoan(new TaiKhoan(res
-						.getString("tentk"), res.getString("matkhau"), true));
+				((KhachHangThuongXuyen) kh).setTaiKhoan(getTaiKhoanDAO()
+						.getTaiKhoan(res.getLong("idtaikhoan")));
 				kh.setDanhSachVeDaDat(getVeDao().getAllVe(
 						res.getLong("idkhachhang")));
 			}
@@ -63,7 +64,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		PreparedStatement pre = null, pre1 = null, pre2 = null;
 		String sql2 = "select idkhachhang , cmnd, diachi, email, tenkhachhang from khachhang where sdt = ?";
 		String sql = "SELECT idkhachhang from khachhang WHERE sdt=?";
-		String sql1 = "SELECT khachhangthuongxuyen.sotien FROM khachhang INNER JOIN khachhangthuongxuyen ON khachhangthuongxuyen.idkhachhang = khachhang.idkhachhang where sdt=?";
+		String sql1 = "SELECT khachhangthuongxuyen.sotien,khachhangthuongxuyen.idtaikhoan FROM khachhang INNER JOIN khachhangthuongxuyen ON khachhangthuongxuyen.idkhachhang = khachhang.idkhachhang where sdt=?";
 		ResultSet res, res1, res2;
 		String tenKhachHang = "", cmnd = "", diaChi = "", email = "";
 		long soTien = 0;
@@ -88,6 +89,9 @@ public class KhachHangDAOIml implements KhachHangDAO {
 					if (res1.next()) {
 						kh = new KhachHangThuongXuyen(idkh, tenKhachHang, sdt,
 								cmnd, diaChi, email, res1.getInt("sotien"));
+						((KhachHangThuongXuyen) kh)
+								.setTaiKhoan(getTaiKhoanDAO().getTaiKhoan(
+										res1.getLong("idtaikhoan")));
 					} else {
 						kh = new KhachHangVangLai(idkh, tenKhachHang, sdt,
 								cmnd, diaChi, email);
@@ -173,10 +177,13 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		PreparedStatement pre = null;
 		String sql = "INSERT into khachhang(cmnd,diachi, email, sdt, tenkhachhang) VALUES (?,?,?,?,?)";
 		String sql1 = "select idkhachhang from khachhang where sdt = ?";
+		String sql2 = "insert into khachhangthuongxuyen (sotien, idkhachhang, idtaikhoan) values (?,?,?);";
 		ResultSet res;
 		long len = -1;
 		int size = 0;
 		try {
+			long idTaiKhoan = getTaiKhoanDAO().addTaiKhoan(
+					((KhachHangThuongXuyen) kh).getTaiKhoan());
 			pre = con.prepareStatement(sql1);
 			pre.setString(1, kh.getSdt());
 			res = pre.executeQuery();
@@ -193,7 +200,15 @@ public class KhachHangDAOIml implements KhachHangDAO {
 					pre = con.prepareStatement(sql1);
 					pre.setString(1, kh.getSdt());
 					res = pre.executeQuery();
-					len = res.getLong("idkhachhang");
+					if (res.next()) {
+						len = res.getLong("idkhachhang");
+						pre.close();
+						pre = con.prepareStatement(sql2);
+						pre.setLong(1, 0);
+						pre.setLong(2, len);
+						pre.setLong(3, idTaiKhoan);
+						pre.executeUpdate();
+					}
 				}
 			} else
 				len = -2;
@@ -430,6 +445,15 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		return thanhToanDAO;
 	}
 
+	/**
+	 * @return the taiKhoanDAO
+	 */
+	public TaiKhoanDAO getTaiKhoanDAO() {
+		taiKhoanDAO = (TaiKhoanDAO) (taiKhoanDAO == null ? new FactoryDAOImp()
+				.createDAO(FactoryDao.TAI_KHOAN_DAO) : taiKhoanDAO);
+		return taiKhoanDAO;
+	}
+
 	@Override
 	public String thanhToanVe(Ve ve) {
 		Connection con = ConnectionPool.getInstance().getConnection();
@@ -439,8 +463,9 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		int soTien = -1;
 		try {
 			con.setAutoCommit(false);
-//			String sqlThanhToan = "insert into thanhtoan (ngaythanhtoan,sotien,mave) values(?,?,?); ";
-//			String sqlTTWeb ="insert int"
+			// String sqlThanhToan =
+			// "insert into thanhtoan (ngaythanhtoan,sotien,mave) values(?,?,?); ";
+			// String sqlTTWeb ="insert int"
 			String sqlUpdate = "update khachhangthuongxuyen set sotien = sotien - ? where idkhachhang=?";
 			String sqlKiemTraTien = "select sotien from khachhangthuongxuyen where idkhachhang=?";
 			pre = con.prepareStatement(sqlKiemTraTien);
@@ -483,7 +508,7 @@ public class KhachHangDAOIml implements KhachHangDAO {
 		int soTien = -1;
 		String sql = "delete from ve where mave = ?";
 		String sqlSet = "update ghe set trangthai=? where mave=?";
-//		String sqlDel = "delete from thanhtoan where mave = ?";
+		// String sqlDel = "delete from thanhtoan where mave = ?";
 		String sqlKh = "update khachhangthuongxuyen set sotien = sotien + ? where idkhachhang = ?";
 		int iGhe = 0, iVe = 0, iDel = 0, iKh = 0;
 		try {
@@ -497,43 +522,43 @@ public class KhachHangDAOIml implements KhachHangDAO {
 				preSet.setString(2, ve.getMaVe());
 				iGhe = preSet.executeUpdate();
 				if (iGhe > 0) {
-//					preDel = con.prepareStatement(sqlDel);
-//					preDel.setString(1, ve.getMaVe());
-//					iDel = preDel.executeUpdate();
-//					if (iDel > 0) {
-						preKh = con.prepareStatement(sqlKh);
-						preKh.setInt(1, ve.getTongTien());
-						preKh.setLong(2, ve.getKhachHang().getIdKhachHang());
-						iKh = preKh.executeUpdate();
-						if (iKh > 0) {
-							con.commit();
-						}else{
-							mes = "Hủy vé không thành công do sai thông tin khách hàng!";
-							throw new SQLException("error");
-						}
-					}else{
-						mes = "hủy vé không thành công!";
+					// preDel = con.prepareStatement(sqlDel);
+					// preDel.setString(1, ve.getMaVe());
+					// iDel = preDel.executeUpdate();
+					// if (iDel > 0) {
+					preKh = con.prepareStatement(sqlKh);
+					preKh.setInt(1, ve.getTongTien());
+					preKh.setLong(2, ve.getKhachHang().getIdKhachHang());
+					iKh = preKh.executeUpdate();
+					if (iKh > 0) {
+						con.commit();
+					} else {
+						mes = "Hủy vé không thành công do sai thông tin khách hàng!";
 						throw new SQLException("error");
 					}
+				} else {
+					mes = "hủy vé không thành công!";
+					throw new SQLException("error");
+				}
 
-//				}else{
-//					mes = "hủy vé không thành công!";
-//					throw new SQLException("error");
-//				}
+				// }else{
+				// mes = "hủy vé không thành công!";
+				// throw new SQLException("error");
+				// }
 
-			}else{
+			} else {
 				mes = "hủy vé không thành công do sai thông tin vé!";
-			throw new SQLException("error");
+				throw new SQLException("error");
 			}
 		} catch (SQLException e) {
-			if (!e.getMessage().equalsIgnoreCase("error")){
+			if (!e.getMessage().equalsIgnoreCase("error")) {
 				mes = "Lỗi hệ thống!";
 			}
-				try {
-					con.rollback();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
 			ConnectionPool.getInstance().setDefaulAutoCommit(con);

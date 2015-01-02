@@ -17,6 +17,21 @@
 			$('#captcha').attr("src", newSrc);
 		});
 	});
+	function layMatKhau() {
+		$.post("<%= DuongDan.LAY_MAT_KHAU%>", 
+				{
+			tentk : $("#tentk").val(),
+			captcha : $("#icaptcha").val()
+		}, function(data, status) {
+			if(status== "success"){
+				if(data == "ok"){
+					alert("ok");
+				}else{
+					alert(data);
+				}
+			}
+		});
+	};
 </script>
 </head>
 <body>
@@ -39,15 +54,15 @@
 						<td><span>Quên mật khẩu</span></td>
 					</tr>
 					<tr>
-						<td><span>Nhập số điện thoại:</span><span class="req">*</span></td>
-						<td><input type="number" name="hoten" required="required"
-							style="width: 310px;" placeholder="số điện thoại" /></td>
+						<td><span>Tên tài khoản:</span><span class="req">*</span></td>
+						<td><input type="text" name="tentk" id="tentk" required="required"
+							style="width: 310px;" placeholder="Tên tài khoản" /></td>
 					</tr>
-					<tr>
-						<td><span>Nhập số CMND:</span><span class="req">*</span></td>
-						<td><input type="number" name="hoten" required="required"
-							style="width: 310px;" placeholder="số CMND" /></td>
-					</tr>
+					<!-- 					<tr> -->
+					<!-- 						<td><span>Nhập số CMND:</span><span class="req">*</span></td> -->
+					<!-- 						<td><input type="number" name=cmnd required="required" -->
+					<!-- 							style="width: 310px;" placeholder="số CMND" /></td> -->
+					<!-- 					</tr> -->
 					<tr>
 						<td>&nbsp;</td>
 						<td><img id="captcha" src="/BanVeXe/GenerateCaptcha"
@@ -57,13 +72,13 @@
 					</tr>
 					<tr>
 						<td><span>Nhập mã xác nhận:</span><span class="req">*</span></td>
-						<td><input type="text" name="maXN" size="40"
+						<td><input type="text" name="icaptcha" id="icaptcha" size="40"
 							placeholder=" Nhập mã xác nhận" required="required"></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td id="xacnhan"><input type="submit" name="xacnhan"
-							value="Xác nhận" /></td>
+						<td id="xacnhan"><input type="button" name="xacnhan"
+							value="Xác nhận" onclick="layMatKhau()" /></td>
 					</tr>
 				</table>
 			</form>

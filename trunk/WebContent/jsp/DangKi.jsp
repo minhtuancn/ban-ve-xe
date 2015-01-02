@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/dangki.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/jquery.md5.js"></script>
 <script src="/BanVeXe/js/sweet-alert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/sweet-alert.css">
@@ -54,7 +55,12 @@
 			$("#error-user").load("/BanVeXe/KiemTraUser?user=" + $("#name").val());
 		}
 	}
-	
+	function md5passs() {
+		$("#md5pass").val($.md5($("#pass").val()));
+	};
+	function md5repasss() {
+		$("#md5repass").val($.md5($("#re-pass").val()));
+	};
 </script>
 </head>
 <body>
@@ -121,17 +127,17 @@
 
 				<div class="row">
 					<label for="name">Mật khẩu: <span class="req">*</span></label> <input
-						type="password" name="pass" id="pass" class="txt" tabindex="1"
-						value="<%=pass%>" placeholder="********" required>
+						type="password"  id="pass" class="txt" tabindex="1" onkeyup="md5passs()"
+						value="" placeholder="********" required >
+						<input type="hidden" name="pass" id="md5pass"/>
 				</div>
-
 				<span id="error-pass" style="color: red; margin-left: 180px;"></span>
 				<div class="row">
 					<label for="name">Nhập lại mật khẩu: <span class="req">*</span></label>
-					<input type="password" name="re-pass" id="re-pass" class="txt"
-						value="<%=re_pass%>" tabindex="1" placeholder="********" required
-						onblur="checkPass2()"  onfocus="$('#error-pass').text(' ')" >
-
+					<input type="password" id="re-pass" class="txt"
+						value="" tabindex="1" placeholder="********" required
+						onblur="checkPass2()" onkeyup="md5repasss()" onfocus="$('#error-pass').text(' ')" >
+					<input type="hidden" name="re-pass" id="md5repass"/>
 				</div>
 
 				<div class="row">
@@ -143,7 +149,7 @@
 				<div class="row">
 					<label for="email">Địa chỉ email: <span class="req">*</span></label>
 					<input type="email" name="email" id="email" class="txt"
-						value="<%=diaChi%>" tabindex="2" placeholder="address@gmail.com"
+						value="<%=email%>" tabindex="2" placeholder="address@gmail.com"
 						required>
 				</div>
 
@@ -179,7 +185,6 @@
 				</div>
 			</form>
 		</div>
-
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>

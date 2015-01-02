@@ -12,6 +12,7 @@ import util.DuongDan;
 import DAO.KhachHangDAO;
 import DAO.KhachHangDAOIml;
 import model.KhachHang;
+import model.KhachHangThuongXuyen;
 
 /**
  * Servlet implementation class DangNhap

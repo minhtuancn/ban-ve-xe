@@ -13,7 +13,7 @@ public class LayMaVe {
 	private Set<String> listMaVe;
 	private Random random;
 	private VeDAO veDAO;
-	public static final int SO_KY_TU_MAVE = 4;
+	public static final int SO_KY_TU_MAVE = 6;
 
 	private LayMaVe() {
 		listMaVe = new HashSet<>();
@@ -27,11 +27,11 @@ public class LayMaVe {
  * Phương thức trả về mã vé được tạo ngẫu nhiên và duy nhất.
  * @return 1 mã vé có kiểu dữ liêu String và length = 6.
  */
-	public synchronized String getMaVe() {
+	public synchronized String getMaVe(int soKyTu) {
 		String s = "";
 		do {
 			s = "";
-			for (int i = 0; i < SO_KY_TU_MAVE; i++) {
+			for (int i = 0; i < soKyTu; i++) {
 				s += random();
 			}
 			System.out.println("LayMaVe " + s);

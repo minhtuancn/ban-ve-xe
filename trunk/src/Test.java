@@ -7,7 +7,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class Test {
 	public static void main(String[] args) throws ParseException {
-		String pass = "123456";
+		String pass = "anhthats";
 		System.out.println(DigestUtils.md5Hex(pass));
+		//IQY10P
 	}
 }
