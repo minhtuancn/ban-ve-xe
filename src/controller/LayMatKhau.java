@@ -9,9 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
+import util.SendMessage;
+import util.SendMessageUtil;
+import model.KhachHang;
 import model.TaiKhoan;
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
+import DAO.KhachHangDAO;
 import DAO.TaiKhoanDAO;
 
 /**
@@ -20,7 +26,7 @@ import DAO.TaiKhoanDAO;
 public class LayMatKhau extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TaiKhoanDAO taiKhoanDAO;
-       
+    private KhachHangDAO khachHangDAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,7 +37,9 @@ public class LayMatKhau extends HttpServlet {
     @Override
     public void init() throws ServletException {
     	super.init();
-    	taiKhoanDAO = (TaiKhoanDAO) new FactoryDAOImp().createDAO(FactoryDao.TAI_KHOAN_DAO);
+    	FactoryDao f = new FactoryDAOImp();
+    	taiKhoanDAO = (TaiKhoanDAO) f.createDAO(FactoryDao.TAI_KHOAN_DAO);
+    	khachHangDAO = (KhachHangDAO) f.createDAO(FactoryDao.KHACH_HANG_DAO);
     }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -56,6 +64,9 @@ public class LayMatKhau extends HttpServlet {
 			TaiKhoan tk = taiKhoanDAO.layMatKhau(tentk);
 			if(tk != null){
 				mes = "ok";
+				KhachHang kh = khachHangDAO.checkLogIn(tk.getTenTK(), DigestUtils.md5Hex(tk.getMatKhau()));
+				SendMessageUtil.getInstance().sendMess(kh.getSdt(), "Mật khẩu mới của quí khách là: " + tk.getMatKhau());
+				System.out.println(kh);
 			}else{
 				mes = "Tài khoản không tồn tại, quí khách vui lòng kiểm tra lại!";
 			}
@@ -63,10 +74,9 @@ public class LayMatKhau extends HttpServlet {
 			mes = "Nhập sai mã xác thực!";
 		}
 		
-		System.out.println(mes);
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().println(mes);
+		response.getWriter().print(mes);
 		response.getWriter().flush();
 	}
 }

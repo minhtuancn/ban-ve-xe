@@ -139,6 +139,7 @@ public class TaiKhoanDAOImpl implements TaiKhoanDAO {
 				pre.setLong(2, idTaiKhoan);
 				if( pre.executeUpdate() != 0 ){
 					taiKhoan = getTaiKhoan(idTaiKhoan);
+					taiKhoan.setMatKhau(newPass);
 				}
 			}
 		} catch (SQLException e) {
