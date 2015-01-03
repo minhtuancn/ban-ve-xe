@@ -149,9 +149,9 @@
 						</tr>
 						<%
 							List<DiaDiem> listmb = new ArrayList();
-												if(session.getAttribute("listDiaDiem") != null){
-											listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
-													}
+				if(session.getAttribute("listDiaDiem") != null){
+				listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
+					}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
@@ -160,8 +160,8 @@
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
-																								int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
-																								int n = 0; for(int i=0; i<sl;){
+							int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
+					int n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
 										<div id="noidi-den"></div>
@@ -266,19 +266,16 @@
 			<div>
 				<div>
 					<fieldset>
-						<legend>Các vé đưuọc dặt nhiều trong ngày</legend>
-						<table>
+						<legend>Các vé đưọc dặt nhiều trong ngày</legend>
+						<table class="table-ve">
 							<tr>
-								<td><div><a></a></div></td>
-							</tr>
-							<tr>
-								<td><div></div></td>
-							</tr>
-							<tr>
-								<td><div></div></td>
-							</tr>
-							<tr>
-								<td><div></div></td>
+								<td><div><a href="#"><%@ include file="../html/test.jsp" %></a></div></td>
+							
+								<td><div><a href="#"><%@ include file="../html/test.jsp" %></a></div></td>
+							
+								<td><div><a href="#"><%@ include file="../html/test.jsp" %></a></div></td>
+							
+								<td><div><a href="#"><%@ include file="../html/test.jsp" %></a></div></td>
 							</tr>
 						</table>
 					</fieldset>
