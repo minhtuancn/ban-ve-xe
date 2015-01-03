@@ -1,3 +1,5 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
 <%@page import="model.DatVe"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.Chuyen"%>
@@ -42,6 +44,12 @@
 		if (laKhuHoi)
 			datVeVe = (DatVe) session.getAttribute("datVeVe");
 	%>
+	<%
+		Locale here = request.getLocale();
+		NumberFormat cf = NumberFormat.getCurrencyInstance(here);
+		cf.setMaximumFractionDigits(0);
+		cf.setMinimumFractionDigits(0);
+	%>
 	<div id="chitietve" class="bg">
 		<h1 align="center">Chi tiết đặt chỗ</h1>
 		<hr />
@@ -72,7 +80,7 @@
 			</tr>
 			<tr>
 				<td id="td1">Giá vé:</td>
-				<td id="td2"><%=datVeDi.getGia()%></td>
+				<td id="td2"><%=cf.format(datVeDi.getGia())%></td>
 			</tr>
 			<tr>
 				<td id="td1" width="150px">Số lượng:</td>
@@ -84,7 +92,7 @@
 			</tr>
 			<tr>
 				<td id="td1">Thành tiền:</td>
-				<td id="td2"><%=datVeDi.getTongTien()%></td>
+				<td id="td2"><%=cf.format( datVeDi.getTongTien())%></td>
 			</tr>
 		</table>
 		<hr />
@@ -114,7 +122,7 @@
 			</tr>
 			<tr>
 				<td id="td1">Giá vé:</td>
-				<td id="td2"><%=datVeVe.getGia()%></td>
+				<td id="td2"><%=cf.format( datVeVe.getGia())%></td>
 			</tr>
 			<tr>
 				<td id="td1">Số lượng:</td>
@@ -126,7 +134,7 @@
 			</tr>
 			<tr>
 				<td id="td1">Thành tiền:</td>
-				<td id="td2"><%=datVeVe.getTongTien()%></td>
+				<td id="td2"><%=cf.format( datVeVe.getTongTien())%></td>
 			</tr>
 
 		</table>

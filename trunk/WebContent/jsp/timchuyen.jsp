@@ -1,3 +1,5 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
 <%@page import="util.DuongDan"%>
 <%@page import="model.Chuyen"%>
 <%@page import="model.Tuyen"%>
@@ -45,11 +47,17 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<%
-					String mes = "";
-						if((String) request.getAttribute("mes")!= null)
-					mes = (String) request.getAttribute("mes");
-				%>
-				<input type="hidden" value="<%=mes%>" id="error" />
+		String mes = "";
+		if ((String) request.getAttribute("mes") != null)
+			mes = (String) request.getAttribute("mes");
+	%>
+	<input type="hidden" value="<%=mes%>" id="error" />
+	<%
+		Locale here = request.getLocale();
+		NumberFormat cf = NumberFormat.getCurrencyInstance(here);
+		cf.setMaximumFractionDigits(0);
+		cf.setMinimumFractionDigits(0);
+	%>
 	<div id="tc-container">
 		<div id="timvedi" class="title bg">
 			<marquee behavior="alternate" width="10%">>></marquee>
@@ -81,7 +89,7 @@
 					<tr id="scroll1<%=i%>" class="dong2">
 						<td class="tr1" align="center"><%=tuyen.getTuyenXe()%></td>
 						<td class="tr1" align="center"><%=c.getGioKhoiHanh()%></td>
-						<td class="tr1" align="center"><%=c.getGia()%></td>
+						<td class="tr1" align="center"><%=cf.format(c.getGia())%></td>
 						<td class="tr1" align="center"><%=c.getLoaiGhe()%></td>
 						<td class="tr1" align="center"><%=c.getLoaiXe() + " chổ"%></td>
 						<td class="tr1" align="center"><%=c.getSLGheChuaDat()%></td>
