@@ -105,7 +105,7 @@ public class TaiKhoanDAOImpl implements TaiKhoanDAO {
 			res = pre.executeQuery();
 			if(res.next()){
 				tk = new TaiKhoan(res.getString("tentk"), res.getString("matkhau"), res.getBoolean("dakichhoat"));
-				tk.setIdTaiKhoan(res.getLong("idtaikhoan"));
+				tk.setIdTaiKhoan(idTk);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

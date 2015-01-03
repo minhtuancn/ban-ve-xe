@@ -4,6 +4,7 @@ import DAO.ChuyenDAOImpl;
 import DAO.DiaDiemDAOImpl;
 import DAO.GheDAOImpl;
 import DAO.KhachHangDAOIml;
+import DAO.NhanVienDAOImpl;
 import DAO.TaiKhoanDAOImpl;
 import DAO.ThanhToanDAOIpml;
 import DAO.TuyenDAOImpl;
@@ -33,6 +34,8 @@ public class FactoryDAOImp implements FactoryDao{
 			return new ThanhToanDAOIpml();
 		case TAI_KHOAN_DAO:
 			return new TaiKhoanDAOImpl();
+		case NHAN_VIEN_DAO:
+			return new NhanVienDAOImpl();
 		default:
 			break;
 		}

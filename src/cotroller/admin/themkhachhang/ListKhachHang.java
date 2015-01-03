@@ -7,9 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import util.DuongDan;
 import model.KhachHang;
+import model.NhanVien;
 import DAO.KhachHangDAO;
 import DAO.KhachHangDAOIml;
 
@@ -47,10 +49,19 @@ public class ListKhachHang extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		NhanVien nv = (NhanVien) session.getAttribute("admin");
+		if(nv!=null){
 		KhachHangDAO kh = new KhachHangDAOIml();
 		List<KhachHang> listKH = kh.getAllKhachHang();
 		request.setAttribute("listKH", listKH);
 		request.getRequestDispatcher(DuongDan.THEM_KHACHHANG_SVL).forward(request, response);
+		}
+		else{
+			request.setAttribute("pageFoward", DuongDan.LIST_KHACH_HANG_SV);
+			request.getRequestDispatcher(DuongDan.DANG_NHAP_ADMIN_SVL).forward(request, response);
+		}
 	}
 
 }

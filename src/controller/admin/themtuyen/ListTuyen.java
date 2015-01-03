@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sun.org.apache.bcel.internal.generic.LLOAD;
 
@@ -17,6 +18,7 @@ import DAO.DiaDiemDAO;
 import DAO.TuyenDAO;
 import DAO.TuyenDAOImpl;
 import model.DiaDiem;
+import model.NhanVien;
 import model.Tuyen;
 
 /**
@@ -26,6 +28,7 @@ public class ListTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TuyenDAO tuyenDAO;
 	private DiaDiemDAO diaDiemDAO;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -33,6 +36,7 @@ public class ListTuyen extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	@Override
 	public void init() throws ServletException {
 		super.init();
@@ -40,6 +44,7 @@ public class ListTuyen extends HttpServlet {
 		tuyenDAO = (TuyenDAO) f.createDAO(FactoryDao.TUYEN_DAO);
 		diaDiemDAO = (DiaDiemDAO) f.createDAO(FactoryDao.DIA_DIEM_DAO);
 	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -60,21 +65,32 @@ public class ListTuyen extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
-		List<DiaDiem> listDiaDiem = diaDiemDAO.getAllDiaDiem();
-		String dataDiaDiem = "\"{";
-		DiaDiem d;
-		int i  = 0;
-		for (i = 0; i < listDiaDiem.size() -1; i++) {
-			d = listDiaDiem.get(i);
-			dataDiaDiem += "'" + d.getIdDiaDiem() + "':'" + d.getTenDiaDiem() +"',";
-		}
-		d = listDiaDiem.get(i);
-		dataDiaDiem += "'" + d.getIdDiaDiem() + "':'" + d.getTenDiaDiem() +"'}\"";
-		request.setAttribute("listTuyen", listTuyen);
-		request.setAttribute("listDiaDiem", listDiaDiem);
-		request.setAttribute("dataDiaDiem", dataDiaDiem);
-		request.getRequestDispatcher(DuongDan.THEM_TUYEN_SVL).forward(request, response);
-	}
 
+		HttpSession session = request.getSession();
+		NhanVien nv = (NhanVien) session.getAttribute("admin");
+		if (nv != null) {
+			List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
+			List<DiaDiem> listDiaDiem = diaDiemDAO.getAllDiaDiem();
+			String dataDiaDiem = "\"{";
+			DiaDiem d;
+			int i = 0;
+			for (i = 0; i < listDiaDiem.size() - 1; i++) {
+				d = listDiaDiem.get(i);
+				dataDiaDiem += "'" + d.getIdDiaDiem() + "':'"
+						+ d.getTenDiaDiem() + "',";
+			}
+			d = listDiaDiem.get(i);
+			dataDiaDiem += "'" + d.getIdDiaDiem() + "':'" + d.getTenDiaDiem()
+					+ "'}\"";
+			request.setAttribute("listTuyen", listTuyen);
+			request.setAttribute("listDiaDiem", listDiaDiem);
+			request.setAttribute("dataDiaDiem", dataDiaDiem);
+			request.getRequestDispatcher(DuongDan.THEM_TUYEN_SVL).forward(
+					request, response);
+		} else {
+			request.setAttribute("pageFoward", DuongDan.LIST_TUYEN_SV);
+			request.getRequestDispatcher(DuongDan.DANG_NHAP_ADMIN_SVL).forward(
+					request, response);
+		}
+	}
 }

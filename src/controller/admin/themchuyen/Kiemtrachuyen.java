@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.NhanVien;
 import model.Tuyen;
 import util.DuongDan;
 import DAO.TuyenDAO;
@@ -48,9 +49,11 @@ public class Kiemtrachuyen extends HttpServlet {
 	}
 	
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		NhanVien nv = (NhanVien) session.getAttribute("admin");
+		if(nv!=null){
 		// TODO Auto-generated method stub
 		TuyenDAO tuyenDAO = new TuyenDAOImpl();
-		HttpSession session = request.getSession();
 		List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
 		session.setAttribute("listTuyen", listTuyen);
 		//
@@ -77,7 +80,11 @@ public class Kiemtrachuyen extends HttpServlet {
 		request.setAttribute("tuyen", tuyen);
 		
 		request.getRequestDispatcher(DuongDan.DSCHUYEN_SVL).forward(request, response);
+	}else{
+		request.setAttribute("pageFoward", DuongDan.KIEM_TRA_CHUYEN_SV);
+		request.getRequestDispatcher(DuongDan.DANG_NHAP_ADMIN_SVL).forward(request, response);
 	}
 
+	}
 
 }

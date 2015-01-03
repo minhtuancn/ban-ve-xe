@@ -459,4 +459,14 @@
     <servlet-name>KichHoatTaiKhoan</servlet-name>
     <url-pattern>/KichHoatTaiKhoan</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DangNhapAdmin</display-name>
+    <servlet-name>DangNhapAdmin</servlet-name>
+    <servlet-class>controller.admin.dangnhap.DangNhapAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DangNhapAdmin</servlet-name>
+    <url-pattern>/DangNhapAdmin</url-pattern>
+  </servlet-mapping>
 </web-app>
