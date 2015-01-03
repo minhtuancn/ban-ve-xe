@@ -6,9 +6,9 @@
 	font-weight: bold;
 }
 
-/* body { */
-/* 	width: 1280px; */
-/* } */
+.table-ve a{
+	text-decoration: none;
+}
 
 div#container {
 	width: 1336px;

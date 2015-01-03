@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +19,15 @@ div.transbox
   margin: 30px 25px;
   background-color: #ffffff;
   border: 1px solid black;
-  opacity:0.6;
+  opacity:0.9;
   filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 div.transbox p
 {
+  
   margin: 30px 5px;
   font-weight: bold;
-/*   color: red; */
+  color: red; 
   font-size: 30px;
 }
 </style>
