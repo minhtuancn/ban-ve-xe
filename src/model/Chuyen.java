@@ -9,7 +9,7 @@ import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
 import DAO.ChuyenDAO;
 
-public class Chuyen implements Comparable<Chuyen>{
+public class Chuyen implements Comparable<Chuyen> {
 	private long idChuyen;
 	private Tuyen tuyen;
 	private String gioKhoiHanh;
@@ -142,6 +142,8 @@ public class Chuyen implements Comparable<Chuyen>{
 
 	@Override
 	public int compareTo(Chuyen o) {
+		if (this.gioKhoiHanh.length() != o.gioKhoiHanh.length())
+			return this.gioKhoiHanh.length() - o.gioKhoiHanh.length();
 		return this.gioKhoiHanh.compareTo(o.gioKhoiHanh);
 	}
 }

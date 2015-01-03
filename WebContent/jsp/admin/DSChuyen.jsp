@@ -179,7 +179,7 @@
 								}
 							%>
 						</select> <br /> <label for="name">Date</label><br /> <input type="date"
-							id="date" name="date" min="<%=f2.format(today)%>"
+							id="date" name="date" 
 							value="<%=f2.format(selectDate)%>" /> <br />
 						<button style="width: 100px;">Tìm Tuyến</button>
 						<br />

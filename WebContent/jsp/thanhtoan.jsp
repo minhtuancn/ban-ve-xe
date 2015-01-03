@@ -142,8 +142,7 @@
 				<form method="post" class="signin" action="#">
 			<fieldset class="textbox">
 				<div class="dangnhap">
-					<p class="p-dangnhap">- Bạn nên đăng nhập để có thể tích điểm
-						tích lũy, nhấp vào&nbsp;</p>
+					<p class="p-dangnhap">- Bạn chưa đăng nhập, nhấp vào&nbsp;</p>
 					<a
 						href="/BanVeXe/jsp/DangNhap.jsp?pageFoward=<%=DuongDan.THANH_TOAN%>"
 						class="dn">ĐÂY</a><p class="p-dangnhap">để đăng nhập.</p>

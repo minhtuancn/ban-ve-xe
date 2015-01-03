@@ -284,6 +284,7 @@
 				<div></div>
 			</div>
 		</section>
+		<img alt="huong dan" src="/BanVeXe/image/banvexe.png" style="width: 100%; height: auto;">
 		<%@ include file="footer.jsp"%>
 	</div>
 </body>
