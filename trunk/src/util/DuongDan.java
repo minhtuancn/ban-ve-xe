@@ -6,13 +6,11 @@ public class DuongDan {
 	public static final String KIEM_TRA_VE = "/BanVeXe/jsp/kiemtrave.jsp";
 	public static final String GIOI_THIEU = "/BanVeXe/jsp/gioithieu.jsp";
 	public static final String THANH_TOAN = "/BanVeXe/jsp/thanhtoan.jsp";
-	public static final String THANH_TOAN_SVL = "/jsp/thanhtoan.jsp";
 	public static final String LIEN_HE = "/BanVeXe/jsp/lienhe.jsp";
 	public static final String QUEN_MAT_KHAU = "/BanVeXe/jsp/quenmk.jsp";
 	public static final String DANG_KY = "/BanVeXe/jsp/DangKi.jsp";
 	public static final String DANG_NHAP = "/BanVeXe/jsp/DangNhap.jsp";
 	public static final String TIM_CHUYEN = "/BanVeXe/jsp/timchuyen.jsp";
-	public static final String TIM_CHUYEN_SVL = "/jsp/timchuyen.jsp";
 	public static final String CHI_TIET_DAT_VE = "/BanVeXe/jsp/chitietvexe.jsp";
 	public static final String FOOTER = "/BanVeXe/jsp/footer.jsp";
 	public static final String HEADER = "/BanVeXe/jsp/header.jsp";
@@ -23,19 +21,26 @@ public class DuongDan {
 	public static final String DAT_VE_DI = "/BanVeXe/jsp/datvedi.jsp";
 	public static final String DAT_VE_VE = "/BanVeXe/jsp/datveve.jsp";
 	public static final String CHI_TIET_VE = "/BanVeXe/jsp/chitietve.jsp";
+	public static final String THANH_TOAN_VE = "/BanVeXe/jsp/ThanhToanVe.jsp";
+	public static final String KICH_HOAT_TAI_KHOAN = "/BanVeXe/jsp/KichHoatTaiKhoan.jsp";
+	public static final String CHI_DUONG = "/BanVeXe/jsp/ChiDuong.jsp";
+	//admin
 	public static final String THEM_TUYEN = "/BanVeXe/jsp/admin/ThemTuyen.jsp";
 	public static final String THEM_CHUYEN = "/BanVeXe/jsp/admin/ThemChuyen.jsp";
-	public static final String KICH_HOAT_TAI_KHOAN = "/BanVeXe/jsp/KichHoatTaiKhoan.jsp";
+	public static final String DANG_NHAP_ADMIN = "/BanVeXe/jsp/admin/DangNhapAdmin.jsp";
 	
-	
+	//admin
 	public static final String THEM_TUYEN_SVL = "/jsp/admin/ThemTuyen.jsp";
 	public static final String THEM_CHUYEN_SVL = "/jsp/admin/ThemChuyen.jsp";
 	public static final String DSCHUYEN_SVL = "/jsp/admin/DSChuyen.jsp";
 	public static final String THEM_DIADIEM_SVL = "/jsp/admin/ThemDiaDiem.jsp";
 	public static final String THEM_KHACHHANG_SVL = "/jsp/admin/ThemKhachHang.jsp";
 	public static final String THEM_VE_SVL = "/jsp/admin/ThemVe.jsp";
-	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
+	public static final String DANG_NHAP_ADMIN_SVL = "/jsp/admin/DangNhapAdmin.jsp";
 	
+	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
+	public static final String TIM_CHUYEN_SVL = "/jsp/timchuyen.jsp";
+	public static final String THANH_TOAN_SVL = "/jsp/thanhtoan.jsp";
 	public static final String TIM_VE_SVL = "/jsp/timve.jsp";
 	public static final String LIEN_HE_SVL = "/jsp/lienhe.jsp";
 	public static final String CHI_TIET_VE_SVL = "/jsp/chitietve.jsp";
@@ -44,14 +49,20 @@ public class DuongDan {
 	public static final String DANG_NHAP_SVL = "/jsp/DangNhap.jsp";
 	public static final String DANG_KI_SVL = "/jsp/DangKi.jsp";
 	public static final String THANH_TOAN_VE_SVL = "/jsp/ThanhToanVe.jsp";
-	public static final String THANH_TOAN_VE = "/BanVeXe/jsp/ThanhToanVe.jsp";
 	//
 	public static final String DANG_XUAT = "/BanVeXe/DangXuat";
 	public static final String DANG_NHAP_SV = "/BanVeXe/DangNhap";
 	public static final String TIM_GHE = "/BanVeXe/TimGhe";
 	public static final String TIM_TUYEN = "/BanVeXe/TimTuyen";
 	public static final String CAPTCHA = "/BanVeXe/GenerateCaptcha";
-	public static final String THEM_TUYEN_SV = "/BanVeXe/AddTuyen";
+	public static final String THANH_TOAN_SV = "/BanVeXe/ThanhToan";
+	public static final String CHECK_OTP = "/BanVeXe/CheckOTP";
+	public static final String LIEN_HE_SV = "/BanVeXe/LienHe";
+	public static final String KIEM_TRA_VE_SV = "/BanVeXe/KiemTraVe";
+	public static final String HUYVE = "/BanVeXe/HuyVe";
+	public static final String CAP_NHAP_KHOI_HANH = "/BanVeXe/CapNhatKhoiHanh";
+	public static final String LAY_MAT_KHAU = "/BanVeXe/LayMatKhau";
+	//admin
 	public static final String XOA_TUYEN_SV = "/BanVeXe/DeleteTuyen";
 	public static final String SUA_TUYEN_SV = "/BanVeXe/UpdateTuyen";
 	public static final String THEM_CHUYEN_SV = "/BanVeXe/AddChuyen";
@@ -63,13 +74,12 @@ public class DuongDan {
 	public static final String SUA_DIADIEM_SV = "/BanVeXe/UpdateDiaDiem";
 	public static final String XOA_KHACHHANG_SV = "/BanVeXe/DeleteKhachHang";
 	public static final String SUA_KHACHHANG_SV = "/BanVeXe/UpdateKhachHang";
-	public static final String THANH_TOAN_SV = "/BanVeXe/ThanhToan";
-	public static final String CHECK_OTP = "/BanVeXe/CheckOTP";
-	public static final String LIEN_HE_SV = "/BanVeXe/LienHe";
-	public static final String KIEM_TRA_VE_SV = "/BanVeXe/KiemTraVe";
-	public static final String HUYVE = "/BanVeXe/HuyVe";
-	public static final String CAP_NHAP_KHOI_HANH = "/BanVeXe/CapNhatKhoiHanh";
-	public static final String LAY_MAT_KHAU = "/BanVeXe/LayMatKhau";
-	
+	public static final String THEM_TUYEN_SV = "/BanVeXe/AddTuyen";
+	public static final String DANG_NHAP_ADMIN_SV = "/BanVeXe/DangNhapAdmin";
+	public static final String KIEM_TRA_CHUYEN_SV = "/BanVeXe/Kiemtrachuyen";
+	public static final String LIST_DIA_DIEM_SV = "/BanVeXe/ListDiaDiem";
+	public static final String LIST_TUYEN_SV = "/BanVeXe/ListTuyen";
+	public static final String LIST_VE_SV = "/BanVeXe/ListVe";
+	public static final String LIST_KHACH_HANG_SV = "/BanVeXe/ListKhachHang";
 	
 }

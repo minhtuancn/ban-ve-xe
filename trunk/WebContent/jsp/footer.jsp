@@ -1,3 +1,4 @@
+<%@page import="util.DuongDan"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -14,6 +15,7 @@
 			<div id="footer" class="bg">
 				<img id="img" alt="nlu" src="/BanVeXe/image/nlu.png" />
 				<article>
+				<a href="<%= DuongDan.CHI_DUONG%>" class="bg title">Bản đồ đường đi </a>
 					<p>
 						Bản quyền © 2012 thuộc về VeXeOnline.Com</br> Địa chỉ: VP Cẩm Tú, khu
 						phố 6, phường Linh Trung, Q.Thủ Đức, TP. Hồ Chí Minh, Việt Nam </br>

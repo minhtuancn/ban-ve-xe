@@ -37,9 +37,9 @@
 				rất phổ biến ở Việt Nam. Tuy nhiên, lĩnh vực xe khách, phương tiện
 				giao thông được sử dụng phổ biến nhất và đáp ứng được nhu cầu của đa
 				số người dân, lại chưa có một kênh đặt vé trực tuyến đúng nghĩa.Hiểu
-				được nhu cầu đi lại cấp thiết của người dân Việt nam, VeXeRe.Com đã
+				được nhu cầu đi lại cấp thiết của người dân Việt nam, VeXeOnline.Com đã
 				ra đời để cung cấp thông tin: bảng giá vé, lịch trình, địa chỉ, số
-				điện thoại và đánh giá của trên 1000 hãng xe và 3000 tuyến đường cả
+				điện thoại và đánh giá của trên 3000 tuyến đường cả
 				nước.
 			</p>
 			<p class="note">
@@ -49,9 +49,9 @@
 				Trở thành công ty công nghệ hàng đầu Châu Á chuyên cung cấp các giải
 				pháp nâng cao đời sống xã hội.<br> Trải qua hàng nghìn năm,
 				lịch sử nhân loại đã có những bước tiến nhảy vọt, chủ yếu do cải
-				thiện năng suất lao động. Tin tưởng vào điều này, VeXeRe mong muốn
+				thiện năng suất lao động. Tin tưởng vào điều này, VeXeOnline mong muốn
 				có thể góp phần cải thiện đời sống người dân thông qua khả năng sáng
-				tạo và ứng dụng công nghệ vào mọi mặt đời sống hàng ngày. VeXeRe
+				tạo và ứng dụng công nghệ vào mọi mặt đời sống hàng ngày. VeXeOnline
 				mong muốn được biết đến với tư cách là một công ty công nghệ hàng
 				đầu Châu Á chuyên cung cấp các sản phẩm và dịch vụ giải quyết các
 				vấn đề hiện tại của xã hội.
@@ -65,15 +65,7 @@
 				dịch vụ giao vé tận nhà.<br> * Tổng đài đặt vé: 08.39 29 29 29<br>
 
 				* Bộ phận Chăm sóc khách hàng: 08.35 11 77 88<br> * Đường dây
-				nóng: 0985 29 29 29<br> * Địa chỉ phòng vé:<br> 1. Phòng
-				vé 29, 30 nhà ga Bến Xe Miền Tây: 395, Kinh Dương Vương, P. An Lạc,
-				Q. Bình Tân, Tp. Hồ Chí Minh<br> 2. Phòng vé 75 nhà ga Bến Xe
-				Miền Đông: 292, Đinh Bộ Lĩnh, P. 22, Q. Bình Thạnh, Tp. Hồ Chí Minh<br>
-
-				3. Phòng vé Phạm Ngũ Lão: 201, Phạm Ngũ Lão, Q. 1, Tp. Hồ Chí Minh<br>
-
-				4. Phòng vé Đào Duy Anh: 15, Đào Duy Anh, Q. Phú Nhuận, Tp. Hồ Chí
-				Minh<br>
+				nóng: 0985 29 29 29<br> * Địa chỉ phòng vé:<br> VP Cẩm Tú, khu phố 6, phường Linh Trung, Q.Thủ Đức, TP. Hồ Chí Minh, Việt Nam<br>
 			</p>
 		</div>
 	</div>

@@ -1,7 +1,6 @@
-package controller.admin.ThemVe;
+package controller.admin.dangnhap;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,28 +10,35 @@ import javax.servlet.http.HttpSession;
 
 import util.DuongDan;
 import model.NhanVien;
-import model.ThongTinVe;
-import DAO.VeDAO;
-import DAO.VeDAOImpl;
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
+import DAO.NhanVienDAO;
 
 /**
- * Servlet implementation class ListVe
+ * Servlet implementation class DangNhapAdmin
  */
-public class ListVe extends HttpServlet {
+public class DangNhapAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private NhanVienDAO nhanVienDAO;   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListVe() {
+    public DangNhapAdmin() {
         super();
         // TODO Auto-generated constructor stub
+    }
+    
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	nhanVienDAO = (NhanVienDAO) new FactoryDAOImp().createDAO(FactoryDao.NHAN_VIEN_DAO);
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
 
@@ -40,21 +46,25 @@ public class ListVe extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doAction(request, response);
 	}
+
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String user = request.getParameter("user");
+		String pass = request.getParameter("password");
+		String pageFoward = request.getParameter("pageFoward");
 		HttpSession session = request.getSession();
-		NhanVien nv = (NhanVien) session.getAttribute("admin");
-		if(nv!=null){
-			VeDAO ve = new VeDAOImpl();
-//			List<Ve> listVe = ve.getAllVe();
-//			request.setAttribute("listVe", listVe);
-			request.getRequestDispatcher(DuongDan.THEM_VE_SVL).forward(request, response);
+		NhanVien nv = null;
+		nv = nhanVienDAO.checkLoginAdmin(user, pass);
+		if(nv != null){
+			session.setAttribute("admin", nv);
+			response.sendRedirect(pageFoward);
 		}else{
-			request.setAttribute("pageFoward", DuongDan.LIST_VE_SV);
+			String mes = "Thông tin đăng nhập không đúng!!";
+			request.setAttribute("mes", mes);
 			request.getRequestDispatcher(DuongDan.DANG_NHAP_ADMIN_SVL).forward(request, response);
 		}
+		
 	}
-
 }

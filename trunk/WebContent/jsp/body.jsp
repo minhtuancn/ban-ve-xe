@@ -88,9 +88,9 @@
 			var ngayDi = new Date(($("input[name='ngaydi']").val()));
 			var ngayVe = new Date(($("input[name='ngayve']").val()));
 			var now = new Date();
-			now.setHours(0,0,0,0);
+			now.setHours(0, 0, 0, 0);
 			if (ngayDi < now) {
-					al("Ngày đi không được nhỏ hơn ngày hiện tại!", "warning");
+				al("Ngày đi không được nhỏ hơn ngày hiện tại!", "warning");
 			} else {
 				if (ngayDi > ngayVe)
 					al("Ngày về phải lớn hơn ngày đi!", "warning");
@@ -132,10 +132,10 @@
 			<article>
 				<%
 					String mes = "";
-												if((String) request.getAttribute("mes")!= null)
-											mes = (String) request.getAttribute("mes");
-												SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-												Date now = new Date();
+																																								if((String) request.getAttribute("mes")!= null)
+																																							mes = (String) request.getAttribute("mes");
+																																								SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+																																								Date now = new Date();
 				%>
 				<input type="hidden" value="<%=mes%>" id="error" />
 				<form action="/BanVeXe/TimTuyen" class="login-form bg"
@@ -149,9 +149,9 @@
 						</tr>
 						<%
 							List<DiaDiem> listmb = new ArrayList();
-																		if(session.getAttribute("listDiaDiem") != null){
-																			listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
-																				}
+												if(session.getAttribute("listDiaDiem") != null){
+											listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
+													}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
@@ -160,8 +160,8 @@
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
-																														int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
-																														int n = 0; for(int i=0; i<sl;){
+																								int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
+																								int n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
 										<div id="noidi-den"></div>
@@ -217,10 +217,9 @@
 						</tr>
 						<tr>
 							<td><span id="title-datve">Ngày đi:</span><input type="date"
-								name="ngaydi" min="<%= f.format(now) %>"
-								value="2014-12-30" /></td>
+								name="ngaydi" min="<%=f.format(now)%>" value="2014-12-30" /></td>
 							<td><span id="title-datve">Ngày về:</span><input type="date"
-								name="ngayve" min="<%= f.format(now) %>"  /></td>
+								name="ngayve" min="<%=f.format(now)%>" /></td>
 
 						</tr>
 						<tr>
@@ -263,6 +262,30 @@
 			<!-- 				border="1"></a> -->
 			<!-- 		</div>  -->
 
+
+			<div>
+				<div>
+					<fieldset>
+						<legend>Các vé đưuọc dặt nhiều trong ngày</legend>
+						<table>
+							<tr>
+								<td><div><a></a></div></td>
+							</tr>
+							<tr>
+								<td><div></div></td>
+							</tr>
+							<tr>
+								<td><div></div></td>
+							</tr>
+							<tr>
+								<td><div></div></td>
+							</tr>
+						</table>
+					</fieldset>
+
+				</div>
+				<div></div>
+			</div>
 		</section>
 		<%@ include file="footer.jsp"%>
 	</div>

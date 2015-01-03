@@ -38,7 +38,8 @@ public class NhanVienDAOImpl implements NhanVienDAO{
 			pre.setString(2, pass);
 			res = pre.executeQuery();
 			while (res.next()) {
-				tk = taiKhoanDAO.getTaiKhoan(res.getLong("idtaikhoan"));
+				System.out.println("NhanVienDaoImpl:" + res.getLong("idtaikhoan"));
+				tk = getTaiKhoanDao().getTaiKhoan(res.getLong("idtaikhoan"));
 				nv = new NhanVien(res.getLong("idnhanvien"), res.getString("tennhanvien"), tk, res.getInt("chucvu"));
 			}
 		} catch (SQLException e) {

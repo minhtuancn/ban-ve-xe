@@ -58,11 +58,6 @@
 						<td><input type="text" name="tentk" id="tentk" required="required"
 							style="width: 310px;" placeholder="Tên tài khoản" /></td>
 					</tr>
-					<!-- 					<tr> -->
-					<!-- 						<td><span>Nhập số CMND:</span><span class="req">*</span></td> -->
-					<!-- 						<td><input type="number" name=cmnd required="required" -->
-					<!-- 							style="width: 310px;" placeholder="số CMND" /></td> -->
-					<!-- 					</tr> -->
 					<tr>
 						<td>&nbsp;</td>
 						<td><img id="captcha" src="/BanVeXe/GenerateCaptcha"
