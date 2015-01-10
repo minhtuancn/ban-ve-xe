@@ -1,3 +1,4 @@
+<%@page import="util.DuongDan"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -17,11 +18,11 @@
 			</div>
 			<nav>
 				<ul>
-					<li><a href="/BanVeXe/ListTuyen">Thêm Tuyến</a></li>
-					<li><a href="/BanVeXe/Kiemtrachuyen">Thêm Chuyến</a></li>
-					<li><a href="/BanVeXe/ListDiaDiem">Thêm Địa Điểm</a></li>
-					<li><a href="/BanVeXe/ListKhachHang">Thêm Khách Hàng</a></li>
-					<li><a href="/BanVeXe/jsp/admin/XacNhanVe.jsp">Xác Nhận Thanh Toán</a></li>
+					<li><a href="<%=DuongDan.THEM_TUYEN_SV %>">Thêm Tuyến</a></li>
+					<li><a href="<%=DuongDan.KIEM_TRA_CHUYEN_SV %>">Thêm Chuyến</a></li>
+					<li><a href="<%=DuongDan.THEM_DIADIEM_SV %>">Thêm Địa Điểm</a></li>
+					<li><a href="<%=DuongDan.THEM_KHACHHANG_SV %>">Thêm Khách Hàng</a></li>
+					<li><a href="<%=DuongDan.XAC_NHAN_THANH_TOAN %>">Xác Nhận Thanh Toán</a></li>
 				</ul>
 			</nav>
 		</header>

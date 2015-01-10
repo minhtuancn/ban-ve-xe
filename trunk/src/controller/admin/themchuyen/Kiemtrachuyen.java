@@ -23,6 +23,7 @@ import DAO.TuyenDAOImpl;
  */
 public class KiemTraChuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final String quyen = "themchuyen";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -58,8 +59,11 @@ public class KiemTraChuyen extends HttpServlet {
 		NhanVien nv = (NhanVien) session.getAttribute("admin");
 		String pageFoward = null;
 		if (nv != null) {
-			pageFoward = "ListChuyen";
-		}else{
+			if (nv.getQuyen().contains(this.quyen))
+				pageFoward = "ListChuyen";
+			else
+				pageFoward = DuongDan.KHONG_CO_QUYEN;
+		} else {
 			pageFoward = DuongDan.DANG_NHAP_ADMIN_SVL;
 		}
 		request.getRequestDispatcher(pageFoward).forward(request, response);
