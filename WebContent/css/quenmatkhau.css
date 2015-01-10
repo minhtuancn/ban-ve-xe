@@ -59,7 +59,7 @@
 	color: red;
 }
 
-#xacnhan input[type=submit] {
+#xacnhan input[type=button] {
 	width: 120px;
 	height: 30px;
 	font-size: 20px;
@@ -83,7 +83,7 @@
 	cursor: pointer;
 }
 
-#xacnhan input[type=submit]:hover {
+#xacnhan input[type=button]:hover {
 	-webkit-box-shadow: inset 1px 1px 3px 0px rgba(255, 255, 255, .8), 0px
 		1px 1px 0px rgba(0, 0, 0, .6);
 	-moz-box-shadow: inset 1px 1px 3px 0px rgba(255, 255, 255, .8), 0px 1px
