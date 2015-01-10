@@ -35,8 +35,8 @@ public class DuongDan {
 	public static final String DSCHUYEN_SVL = "/jsp/admin/DSChuyen.jsp";
 	public static final String THEM_DIADIEM_SVL = "/jsp/admin/ThemDiaDiem.jsp";
 	public static final String THEM_KHACHHANG_SVL = "/jsp/admin/ThemKhachHang.jsp";
-	public static final String THEM_VE_SVL = "/jsp/admin/ThemVe.jsp";
 	public static final String DANG_NHAP_ADMIN_SVL = "/jsp/admin/DangNhapAdmin.jsp";
+	public static final String KHONG_CO_QUYEN = "/jsp/admin/KhongCoQuyen.jsp";
 	
 	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
 	public static final String TIM_CHUYEN_SVL = "/jsp/timchuyen.jsp";
@@ -76,7 +76,7 @@ public class DuongDan {
 	public static final String SUA_KHACHHANG_SV = "/BanVeXe/UpdateKhachHang";
 	public static final String THEM_TUYEN_SV = "/BanVeXe/AddTuyen";
 	public static final String DANG_NHAP_ADMIN_SV = "/BanVeXe/DangNhapAdmin";
-	public static final String KIEM_TRA_CHUYEN_SV = "/BanVeXe/Kiemtrachuyen";
+	public static final String KIEM_TRA_CHUYEN_SV = "/BanVeXe/KiemTraChuyen";
 	public static final String LIST_DIA_DIEM_SV = "/BanVeXe/ListDiaDiem";
 	public static final String LIST_TUYEN_SV = "/BanVeXe/ListTuyen";
 	public static final String LIST_VE_SV = "/BanVeXe/ListVe";

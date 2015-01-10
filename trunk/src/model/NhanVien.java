@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NhanVien {
 	public static final int ADMIN = 1;
 	public static final int QUAN_LI = 2;
@@ -8,14 +11,13 @@ public class NhanVien {
 	private long idNhanVien;
 	private String hoTen;
 	private TaiKhoan taiKhoan;
-	private int chucVu;
-	
-	public NhanVien(long idNhanVien, String hoTen, TaiKhoan taiKhoan, int chucVu) {
+	private List<String> quyen;
+	public NhanVien(long idNhanVien, String hoTen, TaiKhoan taiKhoan) {
 		super();
 		this.idNhanVien = idNhanVien;
 		this.hoTen = hoTen;
 		this.taiKhoan = taiKhoan;
-		this.chucVu = chucVu;
+		this.quyen = new ArrayList<>();
 	}
 
 	public String getHoTen() {
@@ -36,6 +38,18 @@ public class NhanVien {
 
 	public long getIdNhanVien() {
 		return idNhanVien;
+	}
+
+	public List<String> getQuyen() {
+		return quyen;
+	}
+
+	public void setQuyen(List<String> quyen) {
+		this.quyen = quyen;
+	}
+
+	public void setIdNhanVien(long idNhanVien) {
+		this.idNhanVien = idNhanVien;
 	}
 	
 	

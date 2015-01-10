@@ -28,6 +28,7 @@ public class ListTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private TuyenDAO tuyenDAO;
 	private DiaDiemDAO diaDiemDAO;
+	private final String quyen = "themtuyen";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -65,32 +66,36 @@ public class ListTuyen extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 		NhanVien nv = (NhanVien) session.getAttribute("admin");
+		String pageFoward = null;
 		if (nv != null) {
-			List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
-			List<DiaDiem> listDiaDiem = diaDiemDAO.getAllDiaDiem();
-			String dataDiaDiem = "\"{";
-			DiaDiem d;
-			int i = 0;
-			for (i = 0; i < listDiaDiem.size() - 1; i++) {
+			if (nv.getQuyen().contains(this.quyen)) {
+				List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
+				List<DiaDiem> listDiaDiem = diaDiemDAO.getAllDiaDiem();
+				String dataDiaDiem = "\"{";
+				DiaDiem d;
+				int i = 0;
+				for (i = 0; i < listDiaDiem.size() - 1; i++) {
+					d = listDiaDiem.get(i);
+					dataDiaDiem += "'" + d.getIdDiaDiem() + "':'"
+							+ d.getTenDiaDiem() + "',";
+				}
 				d = listDiaDiem.get(i);
 				dataDiaDiem += "'" + d.getIdDiaDiem() + "':'"
-						+ d.getTenDiaDiem() + "',";
+						+ d.getTenDiaDiem() + "'}\"";
+				request.setAttribute("listTuyen", listTuyen);
+				request.setAttribute("listDiaDiem", listDiaDiem);
+				request.setAttribute("dataDiaDiem", dataDiaDiem);
+				 pageFoward = DuongDan.THEM_TUYEN_SVL;
+			}else{
+				pageFoward = DuongDan.KHONG_CO_QUYEN;
 			}
-			d = listDiaDiem.get(i);
-			dataDiaDiem += "'" + d.getIdDiaDiem() + "':'" + d.getTenDiaDiem()
-					+ "'}\"";
-			request.setAttribute("listTuyen", listTuyen);
-			request.setAttribute("listDiaDiem", listDiaDiem);
-			request.setAttribute("dataDiaDiem", dataDiaDiem);
-			request.getRequestDispatcher(DuongDan.THEM_TUYEN_SVL).forward(
-					request, response);
 		} else {
 			request.setAttribute("pageFoward", DuongDan.LIST_TUYEN_SV);
-			request.getRequestDispatcher(DuongDan.DANG_NHAP_ADMIN_SVL).forward(
-					request, response);
+			 pageFoward = DuongDan.DANG_NHAP_ADMIN_SVL;
 		}
+		request.getRequestDispatcher(pageFoward).forward(
+				request, response);
 	}
 }

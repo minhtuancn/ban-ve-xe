@@ -28,7 +28,8 @@ public class NhanVienDAOImpl implements NhanVienDAO{
 	public NhanVien checkLoginAdmin(String name, String pass) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null;
-		String sql = "SELECT nhanvien.idnhanvien,nhanvien.tennhanvien,nhanvien.idtaikhoan,nhanvien.chucvu FROM nhanvien INNER JOIN taikhoan ON nhanvien.idnhanvien = taikhoan.idtaikhoan WHERE tentk =? AND matkhau=?";
+		String sql = "SELECT nhanvien.idnhanvien,nhanvien.tennhanvien,nhanvien.idtaikhoan FROM nhanvien INNER JOIN taikhoan ON nhanvien.idnhanvien = taikhoan.idtaikhoan WHERE tentk =? AND matkhau=?";
+		String sqlQuyen = "Select quyen from quyen where idnhanvien = ?";
 		ResultSet res;
 		NhanVien nv = null;
 		TaiKhoan tk = null;
@@ -40,7 +41,15 @@ public class NhanVienDAOImpl implements NhanVienDAO{
 			while (res.next()) {
 				System.out.println("NhanVienDaoImpl:" + res.getLong("idtaikhoan"));
 				tk = getTaiKhoanDao().getTaiKhoan(res.getLong("idtaikhoan"));
-				nv = new NhanVien(res.getLong("idnhanvien"), res.getString("tennhanvien"), tk, res.getInt("chucvu"));
+				nv = new NhanVien(res.getLong("idnhanvien"), res.getString("tennhanvien"), tk);
+				pre.close();
+				res.close();
+				pre = con.prepareStatement(sqlQuyen);
+				pre.setLong(1, nv.getIdNhanVien());
+				res = pre.executeQuery();
+				while(res.next()){
+					nv.getQuyen().add(res.getString("quyen"));
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

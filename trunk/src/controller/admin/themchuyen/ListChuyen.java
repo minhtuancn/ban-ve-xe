@@ -28,6 +28,8 @@ public class ListChuyen extends HttpServlet {
 	private ChuyenDAO chuyenDAO;
 	private TuyenDAO tuyenDAO;
 	private SimpleDateFormat format;
+	private final String quyen = "themchuyen";
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -68,29 +70,42 @@ public class ListChuyen extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<Tuyen> listTuyen = tuyenDAO.getAllTuyen();
 		session.setAttribute("listTuyen", listTuyen);
-
+		String pageFoward = null;
 		//
+		// if (nv != null) {
+		// if (nv.getQuyen().contains(this.quyen)) {
 		String tuyen = "";
 		if (request.getParameter("tuyen") != null)
 			tuyen = request.getParameter("tuyen");
 		String date = "";
 		if (request.getParameter("date") != null)
 			date = request.getParameter("date");
-		if(!date.equals("") && !tuyen.equals("")){
+		if (!date.equals("") && !tuyen.equals("")) {
+			String mes = "";
+			long idTuyen = 1;
 			try {
-				Long idTuyen = Long.parseLong(tuyen);
-				Tuyen t = tuyenDAO.getTuyen(idTuyen);
+				idTuyen = Long.parseLong(tuyen);
 				Date dateS = format.parse(date);
+				Tuyen t = tuyenDAO.getTuyen(idTuyen);
 				t.setNgayDi(dateS);
-				List<Chuyen> listChuyen = chuyenDAO.getAllChuyen(t, dateS, true);
+				List<Chuyen> listChuyen = chuyenDAO
+						.getAllChuyen(t, dateS, true);
+				session.setAttribute("date", date);
+				session.setAttribute("idTuyen", idTuyen);
 				session.setAttribute("listChuyen", listChuyen);
 				session.setAttribute("tuyen", t);
 			} catch (ParseException e) {
-				e.printStackTrace();
+				mes = "Ngày sai định dạng!";
+			} catch (NumberFormatException e) {
+				mes = "Mã tuyến phải là số";
 			}
+			request.setAttribute("mes", mes);
 		}
 		request.getRequestDispatcher(DuongDan.DSCHUYEN_SVL).forward(request,
 				response);
 	}
+	// }else{
+	// pageFoward = DuongDan.KHONG_CO_QUYEN;
+	// }
 
 }

@@ -134,6 +134,17 @@
 	function reloads() {
 		location.reload();
 	}
+	function checkEr() {
+		if ($("#error").val().length != 0) {
+			al($("#error").val(), "error");
+		}
+		if ($("#success").val().length != 0) {
+			al($("#success").val(), "success");
+		}
+	};
+	$(window).load(function() {
+		checkEr();
+	});
 </script>
 </head>
 <body>
@@ -149,10 +160,10 @@
 		String date = "";
 		Date selectDate;
 		long idSelected = 2;
-		if (request.getParameter("tuyen") != null)
-			idSelected = Long.parseLong(request.getParameter("tuyen"));
-		if (request.getParameter("date") != null)
-			date = request.getParameter("date");
+		if (session.getAttribute("idTuyen") != null)
+			idSelected = (Long) session.getAttribute("idTuyen");
+		if (session.getAttribute("date") != null)
+			date = (String) session.getAttribute("date");
 		if (date.equals("")) {
 			selectDate = new Date();
 		} else {
@@ -160,7 +171,13 @@
 		}
 	%>
 	<div id="containers">
-<%@ include file="HeaderAdmin.jsp" %>
+		<%@ include file="HeaderAdmin.jsp"%>
+		<%
+			String mes = "";
+			if ((String) request.getAttribute("mes") != null)
+				mes = (String) request.getAttribute("mes");
+		%>
+		<input type="hidden" value="<%=mes%>" id="error" />
 		<div id="tt-chuyen">
 			<fieldset>
 				<legend>Thông tin chuyến</legend>
@@ -179,8 +196,7 @@
 								}
 							%>
 						</select> <br /> <label for="name">Date</label><br /> <input type="date"
-							id="date" name="date" 
-							value="<%=f2.format(selectDate)%>" /> <br />
+							id="date" name="date" value="<%=f2.format(selectDate)%>" /> <br />
 						<button style="width: 100px;">Tìm Tuyến</button>
 						<br />
 					</form>

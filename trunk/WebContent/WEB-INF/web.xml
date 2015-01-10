@@ -155,13 +155,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Kiemtrachuyen</display-name>
-    <servlet-name>Kiemtrachuyen</servlet-name>
-    <servlet-class>controller.admin.themchuyen.Kiemtrachuyen</servlet-class>
+    <display-name>KiemTraChuyen</display-name>
+    <servlet-name>KiemTraChuyen</servlet-name>
+    <servlet-class>controller.admin.themchuyen.KiemTraChuyen</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Kiemtrachuyen</servlet-name>
-    <url-pattern>/Kiemtrachuyen</url-pattern>
+    <servlet-name>KiemTraChuyen</servlet-name>
+    <url-pattern>/KiemTraChuyen</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -227,7 +227,7 @@
     <description></description>
     <display-name>ListKhachHang</display-name>
     <servlet-name>ListKhachHang</servlet-name>
-    <servlet-class>cotroller.admin.themkhachhang.ListKhachHang</servlet-class>
+    <servlet-class>controller.admin.themkhachhang.ListKhachHang</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ListKhachHang</servlet-name>
@@ -237,7 +237,7 @@
     <description></description>
     <display-name>DeleteKhachHang</display-name>
     <servlet-name>DeleteKhachHang</servlet-name>
-    <servlet-class>cotroller.admin.themkhachhang.DeleteKhachHang</servlet-class>
+    <servlet-class>controller.admin.themkhachhang.DeleteKhachHang</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteKhachHang</servlet-name>
@@ -247,7 +247,7 @@
     <description></description>
     <display-name>UpdateKhachHang</display-name>
     <servlet-name>UpdateKhachHang</servlet-name>
-    <servlet-class>cotroller.admin.themkhachhang.UpdateKhachHang</servlet-class>
+    <servlet-class>controller.admin.themkhachhang.UpdateKhachHang</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateKhachHang</servlet-name>

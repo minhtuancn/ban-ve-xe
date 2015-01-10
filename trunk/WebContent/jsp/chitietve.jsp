@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/thongtinve.css">
-	<script type="text/javascript">
+<script type="text/javascript">
 	function checkEr() {
 		if ($("#error").val().length != 0) {
 			al($("#error").val(), "error");
@@ -22,26 +22,39 @@
 	};
 	function al(mes, type) {
 		swal({
-			title : mes ,
+			title : mes,
 			type : type
 		});
 	}
 	$(window).load(function() {
-	    checkEr();
-	  });
-	</script>
+		checkEr();
+	});
+	function print() {
+// 		var divContents = $("div.thongtinve").html();
+		var divContents = $("fieldset").html();
+		var printWindow = window.open('', '', 'height=600,width=500');
+		printWindow.document.write('<html><head><title>DIV Contents</title>');
+		printWindow.document
+				.write('<link rel="stylesheet" type="text/css" href="/BanVeXe/css/thongtinve.css">');
+		printWindow.document.write('</head><body >');
+		printWindow.document.write(divContents);
+		printWindow.document.write('</body></html>');
+		printWindow.document.close();
+		printWindow.print();
+	};
+</script>
 </head>
 <body>
 	<%
 		Ve veDi = (Ve) session.getAttribute("veDi");
 		KhachHang kh = veDi.getKhachHang();
 	%>
-<%
-					String mes = "";
-						if((String) request.getAttribute("mes")!= null)
-					mes = (String) request.getAttribute("mes");
-				%>
-				<input type="hidden" value="<%=mes%>" id="error" />
+	<%
+		String mes = "";
+		if ((String) request.getAttribute("mes") != null)
+			mes = (String) request.getAttribute("mes");
+	%>
+	<input type="hidden" value="<%=mes%>" id="error" />
 	<div class="container">
 		<%@ include file="header.jsp"%>
 		<h1>Chúc mừng quý khách đã đặt chỗ thành công!</h1>
@@ -161,26 +174,27 @@
 					của Hãng xe.<br> 4/ Chuyển khoản ngân hàng.<br>
 
 					<%
-					if (!veDi.isTrangThaiThanhToan()) {
-				%>
+						if (!veDi.isTrangThaiThanhToan()) {
+					%>
 				
 				<p>Quý khách vui lòng nhắn tin với cú pháp "VE &ltmave&gt" gửi
 					0169xxxxx để gia hạn thời gian thanh toán</p>
 
 				<a href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veDi.getMaVe()%>"
-						style="color: red;">Quý khách nhấp link để thanh toán vé đi</a><br>
-					<%
-						}
+					style="color: red;">Quý khách nhấp link để thanh toán vé đi</a><br>
+				<%
+					}
 
-						if (veVe != null && !veVe.isTrangThaiThanhToan()) {
-					%>
+					if (veVe != null && !veVe.isTrangThaiThanhToan()) {
+				%>
 
-					<a href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veVe.getMaVe()%>"
-						style="color: red;">Quý khách nhấp link để thanh toán vé về</a><br>
-					<%
-						}
-					%>
+				<a href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veVe.getMaVe()%>"
+					style="color: red;">Quý khách nhấp link để thanh toán vé về</a><br>
+				<%
+					}
+				%>
 			</div>
+			<button onclick="print()">In vé</button>
 		</fieldset>
 	</div>
 	<%@ include file="footer.jsp"%>
