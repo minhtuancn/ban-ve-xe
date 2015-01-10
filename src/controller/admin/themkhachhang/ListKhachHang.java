@@ -1,4 +1,4 @@
-package cotroller.admin.themkhachhang;
+package controller.admin.themkhachhang;
 
 import java.io.IOException;
 import java.util.List;

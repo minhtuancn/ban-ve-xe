@@ -45,9 +45,6 @@
 			String mes = "";
 			if ((String) request.getAttribute("mes") != null)
 				mes = (String) request.getAttribute("mes");
-			String mesSuccess = "";
-			if ((String) request.getAttribute("mesSuccess") != null)
-				mesSuccess = (String) request.getAttribute("mesSuccess");
 		%>
 		<input type="hidden" value="<%=mes%>" id="error" />
 

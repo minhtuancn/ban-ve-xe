@@ -21,7 +21,6 @@
 					<li><a href="/BanVeXe/Kiemtrachuyen">Thêm Chuyến</a></li>
 					<li><a href="/BanVeXe/ListDiaDiem">Thêm Địa Điểm</a></li>
 					<li><a href="/BanVeXe/ListKhachHang">Thêm Khách Hàng</a></li>
-					<li><a href="/BanVeXe/ListVe">Thêm Vé</a></li>
 					<li><a href="/BanVeXe/jsp/admin/XacNhanVe.jsp">Xác Nhận Thanh Toán</a></li>
 				</ul>
 			</nav>
