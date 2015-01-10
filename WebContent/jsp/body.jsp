@@ -273,7 +273,7 @@
 					<fieldset>
 						<legend>Các vé đưọc dặt nhiều trong ngày</legend>
 						<div id="vexe-nhieu">
-						<% for(int i = 0; i < 4; i++){ %>
+						<% for(int i = 0; i < 0; i++){ %>
 							<div id="nhieu-01">
 								<a href="<%=DuongDan.TIM_TUYEN+"?idTuyen="+tuyen.get(i).getIdTuyen() %>" class="a-01"><p>
 										<span id="tuyen"><marquee direction="left" width="100%" behavior="alternate"><%= tuyen.get(i).getTuyenXe() %></marquee></span><br> <span
