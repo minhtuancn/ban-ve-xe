@@ -123,33 +123,10 @@
 						<%=veVe.getMaVe()%></div>
 				</div>
 				<table border="1">
+
 					<tr>
-						<td>Tuyến:</td>
-						<td colspan="5"><h3><%=veVe.getTuyenXe()%></h3> <%
- 	if (!veVe.isTrangThaiThanhToan()) {
- %> <img alt="chuathanhtoan" src="/BanVeXe/image/iconchuathanhtoan.png"></td>
-						<%
-							} else {
-						%>
-						<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png">
-						</td>
-						<%
-							}
-						%>
-					</tr>
-					<tr>
-						<td>Ngày đi:</td>
-						<td><%=veVe.getNgayKhoiHanh()%></td>
-						<td>Hành khách:</td>
-						<td align="center"><%=kh.getTenKhachHang()%></td>
-						<td>Điện thoại:</td>
-						<td align="center"><%=kh.getSdt()%></td>
-					</tr>
-					<tr>
-						<td>Số lượng ghế:</td>
-						<td align="center"><%=veVe.getSoLuongGhe()%></td>
-						<td>Vị trí ghế:</td>
-						<td colspan="3" align="center"><%=veVe.getTenGhe()%></td>
+						<td colspan="2">Tổng tiền:</td>
+						<td colspan="4" align="center"><%=veVe.getTongTien()%></td>
 					</tr>
 				</table>
 				<div class="thoihan">
