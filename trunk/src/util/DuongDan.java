@@ -24,11 +24,11 @@ public class DuongDan {
 	public static final String THANH_TOAN_VE = "/BanVeXe/jsp/ThanhToanVe.jsp";
 	public static final String KICH_HOAT_TAI_KHOAN = "/BanVeXe/jsp/KichHoatTaiKhoan.jsp";
 	public static final String CHI_DUONG = "/BanVeXe/jsp/ChiDuong.jsp";
-	public static final String XAC_NHAN_THANH_TOAN = "/BanVeXe/jsp/admin/XacNhanVe.jsp";
 	//admin
 	public static final String THEM_TUYEN = "/BanVeXe/jsp/admin/ThemTuyen.jsp";
 	public static final String THEM_CHUYEN = "/BanVeXe/jsp/admin/ThemChuyen.jsp";
 	public static final String DANG_NHAP_ADMIN = "/BanVeXe/jsp/admin/DangNhapAdmin.jsp";
+	public static final String XAC_NHAN_THANH_TOAN = "/BanVeXe/jsp/admin/XacNhanVe.jsp";
 	
 	//admin
 	public static final String THEM_TUYEN_SVL = "/jsp/admin/ThemTuyen.jsp";
@@ -38,6 +38,7 @@ public class DuongDan {
 	public static final String THEM_KHACHHANG_SVL = "/jsp/admin/ThemKhachHang.jsp";
 	public static final String DANG_NHAP_ADMIN_SVL = "/jsp/admin/DangNhapAdmin.jsp";
 	public static final String KHONG_CO_QUYEN = "/jsp/admin/KhongCoQuyen.jsp";
+	public static final String XAC_NHAN_THANH_TOAN_SVL = "/jsp/admin/XacNhanVe.jsp";
 	
 	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
 	public static final String TIM_CHUYEN_SVL = "/jsp/timchuyen.jsp";
@@ -83,5 +84,6 @@ public class DuongDan {
 	public static final String LIST_TUYEN_SV = "/BanVeXe/ListTuyen";
 	public static final String LIST_VE_SV = "/BanVeXe/ListVe";
 	public static final String LIST_KHACH_HANG_SV = "/BanVeXe/ListKhachHang";
+	public static final String XAC_NHAN_THANH_TOAN_SV = "/BanVeXe/ListAllVe";
 	
 }

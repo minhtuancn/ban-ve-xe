@@ -36,7 +36,8 @@ public class TimTuyen extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		tuyenDAO = (TuyenDAO) new FactoryDAOImp().createDAO(FactoryDao.TUYEN_DAO);
+		tuyenDAO = (TuyenDAO) new FactoryDAOImp()
+				.createDAO(FactoryDao.TUYEN_DAO);
 	}
 
 	/**
@@ -65,85 +66,92 @@ public class TimTuyen extends HttpServlet {
 		String ngaydi = request.getParameter("ngaydi");
 		String ngayve = request.getParameter("ngayve");
 		String laKhuHoi = request.getParameter("laKhuHoi");
+		String idTuyen = request.getParameter("idTuyen");
 		String mes = null;
 		int typeError = -1;
 		long idNoiDi = 0;
-		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			idNoiDi = Long.parseLong(idnoidi);
-		} catch (NumberFormatException e) {
-			mes = "Địa điểm đi không tồn tại!";
-			request.setAttribute("mes", mes);
-			typeError = 0;
-			request.setAttribute("typeError", typeError);
-			request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
-					request, response);
-			return;
-		}
-		long idNoiDen = 0;
-		try {
-			idNoiDen = Long.parseLong(idnoiden);
-		} catch (NumberFormatException e) {
-			mes = "Địa điểm đến không tồn tại!";
-			request.setAttribute("mes", mes);
-			typeError = 1;
-			request.setAttribute("typeError", typeError);
-			request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
-					request, response);
-			return;
-		}
-		Date dateNgayDi;
-		try {
-			dateNgayDi = f.parse(ngaydi);
-		} catch (ParseException e) {
-			mes = "Ngày đi không đúng định dạng";
-			request.setAttribute("mes", mes);
-			typeError = 2;
-			request.setAttribute("typeError", typeError);
-			request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
-					request, response);
-			return;
-		}
-		boolean laKhuHoi_bool = "on".equals(laKhuHoi);
-		session.setAttribute("laKhuHoi", laKhuHoi_bool);
-		Date dateNgayVe = null;
-		if (laKhuHoi_bool) {
+
+		if (idTuyen == null) {
+			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 			try {
-				dateNgayVe = f.parse(ngayve);
-			} catch (ParseException e) {
-				mes = "Ngày về không đúng định dạng";
+				idNoiDi = Long.parseLong(idnoidi);
+			} catch (NumberFormatException e) {
+				mes = "Địa điểm đi không tồn tại!";
 				request.setAttribute("mes", mes);
-				typeError = 3;
+				typeError = 0;
 				request.setAttribute("typeError", typeError);
 				request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
 						request, response);
 				return;
 			}
-		}
-		Tuyen tuyen = tuyenDAO.getTuyen(idNoiDi, idNoiDen, dateNgayDi, false);
-		if (tuyen == null) {
-			mes = "Tuyến Đi không có, xin vui lòng chọn chuyến khác!";
-			request.setAttribute("mes", mes);
-			request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
-					request, response);
-			return;
-		} else{
-			session.setAttribute("tuyenDi", tuyen);
-		}
-		if (laKhuHoi_bool) {
-			tuyen = tuyenDAO.getTuyen(idNoiDen, idNoiDi, dateNgayVe, false);
+			long idNoiDen = 0;
+			try {
+				idNoiDen = Long.parseLong(idnoiden);
+			} catch (NumberFormatException e) {
+				mes = "Địa điểm đến không tồn tại!";
+				request.setAttribute("mes", mes);
+				typeError = 1;
+				request.setAttribute("typeError", typeError);
+				request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
+						request, response);
+				return;
+			}
+			Date dateNgayDi;
+			try {
+				dateNgayDi = f.parse(ngaydi);
+			} catch (ParseException e) {
+				mes = "Ngày đi không đúng định dạng";
+				request.setAttribute("mes", mes);
+				typeError = 2;
+				request.setAttribute("typeError", typeError);
+				request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
+						request, response);
+				return;
+			}
+			boolean laKhuHoi_bool = "on".equals(laKhuHoi);
+			session.setAttribute("laKhuHoi", laKhuHoi_bool);
+			Date dateNgayVe = null;
+			if (laKhuHoi_bool) {
+				try {
+					dateNgayVe = f.parse(ngayve);
+				} catch (ParseException e) {
+					mes = "Ngày về không đúng định dạng";
+					request.setAttribute("mes", mes);
+					typeError = 3;
+					request.setAttribute("typeError", typeError);
+					request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL)
+							.forward(request, response);
+					return;
+				}
+			}
+			Tuyen tuyen = tuyenDAO.getTuyen(idNoiDi, idNoiDen, dateNgayDi,
+					false);
 			if (tuyen == null) {
-				mes = "Tuyến Về không có, xin vui lòng chọn chuyến khác!";
+				mes = "Tuyến Đi không có, xin vui lòng chọn chuyến khác!";
 				request.setAttribute("mes", mes);
 				request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
 						request, response);
 				return;
-			} else
-				session.setAttribute("tuyenVe", tuyen);
+			} else {
+				session.setAttribute("tuyenDi", tuyen);
+			}
+			if (laKhuHoi_bool) {
+				tuyen = tuyenDAO.getTuyen(idNoiDen, idNoiDi, dateNgayVe, false);
+				if (tuyen == null) {
+					mes = "Tuyến Về không có, xin vui lòng chọn chuyến khác!";
+					request.setAttribute("mes", mes);
+					request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL)
+							.forward(request, response);
+					return;
+				} else
+					session.setAttribute("tuyenVe", tuyen);
+			}
+		}else{
+			Tuyen tuyen = tuyenDAO.getTuyen(Long.parseLong(idTuyen));
+			session.setAttribute("tuyenDi", tuyen);
 		}
 		request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request,
 				response);
 
 	}
-
 }

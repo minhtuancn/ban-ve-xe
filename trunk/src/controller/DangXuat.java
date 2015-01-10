@@ -40,6 +40,7 @@ public class DangXuat extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().removeAttribute("khachHang");
+		request.getSession().removeAttribute("admin");
 		response.sendRedirect(DuongDan.TRANG_CHU);
 	}
 }

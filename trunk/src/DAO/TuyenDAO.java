@@ -63,4 +63,5 @@ public interface TuyenDAO extends DAO{
 	 *         bị lổi, 1 nếu thành công
 	 */
 	public int editTuyen(long idTuyen, String value, int columnPosition);
+	public List<Tuyen> getTuyen(Date ngay);
 }

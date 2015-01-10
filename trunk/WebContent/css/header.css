@@ -33,6 +33,9 @@ header img {
 	padding-right: 20px;
 }
 
+#taga:HOVER{
+	color: red;
+}
 nav {
 	float: right;
 	margin-top: -65px;
