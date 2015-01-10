@@ -195,8 +195,6 @@ public class VeDAOImpl implements VeDAO {
 							ve.getMaVe()));
 					ve.setChuyen(getChuyenDAO().getChuyen(
 							res.getLong("idchuyen"), true));
-					System.out.println("Vedaoiml " + ve.getThoiHanThanhToans());
-					System.out.println("Vedaoiml " + ve.getThoiHanThanhToan());
 					ve.setKhachHang(getKhachHangDAO().getKhachHang(
 							res.getLong("idkhachhang")));
 				}
@@ -355,6 +353,28 @@ public class VeDAOImpl implements VeDAO {
 			ConnectionPool.getInstance().freeConnection(con);
 		}
 		return mes;
+	}
+
+	@Override
+	public List<Ve> getAllVe() {
+		String sql = "SELECT ve.mave FROM ve WHERE ve.trangthaithanhtoan = 0;";
+		Connection con = ConnectionPool.getInstance().getConnection();
+		PreparedStatement pre = null;
+		List<Ve> list = new ArrayList<>();
+		ResultSet res = null;
+		try {
+			pre = con.prepareStatement(sql);
+			res = pre.executeQuery();
+			while(res.next()){
+				list.add(timVeOfMaVe(res.getString("mave")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		return list;
 	}
 
 }

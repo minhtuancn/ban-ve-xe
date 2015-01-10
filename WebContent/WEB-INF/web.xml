@@ -469,4 +469,14 @@
     <servlet-name>DangNhapAdmin</servlet-name>
     <url-pattern>/DangNhapAdmin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListAllVe</display-name>
+    <servlet-name>ListAllVe</servlet-name>
+    <servlet-class>controller.admin.thanhtoan.ListAllVe</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListAllVe</servlet-name>
+    <url-pattern>/ListAllVe</url-pattern>
+  </servlet-mapping>
 </web-app>

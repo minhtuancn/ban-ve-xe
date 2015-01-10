@@ -11,7 +11,7 @@ import model.Ve;
 public interface VeDAO extends DAO {
 	FactoryDao factoryDao = new FactoryDAOImp();
 
-
+	public List<Ve> getAllVe();
 	/**
 	 * danh cho khach hang
 	 * 

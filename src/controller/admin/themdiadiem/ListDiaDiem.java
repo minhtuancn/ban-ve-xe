@@ -20,39 +20,53 @@ import DAO.DiaDiemDAOImpl;
  */
 public class ListDiaDiem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListDiaDiem() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private final String quyen = "themdiadiem";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ListDiaDiem() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
 	}
-	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doAction(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		NhanVien nv = (NhanVien) session.getAttribute("admin");
-		if(nv!=null){
-		DiaDiemDAO diadiem = new DiaDiemDAOImpl();
-		List<DiaDiem> listDiaDiem = diadiem.getAllDiaDiem();
-		request.setAttribute("listDiaDiem", listDiaDiem);
-		request.getRequestDispatcher(DuongDan.THEM_DIADIEM_SVL).forward(request, response);
-		}else{
+		String pageForward = null;
+		if (nv != null) {
+			if (nv.getQuyen().contains(this.quyen)) {
+				DiaDiemDAO diadiem = new DiaDiemDAOImpl();
+				List<DiaDiem> listDiaDiem = diadiem.getAllDiaDiem();
+				request.setAttribute("listDiaDiem", listDiaDiem);
+				pageForward =  DuongDan.THEM_DIADIEM_SVL;
+			}else{
+				pageForward = DuongDan.KHONG_CO_QUYEN;
+			}
+		} else {
 			request.setAttribute("pageFoward", DuongDan.LIST_DIA_DIEM_SV);
-			request.getRequestDispatcher(DuongDan.DANG_NHAP_ADMIN_SVL).forward(request, response);
+			pageForward = DuongDan.DANG_NHAP_ADMIN_SVL; 
 		}
+		request.getRequestDispatcher(pageForward).forward(
+				request, response);
 	}
 }

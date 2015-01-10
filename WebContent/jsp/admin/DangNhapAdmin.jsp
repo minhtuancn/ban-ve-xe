@@ -34,7 +34,7 @@
 	<%@ include file="HeaderAdmin.jsp"%>
 	<div class="containerdn">
 		<div id="dangki">
-			<% String pageFoward = DuongDan.LIST_TUYEN_SV ;
+			<% String pageFoward = DuongDan.XAC_NHAN_THANH_TOAN ;
 			if(request.getAttribute("pageFoward") != null)
 				pageFoward = (String)request.getAttribute("pageFoward");
 		%>

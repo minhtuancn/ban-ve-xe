@@ -28,7 +28,6 @@ public class ListChuyen extends HttpServlet {
 	private ChuyenDAO chuyenDAO;
 	private TuyenDAO tuyenDAO;
 	private SimpleDateFormat format;
-	private final String quyen = "themchuyen";
 
 	/**
 	 * @see HttpServlet#HttpServlet()

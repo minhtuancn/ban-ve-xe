@@ -24,6 +24,7 @@ public class DuongDan {
 	public static final String THANH_TOAN_VE = "/BanVeXe/jsp/ThanhToanVe.jsp";
 	public static final String KICH_HOAT_TAI_KHOAN = "/BanVeXe/jsp/KichHoatTaiKhoan.jsp";
 	public static final String CHI_DUONG = "/BanVeXe/jsp/ChiDuong.jsp";
+	public static final String XAC_NHAN_THANH_TOAN = "/BanVeXe/jsp/admin/XacNhanVe.jsp";
 	//admin
 	public static final String THEM_TUYEN = "/BanVeXe/jsp/admin/ThemTuyen.jsp";
 	public static final String THEM_CHUYEN = "/BanVeXe/jsp/admin/ThemChuyen.jsp";
@@ -63,6 +64,7 @@ public class DuongDan {
 	public static final String CAP_NHAP_KHOI_HANH = "/BanVeXe/CapNhatKhoiHanh";
 	public static final String LAY_MAT_KHAU = "/BanVeXe/LayMatKhau";
 	//admin
+	public static final String THEM_TUYEN_SV = "/BanVeXe/AddTuyen";
 	public static final String XOA_TUYEN_SV = "/BanVeXe/DeleteTuyen";
 	public static final String SUA_TUYEN_SV = "/BanVeXe/UpdateTuyen";
 	public static final String THEM_CHUYEN_SV = "/BanVeXe/AddChuyen";
@@ -74,7 +76,7 @@ public class DuongDan {
 	public static final String SUA_DIADIEM_SV = "/BanVeXe/UpdateDiaDiem";
 	public static final String XOA_KHACHHANG_SV = "/BanVeXe/DeleteKhachHang";
 	public static final String SUA_KHACHHANG_SV = "/BanVeXe/UpdateKhachHang";
-	public static final String THEM_TUYEN_SV = "/BanVeXe/AddTuyen";
+	public static final String THEM_KHACHHANG_SV = "/BanVeXe/ListKhachHang";
 	public static final String DANG_NHAP_ADMIN_SV = "/BanVeXe/DangNhapAdmin";
 	public static final String KIEM_TRA_CHUYEN_SV = "/BanVeXe/KiemTraChuyen";
 	public static final String LIST_DIA_DIEM_SV = "/BanVeXe/ListDiaDiem";
