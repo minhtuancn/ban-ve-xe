@@ -56,7 +56,6 @@ public class TuyenDAOImpl implements TuyenDAO {
 					tuyen.setNgayDi(ngayDi);
 					tuyen.setIdTuyen(idTuyen);
 					tuyen.setDanhSachChuyen(getChuyenDAO().getAllChuyen(tuyen, ngayDi, isAdmin));
-					System.out.println("TuyenDAOImp " + tuyen.getDanhSachChuyen().size());
 				}
 
 		} catch (SQLException e) {
@@ -297,6 +296,36 @@ public class TuyenDAOImpl implements TuyenDAO {
 	}
 	public ChuyenDAO getChuyenDAO() {
 		return (ChuyenDAO) ((chuyenDAO!=null)?chuyenDAO : factoryDao.createDAO(FactoryDao.CHUYEN_DAO));
+	}
+	@Override
+	public List<Tuyen> getTuyen(Date ngay) {
+		listAllTuyen = new ArrayList<>();
+		Connection con = ConnectionPool.getInstance().getConnection();
+		String sql1 = "SELECT DISTINCT phancong.idtuyen FROM phancong WHERE phancong.ngaydi = ? LIMIT 4 ;";
+		PreparedStatement pre = null;
+		ResultSet res;
+		long idTuyen = 0;
+		Tuyen tuyen;
+		try {
+			pre = con.prepareStatement(sql1);
+			pre.setDate(1, new java.sql.Date(ngay.getTime()));
+			res = pre.executeQuery();
+			while (res.next()) {
+				idTuyen = res.getLong("idtuyen");
+				tuyen = getTuyen(idTuyen);
+				tuyen.setNgayDi(ngay);
+				tuyen.setDanhSachChuyen(getChuyenDAO().getAllChuyen(tuyen, ngay, false));
+				listAllTuyen.add(tuyen);
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getInstance().closePre(pre);
+			ConnectionPool.getInstance().freeConnection(con);
+		}
+		Collections.sort(listAllTuyen);
+		return listAllTuyen;
 	}
 	
 }

@@ -54,6 +54,7 @@ public class DiaDiemDAOImpl implements DiaDiemDAO, DAO {
 				listDiaDiem.add(new DiaDiem(res.getLong("iddiadiem"), res
 						.getString("tendiadiem")));
 			}
+			System.out.println(listDiaDiem);
 			Collections.sort(listDiaDiem);
 		} catch (SQLException e) {
 			e.printStackTrace();

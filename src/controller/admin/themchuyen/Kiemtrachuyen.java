@@ -64,6 +64,7 @@ public class KiemTraChuyen extends HttpServlet {
 			else
 				pageFoward = DuongDan.KHONG_CO_QUYEN;
 		} else {
+			request.setAttribute("pageFoward", DuongDan.KIEM_TRA_CHUYEN_SV);
 			pageFoward = DuongDan.DANG_NHAP_ADMIN_SVL;
 		}
 		request.getRequestDispatcher(pageFoward).forward(request, response);

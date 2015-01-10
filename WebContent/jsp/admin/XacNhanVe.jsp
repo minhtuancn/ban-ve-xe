@@ -1,3 +1,4 @@
+<%@page import="model.Ve"%>
 <%@page import="model.KhachHang"%>
 <%@page import="util.DuongDan"%>
 <%@page import="model.DiaDiem"%>
@@ -10,11 +11,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-<link href="/BanVeXe/css/datatable/ThemTuyen.css" rel="stylesheet"
-	type="text/css" media="all" />
-<link href="/BanVeXe/css/datatable/media/dataTables/demo_table.css"
-	rel="stylesheet" type="text/css" />
+<title>Xác nhận thanh toán vé</title>
+<!-- <link href="/BanVeXe/css/datatable/ThemTuyen.css" rel="stylesheet" -->
+<!-- 	type="text/css" media="all" /> -->
+<!-- <link href="/BanVeXe/css/datatable/media/dataTables/demo_table.css" -->
+<!-- 	rel="stylesheet" type="text/css" /> -->
 <link href="/BanVeXe/css/datatable/media/dataTables/demo_table_jui.css"
 	rel="stylesheet" type="text/css" />
 <link href="/BanVeXe/css/datatable/media/themes/base/jquery-ui.css"
@@ -67,11 +68,11 @@
 		<div id="demo_jui">
 			<table id="KhachHangTable" class="display dataTable">
 				<%
-					List<KhachHang> listKH;
-					if (request.getAttribute("listKH") != null)
-						listKH = (List<KhachHang>) request.getAttribute("listKH");
+					List<Ve> listVe;
+					if (request.getAttribute("listVe") != null)
+						listVe = (List<Ve>) request.getAttribute("listVe");
 					else
-						listKH = new ArrayList();
+						listVe = new ArrayList();
 				%>
 				<thead>
 					<tr>
@@ -80,19 +81,29 @@
 						<th>Ngày đặt vé</th>
 						<th>Danh sách ghế</th>
 						<th>Trạng thái thanh toán</th>
+						<th>Xác nhận thanh toán</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
 						int h = 0;
-						for (KhachHang kh : listKH) {
+						for (Ve kh : listVe) {
 					%>
 					<tr id="<%=h++%>">
-						<td><%=kh.getTenKhachHang()%></td>
-						<td><%=kh.getSdt()%></td>
-						<td><%=kh.getCmnd()%></td>
-						<td><%=kh.getDiaChi()%></td>
-						<td><%=kh.getEmail()%></td>
+						<td><%=kh.getMaVe()%></td>
+						<td><%=kh.getTuyenXe()%></td>
+						<td><%=kh.getNgayDatVe()%></td>
+						<td><%=kh.getTenGhe()%></td>
+						<td><%=(!kh.isTrangThaiThanhToan() ? "Chưa thanh toán"
+						: "Đã thanh toán")%>
+								<%
+									if (!kh.isTrangThaiThanhToan()) {
+								%></td>
+						<td><input type="button" value="xác nhận"
+								onclick="xacnhan()" /></td>
+					<%
+						}
+					%>
 					</tr>
 					<%
 						}

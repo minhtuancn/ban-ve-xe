@@ -1,3 +1,4 @@
+<%@page import="model.Tuyen"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -152,6 +153,10 @@
 												if(session.getAttribute("listDiaDiem") != null){
 												listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
 													}
+							List<Tuyen> tuyen = new ArrayList();
+							if(session.getAttribute("listTuyen") != null){
+								tuyen = (List<Tuyen>) session.getAttribute("listTuyen");
+							}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
@@ -268,34 +273,14 @@
 					<fieldset>
 						<legend>Các vé đưọc dặt nhiều trong ngày</legend>
 						<div id="vexe-nhieu">
+						<% for(int i = 0; i < 4; i++){ %>
 							<div id="nhieu-01">
-								<a href="#" class="a-01"><p>
-										<span id="tuyen"><marquee direction="left" scrollamount="4" width="100%" behavior="alternate">Hà Nội - Tây Nguyên</marquee></span><br>
-										<span id="gia">300.000đ</span><br>
-										<span id="gio">8:30 - 9:00</span>
+								<a href="<%=DuongDan.TIM_TUYEN+"?idTuyen="+tuyen.get(i).getIdTuyen() %>" class="a-01"><p>
+										<span id="tuyen"><marquee direction="left" width="100%" behavior="alternate"><%= tuyen.get(i).getTuyenXe() %></marquee></span><br> <span
+											id="gia"><%= tuyen.get(i).getDanhSachChuyen().get(0).getGia() %></span><br> <span id="gio"><%= tuyen.get(i).getDanhSachChuyen().get(0).getGioKhoiHanh() %></span>
 									</p></a>
 							</div>
-							<div id="nhieu-01">
-								<a href="#" class="a-01"><p>
-										<span id="tuyen"><marquee direction="left" scrollamount="4" width="100%" behavior="alternate">Hà Nội - Tây Nguyên</marquee></span><br> <span
-											id="gia">300.000đ</span><br> <span id="gio">8:30
-											- 9:00</span>
-									</p></a>
-							</div>
-							<div id="nhieu-01">
-								<a href="#" class="a-01"><p>
-										<span id="tuyen"><marquee direction="left" scrollamount="4" width="100%" behavior="alternate">Hà Nội - Tây Nguyên</marquee></span><br> <span
-											id="gia">300.000đ</span><br> <span id="gio">8:30
-											- 9:00</span>
-									</p></a>
-							</div>
-							<div id="nhieu-01">
-								<a href="#" class="a-01"><p>
-										<span id="tuyen"><marquee direction="left" scrollamount="4" width="100%" behavior="alternate">Hà Nội - Tây Nguyên</marquee></span><br> <span
-											id="gia">300.000đ</span><br> <span id="gio">8:30
-											- 9:00</span>
-									</p></a>
-							</div>
+							<% } %>
 						</div>
 					</fieldset>
 
