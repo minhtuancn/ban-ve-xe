@@ -151,9 +151,9 @@
 		<input type="image" class="xacnhan" src="/BanVeXe/image/xacnhan.png"
 			width="80px"
 			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;">
-		<a href="/BanVeXe/jsp/datve.jsp"><input type="image"
-			src="/BanVeXe/image/huyve.png" width="80px"
-			style="margin-left: 10px; margin-top: 5px;"></a>
+<!-- 		<a href="/BanVeXe/jsp/datve.jsp"><input type="image" -->
+<!-- 			src="/BanVeXe/image/huyve.png" width="80px" -->
+<!-- 			style="margin-left: 10px; margin-top: 5px;"></a> -->
 	</div>
 </body>
 </html>
