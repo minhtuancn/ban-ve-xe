@@ -30,9 +30,9 @@
 		checkEr();
 	});
 	function print() {
-// 		var divContents = $("div.thongtinve").html();
+		var divContents = $("div.thongtinve").html();
 		var divContents = $("fieldset").html();
-		var printWindow = window.open('', '', 'height=600,width=500');
+		var printWindow = window.open('', '', 'height=600,width=900');
 		printWindow.document.write('<html><head><title>DIV Contents</title>');
 		printWindow.document
 				.write('<link rel="stylesheet" type="text/css" href="/BanVeXe/css/thongtinve.css">');
