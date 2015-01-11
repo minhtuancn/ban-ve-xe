@@ -61,8 +61,11 @@ function sendOTP() {
 				<div id="divtrai">
 					<input type="text" class="text"
 						style="width: 400px; margin-bottom: 20px;" name="maOTP" />
-						<div><input type="button"
-								class="chon" value="Gửi lại mã OTP" onclick="sendOTP()"></div>
+						<div>
+<!-- 						<input type="button" -->
+<!-- 								class="chon" value="Gửi lại mã OTP" onclick="sendOTP()"> -->
+					<a onclick="sendOTP()" id="a-otp">Gửi lại mã OTP</a>
+								</div>
 					<div style="margin-left: 250px;">
 						<input type="submit" id="button_s" value="Xác nhận" />
 					</div>

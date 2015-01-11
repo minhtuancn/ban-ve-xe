@@ -128,9 +128,10 @@
 									class="input-txt wd-240" name="maOTP" type="text">
 
 							</div>
-							<label class="wd-110 fl-l">&nbsp;</label> <input type="button"
-								class="chon" value="Gửi lại mã OTP" onclick="sendOTP()">
-
+							<label class="wd-110 fl-l">&nbsp;</label> 
+<!-- 							<input type="button" -->
+<!-- 								class="chon" value="Gửi lại mã OTP" onclick="sendOTP()"> -->
+							<a onclick="sendOTP()" id="a-otp">Gửi lại mã OTP</a>
 						</div>
 						<div style="float: left; margin-left: 200px;">
 							<div class="ktve-dong kt-ve">

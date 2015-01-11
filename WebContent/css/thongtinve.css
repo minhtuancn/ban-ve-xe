@@ -75,8 +75,8 @@ td img {
 
 td {
 	width: 15%;
-	color: red;
-	background: #9cf;
+	color: black;
+	background: white;
 }
 
 table {
@@ -94,4 +94,44 @@ table {
 	font-weight: bold;
 	margin-top: 30px;
 	margin-bottom: 20px;
+}
+
+#button_s {
+	width: 80px;
+	height: 35px;
+	font-size: 20px;
+	cursor: pointer;
+	color: #445b0f;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .45), 0px
+		1px 1px 0px rgba(0, 0, 0, .3);
+	-moz-box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .45), 0px 1px
+		1px 0px rgba(0, 0, 0, .3);
+	box-shadow: inset 1px 1px 1px 0px rgba(255, 255, 255, .45), 0px 1px 1px
+		0px rgba(0, 0, 0, .3);
+	background: #F8B300;
+	background: -moz-linear-gradient(top, #F8B300 0%, #FEBD27 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F8B300),
+		color-stop(100%, #FEBD27));
+	background: -webkit-linear-gradient(top, #F8B300 0%, #FEBD27 100%);
+	background: -o-linear-gradient(top, #F8B300 0%, #FEBD27 100%);
+	background: -ms-linear-gradient(top, #F8B300 0%, #FEBD27 100%);
+	background: linear-gradient(top, #F8B300 0%, #FEBD27 100%);
+	cursor: pointer;
+	font-size: 20px;
+}
+
+#button_s:hover {
+	-webkit-box-shadow: inset 1px 1px 3px 0px rgba(255, 255, 255, .8), 0px
+		1px 1px 0px rgba(0, 0, 0, .6);
+	-moz-box-shadow: inset 1px 1px 3px 0px rgba(255, 255, 255, .8), 0px 1px
+		1px 0px rgba(0, 0, 0, .6);
+	box-shadow: inset 1px 1px 3px 0px rgba(255, 255, 255, .8), 0px 1px 1px
+		0px rgba(0, 0, 0, .6);
+}
+
+#button_s:active {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
