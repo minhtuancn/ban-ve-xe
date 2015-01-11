@@ -1,4 +1,4 @@
-<%@page import="model.Ve"%>
+﻿<%@page import="model.Ve"%>
 <%@page import="model.KhachHang"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
@@ -202,7 +202,7 @@
 					}
 				%>
 			</div>
-			<button onclick="print()">In vé</button>
+			<button onclick="print()" id="button_s">In vé</button>
 		</fieldset>
 	</div>
 	<%@ include file="footer.jsp"%>

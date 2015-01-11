@@ -37,8 +37,8 @@
 </script>
 </head>
 <body>
-<img style="float: left; clear: right; " alt="Chu Thich" src="/BanVeXe/image/ghes.png">
-	<div id="xe16cho">
+<img id="img-16"style="float: left; clear: right; " alt="Chu Thich" src="/BanVeXe/image/ghes.png">
+	<div id="xe16cho" style="position: relative;">
 		<%
 			int idChuyen = (Integer) session.getAttribute("chuyen");
 			Chuyen chuyen = null;
