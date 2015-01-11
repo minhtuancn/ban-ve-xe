@@ -1,5 +1,5 @@
 div#xe16cho {
-	position: absolute;
+	position: relative;
 	border: 3px solid #4F679B;
 	background: white;
 	width: 260px;
@@ -7,7 +7,6 @@ div#xe16cho {
 	border-radius: 20px;
 	float: left;
 	clear: right;
-	left: 50px;
 }
 
 div#xe16cho .ghe {

@@ -6,6 +6,9 @@ a {
 	float: left;
 	clear: right;
 }
+a:hover {
+	color:red;
+}
 
 header {
 	clear: none;

@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/BanVeXe/css/xe16.css">
-<link rel="stylesheet" type="text/css" href="/BanVeXe/css/xe45.css">
+<!-- <link rel="stylesheet" type="text/css" href="/BanVeXe/css/xe16.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="/BanVeXe/css/xe45.css"> -->
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script src="/BanVeXe/js/xe.js"></script>
 <script type="text/javascript">
