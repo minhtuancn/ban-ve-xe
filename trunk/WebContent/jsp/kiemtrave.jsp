@@ -1,3 +1,5 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
 <%@page import="model.KhachHangThuongXuyen"%>
 <%@page import="model.Ve"%>
 <%@page import="java.util.List"%>
@@ -81,6 +83,11 @@
 					String diaChi = kh.getDiaChi();
 					long soTien = ((KhachHangThuongXuyen) kh).getSoTien();
 					List<Ve> listVe = kh.getDanhSachVeDaDat();
+					//
+					Locale here = request.getLocale();
+					NumberFormat cf = NumberFormat.getCurrencyInstance(here);
+					cf.setMaximumFractionDigits(0);
+					cf.setMinimumFractionDigits(0);
 				%>
 
 				<%
@@ -119,7 +126,7 @@
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Số dư trong tài khoản:</label> <input
 										class="input-txt wd-240" readonly name="sdt" type="text"
-										value=<%=soTien%>>
+										value="<%=cf.format(soTien)%>">
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Số Cmnd:</label> <input
@@ -129,7 +136,7 @@
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">Địa chỉ:</label> <input
 										class="input-txt editable wd-240" readonly name="diachi"
-										type="text" value=<%=diaChi%>>
+										type="text" value="<%=diaChi%>">
 								</div>
 								<div class="ktve-dong kt-ve">
 									<label class="wd-110 fl-l">&nbsp;</label> <input
@@ -178,7 +185,7 @@
 										<tr id="dong2">
 											<td class="tr1" align="center"><%=v.getTuyenXe()%></td>
 											<td class="tr1" align="center"><%=v.getNgayKhoiHanh()%></td>
-											<td class="tr1" align="center"><%=v.getTongTien()%></td>
+											<td class="tr1" align="center"><%=cf.format(v.getTongTien())%></td>
 											<td class="tr1" align="center"><%=v.getLoaiGhe()%></td>
 											<td class="tr1" align="center"><%=v.getLoaiXe()%></td>
 											<td class="tr1" align="center"><%=v.getTenGhe()%></td>

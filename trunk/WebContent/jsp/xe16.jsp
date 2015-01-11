@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title></title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/xe16.css">
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script src="/BanVeXe/js/xe.js"></script>
@@ -37,7 +37,7 @@
 </script>
 </head>
 <body>
-	<input type="button" value="Print Div Contents" id="btnPrint" />
+<img style="float: left; clear: right; " alt="Chu Thich" src="/BanVeXe/image/ghes.png">
 	<div id="xe16cho">
 		<%
 			int idChuyen = (Integer) session.getAttribute("chuyen");

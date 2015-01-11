@@ -26,6 +26,7 @@
 	List<Ghe> danhSachghes = chuyens.getDanhSachGheNgoi();
 	%>
 	<input type="hidden" value="<%= idChuyens%>" id="idChuyen" />
+	<img style="float: left; clear: right;" alt="Chu Thich" src="/BanVeXe/image/ghes.png">
 	<div id="xe45cho">
 		<img alt="dauxe" src="/BanVeXe/image/p.png" width="310px"
 			height="100px">

@@ -42,10 +42,10 @@
 	%>
 		<div id="center">
 		<form id="contactform" action="/BanVeXe/DoiMatKhau">
-			<p id="h3">Bạn vui lòng nhập thông tin để kiểm tra vé!</p>
-				<span id ="error-pass-old" style="color: red;" ><%=mes %></span>
+			<p id="h3">Đổi mật khẩu</p>
 			<div id="divtrai">
 				<label id="slable">Nhập mật khẩu hiện tại:</label><br> 
+				<span id ="error-pass-old" style="color: red;" ><%=mes %></span>
 				<input type="password" class="text" required="required" id="pass-old" onkeyup="md5OldPass()"/>
 				<input type="hidden" name="pass-old" id="md5pass-old" />
 			</div>
