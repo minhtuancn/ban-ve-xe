@@ -16,6 +16,7 @@
 <script src="/BanVeXe/js/sweet-alert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/sweet-alert.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/popup.css">
 <script>
 	function removeReadonly() {
 		$('.editable').removeAttr('readonly');
@@ -52,10 +53,53 @@
 			confirmButtonColor : "#DD6B55",
 			confirmButtonText : "Ok",
 			cancelButtonText : "Cancel",
-			closeOnConfirm : false,
+			closeOnConfirm : true,
 		}, function(isConfirm) {
 			if (isConfirm) {
-				window.location.href = "<%=DuongDan.HUYVE%>?mave="+mave;
+				
+				$.get("<%=DuongDan.CHECK_OTP%>", function(data, status) {
+					if (status == "success") {
+						if (data == "ok") {
+							var loginBox = $("#login-box");
+
+							//Fade in the Popup
+							$(loginBox).fadeIn(300);
+
+							//Set the center alignment padding + border see css style
+							var popMargTop = ($(loginBox).height() + 24) / 2;
+							var popMargLeft = ($(loginBox).width() + 24) / 2;
+
+							$(loginBox).css({
+								'margin-top' : -popMargTop,
+								'margin-left' : -popMargLeft
+							});
+
+							// Add the mask to body
+							$('body').append('<div id="mask"></div>');
+							$('#mask').fadeIn(300);
+
+							$("#mave").val(mave);
+
+							$('a.close').click(
+									function() {
+										$('#mask , .login-popup').fadeOut(300,
+												function() {
+													$('#mask').remove();
+												});
+										return false;
+									});
+							$('#mask').click(
+									function() {
+										$('#mask , .login-popup').fadeOut(300,
+												function() {
+													$('#mask').remove();
+												});
+										return false;
+									});
+						}
+					}
+				});
+
 			}
 		});
 	}
@@ -224,7 +268,24 @@
 	</div>
 
 
-
+	<div id="login-box" class="login-popup">
+		<a href="#" class="close"><img src="/BanVeXe/image/close.jpg"
+			class="btn_close" title="Close Window" alt="Close" /></a>
+		<form id="formhuyve" method="post" class="signin"
+			action='<%=DuongDan.HUYVE%>'>
+			<fieldset class="textbox">
+				<input type="hidden" id="mave" value="" name="mave" />
+				 <label
+					> <span id="lb-otp">Nhập mã OTP</span> <input id="otp" 
+					name="otp" value="" type="text">
+				</label>
+				<input type="submit" value="Xác nhận" id="xn-otp" />
+				<p>
+					<a class="forgot" href="#">Gửi lại mã OTP</a>
+				</p>
+			</fieldset>
+		</form>
+	</div>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

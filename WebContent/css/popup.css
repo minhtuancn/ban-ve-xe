@@ -1,6 +1,6 @@
 /* Mask for background, by default is not display */
 #mask {
-/*     display: none; */
+    display: none;
     background: gray;
     position: fixed;
     left: 0;
@@ -37,14 +37,12 @@
     /* Safari, Chrome */;
 }
 
-img.btn_close {
-    Position the close button
+a.close{
 	float: right;
-    margin: -28px -28px 0 0;
 }
 
-fieldset {
-    border: none;
+img.btn_close {
+    margin: -28px 0 0 -28px ;
 }
 
 form.signin .textbox label {
@@ -61,19 +59,35 @@ form.signin , form.signin span {
     line-height: 18px;
 }
 
-form.signin .textbox input {
-    background: #666666;
+#lb-otp{
+	font-family: Tahoma;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	text-align: center;
+	color: blue;
+}
+
+#login-box{
+	width: 350px;
+	height: 150px;
+}
+
+#otp {
+	width: 300px;
     border-bottom: 1px solid #333;
     border-left: 1px solid #000;
     border-right: 1px solid #333;
     border-top: 1px solid #000;
-    color: #fff;
     border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     font: 13px Arial, Helvetica, sans-serif;
     padding: 6px 6px 4px;
-    width: 200px;
+}
+
+#xn-otp{
+	float: right;
 }
 
 form.signin input:-moz-placeholder {

@@ -63,15 +63,20 @@ public class HuyVe extends HttpServlet {
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String mave = request.getParameter("mave");
+		String otp = request.getParameter("otp");
+		String maOTP = (String) request.getSession().getAttribute("maOTP");
+		String mes = "";
+		String mesSucces = "";
+		if(maOTP.equals(otp)){
 		Ve ve = (Ve) veDAO.timVeOfMaVe(mave);
-		System.out.println("Huy ve : "+ve);
-		String mes = khachHangDAO.huyVe(ve);
-		String mesSucces = mes == null ? "Hủy Vé thành công!" : null;
-
+		mes = khachHangDAO.huyVe(ve);
+		mesSucces = mes == null ? "Hủy Vé thành công!" : null;
+		}else{
+			mes = "Mã OTP không chính xác, quí khách vui lòng nhập lại!";
+		}
 		request.setAttribute("mes", mes);
 		request.setAttribute("mesSuccess", mesSucces);
 		request.getRequestDispatcher("KiemTraVe").forward(
 				request, response);
-
 	}
 }
