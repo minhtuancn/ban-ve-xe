@@ -58,7 +58,14 @@
 		});
 
 		// When clicking on the button close or the mask layer the popup closed
-		$('a.close, div#mask').click( function() {
+		$('a.close').click( function() {
+			$('#mask , .login-popup').fadeOut(300, function() {
+				$('#mask').remove();
+			});
+			return false;
+		});
+		$('#mask').click( function() {
+			alert("aa");
 			$('#mask , .login-popup').fadeOut(300, function() {
 				$('#mask').remove();
 			});
