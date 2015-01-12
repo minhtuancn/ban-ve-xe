@@ -57,6 +57,9 @@ public class DangNhapAdmin extends HttpServlet {
 		HttpSession session = request.getSession();
 		NhanVien nv = null;
 		nv = nhanVienDAO.checkLoginAdmin(user, pass);
+		System.out.println(user);
+		System.out.println(pass);
+		System.out.println(nv);
 		if(nv != null){
 			session.setAttribute("admin", nv);
 			response.sendRedirect(pageFoward);

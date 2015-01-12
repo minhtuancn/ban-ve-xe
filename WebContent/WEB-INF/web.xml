@@ -155,16 +155,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>KiemTraChuyen</display-name>
-    <servlet-name>KiemTraChuyen</servlet-name>
-    <servlet-class>controller.admin.themchuyen.KiemTraChuyen</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>KiemTraChuyen</servlet-name>
-    <url-pattern>/KiemTraChuyen</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>DeleteChuyen</display-name>
     <servlet-name>DeleteChuyen</servlet-name>
     <servlet-class>controller.admin.themchuyen.DeleteChuyen</servlet-class>
@@ -478,5 +468,15 @@
   <servlet-mapping>
     <servlet-name>ListAllVe</servlet-name>
     <url-pattern>/ListAllVe</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>KiemTraChuyen</display-name>
+    <servlet-name>KiemTraChuyen</servlet-name>
+    <servlet-class>controller.admin.themchuyen.KiemTraChuyen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KiemTraChuyen</servlet-name>
+    <url-pattern>/KiemTraChuyen</url-pattern>
   </servlet-mapping>
 </web-app>

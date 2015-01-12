@@ -192,4 +192,8 @@ table#ktv {
 /* .center{ */
 /* 	width: 100%; */
 /* 	height: 1600px; */
+/* } */
+#imgleft, #imgright{
+	top: 200px;
+	position: fixed;
 }

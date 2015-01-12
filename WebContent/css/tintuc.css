@@ -17,8 +17,9 @@
 	height: 600px;
 	
 }
-
-fieldset {
+#imgleft, #imgright{
+	top: 200px;
+	position: fixed;
 }
 
 legend {

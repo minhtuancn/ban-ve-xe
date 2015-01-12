@@ -26,6 +26,24 @@
 	$(window).load(function() {
 		checkEr();
 	});
+	
+	$(document).ready(function() {
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 200) {
+				$(".autoScroll").animate({
+					top :10
+				},0, function() {
+					
+				});
+			} else {
+				$(".autoScroll").animate({
+					top : 200-$(this).scrollTop()
+				},0, function() {
+					
+				});
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -43,7 +61,7 @@
 		<input type="hidden" value="<%=mes%>" id="error" />
 	<div id="containers">
 		<div id="left">
-			<img alt="left" src="/BanVeXe/image/cau-doi-l.png" />
+			<img id="imgleft" class="autoScroll"  alt="left" src="/BanVeXe/image/cau-doi-l.png" />
 		</div>
 		<div id="lienhe">
 			<fieldset>
@@ -106,7 +124,7 @@
 			</fieldset>
 		</div>
 		<div id="right">
-			<img alt="right" src="/BanVeXe/image/cau-doi-r.png" />
+			<img id="imgright" class="autoScroll"  alt="right" src="/BanVeXe/image/cau-doi-r.png" />
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>

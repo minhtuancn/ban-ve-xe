@@ -78,7 +78,7 @@
 						<%
 							} else {
 						%>
-						<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png">
+						<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png" >
 						</td>
 						<%
 							}
