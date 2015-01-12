@@ -7,6 +7,27 @@
 <title>Tin tức</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/tintuc.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/until.css">
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 200) {
+			$(".autoScroll").animate({
+				top :10
+			},0, function() {
+				
+			});
+			// 				$("#imgleft").attr("top", offset.top + "px");
+		} else {
+			$(".autoScroll").animate({
+				top : 200 - $(this).scrollTop()
+			},0, function() {
+				
+			});
+		}
+	});
+});
+</script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -17,7 +38,7 @@
 	</div>
 	<div id="tt-container">
 		<div id="left">
-			<img alt="left" src="/BanVeXe/image/cau-doi-l.png" />
+			<img id="imgleft" class="autoScroll"  alt="left" src="/BanVeXe/image/cau-doi-l.png" />
 		</div>
 		<div id="center">
 			<fieldset>
@@ -48,7 +69,7 @@
 			</fieldset>
 		</div>
 		<div id="right">
-			<img alt="right" src="/BanVeXe/image/cau-doi-r.png" />
+			<img id="imgright" class="autoScroll"  alt="right" src="/BanVeXe/image/cau-doi-r.png" />
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>

@@ -102,7 +102,24 @@
 
 			}
 		});
-	}
+	};
+	$(document).ready(function() {
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 200) {
+				$(".autoScroll").animate({
+					top :10
+				},0, function() {
+					
+				});
+			} else {
+				$(".autoScroll").animate({
+					top : 200 - $(this).scrollTop()
+				},0, function() {
+					
+				});
+			}
+		});
+	});
 </script>
 </head>
 
@@ -114,15 +131,14 @@
 			Kiểm tra vé
 			<marquee behavior="alternate" width="10%"> << </marquee>
 		</div>
-				<div class="center">
-					<div id="left">
-						<img alt="left" src="/BanVeXe/image/cau-doi-l.png" />
-					</div>
-					<div id="bodys">
-		<div class="kiemtrave kt-ve">
-			<div class="kt-ve pd mg" id="ktve">
-
-
+		<div class="center">
+			<div id="left">
+				<img id="imgleft" class="autoScroll" alt="left"
+					src="/BanVeXe/image/cau-doi-l.png" />
+			</div>
+			<div id="bodys">
+				<div class="kiemtrave kt-ve">
+					<div class="kt-ve pd mg" id="ktve">
 						<%
 							KhachHang kh = (KhachHang) session.getAttribute("khachHang");
 							String user = "";
@@ -269,13 +285,14 @@
 
 							</fieldset>
 						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-					</div>
-					<div id="right">
-						<img alt="right" src="/BanVeXe/image/cau-doi-r.png" />
-					</div>
+		<div id="right">
+			<img id="imgright" class="autoScroll" alt="right"
+				src="/BanVeXe/image/cau-doi-r.png" />
+		</div>
 	</div>
 
 

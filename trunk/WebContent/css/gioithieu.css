@@ -31,3 +31,7 @@ p{
 	width: 11.5%;
 	height: 760px;
 }
+#imgleft, #imgright{
+	top: 200px;
+	position: fixed;
+}

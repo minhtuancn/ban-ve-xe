@@ -28,7 +28,7 @@ public class NhanVienDAOImpl implements NhanVienDAO{
 	public NhanVien checkLoginAdmin(String name, String pass) {
 		Connection con = ConnectionPool.getInstance().getConnection();
 		PreparedStatement pre = null;
-		String sql = "SELECT nhanvien.idnhanvien,nhanvien.tennhanvien,nhanvien.idtaikhoan FROM nhanvien INNER JOIN taikhoan ON nhanvien.idnhanvien = taikhoan.idtaikhoan WHERE tentk =? AND matkhau=?";
+		String sql = "SELECT nhanvien.idnhanvien,nhanvien.tennhanvien,nhanvien.idtaikhoan FROM nhanvien INNER JOIN taikhoan ON nhanvien.idtaikhoan = taikhoan.idtaikhoan WHERE taikhoan.tentk =? AND taikhoan.matkhau=?";
 		String sqlQuyen = "Select quyen from quyen where idnhanvien = ?";
 		ResultSet res;
 		NhanVien nv = null;

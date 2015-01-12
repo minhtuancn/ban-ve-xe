@@ -13,6 +13,24 @@
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/sweet-alert.css">
 <script type="text/javascript">
+$(document).ready(function() {
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 200) {
+			$(".autoScroll").animate({
+				top :10
+			},0, function() {
+				
+			});
+		} else {
+			$(".autoScroll").animate({
+				top : 200 - $(this).scrollTop()
+			},0, function() {
+				
+			});
+		}
+	});
+});
+
 	function checkEr() {
 		if ($("#error").val().length != 0) {
 			al($("#error").val(), "error");
@@ -38,7 +56,7 @@
 			<marquee behavior="alternate" width="10%"> << </marquee>
 		</div>
 					<div id="left">
-						<img alt="left" src="/BanVeXe/image/cau-doi-l.png" />
+						<img id="imgleft" class="autoScroll"  alt="left" src="/BanVeXe/image/cau-doi-l.png" />
 					</div>
 					<div id="bodys">
 		<div id="center">
@@ -64,7 +82,7 @@
 		</div>
 		</div>
 					<div id="right">
-						<img alt="right" src="/BanVeXe/image/cau-doi-r.png" />
+						<img id="imgright" class="autoScroll"  alt="right" src="/BanVeXe/image/cau-doi-r.png" />
 					</div>
 	</div>
 	<%@ include file="footer.jsp"%>

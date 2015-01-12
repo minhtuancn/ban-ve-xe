@@ -8,7 +8,11 @@
 <title>Đăng nhập</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/DangNhap.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
-
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
+<script src="/BanVeXe/js/jquery.md5.js"></script>
+<script src="/BanVeXe/js/sweet-alert.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/sweet-alert.css">
 <script type="text/javascript">
 	function checkEr() {
 		if ($("#error").val().length != 0) {
@@ -57,8 +61,9 @@
 
 				<div class="row">
 					<label for="password">Mật khẩu: <span class="req">*</span></label>
-					<input type="password" name="password" id="password" class="txt"
-						tabindex="2" placeholder="********" required />
+					<input type="password" id="password" class="txt"
+						tabindex="2" placeholder="********" required onkeyup="convertMD5()"/>
+						 <input type="hidden" name="password"  id="md5password" />
 				</div>
 				<div class="center">
 					<input type="submit" id="submitbtn" name="submitbtn" tabindex="5"

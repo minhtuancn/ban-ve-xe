@@ -66,16 +66,17 @@
 		//Check to see if the window is top if not then display button
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 560) {
-				var y = $(this).scrollTop();
-				var offset = $("#imgleft").offset();
-				offset.top = y;
 				$(".autoScroll").animate({
-					top : offset.top
+					top :10
+				}, 0, function() {
+					
 				});
 				// 				$("#imgleft").attr("top", offset.top + "px");
 			} else {
 				$(".autoScroll").animate({
 					top : 560 - $(this).scrollTop()
+				}, 0, function() {
+					
 				});
 			}
 		});
@@ -331,7 +332,7 @@
 
 				</div>
 				<div id="right">
-					<img class="autoScroll imgright" alt="right"
+					<img id="imgright" class="autoScroll " alt="right"
 						src="/BanVeXe/image/cau-doi-r.png" />
 				</div>
 			</div>

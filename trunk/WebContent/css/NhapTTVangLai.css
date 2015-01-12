@@ -126,3 +126,7 @@
 	width: 11.5%;
 	height: 600px;
 }
+#imgleft, #imgright{
+	top: 200px;
+	position: fixed;
+}

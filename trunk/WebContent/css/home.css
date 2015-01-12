@@ -363,8 +363,7 @@ legend {
 	height: 600px;
 	z-index: 100;
 }
-#imgleft{
+#imgleft, #imgright{
 	top: 560px;
 	position: fixed;
-	transition: top 0.5s;
 }
