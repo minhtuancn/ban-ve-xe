@@ -1,12 +1,33 @@
 #gt-container {
 	width: 1336px;
-	height: 720px;
+	height: 800px;
 }
 
 #gt .note {
-	font-size: 1.2em;
+	font-size: 1.4em;
+	font-family: Tahoma;
 	line-height: 1.33em;
 	font-weight: normal;
+	font-style: italic;
 	padding: 2px 7px;
 	margin-bottom: 10px;
+	color: blue;
+}
+
+p{
+	font-family: Arial;
+}
+
+#bodys {
+	width: 77%;
+	height: auto;
+	float: left;
+	clear: right;
+	margin-top: 20px;
+}
+#left, #right {
+	float: left;
+	clear: right;
+	width: 11.5%;
+	height: 760px;
 }

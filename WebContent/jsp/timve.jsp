@@ -8,6 +8,7 @@
 <script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/NhapTTVangLai.css">
+<link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script src="/BanVeXe/js/sweet-alert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/sweet-alert.css">
@@ -31,6 +32,15 @@
 <body>
 	<%@ include file="header.jsp"%>
 	<div id="contain">
+	<div class="bg title">
+			<marquee behavior="alternate" width="10%">>></marquee>
+			Tìm vé
+			<marquee behavior="alternate" width="10%"> << </marquee>
+		</div>
+					<div id="left">
+						<img alt="left" src="/BanVeXe/image/cau-doi-l.png" />
+					</div>
+					<div id="bodys">
 		<div id="center">
 			<%
 				String mes = "";
@@ -52,6 +62,10 @@
 				</div>
 			</form>
 		</div>
+		</div>
+					<div id="right">
+						<img alt="right" src="/BanVeXe/image/cau-doi-r.png" />
+					</div>
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>
