@@ -51,12 +51,14 @@ public class DangNhap extends HttpServlet {
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String pageForward = DuongDan.TRANG_CHU;
+		String mes = "";
+		
+		if( request.getSession().getAttribute("khachHang")==null){
 		if (request.getParameter("pageFoward") != null)
 			pageForward = request.getParameter("pageFoward");
 		String user = request.getParameter("user");
 		String password = request.getParameter("password");
 		//
-		String mes = "";
 		if(user.trim().length() == 0){
 			mes = "Bạn chưa nhập tên tài khoản!";
 			request.setAttribute("mes", mes);
@@ -94,6 +96,12 @@ public class DangNhap extends HttpServlet {
 			session.setAttribute("maOTP", n+"");
 			SendMessageUtil.getInstance().sendMess(kh.getSdt(),"Ma OTP cua quy khach la: "+ n );
 			response.sendRedirect(DuongDan.KICH_HOAT_TAI_KHOAN);
+		}
+		}else{
+			mes = "Bạn đã đăng nhập!";
+			request.setAttribute("mes", mes);
+			request.getRequestDispatcher("KiemTraVe").forward(request, response);
+			return;
 		}
 	}
 
