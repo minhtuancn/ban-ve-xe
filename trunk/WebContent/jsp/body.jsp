@@ -62,6 +62,28 @@
 			speed : 1800,
 			pause : 3000,
 		});
+		//scroll
+		//Check to see if the window is top if not then display button
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 560) {
+				var y = $(this).scrollTop();
+				var offset = $("#imgleft").offset();
+				offset.top = y;
+				$(".autoScroll").animate({
+					top : offset.top
+				});
+				// 				$("#imgleft").attr("top", offset.top + "px");
+			} else {
+				$(".autoScroll").animate({
+					top : 560 - $(this).scrollTop()
+				});
+			}
+		});
+		//Click event to scroll to top
+		// 			$('.scrollToTop').click(function(){
+		// 				$('html, body').animate({scrollTop : 0},800);
+		// 				return false;
+		// 			});
 
 	});
 	function checkEr() {
@@ -109,7 +131,7 @@
 
 </head>
 <body>
-		<%@ include file="header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<div id="container-body">
 		<section id="section-2">
 			<div id="slider" style="width: 80%; height: 300px;">
@@ -133,10 +155,10 @@
 			<article id="article-body">
 				<%
 					String mes = "";
-																																												if((String) request.getAttribute("mes")!= null)
-																																											mes = (String) request.getAttribute("mes");
-																																												SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-																																												Date now = new Date();
+																																																if((String) request.getAttribute("mes")!= null)
+																																															mes = (String) request.getAttribute("mes");
+																																																SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+																																																Date now = new Date();
 				%>
 				<input type="hidden" value="<%=mes%>" id="error" />
 				<form action="/BanVeXe/TimTuyen" class="login-form bg"
@@ -150,13 +172,13 @@
 						</tr>
 						<%
 							List<DiaDiem> listmb = new ArrayList();
-												if(session.getAttribute("listDiaDiem") != null){
-												listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
-													}
-							List<Tuyen> tuyen = new ArrayList();
-							if(session.getAttribute("listTuyen") != null){
-								tuyen = (List<Tuyen>) session.getAttribute("listTuyen");
-							}
+																				if(session.getAttribute("listDiaDiem") != null){
+																				listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
+																					}
+															List<Tuyen> tuyen = new ArrayList();
+															if(session.getAttribute("listTuyen") != null){
+																tuyen = (List<Tuyen>) session.getAttribute("listTuyen");
+															}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
@@ -165,8 +187,8 @@
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
-		int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
-		int n = 0; for(int i=0; i<sl;){
+																		int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
+																		int n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
 										<div id="noidi-den"></div>
@@ -268,7 +290,8 @@
 			<!-- 		</div>  -->
 			<div class="center">
 				<div id="left">
-					<img alt="left" src="/BanVeXe/image/cau-doi-l.png" />
+					<img id="imgleft" class="autoScroll" alt="left"
+						src="/BanVeXe/image/cau-doi-l.png" />
 				</div>
 				<div id="bodys">
 					<div>
@@ -276,18 +299,24 @@
 							<fieldset>
 								<legend>Các vé đưọc dặt nhiều trong ngày</legend>
 								<div id="vexe-nhieu">
-									<% for(int i = 0; i < 0; i++){ %>
+									<%
+										for (int i = 0; i < 0; i++) {
+									%>
 									<div id="nhieu-01">
 										<a
-											href="<%=DuongDan.TIM_TUYEN+"?idTuyen="+tuyen.get(i).getIdTuyen() %>"
+											href="<%=DuongDan.TIM_TUYEN + "?idTuyen="
+						+ tuyen.get(i).getIdTuyen()%>"
 											class="a-01"><p>
 												<span id="tuyen"><marquee direction="left"
-														width="100%" behavior="alternate"><%= tuyen.get(i).getTuyenXe() %></marquee></span><br>
-												<span id="gia"><%= tuyen.get(i).getDanhSachChuyen().get(0).getGia() %></span><br>
-												<span id="gio"><%= tuyen.get(i).getDanhSachChuyen().get(0).getGioKhoiHanh() %></span>
+														width="100%" behavior="alternate"><%=tuyen.get(i).getTuyenXe()%></marquee></span><br>
+												<span id="gia"><%=tuyen.get(i).getDanhSachChuyen().get(0).getGia()%></span><br>
+												<span id="gio"><%=tuyen.get(i).getDanhSachChuyen().get(0)
+						.getGioKhoiHanh()%></span>
 											</p></a>
 									</div>
-									<% } %>
+									<%
+										}
+									%>
 								</div>
 							</fieldset>
 
@@ -302,12 +331,13 @@
 
 				</div>
 				<div id="right">
-					<img alt="right" src="/BanVeXe/image/cau-doi-r.png" />
+					<img class="autoScroll imgright" alt="right"
+						src="/BanVeXe/image/cau-doi-r.png" />
 				</div>
 			</div>
 		</section>
-		
+
 	</div>
-		<%@ include file="footer.jsp"%>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

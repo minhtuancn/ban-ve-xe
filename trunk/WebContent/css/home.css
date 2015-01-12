@@ -361,4 +361,10 @@ legend {
 	clear: none;
 	width: 11.5%;
 	height: 600px;
+	z-index: 100;
+}
+#imgleft{
+	top: 560px;
+	position: fixed;
+	transition: top 0.5s;
 }
