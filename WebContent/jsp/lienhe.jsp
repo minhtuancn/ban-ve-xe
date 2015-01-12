@@ -12,38 +12,42 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/lienhe.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <script type="text/javascript">
-function checkEr() {
-	if ($("#error").val().length != 0) {
-		al($("#error").val(), "success");
+	function checkEr() {
+		if ($("#error").val().length != 0) {
+			al($("#error").val(), "success");
+		}
+	};
+	function al(mes, type) {
+		swal({
+			title : mes,
+			type : type
+		});
 	}
-};
-function al(mes, type) {
-	swal({
-		title : mes ,
-		type : type
+	$(window).load(function() {
+		checkEr();
 	});
-}
-$(window).load(function() {
-    checkEr();
-  });
-  
 </script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div id="container">
 		<div class="bg title">
 			<marquee behavior="alternate" width="10%">>></marquee>
 			Liên hệ
 			<marquee behavior="alternate" width="10%"> << </marquee>
 		</div>
 		<%
-					String mes = "";
-						if((String) request.getAttribute("mes")!= null)
-					mes = (String) request.getAttribute("mes");
-				%>
-				<input type="hidden" value="<%=mes%>" id="error" />
+			String mes = "";
+			if ((String) request.getAttribute("mes") != null)
+				mes = (String) request.getAttribute("mes");
+		%>
+		<input type="hidden" value="<%=mes%>" id="error" />
+	<div id="containers">
+		<div id="left">
+			<img alt="left" src="/BanVeXe/image/cau-doi-l.png" />
+		</div>
 		<div id="lienhe">
+			<fieldset>
+				<legend>Liên hệ</legend>
 			<p class="note">
 				<img alt="icon" src="/BanVeXe/image/con_address.png">Văn phòng
 				chính: VP Cẩm Tú, khu phố 6, phường Linh Trung, Q.Thủ Đức, TP. Hồ
@@ -67,7 +71,8 @@ $(window).load(function() {
 				tôi, chúng tôi sẽ trả lời trong thời gian sớm nhất. Xin cảm ơn!
 			</p>
 
-			<form id="contactform" name="contact" method="post" action=<%=DuongDan.LIEN_HE_SV %>>
+			<form id="contactform" name="contact" method="post"
+				action=<%=DuongDan.LIEN_HE_SV%>>
 				<div class="row">
 					<label for="name">Tên bạn:</label> <input type="text" name="name"
 						id="name" class="txt" tabindex="1">
@@ -90,16 +95,19 @@ $(window).load(function() {
 						required></textarea>
 				</div>
 				<div class="cb">
-					<input type="checkbox" name="checkbox" >Gởi một
-					bản copy thông điệp này đến hộp email của bạn
+					<input type="checkbox" name="checkbox">Gởi một bản copy
+					thông điệp này đến hộp email của bạn
 				</div>
 				<div>
 					<input type="submit" id="submitbtn" name="submitbtn" tabindex="5"
-						value="Gởi" >
+						value="Gởi">
 				</div>
 			</form>
+			</fieldset>
 		</div>
-
+		<div id="right">
+			<img alt="right" src="/BanVeXe/image/cau-doi-r.png" />
+		</div>
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>
