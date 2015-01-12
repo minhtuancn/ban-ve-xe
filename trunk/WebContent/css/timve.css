@@ -54,3 +54,17 @@ table#ktv {
 	display: block;
 	cursor: pointer;
 }
+
+#bodys {
+	width: 77%;
+	height: auto;
+	float: left;
+	clear: right;
+/* 	margin-top: 30px; */
+}
+#left, #right {
+	float: left;
+	clear: right;
+	width: 11.5%;
+	height: 600px;
+}

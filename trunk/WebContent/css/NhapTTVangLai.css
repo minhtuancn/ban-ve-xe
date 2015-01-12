@@ -1,5 +1,5 @@
 #contain {
-	width: 1366px;
+	width: 1333px;
 	height: 700px;
 }
 #center{
@@ -7,7 +7,7 @@
 	height: auto;
 	background: #fff;
 	padding: 10px;
-	margin: 38px 350px;
+	margin: 38px 280px;
 	float: left;
 	clear: rght;
 	border-radius: 10px;
@@ -111,4 +111,18 @@
 #a-otp:hover{
 	color: blue;
 	cursor:pointer;
+}
+
+#bodys {
+	width: 77%;
+	height: auto;
+	float: left;
+	clear: right;
+/* 	margin-top: 30px; */
+}
+#left, #right {
+	float: left;
+	clear: right;
+	width: 11.5%;
+	height: 600px;
 }

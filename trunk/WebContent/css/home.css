@@ -353,7 +353,7 @@ legend {
 	width: 77%;
 	height: auto;
 	float: left;
-	clear:none;
+/* 	clear:none; */
 	margin-top: 30px;
 }
 #left, #right {
