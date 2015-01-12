@@ -109,9 +109,9 @@
 
 </head>
 <body>
-	<div id="container">
 		<%@ include file="header.jsp"%>
-		<section>
+	<div id="container-body">
+		<section id="section-2">
 			<div id="slider" style="width: 80%; height: 300px;">
 				<ul>
 					<li><a href="#"><img src="/BanVeXe/image/slider/06.jpg"
@@ -130,7 +130,7 @@
 				</ul>
 			</div>
 
-			<article>
+			<article id="article-body">
 				<%
 					String mes = "";
 																																												if((String) request.getAttribute("mes")!= null)
@@ -266,37 +266,48 @@
 			<!-- 				src="http://113.160.50.25/banner/top/banner/1395905620_quan-mui-auto11.gif" -->
 			<!-- 				border="1"></a> -->
 			<!-- 		</div>  -->
+			<div class="center">
+				<div id="left">
+					<img alt="left" src="/BanVeXe/image/cau-doi-l.png" />
+				</div>
+				<div id="bodys">
+					<div>
+						<div>
+							<fieldset>
+								<legend>Các vé đưọc dặt nhiều trong ngày</legend>
+								<div id="vexe-nhieu">
+									<% for(int i = 0; i < 0; i++){ %>
+									<div id="nhieu-01">
+										<a
+											href="<%=DuongDan.TIM_TUYEN+"?idTuyen="+tuyen.get(i).getIdTuyen() %>"
+											class="a-01"><p>
+												<span id="tuyen"><marquee direction="left"
+														width="100%" behavior="alternate"><%= tuyen.get(i).getTuyenXe() %></marquee></span><br>
+												<span id="gia"><%= tuyen.get(i).getDanhSachChuyen().get(0).getGia() %></span><br>
+												<span id="gio"><%= tuyen.get(i).getDanhSachChuyen().get(0).getGioKhoiHanh() %></span>
+											</p></a>
+									</div>
+									<% } %>
+								</div>
+							</fieldset>
 
-<div id="conten">
-
-			<div>
-				<div>
-					<fieldset>
-						<legend>Các vé đưọc dặt nhiều trong ngày</legend>
-						<div id="vexe-nhieu">
-						<% for(int i = 0; i < 0; i++){ %>
-							<div id="nhieu-01">
-								<a href="<%=DuongDan.TIM_TUYEN+"?idTuyen="+tuyen.get(i).getIdTuyen() %>" class="a-01"><p>
-										<span id="tuyen"><marquee direction="left" width="100%" behavior="alternate"><%= tuyen.get(i).getTuyenXe() %></marquee></span><br> <span
-											id="gia"><%= tuyen.get(i).getDanhSachChuyen().get(0).getGia() %></span><br> <span id="gio"><%= tuyen.get(i).getDanhSachChuyen().get(0).getGioKhoiHanh() %></span>
-									</p></a>
-							</div>
-							<% } %>
 						</div>
+						<div></div>
+					</div>
+					<fieldset>
+						<legend>Hướng dẫn quy trình đặt vé</legend>
+						<img alt="huong dan" src="/BanVeXe/image/banvexe.png"
+							style="width: 100%; height: 100%;">
 					</fieldset>
 
 				</div>
-				<div></div>
-			</div>
-			<fieldset>
-						<legend>Hướng dẫn quy trình đặt vé</legend>
-			<img alt="huong dan" src="/BanVeXe/image/banvexe.png"
-				style="width: 100%; height: auto;">
-				</fieldset>
+				<div id="right">
+					<img alt="right" src="/BanVeXe/image/cau-doi-r.png" />
 				</div>
+			</div>
 		</section>
 		
-		<%@ include file="footer.jsp"%>
 	</div>
+		<%@ include file="footer.jsp"%>
 </body>
 </html>
