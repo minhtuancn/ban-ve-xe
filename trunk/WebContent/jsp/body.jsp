@@ -267,6 +267,7 @@
 			<!-- 				border="1"></a> -->
 			<!-- 		</div>  -->
 
+<div id="conten">
 
 			<div>
 				<div>
@@ -292,7 +293,9 @@
 			<img alt="huong dan" src="/BanVeXe/image/banvexe.png"
 				style="width: 100%; height: auto;">
 				</fieldset>
+				</div>
 		</section>
+		
 		<%@ include file="footer.jsp"%>
 	</div>
 </body>

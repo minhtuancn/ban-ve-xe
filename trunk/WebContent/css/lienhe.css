@@ -1,5 +1,6 @@
-#container {
+#containers {
 	width: 1336px;
+	height: 800px;
 }
 
 /* #contain { */
@@ -16,6 +17,22 @@
 	font-weight: normal;
 	padding: 2px 7px;
 	margin-bottom: 10px;
+}
+#lienhe {
+	width: 77%;
+	height: 800px;
+	float: left;
+	clear:none;
+	margin-top: 30px;
+}
+fieldset {
+}
+
+legend {
+	font-family: Tahoma;
+	font-weight: bold;
+	font-size: 20px;
+	color: red;
 }
 
 form .row {
@@ -131,4 +148,12 @@ form .txt:HOVER,form .txtarea:HOVER {
 	font-size: 1.2em;
 	color: #0a528f;
 	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+#left, #right {
+	float: left;
+	clear:none;
+	width: 11.5%;
+	height: 600px;
+	
 }
