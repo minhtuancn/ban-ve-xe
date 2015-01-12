@@ -14,7 +14,7 @@
 
 /* You can customize to your needs  */
 .login-popup {
-/*     display: none; */
+    display: none;
     background: white;
     padding: 10px;
     border: 2px solid #ddd;
