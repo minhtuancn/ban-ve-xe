@@ -67,8 +67,12 @@ public class KichHoatTaiKhoan extends HttpServlet {
 			String mes = null;
 			if (maOTPCheck.equalsIgnoreCase(maOTP)) {
 				if (taiKhoanDAO.kichHoatTaiKhoan(((KhachHangThuongXuyen) kh)
-						.getTaiKhoan().getIdTaiKhoan()))
-					response.sendRedirect(DuongDan.KIEM_TRA_VE_SV);
+						.getTaiKhoan().getIdTaiKhoan())){
+//					response.sendRedirect(DuongDan.KIEM_TRA_VE_SV);
+					request.setAttribute("mesSuccess", "Kích hoạt tài khoản thành công");
+					request.getRequestDispatcher("KiemTraVe")
+					.forward(request, response);
+				}
 				else
 					response.sendRedirect(DuongDan.TRANG_CHU);
 			} else {
