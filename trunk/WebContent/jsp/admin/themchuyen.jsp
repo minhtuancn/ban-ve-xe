@@ -42,7 +42,17 @@
 <script src="/BanVeXe/js/scripts/jquery.validate.js"
 	type="text/javascript"></script>
 <script src="/BanVeXe/js/scripts/jquery-ui.js" type="text/javascript"></script>
+<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
+
+$(window).load(function() {
+	setMenu();
+	
+});
+function setMenu() {
+	$("#" + $("#menuSelect").val()).addClass("select");
+}
+
 // 	$(document).ready(function() {
 // 		var table = $("#myDataTable").dataTable({
 // 			"sPaginationType" : "full_numbers",
@@ -60,6 +70,7 @@
 </script>
 </head>
 <body id="dt_example">
+	<input type="hidden" value="themchuyen" id="menuSelect" />
 	<fieldset>
 		<legend>Danh sách chuyến</legend>
 		<div id="ngay">
