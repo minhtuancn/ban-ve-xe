@@ -314,7 +314,7 @@
 								<legend>Các vé được đặt nhiều trong ngày</legend>
 								<div id="vexe-nhieu">
 									<%
-										for (int i = 0; i < 4; i++) {
+										for (int i = 0; i < 0; i++) {
 									%>
 									<div id="nhieu-01">
 										<a

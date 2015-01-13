@@ -19,7 +19,7 @@ import DAO.KhachHangDAOIml;
 /**
  * Servlet implementation class ListKhachHang
  */
-@WebServlet ("/listkhachhang")
+@WebServlet("/listkhachhang")
 public class ListKhachHang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -51,18 +51,19 @@ public class ListKhachHang extends HttpServlet {
 
 	protected void doAction(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
 		NhanVien nv = (NhanVien) session.getAttribute("admin");
-		if(nv!=null){
-		KhachHangDAO kh = new KhachHangDAOIml();
-		List<KhachHang> listKH = kh.getAllKhachHang();
-		request.setAttribute("listKH", listKH);
-		request.getRequestDispatcher(DuongDan.THEM_KHACHHANG_SVL).forward(request, response);
-		}
-		else{
+		if (nv != null) {
+			KhachHangDAO kh = new KhachHangDAOIml();
+			List<KhachHang> listKH = kh.getAllKhachHang();
+			request.setAttribute("listKH", listKH);
+			request.getRequestDispatcher(DuongDan.THEM_KHACHHANG_SVL).forward(
+					request, response);
+		} else {
 			request.setAttribute("pageFoward", DuongDan.LIST_KHACH_HANG_SV);
-			request.getRequestDispatcher(DuongDan.DANG_NHAP_ADMIN_SVL).forward(request, response);
+			request.getRequestDispatcher(DuongDan.DANG_NHAP_ADMIN_SVL).forward(
+					request, response);
 		}
 	}
 

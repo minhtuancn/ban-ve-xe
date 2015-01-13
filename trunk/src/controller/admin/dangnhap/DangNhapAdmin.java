@@ -18,7 +18,7 @@ import DAO.NhanVienDAO;
 /**
  * Servlet implementation class DangNhapAdmin
  */
-@WebServlet (urlPatterns = {"/admin"})
+@WebServlet (urlPatterns = {"/dangnhapadmin"})
 public class DangNhapAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private NhanVienDAO nhanVienDAO;   
@@ -64,6 +64,7 @@ public class DangNhapAdmin extends HttpServlet {
 		System.out.println(nv);
 		if(nv != null){
 			session.setAttribute("admin", nv);
+			System.out.println();
 			response.sendRedirect(pageFoward);
 		}else{
 			String mes = "Thông tin đăng nhập không đúng!!";

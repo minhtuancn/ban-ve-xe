@@ -18,7 +18,6 @@ import model.KhachHang;
 @WebServlet ("/themghe")
 public class ThemGhe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -75,7 +74,7 @@ public class ThemGhe extends HttpServlet {
 		
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().println(mes);
+		response.getWriter().print(mes);
 		response.getWriter().flush();
 	}
 
