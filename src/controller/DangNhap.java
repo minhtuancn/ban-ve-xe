@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import factory.dao.FactoryDAOImp;
+import factory.dao.FactoryDao;
 import util.DuongDan;
 import util.SendMessageUtil;
 import DAO.KhachHangDAO;
@@ -23,6 +25,7 @@ import model.KhachHangThuongXuyen;
 @WebServlet ("/dangnhap")
 public class DangNhap extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private KhachHangDAO khDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -31,7 +34,11 @@ public class DangNhap extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		khDao = (KhachHangDAO) new FactoryDAOImp().createDAO(FactoryDao.KHACH_HANG_DAO);
+	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -73,12 +80,7 @@ public class DangNhap extends HttpServlet {
 			request.getRequestDispatcher(DuongDan.DANG_NHAP_SVL).forward(request, response);
 			return;
 		}
-//		else
-//			if(user.trim().length() == 0)
-//				mes=""
 		
-		
-		KhachHangDAO khDao = new KhachHangDAOIml();
 		KhachHang kh = khDao.checkLogIn(user, password);
 		if (kh != null) {
 			HttpSession session = request.getSession();
