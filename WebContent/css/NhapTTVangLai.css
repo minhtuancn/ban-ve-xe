@@ -7,7 +7,7 @@
 	height: auto;
 	background: #fff;
 	padding: 10px;
-	margin: 38px 280px;
+	margin: 38px 360px;
 	float: left;
 	clear: rght;
 	border-radius: 10px;
@@ -58,7 +58,7 @@
 
 #divtrai {
 	margin-bottom: 20px;
-	margin-left: 50px;
+	margin-left: 30px;
 	width: auto;
 }
 #divphai {
@@ -88,6 +88,7 @@
 	padding: 8px 9px;
 	padding-right: 30px;
 	margin-top:15px;
+	left : -30px;
 	width: 340px;
 	font-family: 'Oxygen', sans-serif;
 	font-size: 12px;
