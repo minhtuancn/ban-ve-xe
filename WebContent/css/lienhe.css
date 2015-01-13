@@ -11,16 +11,15 @@
 /* 	color: white; */
 /* 	margin-top: 10px; */
 /* } */
-#lienhe .note {
+#lienhes .note {
 	font-size: 1.2em;
 	line-height: 1.33em;
 	font-weight: normal;
 	padding: 2px 7px;
 	margin-bottom: 10px;
 }
-#lienhe {
+#lienhes {
 	width: 77%;
-	height: 600px;
 	float: left;
 	clear:none;
 	margin-top: 30px;
@@ -140,7 +139,7 @@ form .txt:HOVER,form .txtarea:HOVER {
 		rgba(0, 0, 0, 0.4) inset;
 }
 
-#lienhe .cb {
+#lienhes .cb {
 	font-family: 'Oxygen', Arial, sans-serif;
 	font-size: 1.2em;
 	color: #0a528f;

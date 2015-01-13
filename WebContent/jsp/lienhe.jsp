@@ -25,7 +25,12 @@
 	}
 	$(window).load(function() {
 		checkEr();
+		setMenu();
+		
 	});
+	function setMenu() {
+		$("#" + $("#menuSelect").val()).addClass("select");
+	}
 	
 	$(document).ready(function() {
 		$(window).scroll(function() {
@@ -47,6 +52,7 @@
 </script>
 </head>
 <body>
+<input type="hidden" value="lienhe" id="menuSelect" />
 	<%@ include file="header.jsp"%>
 		<div class="bg title">
 			<marquee behavior="alternate" width="10%">>></marquee>
@@ -63,7 +69,7 @@
 		<div id="left">
 			<img id="imgleft" class="autoScroll"  alt="left" src="/BanVeXe/image/cau-doi-l.png" />
 		</div>
-		<div id="lienhe">
+		<div id="lienhes">
 			<fieldset>
 				<legend>Liên hệ</legend>
 			<p class="note">
