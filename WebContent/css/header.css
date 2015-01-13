@@ -106,3 +106,19 @@ nav ul a:HOVER {
 	        8px 8px 1px rgba(0,0,0,0.5),
 	        0px 0px 7px rgba(0,0,0,.2);
 }
+nav ul a.select{
+	color: orange;
+	box-shadow: 10px;
+		  text-shadow:
+	        0px 0px 0 rgb(-28,153,-22),
+	        1px 1px 0 rgb(-55,126,-49),
+	        2px 2px 0 rgb(-83,98,-77),
+	        3px 3px 0 rgb(-111,70,-105),
+	        4px 4px 0 rgb(-139,42,-133),
+	        5px 5px 0 rgb(-166,15,-160),
+	        6px 6px 0 rgb(-194,-13,-188),
+	        7px 7px 0 rgb(-222,-41,-216),
+	        8px 8px 7px rgba(0,0,0,0.75),
+	        8px 8px 1px rgba(0,0,0,0.5),
+	        0px 0px 7px rgba(0,0,0,.2);
+}

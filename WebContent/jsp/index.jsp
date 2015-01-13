@@ -1,3 +1,5 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
 <%@page import="model.Tuyen"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -67,16 +69,16 @@
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 560) {
 				$(".autoScroll").animate({
-					top :10
+					top : 10
 				}, 0, function() {
-					
+
 				});
 				// 				$("#imgleft").attr("top", offset.top + "px");
 			} else {
 				$(".autoScroll").animate({
 					top : 560 - $(this).scrollTop()
 				}, 0, function() {
-					
+
 				});
 			}
 		});
@@ -126,13 +128,18 @@
 	}
 	$(window).load(function() {
 		checkEr();
+		setMenu();
 	});
+	function setMenu() {
+		$("#"+$("#menuSelect").val()).addClass("select");
+	}
 </script>
 
 
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+	<input type="hidden" value="trangchu" id="menuSelect"/>
 	<div id="container-body">
 		<section id="section-2">
 			<div id="slider" style="width: 80%; height: 300px;">
@@ -156,13 +163,19 @@
 			<article id="article-body">
 				<%
 					String mes = "";
-																																																if((String) request.getAttribute("mes")!= null)
-																																															mes = (String) request.getAttribute("mes");
-																																																SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-																																																Date now = new Date();
+																																																		if((String) request.getAttribute("mes")!= null)
+																																																	mes = (String) request.getAttribute("mes");
+																																																		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+																																																		Date now = new Date();
+				%>
+				<%
+					Locale here = request.getLocale();
+						NumberFormat cf = NumberFormat.getCurrencyInstance(here);
+						cf.setMaximumFractionDigits(0);
+						cf.setMinimumFractionDigits(0);
 				%>
 				<input type="hidden" value="<%=mes%>" id="error" />
-				<form action="/BanVeXe/TimTuyen" class="login-form bg"
+				<form action="<%=DuongDan.TIM_TUYEN_SV%>" class="login-form bg"
 					id="formtimve">
 					<input type="hidden" id="idnoidi" name="idnoidi" value="20" /> <input
 						type="hidden" id="idnoiden" name="idnoiden" value="21" />
@@ -173,13 +186,13 @@
 						</tr>
 						<%
 							List<DiaDiem> listmb = new ArrayList();
-																				if(session.getAttribute("listDiaDiem") != null){
-																				listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
-																					}
-															List<Tuyen> tuyen = new ArrayList();
-															if(session.getAttribute("listTuyen") != null){
-																tuyen = (List<Tuyen>) session.getAttribute("listTuyen");
-															}
+																								if(session.getAttribute("listDiaDiem") != null){
+																								listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
+																									}
+																			List<Tuyen> tuyen = new ArrayList();
+																			if(session.getAttribute("listTuyen") != null){
+																				tuyen = (List<Tuyen>) session.getAttribute("listTuyen");
+																			}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
@@ -188,8 +201,8 @@
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
-																		int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
-																		int n = 0; for(int i=0; i<sl;){
+																									int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
+																									int n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
 										<div id="noidi-den"></div>
@@ -298,21 +311,20 @@
 					<div>
 						<div>
 							<fieldset>
-								<legend>Các vé đưọc dặt nhiều trong ngày</legend>
+								<legend>Các vé được đặt nhiều trong ngày</legend>
 								<div id="vexe-nhieu">
 									<%
-										for (int i = 0; i < 0; i++) {
+										for (int i = 0; i < 4; i++) {
 									%>
 									<div id="nhieu-01">
 										<a
-											href="<%=DuongDan.TIM_TUYEN + "?idTuyen="
+											href="<%=DuongDan.TIM_TUYEN_SV + "?idTuyen="
 						+ tuyen.get(i).getIdTuyen()%>"
 											class="a-01"><p>
-												<span id="tuyen"><marquee direction="left"
-														width="100%" behavior="alternate"><%=tuyen.get(i).getTuyenXe()%></marquee></span><br>
-												<span id="gia"><%=tuyen.get(i).getDanhSachChuyen().get(0).getGia()%></span><br>
-												<span id="gio"><%=tuyen.get(i).getDanhSachChuyen().get(0)
-						.getGioKhoiHanh()%></span>
+												<span id="tuyen"><marquee direction="up"
+														width="100%" height="30px" behavior="slide"><%=tuyen.get(i).getTuyenXe()%></marquee></span><br>
+												<span id="gia"><%=cf.format(tuyen.get(i).getDanhSachChuyen().get(0).getGia())%></span><br>
+												<span id="gio"><%=tuyen.get(i).getDanhSachChuyen().get(0).getGioKhoiHanh()%></span>
 											</p></a>
 									</div>
 									<%

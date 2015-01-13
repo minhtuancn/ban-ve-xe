@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,7 @@ import factory.dao.FactoryDao;
 /**
  * Servlet implementation class TimTuyen
  */
+@WebServlet("/timtuyen")
 public class TimTuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	TuyenDAO tuyenDAO;
@@ -146,12 +149,24 @@ public class TimTuyen extends HttpServlet {
 				} else
 					session.setAttribute("tuyenVe", tuyen);
 			}
-		}else{
-			Tuyen tuyen = tuyenDAO.getTuyen(Long.parseLong(idTuyen));
+		} else {
+			// Tuyen tuyen = tuyenDAO.getTuyen();
+			Tuyen tuyen = null;
+			long idTuyeni = Long.parseLong(idTuyen);
+			// System.out.println("TimChuyen " + tuyen);
+			List<Tuyen> list = (List<Tuyen>) session.getAttribute("listTuyen");
+			for (Tuyen t : list) {
+				if (t.getIdTuyen() == idTuyeni) {
+					tuyen = t;
+					break;
+				}
+			}
+			session.setAttribute("laKhuHoi", false);
 			session.setAttribute("tuyenDi", tuyen);
 		}
-		request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request,
-				response);
+//		request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request,
+//				response);
+		response.sendRedirect(DuongDan.TIM_CHUYEN);
 
 	}
 }

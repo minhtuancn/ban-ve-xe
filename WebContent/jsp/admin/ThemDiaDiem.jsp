@@ -148,7 +148,7 @@
 </script>
 </head>
 <body id="dt_example">
-<%@ include file="HeaderAdmin.jsp" %>
+<%@ include file="headeradmin.jsp" %>
 	<div>
 		<fieldset>
 			<legend>Thêm địa điểm</legend>

@@ -16,7 +16,7 @@
 	$(document).ready(function() {
 		$('#refresh').click(function() {
 			var d = new Date();
-			var newSrc = "/BanVeXe/GenerateCaptcha?" + d.getTime();
+			var newSrc = "<%=DuongDan.CAPTCHA%>?" + d.getTime();
 			$('#captcha').attr("src", newSrc);
 		});
 		$(document).ajaxStart(function(){
@@ -83,7 +83,7 @@
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td><img id="captcha" src="/BanVeXe/GenerateCaptcha"
+						<td><img id="captcha" src="<%=DuongDan.CAPTCHA %>"
 							title="Mã xác thực" width="100px" height="30px" />&nbsp;<img
 							id="refresh" title="Tải lại mã xác thực khác"
 							src="/BanVeXe/image/refresh.png" /></td>

@@ -225,6 +225,7 @@ public class TuyenDAOImpl implements TuyenDAO {
 				res3 = pre3.executeQuery();
 				while(res3.next()){
 					tuyen.setNgayDi(new Date(res3.getTimestamp("ngaydi").getTime()));
+					tuyen.setDanhSachChuyen(getChuyenDAO().getAllChuyen(tuyen, tuyen.getNgayDi(), false));
 				}
 				
 			}

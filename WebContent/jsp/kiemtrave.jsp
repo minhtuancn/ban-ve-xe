@@ -44,7 +44,11 @@
 	}
 	$(window).load(function() {
 		checkEr();
+		setMenu();
 	});
+	function setMenu() {
+		$("#"+$("#menuSelect").val()).addClass("select");
+	}
 	function huyVe(mave) {
 		swal({
 			title : "Bạn có chắc chắn hủy vé?",
@@ -125,6 +129,7 @@
 
 <body>
 	<%@ include file="header.jsp"%>
+	<input type="hidden" value="kiemtrathongtin" id="menuSelect" />
 	<div style="width: 100%; height: 1000px;">
 		<div class="bg title">
 			<marquee behavior="alternate" width="10%">>></marquee>
@@ -167,7 +172,7 @@
 						<input type="hidden" value="<%=mes%>" id="error" /> <input
 							type="hidden" value="<%=mesSuccess%>" id="success" />
 
-						<form action="/BanVeXe/SuaThongTin" id="form-thongtin"
+						<form action="<%=DuongDan.SUA_THONG_TIN_SV %>" id="form-thongtin"
 							method="post" accept-charset="UTF-8">
 							<fieldset>
 								<div class="kt-ve">
@@ -211,7 +216,7 @@
 												class="timve tv fl-l" type="button" value="Cập nhật"
 												style="visibility: hidden" onclick="addReadonly()">
 										</div>
-										<a href="/BanVeXe/jsp/DoiMatKhau.jsp">Đổi mật khẩu</a>
+										<a href="<%=DuongDan.DOI_MAT_KHAU%>">Đổi mật khẩu</a>
 
 									</div>
 
@@ -258,8 +263,8 @@
 													<td class="tr1" align="center">
 														<%
 															if (!v.isTrangThaiThanhToan()) {
-														%> <a
-														href="/BanVeXe/ThanhToan?mave=<%=v.getMaVe()%>&pageFoward=KiemTraVe"><%=v.getTrangThaiThanhToan()%></a>
+														%>
+														 <a href=' <%=DuongDan.THANH_TOAN_SV +"?mave=" + v.getMaVe()+ "&pageFoward=kiemtrave"%>'><%=v.getTrangThaiThanhToan()%></a>
 														<%
 															} else {
 														%> <%=v.getTrangThaiThanhToan()%> <%

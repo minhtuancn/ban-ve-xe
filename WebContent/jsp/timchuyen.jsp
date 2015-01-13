@@ -22,7 +22,7 @@
 // 		setDefaut(chuyenDiOrVe);
 		setDefaut('chuyendi');
 		setDefaut('chuyenve');
-		$("#"+chuyen+"-"+id).load("/BanVeXe/TimGhe?chuyen="+chuyen+"&id="+id, function() {
+		$("#"+chuyen+"-"+id).load("<%=DuongDan.TIM_GHE%>?chuyen="+chuyen+"&id="+id, function() {
 		});
 			$("#"+chuyen+"-"+id).slideDown();
 			scroll(scrollid,time);

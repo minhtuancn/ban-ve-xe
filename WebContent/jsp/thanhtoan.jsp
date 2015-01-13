@@ -15,7 +15,7 @@
 	$(document).ready(function() {
 		$('#refresh').click(function() {
 			var d = new Date();
-			var newSrc = "/BanVeXe/GenerateCaptcha?" + d.getTime();
+			var newSrc = "<%=DuongDan.CAPTCHA%>?" + d.getTime();
 			$('#captcha').attr("src", newSrc);
 		});
 		
@@ -84,7 +84,7 @@
 					phục vụ Quý khách nếu thông tin của Quý khách không đúng theo Mục
 					6.2, Điều 6, của Quy Định Vận Chuyển.
 				</p>
-				<form action="/BanVeXe/ThongTin" class="login-form bg">
+				<form action="<%=DuongDan.THONG_TIN_SV %>" class="login-form bg">
 					<table>
 						<tr>
 							<td><span>Thông tin người đi:</span></td>
@@ -117,7 +117,7 @@
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td><img id="captcha" src="/BanVeXe/GenerateCaptcha"
+							<td><img id="captcha" src="<%=DuongDan.CAPTCHA %>"
 								title="Mã xác thực" width="100px" height="30px" />&nbsp;<img
 								id="refresh" src="/BanVeXe/image/refresh.png"
 								title="Tải lại mã xác thực khác" /></td>
@@ -144,10 +144,10 @@
 				<div class="dangnhap">
 					<p class="p-dangnhap">- Bạn chưa đăng nhập, nhấp vào&nbsp;</p>
 					<a
-						href="/BanVeXe/jsp/DangNhap.jsp?pageFoward=<%=DuongDan.THANH_TOAN%>"
+						href="<%=DuongDan.DANG_NHAP%>?pageFoward=<%=DuongDan.THANH_TOAN%>"
 						class="dn">ĐÂY</a><p class="p-dangnhap">để đăng nhập.</p>
 					<p class="p-dangnhap">. Hoặc nhấp vào&nbsp;</p>
-					<a href="/BanVeXe/jsp/DangKi.jsp" class="dn">ĐÂY</a>
+					<a href="<%=DuongDan.DANG_KI_SV%>" class="dn">ĐÂY</a>
 					<p class="p-dangnhap">để đăng kí.</p>
 				</div>
 			</fieldset>

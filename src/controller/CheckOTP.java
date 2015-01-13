@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import util.SendMessageUtil;
 /**
  * Servlet implementation class CheckOTP
  */
+@WebServlet ("/checkotp")
 public class CheckOTP extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

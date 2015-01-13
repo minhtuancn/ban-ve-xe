@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/header.css">
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
-<script type="text/javascript">
-</script>
 </head>
 <body>
 	<div id="container">
@@ -31,12 +29,12 @@
 		</header>
 		<nav>
 			<ul>
-				<li><a href="/BanVeXe/jsp/body.jsp">Trang chủ</a></li>
-				<li><a href="/BanVeXe/jsp/gioithieu.jsp">Giới thiệu</a></li>
-				<li><a href=<%=DuongDan.KIEM_TRA_VE_SV %>>Kiểm tra thông tin</a></li>
-				<li><a href="/BanVeXe/jsp/timve.jsp">Kiểm tra vé</a></li>
-				<li><a href="/BanVeXe/jsp/tintuc.jsp">Tin tức</a></li>
-				<li><a href="/BanVeXe/jsp/lienhe.jsp">Liên hệ</a></li>
+				<li><a id="trangchu" href="<%=DuongDan.TRANG_CHU %>">Trang chủ</a></li>
+				<li><a id="gioithieu" href="<%=DuongDan.GIOI_THIEU%>">Giới thiệu</a></li>
+				<li><a id="kiemtrathongtin" href="<%=DuongDan.KIEM_TRA_VE_SV %>">Kiểm tra thông tin</a></li>
+				<li><a id="kiemtrave" href="<%=DuongDan.TIM_VE%>">Kiểm tra vé</a></li>
+				<li><a id="tintuc" href="<%=DuongDan.TIN_TUC%>">Tin tức</a></li>
+				<li><a id="lienhe" href="<%=DuongDan.LIEN_HE%>">Liên hệ</a></li>
 			</ul>
 		</nav>
 	</div>

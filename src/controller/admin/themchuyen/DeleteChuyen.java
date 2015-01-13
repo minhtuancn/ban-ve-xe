@@ -3,6 +3,7 @@ package controller.admin.themchuyen;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import DAO.ChuyenDAOImpl;
 /**
  * Servlet implementation class DeleteChuyen
  */
+@WebServlet ("/deletechuyen")
 public class DeleteChuyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

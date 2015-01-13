@@ -44,11 +44,16 @@ $(document).ready(function() {
 	}
 	$(window).load(function() {
 		checkEr();
+		setMenu();
 	});
+	function setMenu() {
+		$("#" + $("#menuSelect").val()).addClass("select");
+	}
 </script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+	<input type="hidden" value="kiemtrave" id="menuSelect" />
 	<div id="contain">
 	<div class="bg title">
 			<marquee behavior="alternate" width="10%">>></marquee>
@@ -59,7 +64,7 @@ $(document).ready(function() {
 						<img id="imgleft" class="autoScroll"  alt="left" src="/BanVeXe/image/cau-doi-l.png" />
 					</div>
 					<div id="bodys">
-		<div id="center">
+		<div id="centers">
 			<%
 				String mes = "";
 				if ((String) request.getAttribute("mes") != null)
@@ -69,7 +74,7 @@ $(document).ready(function() {
 					maVe = request.getParameter("maVe");
 			%>
 			<input type="hidden" value="<%=mes%>" id="error" />
-			<form action="/BanVeXe/TimVe">
+			<form action="<%=DuongDan.TIM_VE_SV%>">
 				<p id="h3">Bạn vui lòng nhập thông tin để tìm vé!</p>
 				<div id="divtrai">
 					<input type="text" class="text"
