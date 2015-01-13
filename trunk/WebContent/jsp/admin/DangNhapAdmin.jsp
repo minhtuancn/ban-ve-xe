@@ -35,7 +35,7 @@
 </head>
 
 <body>
-	<%@ include file="HeaderAdmin.jsp"%>
+	<%@ include file="headeradmin.jsp"%>
 	<div class="containerdn">
 		<div id="dangki">
 			<% String pageFoward = DuongDan.XAC_NHAN_THANH_TOAN_SV ;

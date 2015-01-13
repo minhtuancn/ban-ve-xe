@@ -63,7 +63,7 @@
 </script>
 </head>
 <body id="dt_example">
-<%@ include file="HeaderAdmin.jsp" %>
+<%@ include file="headeradmin.jsp" %>
 	<div id="container">
 		<div id="demo_jui">
 			<table id="KhachHangTable" class="display dataTable">

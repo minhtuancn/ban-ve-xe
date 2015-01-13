@@ -309,7 +309,7 @@ legend {
 }
 
 #nhieu-01 {
-	width: 24.5%;
+	width: 24.3%;
 	height: auto;
 	border: 2px;
 	border-spacing: 10px;
@@ -318,6 +318,9 @@ legend {
 	clear: right;
 	margin: 3px;
 	box-shadow: -5px -5px 35px #ccc;
+}
+#nhieu-01:hover {
+	box-shadow: -5px -5px 35px blue;
 }
 
 #tuyen {

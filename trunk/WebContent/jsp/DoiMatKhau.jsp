@@ -41,7 +41,7 @@
 			mes = (String) request.getAttribute("mes");
 	%>
 		<div id="center">
-		<form id="contactform" action="/BanVeXe/DoiMatKhau">
+		<form id="contactform" action="<%= DuongDan.DOI_MAT_KHAU_SV%>">
 			<p id="h3">Đổi mật khẩu</p>
 			<div id="divtrai">
 				<label id="slable">Nhập mật khẩu hiện tại:</label><br> 

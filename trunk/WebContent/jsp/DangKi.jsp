@@ -16,7 +16,7 @@
 	$(document).ready(function() {
 		$('#refresh').click(function() {
 			var d = new Date();
-			var newSrc = "/BanVeXe/GenerateCaptcha?" + d.getTime();
+			var newSrc = "<%= DuongDan.CAPTCHA %>?" + d.getTime();
 			$('#captcha').attr("src", newSrc);
 		});
 	});
@@ -52,7 +52,7 @@
 	}
 	function checkUser() {
 		if ($("#name").val().length != 0) {
-			$("#error-user").load("/BanVeXe/KiemTraUser?user=" + $("#name").val());
+			$("#error-user").load("<%= DuongDan.KIEM_TRA_USER_SV%>?user=" + $("#name").val());
 		}
 	}
 	function md5passs() {
@@ -116,7 +116,7 @@
 		<div id="dangki">
 			<h1>Đăng Kí!</h1>
 			<form id="contactform" name="contact" method="post"
-				action="/BanVeXe/DangKi">
+				action="<%=DuongDan.DANG_KI_SV %>">
 				<span id="error-user" style="color: red; margin-left: 180px;"></span>
 				<div class="row">
 					<label for="name">Tên Đăng Nhập: <span class="req">*</span></label>
@@ -169,7 +169,7 @@
 						value="<%=diaChi%>" placeholder="Địa chỉ" required>
 				</div>
 				<div class="captcha">
-					<img id="captcha" src="/BanVeXe/GenerateCaptcha"
+					<img id="captcha" src="<%=DuongDan.CAPTCHA %>"
 						title="Mã xác thực" width="100px" height="30px"> <img
 						id="refresh" src="/BanVeXe/image/refresh.png"
 						title="Tải lại mã xác thực khác">

@@ -27,10 +27,17 @@ $(document).ready(function() {
 		}
 	});
 });
+$(window).load(function() {
+	setMenu();
+});
+function setMenu() {
+	$("#" + $("#menuSelect").val()).addClass("select");
+}
 </script>
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+	<input type="hidden" value="tintuc" id="menuSelect" />
 	<div class="title bg">
 		<marquee behavior="alternate" width="10%">>></marquee>
 		Tin tức

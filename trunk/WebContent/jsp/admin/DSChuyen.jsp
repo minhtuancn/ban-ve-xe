@@ -171,7 +171,7 @@
 		}
 	%>
 	<div id="containers">
-		<%@ include file="HeaderAdmin.jsp"%>
+		<%@ include file="headeradmin.jsp"%>
 		<%
 			String mes = "";
 			if ((String) request.getAttribute("mes") != null)
@@ -205,7 +205,7 @@
 		</div>
 
 		<div id="themchuyen">
-			<%@ include file="ThemChuyen.jsp"%>
+			<%@ include file="themchuyen.jsp"%>
 		</div>
 		<form id="formThemChuyen" action="#" title="Thêm chuyến xe">
 			<input type="hidden" id="id" name="id" value="1" /> <label

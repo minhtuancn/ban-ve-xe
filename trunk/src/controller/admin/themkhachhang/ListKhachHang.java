@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import DAO.KhachHangDAOIml;
 /**
  * Servlet implementation class ListKhachHang
  */
+@WebServlet ("/listkhachhang")
 public class ListKhachHang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

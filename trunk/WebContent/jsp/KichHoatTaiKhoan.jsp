@@ -54,7 +54,7 @@ function sendOTP() {
 					mes = (String) request.getAttribute("mes");
 			%>
 			<input type="hidden" value="<%=mes%>" id="error" />
-			<form action="/BanVeXe/KichHoatTaiKhoan">
+			<form action="<%=DuongDan.KICH_HOAT_TAI_KHOAN_SV%>">
 				<p>Tài khoản quý khách chưa kích hoat!<br>
 				Mã OTP đã được gửi cho quý khách qua tin nhắn!!<br>
  Quý khách vui lòng nhập mã OTP để kích hoạt tài khoản !!</p>

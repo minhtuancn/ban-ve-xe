@@ -16,7 +16,7 @@
 	type="text/css" media="all" />
 </head>
 <body id="dt_example">
-	<%@ include file="HeaderAdmin.jsp"%>
+	<%@ include file="headeradmin.jsp"%>
 	<div>
 		<h1>Bạn không có quyền thực hiện chức năng này</h1>
 	</div>

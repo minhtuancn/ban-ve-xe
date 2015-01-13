@@ -113,7 +113,7 @@
 					</div>
 				</div>
 				<hr />
-				<form action="/BanVeXe/ThanhToanTien" method="post">
+				<form action="<%=DuongDan.THANH_TOAN_TIEN_SV%>" method="post">
 					<input type="hidden" name="maVeThanhToan" value="<%=ve.getMaVe()%>">
 					<div style="margin-top: 20px;">
 						<div style="float: left; clear: right;">

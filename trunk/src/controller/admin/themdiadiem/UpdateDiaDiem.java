@@ -3,6 +3,7 @@ package controller.admin.themdiadiem;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import DAO.TuyenDAOImpl;
 /**
  * Servlet implementation class UpdateDiaDiem
  */
+@WebServlet ("/updatediadiem")
 public class UpdateDiaDiem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
