@@ -59,11 +59,21 @@
 						});
 						
 					});
+	
+	$(window).load(function() {
+		setMenu();
+		
+	});
+	function setMenu() {
+		$("#" + $("#menuSelect").val()).addClass("select");
+	}
 
 </script>
 </head>
 <body id="dt_example">
+
 <%@ include file="headeradmin.jsp" %>
+<input type="hidden" value="xacnhanthanhtoan" id="menuSelect" />
 	<div id="container">
 		<div id="demo_jui">
 			<table id="KhachHangTable" class="display dataTable">
