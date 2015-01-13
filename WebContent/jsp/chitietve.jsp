@@ -14,7 +14,49 @@
 <link rel="stylesheet" type="text/css" href="/BanVeXe/css/util.css">
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/thongtinve.css">
+<link rel="stylesheet" type="text/css"
+	href="/BanVeXe/css/popup.css">
 <script type="text/javascript">
+	$(document).ready(function() {
+		$("#thanhtoan").click(function() {
+			var loginBox = $("#login-box");
+
+			//Fade in the Popup
+			$(loginBox).fadeIn(300);
+
+			//Set the center alignment padding + border see css style
+			var popMargTop = ($(loginBox).height() + 24) / 2;
+			var popMargLeft = ($(loginBox).width() + 24) / 2;
+
+			$(loginBox).css({
+				'margin-top' : -popMargTop,
+				'margin-left' : -popMargLeft
+			});
+
+			// Add the mask to body
+			$('body').append('<div id="mask"></div>');
+			$('#mask').fadeIn(300);
+
+			$("#mave").val(mave);
+
+			$('a.close').click(
+					function() {
+						$('#mask , .login-popup').fadeOut(300,
+								function() {
+									$('#mask').remove();
+								});
+						return false;
+					});
+			$('#mask').click(
+					function() {
+						$('#mask , .login-popup').fadeOut(300,
+								function() {
+									$('#mask').remove();
+								});
+						return false;
+					});
+		});
+	});
 	function checkEr() {
 		if ($("#error").val().length != 0) {
 			al($("#error").val(), "error");
@@ -78,7 +120,7 @@
 						<%
 							} else {
 						%>
-						<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png" >
+						<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png">
 						</td>
 						<%
 							}
@@ -127,19 +169,19 @@
 						<%=veVe.getMaVe()%></div>
 				</div>
 				<table border="1">
-					<tr> 
-					<td>Tuyến:</td> 
-						<td colspan="5"><h3><%=veVe.getTuyenXe()%></h3> <% 
-	if (!veVe.isTrangThaiThanhToan()) {
-  %> <img alt="chuathanhtoan" src="/BanVeXe/image/iconchuathanhtoan.png"></td> 
-						<% 
- 							} else {
-						%> 
-					<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png"> 
- 						</td> 
- 						<% 
+					<tr>
+						<td>Tuyến:</td>
+						<td colspan="5"><h3><%=veVe.getTuyenXe()%></h3> <%
+ 	if (!veVe.isTrangThaiThanhToan()) {
+ %> <img alt="chuathanhtoan" src="/BanVeXe/image/iconchuathanhtoan.png"></td>
+						<%
+							} else {
+						%>
+						<img alt="chuathanhtoan" src="/BanVeXe/image/icondathanhtoan.png">
+						</td>
+						<%
 							}
-						%> 
+						%>
 					</tr>
 					<tr>
 						<td>Ngày đi:</td>
@@ -169,16 +211,16 @@
 				%>
 				<p>
 					Vé của Quý khách được giữ chỗ đến Thời hạn thanh toán được ghi chú
-					trên thông tin vé.<br> Để tăng thời gian giữ chỗ, Quý khách vui lòng 
-					thanh toán vé ở link bên dưới đây.<br>
-					Quý khách vui lòng thanh
-					toán cho vé trước Thời hạn thanh toán, sau thời gian này vé giữ
-					chỗ của Quý khách sẽ bị hủy tự động.<br> Quý khách có thể
-					thanh toán qua các hình thức:<br> 1/ Thanh toán trực tuyến
+					trên thông tin vé.<br> Để tăng thời gian giữ chỗ, Quý khách
+					vui lòng thanh toán vé ở link bên dưới đây.<br> Quý khách vui
+					lòng thanh toán cho vé trước Thời hạn thanh toán, sau thời gian này
+					vé giữ chỗ của Quý khách sẽ bị hủy tự động.<br> Quý khách có
+					thể thanh toán qua các hình thức:<br> 1/ Thanh toán trực tuyến
 					trên VeXeOnline qua thẻ ATM ngân hàng. Quý khách có thể tham khảo
 					thêm hướng dẫn phương thức thanh toán trực tuyến tại đây<br>
-					2/ Thanh toán bằng tiền mặt tại văn phòng Công ty đặt tại văn phòng Cẩm Tú, đại học Nông Lâm, khu phố 6, phường Linh Trung, quận Thủ Đức.<br>
-					 3/ Thanh toán bằng tiền mặt tại phòng vé chính thức
+					2/ Thanh toán bằng tiền mặt tại văn phòng Công ty đặt tại văn phòng
+					Cẩm Tú, đại học Nông Lâm, khu phố 6, phường Linh Trung, quận Thủ
+					Đức.<br> 3/ Thanh toán bằng tiền mặt tại phòng vé chính thức
 					của Hãng xe.<br> 4/ Chuyển khoản ngân hàng.<br>
 
 					<%
@@ -188,7 +230,7 @@
 				<p>Quý khách vui lòng nhắn tin với cú pháp "VE &ltmave&gt" gửi
 					0169xxxxx để gia hạn thời gian thanh toán</p>
 
-				<a href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veDi.getMaVe()%>"
+				<a id="thanhtoan" href="#"
 					style="color: red;">Quý khách nhấp link để thanh toán vé đi</a><br>
 				<%
 					}
@@ -196,11 +238,26 @@
 					if (veVe != null && !veVe.isTrangThaiThanhToan()) {
 				%>
 
-				<a href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veVe.getMaVe()%>"
-					style="color: red;">Quý khách nhấp link để thanh toán vé về</a><br>
+				<a id="thanhtoan" href="#" style="color: red;">Quý khách nhấp link để thanh
+					toán vé về</a><br>
 				<%
 					}
 				%>
+				<div id="login-box" class="login-popup">
+					<fieldset class="textbox">
+						<ul>
+							<li>Thanh toán bằng tài khoản trên website: chọn vào <a
+								href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veDi.getMaVe()%>">đây</a></li>
+							<li>Thanh toán trực tiếp tại đại lý: chọn vào <a
+								href="/BanVeXe/jsp/chiduong.jsp">đây</a> để tìm đại lý gần nhất
+							</li>
+							<li>Thanh toán băng cách chuyển khoản ATM: Quí khách chuyển
+								vào tài khoản Hoàng Nhược Quỳ, số tài khoản 123456789, BIDV chi
+								nhánh Đông Sài Gòn.</li>
+						</ul>
+					</fieldset>
+				</div>
+
 			</div>
 			<button onclick="print()" id="button_s">In vé</button>
 		</fieldset>

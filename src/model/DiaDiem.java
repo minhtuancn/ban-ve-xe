@@ -1,9 +1,11 @@
 ﻿package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 
-public class DiaDiem implements Comparable<DiaDiem>{
+public class DiaDiem implements Comparable<DiaDiem>, Serializable{
+	private static final long serialVersionUID = 1L;
 	private long idDiaDiem;
 	private String tenDiaDiem;
 	

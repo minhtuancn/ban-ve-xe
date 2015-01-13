@@ -24,7 +24,7 @@ function choose(el, id, chitietve) {
 //	alert("xe - " + idChuyen + " - " + idGhe)
 	$
 			.get(
-					'ThemGhe',
+					'/BanVeXe/themghe',
 					{
 						idChuyen : idChuyen,
 						idGhe : idGhe
@@ -55,7 +55,7 @@ function choose(el, id, chitietve) {
 function unchoose(el, id, chitietve) {
 	var idChuyen = $(id).val();
 	var idGhe = $(el).attr("id");
-	$.get('HuyGhe', {
+	$.get('/BanVeXe/huyghe', {
 		idChuyen : idChuyen,
 		idGhe : idGhe
 	}, function(responseText) {

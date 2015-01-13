@@ -19,7 +19,6 @@
 	href="/BanVeXe/css/sweet-alert.css">
 <script type="text/javascript">
 	function chonXe(scrollid,time, chuyenDiOrVe, chuyen, id) {
-// 		setDefaut(chuyenDiOrVe);
 		setDefaut('chuyendi');
 		setDefaut('chuyenve');
 		$("#"+chuyen+"-"+id).load("<%=DuongDan.TIM_GHE%>?chuyen="+chuyen+"&id="+id, function() {

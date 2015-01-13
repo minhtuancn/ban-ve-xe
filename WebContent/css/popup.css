@@ -1,6 +1,6 @@
 /* Mask for background, by default is not display */
 #mask {
-    display: none;
+/*     display: none; */
     background: gray;
     position: fixed;
     left: 0;
@@ -14,7 +14,7 @@
 
 /* You can customize to your needs  */
 .login-popup {
-    display: none;
+/*     display: none; */
     background: white;
     padding: 10px;
     border: 2px solid #ddd;
@@ -37,12 +37,14 @@
     /* Safari, Chrome */;
 }
 
-a.close{
+img.btn_close {
+    Position the close button
 	float: right;
+    margin: -28px -28px 0 0;
 }
 
-img.btn_close {
-    margin: -28px 0 0 -28px ;
+fieldset {
+    border: none;
 }
 
 form.signin .textbox label {
@@ -59,35 +61,19 @@ form.signin , form.signin span {
     line-height: 18px;
 }
 
-#lb-otp{
-	font-family: Tahoma;
-	font-size: 20px;
-	font-weight: bold;
-	font-style: italic;
-	text-align: center;
-	color: blue;
-}
-
-#login-box{
-	width: 350px;
-	height: 150px;
-}
-
-#otp {
-	width: 300px;
+form.signin .textbox input {
+    background: #666666;
     border-bottom: 1px solid #333;
     border-left: 1px solid #000;
     border-right: 1px solid #333;
     border-top: 1px solid #000;
+    color: #fff;
     border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     font: 13px Arial, Helvetica, sans-serif;
     padding: 6px 6px 4px;
-}
-
-#xn-otp{
-	float: right;
+    width: 200px;
 }
 
 form.signin input:-moz-placeholder {

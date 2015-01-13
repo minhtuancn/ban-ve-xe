@@ -1,4 +1,3 @@
-<%@page import="util.DuongDan"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.Locale"%>
 <%@page import="model.DatVe"%>
@@ -16,10 +15,10 @@
 <script src="/BanVeXe/js/util.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".xacnhan").click(function() {
-			$.get('KiemTraSLGhe', {}, function(responseText) {
+		$("#xacnhan").click(function() {
+			$.get('/BanVeXe/kiemtrasoluongghe', {}, function(responseText) {
 				if (responseText.indexOf("0") != -1) {
-					window.location = <%= DuongDan.THANH_TOAN%>;
+					window.location = '/BanVeXe/jsp/thanhtoan.jsp';
 				} else {
 					if (responseText.indexOf("1") != -1) {
 						alert("Bạn chưa chọn vé cho chuyến đi!");
@@ -149,9 +148,12 @@
 		<%
 			}
 		%>
-		<input type="image" class="xacnhan" src="/BanVeXe/image/xacnhan.png"
+		<input type="image" id="xacnhan" src="/BanVeXe/image/xacnhan.png"
 			width="80px"
-			style="margin-left: 150px; margin-top: 5px; float: left; clear: right;">
+			style="margin-left: 100px; margin-top: 5px; float: left; clear: right;">
+		<a href="/BanVeXe/jsp/datve.jsp"><input type="image"
+			src="/BanVeXe/image/huyve.png" width="80px"
+			style="margin-left: 10px; margin-top: 5px;"></a>
 	</div>
 </body>
 </html>

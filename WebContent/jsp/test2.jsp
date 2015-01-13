@@ -1,3 +1,4 @@
+<%@page import="util.DuongDan"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -79,22 +80,10 @@
 	<div id="login-box" class="login-popup">
 		<a href="#" class="close"><img src="/BanVeXe/image/ghe1.png"
 			class="btn_close" title="Close Window" alt="Close" /></a>
-		<form method="post" class="signin" action="#">
 			<fieldset class="textbox">
-<!-- 				<label class="username"> <span>Username or email</span> <input -->
-<!-- 					id="username" name="username" value="" type="text" -->
-<!-- 					autocomplete="on" placeholder="Username"> -->
-<!-- 				</label>  -->
-				<label class="password"> <span>Password</span> <input
-					id="password" name="password" value="" type="password"
-					placeholder="Password">
-				</label>
-				<button class="submit button" type="button">Sign in</button>
-				<p>
-					<a class="forgot" href="#">Forgot your password?</a>
-				</p>
+			<p>Quí khách vui lòng chọn hình thức thanh toán:</p>
+			
 			</fieldset>
-		</form>
 	</div>
 </body>
 </html>

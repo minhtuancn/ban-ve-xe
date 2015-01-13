@@ -62,7 +62,7 @@ public class KiemTraChuyen extends HttpServlet {
 		String pageFoward = null;
 		if (nv != null) {
 			if (nv.getQuyen().contains(this.quyen))
-				pageFoward = "ListChuyen";
+				pageFoward = "listchuyen";
 			else
 				pageFoward = DuongDan.KHONG_CO_QUYEN;
 		} else {
