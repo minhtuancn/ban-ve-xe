@@ -16,8 +16,26 @@
 	$(document).ready(function() {
 		$('#refresh').click(function() {
 			var d = new Date();
-			var newSrc = "<%= DuongDan.CAPTCHA %>?" + d.getTime();
+			var newSrc = "<%=DuongDan.CAPTCHA%>?" + d.getTime();
 			$('#captcha').attr("src", newSrc);
+		});
+		$("#contactform").submit(function(e) {
+			if($("#error-user").text().length == 0){
+				if ($("#pass").val() == $("#re-pass").val()){
+					if($("#pass").val().length >= 8){
+						
+					}else{
+						$("#error-pass").text("Mật khẩu phải dài hơn 8 kí tự!");
+						return false;
+					}
+				} else{
+					$("#error-pass").text("Mật khẩu không trùng khớp!");
+						return false;
+				}
+			}else{
+				al("User đã tồn tại", "warning");
+						return false;
+			}
 		});
 	});
 
@@ -38,13 +56,24 @@
 		checkEr();
 	});
 
-	function checkPass() {
-		if ($("#pass").val() == $("#re-pass").val())
-			$("#contactform").submit();
-		else
-			$("#error-pass").text("Mật khẩu không trùng khớp!");
+// 	function checkPass() {
+// 		if($("#error-user").text().length == 0){
+// 			if ($("#pass").val() == $("#re-pass").val()){
+// 				if($("#pass").val().length >= 8){
+// 					$("#contactform").submit();
+// 				}else{
+// 					$("#error-pass").text("Mật khẩu phải dài hơn 8 kí tự!");
+// 				}
+// 			} else
+// 				$("#error-pass").text("Mật khẩu không trùng khớp!");
+// 		}else{
+// 			al("User đã tồn tại", "warning");
+// 		}
 
-	}
+// 	}
+	
+	
+	
 	function checkPass2() {
 		if ($("#pass").val() != $("#re-pass").val())
 			$("#error-pass").text("Mật khẩu không trùng khớp!");
@@ -52,7 +81,7 @@
 	}
 	function checkUser() {
 		if ($("#name").val().length != 0) {
-			$("#error-user").load("<%= DuongDan.KIEM_TRA_USER_SV%>?user=" + $("#name").val());
+			$("#error-user").load("<%=DuongDan.KIEM_TRA_USER_SV%>?user=" + $("#name").val());
 		}
 	}
 	function md5passs() {
@@ -116,7 +145,7 @@
 		<div id="dangki">
 			<h1>Đăng Kí!</h1>
 			<form id="contactform" name="contact" method="post"
-				action="<%=DuongDan.DANG_KI_SV %>">
+				action="<%=DuongDan.DANG_KI_SV%>">
 				<span id="error-user" style="color: red; margin-left: 180px;"></span>
 				<div class="row">
 					<label for="name">Tên Đăng Nhập: <span class="req">*</span></label>
@@ -127,17 +156,17 @@
 
 				<div class="row">
 					<label for="name">Mật khẩu: <span class="req">*</span></label> <input
-						type="password"  id="pass" class="txt" tabindex="1" onkeyup="md5passs()"
-						value="" placeholder="********" required >
-						<input type="hidden" name="pass" id="md5pass"/>
+						type="password" id="pass" class="txt" tabindex="1"
+						onkeyup="md5passs()" value="" placeholder="********" required>
+					<input type="hidden" name="pass" id="md5pass" />
 				</div>
 				<span id="error-pass" style="color: red; margin-left: 180px;"></span>
 				<div class="row">
 					<label for="name">Nhập lại mật khẩu: <span class="req">*</span></label>
-					<input type="password" id="re-pass" class="txt"
-						value="" tabindex="1" placeholder="********" required
-						onblur="checkPass2()" onkeyup="md5repasss()" onfocus="$('#error-pass').text(' ')" >
-					<input type="hidden" name="re-pass" id="md5repass"/>
+					<input type="password" id="re-pass" class="txt" value=""
+						tabindex="1" placeholder="********" required onblur="checkPass2()"
+						onkeyup="md5repasss()" onfocus="$('#error-pass').text(' ')">
+					<input type="hidden" name="re-pass" id="md5repass" />
 				</div>
 
 				<div class="row">
@@ -166,13 +195,12 @@
 				<div class="row">
 					<label for="subject">Địa chỉ:</label> <input type="text"
 						name="diachi" id="subject" class="txt" tabindex="3"
-						value="<%=diaChi%>" placeholder="Địa chỉ" required>
+						value="<%=diaChi%>" placeholder="Địa chỉ" >
 				</div>
 				<div class="captcha">
-					<img id="captcha" src="<%=DuongDan.CAPTCHA %>"
-						title="Mã xác thực" width="100px" height="30px"> <img
-						id="refresh" src="/BanVeXe/image/refresh.png"
-						title="Tải lại mã xác thực khác">
+					<img id="captcha" src="<%=DuongDan.CAPTCHA%>" title="Mã xác thực"
+						width="100px" height="30px"> <img id="refresh"
+						src="/BanVeXe/image/refresh.png" title="Tải lại mã xác thực khác">
 				</div>
 				<div class="row">
 					<label for="subject">Mã xác nhận: <span class="req">*</span></label>
@@ -182,6 +210,7 @@
 				<div class="center">
 					<input type="button" id="submitbtn" name="submitbtn" tabindex="5"
 						value="Đăng Kí" onclick="checkPass()">
+						<input type="submit" value="ok"/>
 				</div>
 			</form>
 		</div>
