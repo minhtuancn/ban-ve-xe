@@ -37,6 +37,7 @@
     /* Safari, Chrome */;
 }
 .login-popup-thanhtoan {
+	width:900px;
     display: none;
     background: white;
     padding: 10px;

@@ -33,7 +33,7 @@ public class DuongDan {
 	public static final String XAC_NHAN_THANH_TOAN = "/BanVeXe/jsp/admin/xacnhanve.jsp";
 	
 	
-	public static final String TRANG_CHU_SVL = "/jsp/body.jsp";
+	public static final String TRANG_CHU_SVL = "/jsp/index.jsp";
 	public static final String TIM_CHUYEN_SVL = "/jsp/timchuyen.jsp";
 	public static final String THANH_TOAN_SVL = "/jsp/thanhtoan.jsp";
 	public static final String TIM_VE_SVL = "/jsp/timve.jsp";
