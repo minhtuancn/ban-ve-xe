@@ -44,8 +44,6 @@ public class GheDAOImpl implements GheDAO {
 					break;
 				case Ghe.DANG_GIU:
 					// kiểm tra thời gian giữ ghế còn hiệu lực không
-					System.out.println("GheDAOImpl : "
-							+ res.getTimestamp("giucho"));
 					dateGiuCho = new Date(res.getTimestamp("giucho").getTime());
 					trangThai = dateGiuCho.compareTo(now) < 0 ? Ghe.CHUA_DAT
 							: Ghe.DA_DAT;

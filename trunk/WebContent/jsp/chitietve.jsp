@@ -38,7 +38,6 @@
 			$('#mask').fadeIn(300);
 			$('#mask').click(
 					function() {
-						alert("aaaaaaa");
 						$('#mask , .login-popup-thanhtoan').fadeOut(300,
 								function() {
 									$('#mask').remove();
@@ -233,24 +232,24 @@
 				<%
 					}
 				%>
+
+			</div>
+			<button onclick="print()" id="button_s">In vé</button>
+		</fieldset>
+	</div>
 				<div id="login-box" class="login-popup-thanhtoan">
-					<fieldset class="textbox">
+					<fieldset class="textbox" id="popup">
 						
 							<div class="row-thanhtoan"><p class="thanhtoan-p">Thanh toán bằng tài khoản trên website: chọn vào &nbsp</p> <a class="thanhtoan-a"
 								href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veDi.getMaVe()%>">ĐÂY</a></div>
 							<div class="row-thanhtoan"><p class="thanhtoan-p">Thanh toán trực tiếp tại đại lý: chọn vào &nbsp</p><a class="thanhtoan-a"
-								href="/BanVeXe/jsp/chiduong.jsp">ĐÂY</a> <p class="thanhtoan-p">&nbsp để tìm đại lý gần nhất</p>
+								href="/BanVeXe/jsp/chiduong.jsp" target="_blank">ĐÂY</a> <p class="thanhtoan-p">&nbsp để tìm đại lý gần nhất</p>
 							</div>
 							<div class="row-thanhtoan"> Thanh toán băng cách chuyển khoản ATM: Quí khách chuyển
 								vào tài khoản Hoàng Nhược Quỳ, số tài khoản 123456789, BIDV chi
 								nhánh Đông Sài Gòn.</div>
 					</fieldset>
 				</div>
-
-			</div>
-			<button onclick="print()" id="button_s">In vé</button>
-		</fieldset>
-	</div>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

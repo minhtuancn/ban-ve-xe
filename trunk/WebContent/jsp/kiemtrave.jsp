@@ -60,7 +60,6 @@
 			closeOnConfirm : true,
 		}, function(isConfirm) {
 			if (isConfirm) {
-				
 				$.get("<%=DuongDan.CHECK_OTP%>", function(data, status) {
 					if (status == "success") {
 						if (data == "ok") {
@@ -86,7 +85,7 @@
 
 							$('a.close').click(
 									function() {
-										$('#mask , .login-popup').fadeOut(300,
+										$('#mask , .login-popup-huyve').fadeOut(300,
 												function() {
 													$('#mask').remove();
 												});
@@ -94,7 +93,7 @@
 									});
 							$('#mask').click(
 									function() {
-										$('#mask , .login-popup').fadeOut(300,
+										$('#mask , .login-popup-huyve').fadeOut(300,
 												function() {
 													$('#mask').remove();
 												});
@@ -174,7 +173,7 @@
 
 						<form action="<%=DuongDan.SUA_THONG_TIN_SV %>" id="form-thongtin"
 							method="post" accept-charset="UTF-8">
-							<fieldset>
+							<fieldset id="fieldset-kiemtrave">
 								<div class="kt-ve">
 									<div class="ktve-p pd mg kt-ve">
 										<p>Thông tin cá nhân</p>
@@ -271,6 +270,7 @@
  	}
  %>
 													</td>
+													
 													<td class="tr1" align="center"><%=v.getTrangThaiKhoiHanh()%>
 														<%
 															if (v.isTrangThaiThanhToan() && !v.isDaKhoiHanh()) {
@@ -301,19 +301,21 @@
 	</div>
 
 
-	<div id="login-box" class="login-popup">
+	<div id="login-box" class="login-popup-huyve">
 		<a href="#" class="close"><img src="/BanVeXe/image/close.jpg"
 			class="btn_close" title="Close Window" alt="Close" /></a>
 		<form id="formhuyve" method="post" class="signin"
 			action='<%=DuongDan.HUYVE%>'>
-			<fieldset class="textbox">
-				<input type="hidden" id="mave" value="" name="mave" /> <label>
-					<span id="lb-otp">Nhập mã OTP</span> <input id="otp" name="otp"
+			<fieldset id="popup" class="textbox">
+				<input type="hidden" id="mave" value="" name="mave" /> 
+				<div class="huyve-div"><label><span id="lb-otp">Nhập mã OTP &nbsp </span> <br><br><input id="otp" name="otp"
 					value="" type="text">
-				</label> <input type="submit" value="Xác nhận" id="xn-otp" />
+				</label></div>
+				<div class="huyve-div"> <input type="submit" value="Xác nhận" id="xn-otp" />
 				<p>
 					<a class="forgot" href="#">Gửi lại mã OTP</a>
 				</p>
+				</div>
 			</fieldset>
 		</form>
 	</div>

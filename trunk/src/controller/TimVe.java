@@ -55,6 +55,8 @@ public class TimVe extends HttpServlet {
 		String mes = "";
 		Ve ve = null;
 		ve =veDAO.timVeOfMaVe(maVe);
+		request.getSession().removeAttribute("veDi");
+		request.getSession().removeAttribute("veVe");
 		if(ve != null){
 			request.getSession().setAttribute("veDi", ve);
 			response.sendRedirect(DuongDan.CHI_TIET_VE);

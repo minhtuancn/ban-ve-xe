@@ -78,7 +78,7 @@ public class HuyVe extends HttpServlet {
 		}
 		request.setAttribute("mes", mes);
 		request.setAttribute("mesSuccess", mesSucces);
-		request.getRequestDispatcher("KiemTraVe").forward(
+		request.getRequestDispatcher("kiemtrave").forward(
 				request, response);
 	}
 }

@@ -140,7 +140,7 @@
 	<div id="mask"></div>
 	<div id="login-box" class="login-popup">
 				<form method="post" class="signin" action="#">
-			<fieldset class="textbox">
+			<fieldset class="textbox" id="popup">
 				<div class="dangnhap">
 					<p class="p-dangnhap">- Bạn chưa đăng nhập, nhấp vào&nbsp;</p>
 					<a

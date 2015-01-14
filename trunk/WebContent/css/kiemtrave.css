@@ -7,6 +7,10 @@ body {
 	width: 1000px
 }
 
+/* #fieldset-kiemtrave{ */
+/* 	border: 2; */
+/* } */
+
 .kt-ve:before,.kt-ve:after {
 	content: '.';
 	display: block;
