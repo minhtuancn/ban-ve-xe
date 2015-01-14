@@ -3,6 +3,7 @@ package util;
 public class DuongDan {
 	//
 	public static final String TRANG_CHU = "/BanVeXe/jsp/index.jsp";
+	public static final String TRANG_CHU_SV = "/BanVeXe/trangchu";
 	public static final String KIEM_TRA_VE = "/BanVeXe/jsp/kiemtrave.jsp";
 	public static final String GIOI_THIEU = "/BanVeXe/jsp/gioithieu.jsp";
 	public static final String THANH_TOAN = "/BanVeXe/jsp/thanhtoan.jsp";

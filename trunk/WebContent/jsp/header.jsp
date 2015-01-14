@@ -29,7 +29,7 @@
 		</header>
 		<nav>
 			<ul>
-				<li><a id="trangchu" href="<%=DuongDan.TRANG_CHU %>">Trang chủ</a></li>
+				<li><a id="trangchu" href="<%=DuongDan.TRANG_CHU_SV %>">Trang chủ</a></li>
 				<li><a id="gioithieu" href="<%=DuongDan.GIOI_THIEU%>">Giới thiệu</a></li>
 				<li><a id="kiemtrathongtin" href="<%=DuongDan.KIEM_TRA_VE_SV %>">Kiểm tra thông tin</a></li>
 				<li><a id="kiemtrave" href="<%=DuongDan.TIM_VE%>">Kiểm tra vé</a></li>

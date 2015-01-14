@@ -45,6 +45,7 @@ public class SendMessageUtil {
 					inboundNotification);
 			Service.getInstance().addGateway(gateway);
 			Service.getInstance().startService();
+			System.out.println("SendMessageUtil init");
 		} catch (GatewayException e) {
 			e.printStackTrace();
 		} catch (TimeoutException e) {

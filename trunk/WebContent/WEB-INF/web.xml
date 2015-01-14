@@ -25,6 +25,6 @@
   </context-param>
   <context-param>
     <param-name>comPort</param-name>
-    <param-value>COM9</param-value>
+    <param-value>COM8</param-value>
   </context-param>
 </web-app>
