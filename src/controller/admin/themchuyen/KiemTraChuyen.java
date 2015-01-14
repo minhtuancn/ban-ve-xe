@@ -61,11 +61,8 @@ public class KiemTraChuyen extends HttpServlet {
 		NhanVien nv = (NhanVien) session.getAttribute("admin");
 		String pageFoward = null;
 		if (nv != null) {
-			if (nv.getQuyen().contains(this.quyen)){
-//				pageFoward = "listchuyen";
-				response.sendRedirect("/BanVeXe/listchuyen");
-				return;
-			}
+			if (nv.getQuyen().contains(this.quyen))
+				pageFoward = "listchuyen";
 			else
 				pageFoward = DuongDan.KHONG_CO_QUYEN;
 		} else {

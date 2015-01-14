@@ -30,11 +30,11 @@
 				</div>
 			<nav>
 				<ul>
-					<li><a id="themtuyen" href="<%=DuongDan.LIST_TUYEN_SV %>">Thêm Tuyến</a></li>
-					<li><a id="themchuyen" href="<%=DuongDan.KIEM_TRA_CHUYEN_SV %>">Thêm Chuyến</a></li>
-					<li><a id="themdiadiem" href="<%=DuongDan.LIST_DIA_DIEM_SV %>">Thêm Địa Điểm</a></li>
-					<li><a id="themkhachhang" href="<%=DuongDan.THEM_KHACHHANG_SV %>">Thêm Khách Hàng</a></li>
-					<li><a id="xacnhanthanhtoan" href="<%=DuongDan.XAC_NHAN_THANH_TOAN_SV %>">Xác Nhận Thanh Toán</a></li>
+					<li><a href="<%=DuongDan.LIST_TUYEN_SV %>">Thêm Tuyến</a></li>
+					<li><a href="<%=DuongDan.KIEM_TRA_CHUYEN_SV %>">Thêm Chuyến</a></li>
+					<li><a href="<%=DuongDan.LIST_DIA_DIEM_SV %>">Thêm Địa Điểm</a></li>
+					<li><a href="<%=DuongDan.THEM_KHACHHANG_SV %>">Thêm Khách Hàng</a></li>
+					<li><a href="<%=DuongDan.XAC_NHAN_THANH_TOAN_SV %>">Xác Nhận Thanh Toán</a></li>
 					
 				</ul>
 			</nav>
