@@ -58,19 +58,10 @@
 						});
 						
 					});
-	$(window).load(function() {
-		setMenu();
-		
-	});
-	function setMenu() {
-		$("#" + $("#menuSelect").val()).addClass("select");
-	}
-	
 
 </script>
 </head>
 <body id="dt_example">
-<input type="hidden" value="themkhachhang" id="menuSelect" />
 <%@ include file="headeradmin.jsp" %>
 	<div id="container">
 		<div id="demo_jui">
