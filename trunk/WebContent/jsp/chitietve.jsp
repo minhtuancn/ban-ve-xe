@@ -243,18 +243,17 @@
 				<%
 					}
 				%>
-				<div id="login-box" class="login-popup">
+				<div id="login-box" class="login-popup-thanhtoan">
 					<fieldset class="textbox">
-						<ul>
-							<li>Thanh toán bằng tài khoản trên website: chọn vào <a
-								href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veDi.getMaVe()%>">đây</a></li>
-							<li>Thanh toán trực tiếp tại đại lý: chọn vào <a
-								href="/BanVeXe/jsp/chiduong.jsp">đây</a> để tìm đại lý gần nhất
-							</li>
-							<li>Thanh toán băng cách chuyển khoản ATM: Quí khách chuyển
+						
+							<div class="row-thanhtoan"><p class="thanhtoan-p">Thanh toán bằng tài khoản trên website: chọn vào &nbsp</p> <a class="thanhtoan-a"
+								href="<%=DuongDan.THANH_TOAN_SV + "?mave=" + veDi.getMaVe()%>">ĐÂY</a></div>
+							<div class="row-thanhtoan"><p class="thanhtoan-p">Thanh toán trực tiếp tại đại lý: chọn vào &nbsp</p><a class="thanhtoan-a"
+								href="/BanVeXe/jsp/chiduong.jsp">ĐÂY</a> <p class="thanhtoan-p">&nbsp để tìm đại lý gần nhất</p>
+							</div>
+							<div class="row-thanhtoan"> Thanh toán băng cách chuyển khoản ATM: Quí khách chuyển
 								vào tài khoản Hoàng Nhược Quỳ, số tài khoản 123456789, BIDV chi
-								nhánh Đông Sài Gòn.</li>
-						</ul>
+								nhánh Đông Sài Gòn.</div>
 					</fieldset>
 				</div>
 
