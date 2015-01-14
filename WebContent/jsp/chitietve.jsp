@@ -25,8 +25,8 @@
 			$(loginBox).fadeIn(300);
 
 			//Set the center alignment padding + border see css style
-			var popMargTop = ($(loginBox).height() + 24) / 2;
-			var popMargLeft = ($(loginBox).width() + 24) / 2;
+			var popMargTop = ($(loginBox).height()) / 2;
+			var popMargLeft = ($(loginBox).width()) / 2;
 
 			$(loginBox).css({
 				'margin-top' : -popMargTop,
@@ -36,20 +36,10 @@
 			// Add the mask to body
 			$('body').append('<div id="mask"></div>');
 			$('#mask').fadeIn(300);
-
-			$("#mave").val(mave);
-
-			$('a.close').click(
-					function() {
-						$('#mask , .login-popup').fadeOut(300,
-								function() {
-									$('#mask').remove();
-								});
-						return false;
-					});
 			$('#mask').click(
 					function() {
-						$('#mask , .login-popup').fadeOut(300,
+						alert("aaaaaaa");
+						$('#mask , .login-popup-thanhtoan').fadeOut(300,
 								function() {
 									$('#mask').remove();
 								});

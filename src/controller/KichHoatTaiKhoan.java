@@ -72,7 +72,7 @@ public class KichHoatTaiKhoan extends HttpServlet {
 						.getTaiKhoan().getIdTaiKhoan())){
 //					response.sendRedirect(DuongDan.KIEM_TRA_VE_SV);
 					request.setAttribute("mesSuccess", "Kích hoạt tài khoản thành công");
-					request.getRequestDispatcher("KiemTraVe")
+					request.getRequestDispatcher("kiemtrave")
 					.forward(request, response);
 				}
 				else
@@ -80,7 +80,7 @@ public class KichHoatTaiKhoan extends HttpServlet {
 			} else {
 				mes = "Sai mã OTP, vui lòng kích hoạt lại!!";
 				request.setAttribute("mes", mes);
-				request.getRequestDispatcher("/jsp/KichHoatTaiKhoan.jsp")
+				request.getRequestDispatcher("/jsp/kichhoattaikhoan.jsp")
 						.forward(request, response);
 			}
 		} else {
