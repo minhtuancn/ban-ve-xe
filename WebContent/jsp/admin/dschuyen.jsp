@@ -183,7 +183,7 @@
 			<fieldset>
 				<legend>Thông tin chuyến</legend>
 				<div>
-					<form action="ListChuyen" id="form">
+					<form action="listchuyen" id="form">
 
 						<label for="name">Tuyến Xe</label><br /> <select name="tuyen"
 							id="tuyen">

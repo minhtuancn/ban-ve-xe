@@ -65,7 +65,6 @@ public class ThanhToanTien extends HttpServlet {
 		Ve ve = null;
 		if (maOTPCheck.equalsIgnoreCase(maOTP)) {
 			mes = veDAO.thanhToanVe(maVe);
-			System.out.println("ThanhToanTien : " + mes);
 			if (mes == null) {
 				ve = veDAO.timVeOfMaVe(maVe);
 				request.getSession().setAttribute("veDi", ve);
