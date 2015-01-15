@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="/BanVeXe/css/datatable/XacNhanThanhToan.css"
 	rel="stylesheet" type="text/css" media="all" />
-<title>Insert title here</title>
+<title>Xác nhận thanh toán</title>
 </head>
 <body>
 	<div id="container">

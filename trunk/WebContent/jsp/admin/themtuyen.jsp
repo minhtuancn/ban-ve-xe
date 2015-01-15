@@ -9,11 +9,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>Thêm tuyến</title>
 <link href="/BanVeXe/css/datatable/ThemTuyen.css" rel="stylesheet"
 	type="text/css" media="all" />
-<link href="/BanVeXe/media/dataTables/demo_page.css" rel="stylesheet"
-	type="text/css" />
+<!-- <link href="/BanVeXe/css/datatable/media/dataTables/demo_page.css" rel="stylesheet" -->
+<!-- 	type="text/css" /> -->
 <link href="/BanVeXe/css/datatable/media/dataTables/demo_table.css"
 	rel="stylesheet" type="text/css" />
 <link href="/BanVeXe/css/datatable/media/dataTables/demo_table_jui.css"
@@ -243,7 +243,7 @@
 				<%
 					}
 				%>
-			</select> <br /> <label for="name">Điểm đến</label> <select name="diemDen"
+			</select> <br /> <label for="name">Điểm đến</label><br/> <select name="diemDen"
 				id="selectdiemDen" rel="1" onchange="setTenTuyen()">
 				<%
 					for (DiaDiem d : listDiaDiem) {

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>Thêm khách hàng</title>
 <link href="/BanVeXe/css/datatable/ThemTuyen.css" rel="stylesheet"
 	type="text/css" media="all" />
 <link href="/BanVeXe/css/datatable/media/dataTables/demo_table.css"

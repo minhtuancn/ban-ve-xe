@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Đổi mật khẩu</title>
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/NhapTTVangLai.css">
 	<script src="/BanVeXe/js/jquery-1.11.1.min.js"></script>
@@ -26,9 +26,6 @@
 		else
 			$("#error-repass").text("Mật khẩu không trùng khớp!");
 	}
-	function checkMk() {
-		$("#error-pass-old").text("");
-	}
 	function md5OldPass() {
 		$("#md5pass-old").val($.md5($("#pass-old").val()));
 	}
@@ -46,10 +43,6 @@
 			return false;
 		}
 	}
-	function reCheck() {
-		$("#error-repass").text("");
-	}
-	
 	</script>
 </head>
 <body>
@@ -65,7 +58,7 @@
 			<div id="divtrai">
 				<label id="slable">Nhập mật khẩu hiện tại:</label><br> 
 				<span id ="error-pass-old" style="color: red;" ><%=mes %></span>
-				<input type="password" class="text" required="required" id="pass-old" onclick ="checkMk()" onkeyup="md5OldPass()"/>
+				<input type="password" class="text" required="required" id="pass-old" onfocus="$('#error-pass-old').text(' ')" onkeyup="md5OldPass()"/>
 				<input type="hidden" name="pass-old" id="md5pass-old" />
 			</div>
 			<div id="divphai">
@@ -77,7 +70,7 @@
 			<div id="divphai">
 				<label id="slable">Nhập lại mật khẩu mới:</label><br>
 				<span id ="error-repass" style="color: red;"></span>
-				<input type="password" class="text" required="required" id="re-pass" onclick="reCheck()"   onkeyup="md5Repass()"/>
+				<input type="password" class="text" required="required" id="re-pass" onfocus="$('#error-repass').text(' ')"  onkeyup="md5Repass()"/>
 				<input type="hidden" name="re-pass" id="md5re-pass" />
 			</div>
 			<div id="bt"><input type="button" value="Đổi mật khẩu" id="button_s" onclick="checkPass()"/></div>

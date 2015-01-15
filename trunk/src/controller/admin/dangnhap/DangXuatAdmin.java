@@ -1,4 +1,4 @@
-package controller;
+package controller.admin.dangnhap;
 
 import java.io.IOException;
 
@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import util.DuongDan;
 
 /**
- * Servlet implementation class DangXuat
+ * Servlet implementation class DangXuatAdmin
  */
-@WebServlet ("/dangxuat")
-public class DangXuat extends HttpServlet {
+@WebServlet("/dangxuatadmin")
+public class DangXuatAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DangXuat() {
+    public DangXuatAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,6 @@ public class DangXuat extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -39,9 +38,9 @@ public class DangXuat extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doAction(request, response);
 	}
-
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().removeAttribute("khachHang");
-		response.sendRedirect(DuongDan.TRANG_CHU);
+		request.getSession().removeAttribute("admin");
+		response.sendRedirect(DuongDan.DANG_NHAP_ADMIN_SV);
 	}
+	
 }

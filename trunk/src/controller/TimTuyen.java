@@ -101,7 +101,18 @@ public class TimTuyen extends HttpServlet {
 			}
 			Date dateNgayDi;
 			try {
+				if(ngaydi == null)
+					throw new ParseException("", 0);
 				dateNgayDi = f.parse(ngaydi);
+				if(dateNgayDi.compareTo(new Date()) <0){
+					mes = "Ngày đi không được nhỏ hơn ngày hiện tại";
+					request.setAttribute("mes", mes);
+					typeError = 2;
+					request.setAttribute("typeError", typeError);
+					request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
+							request, response);
+					return;
+				}
 			} catch (ParseException e) {
 				mes = "Ngày đi không đúng định dạng";
 				request.setAttribute("mes", mes);
@@ -117,6 +128,15 @@ public class TimTuyen extends HttpServlet {
 			if (laKhuHoi_bool) {
 				try {
 					dateNgayVe = f.parse(ngayve);
+					if(dateNgayVe.compareTo(new Date()) <0){
+						mes = "Ngày về không được nhỏ hơn ngày hiện tại";
+						request.setAttribute("mes", mes);
+						typeError = 2;
+						request.setAttribute("typeError", typeError);
+						request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
+								request, response);
+						return;
+					}
 				} catch (ParseException e) {
 					mes = "Ngày về không đúng định dạng";
 					request.setAttribute("mes", mes);
@@ -164,9 +184,9 @@ public class TimTuyen extends HttpServlet {
 			session.setAttribute("laKhuHoi", false);
 			session.setAttribute("tuyenDi", tuyen);
 		}
-//		request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request,
-//				response);
-		response.sendRedirect(DuongDan.TIM_CHUYEN);
+		request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request,
+				response);
+//		response.sendRedirect(DuongDan.TIM_CHUYEN);
 
 	}
 }
