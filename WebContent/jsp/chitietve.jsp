@@ -1,4 +1,6 @@
-﻿<%@page import="model.Ve"%>
+﻿<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
+<%@page import="model.Ve"%>
 <%@page import="model.KhachHang"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
@@ -79,6 +81,10 @@
 	<%
 		Ve veDi = (Ve) session.getAttribute("veDi");
 		KhachHang kh = veDi.getKhachHang();
+		Locale here = request.getLocale();
+		NumberFormat cf = NumberFormat.getCurrencyInstance(here);
+		cf.setMaximumFractionDigits(0);
+		cf.setMinimumFractionDigits(0);
 	%>
 	<%
 		String mes = "";
@@ -131,7 +137,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">Tổng tiền:</td>
-						<td colspan="4" align="center"><%=veDi.getTongTien()%></td>
+						<td colspan="4" align="center"><%=cf.format(veDi.getTongTien())%></td>
 					</tr>
 				</table>
 				<%

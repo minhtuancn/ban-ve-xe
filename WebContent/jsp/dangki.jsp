@@ -23,7 +23,6 @@
 			if($("#error-user").text().length == 0){
 				if ($("#pass").val() == $("#re-pass").val()){
 					if($("#pass").val().length >= 8){
-						
 					}else{
 						$("#error-pass").text("Mật khẩu phải dài hơn 8 kí tự!");
 						return false;

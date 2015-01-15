@@ -92,6 +92,7 @@ public class DuongDan {
 	public static final String SUA_KHACHHANG_SV = "/BanVeXe/updatekhachhang";
 	public static final String THEM_KHACHHANG_SV = "/BanVeXe/listkhachhang";
 	public static final String DANG_NHAP_ADMIN_SV = "/BanVeXe/dangnhapadmin";
+	public static final String DANG_XUAT_ADMIN_SV = "/BanVeXe/dangxuatadmin";
 	public static final String KIEM_TRA_CHUYEN_SV = "/BanVeXe/kiemtrachuyen";
 	public static final String LIST_DIA_DIEM_SV = "/BanVeXe/listdiadiem";
 	public static final String LIST_TUYEN_SV = "/BanVeXe/listtuyen";

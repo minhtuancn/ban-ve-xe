@@ -11,7 +11,7 @@
 <head>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Thêm địa điểm</title>
 <link href="/BanVeXe/css/datatable/ThemDiaDiem.css" rel="stylesheet"
 	type="text/css" media="all" />
 <link href="/BanVeXe/media/dataTables/demo_page.css" rel="stylesheet"

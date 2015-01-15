@@ -25,7 +25,7 @@
 				<a id="taga" href=<%=DuongDan.DANG_KY %>>Đăng kí</a></div>
 				<%}else { %>
 				<div id="dn"><a id="taga" href=<%=DuongDan.XAC_NHAN_THANH_TOAN %>><%= nv.getHoTen()%></a> &nbsp;
-				<a id="taga" href=<%=DuongDan.DANG_XUAT %>>Thoát</a></div>
+				<a id="taga" href=<%=DuongDan.DANG_XUAT_ADMIN_SV %>>Thoát</a></div>
 				<%} %>
 				</div>
 			<nav>

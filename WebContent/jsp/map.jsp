@@ -67,11 +67,19 @@
 			icon : '/BanVeXe/image/user_icon.jpg'
 		});
 		marker.setMap(map);
+		var infowindow = new google.maps.InfoWindow({
+			  content:"Bạn đang ở đây!"
+			  });
+		infowindow.open(map,marker);
 		marker = new google.maps.Marker({
 			position : to,
 			icon : '/BanVeXe/image/icon_nlu.png'
 		});
 		marker.setMap(map);
+		infowindow = new google.maps.InfoWindow({
+			  content:"Đại lý của chúng tôi ở đây!"
+			  });
+		infowindow.open(map,marker);
 		};
 	});
 	

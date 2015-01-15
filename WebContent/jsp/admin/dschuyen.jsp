@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>Danh sách chuyên</title>
 <link rel="stylesheet" type="text/css"
 	href="/BanVeXe/css/datatable/DSChuyen.css">
 <link rel="stylesheet" type="text/css"

@@ -1,3 +1,5 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.NumberFormat"%>
 <%@page import="DAO.ChuyenDAOImpl"%>
 <%@page import="model.Chuyen"%>
 <%@page import="util.DuongDan"%>
@@ -11,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Thêm Chuyến</title>
 <link href="/BanVeXe/css/datatable/ThemChuyen.css" rel="stylesheet"
 	type="text/css" media="all" />
 <!-- <link href="/BanVeXe/css/datatable/media/dataTables/demo_page.css" -->
@@ -42,21 +44,6 @@
 <script src="/BanVeXe/js/scripts/jquery.validate.js"
 	type="text/javascript"></script>
 <script src="/BanVeXe/js/scripts/jquery-ui.js" type="text/javascript"></script>
-<script type="text/javascript">
-// 	$(document).ready(function() {
-// 		var table = $("#myDataTable").dataTable({
-// 			"sPaginationType" : "full_numbers",
-// 			"bJQueryUI" : true
-// 		});
-// 		table.makeEditable({
-// 			sAddNewRowFormId : "formThemTuyen",
-// 			sAddNewRowButtonId : "btThemChuyen",
-// 			sAddNewRowOkButtonId : "btOk",
-// 			sAddNewRowCancelButtonId : "btCancel",
-// 			sDeleteHttpMethod : "POST",
-// 			sDeleteRowButtonId : "btXoaTuyen"
-// 		});
-// 	});
 </script>
 </head>
 <body id="dt_example">
@@ -71,6 +58,10 @@
 				<button id="btXoaChuyen" value="cancel">Xóa chuyến xe</button>
 				<table id="myDataTable" class="display dataTable">
 					<%
+					Locale here = request.getLocale();
+					NumberFormat cf = NumberFormat.getCurrencyInstance(here);
+					cf.setMaximumFractionDigits(0);
+					cf.setMinimumFractionDigits(0);
 						List<Chuyen> listChuyen;
 						if (session.getAttribute("listChuyen") != null)
 							listChuyen = (List<Chuyen>) session.getAttribute("listChuyen");
@@ -95,7 +86,7 @@
 							<td><%=chuyen.getGioKhoiHanh()%></td>
 							<td><%=chuyen.getLoaiXe()%></td>
 							<td><%=chuyen.getBenXuatPhat()%></td>
-							<td><%=chuyen.getGia()%></td>
+							<td><%=cf.format(chuyen.getGia())%></td>
 							<td><%=(!chuyen.isChuaKhoiHanh() ? "Chưa khởi hành"
 						: "Đã khởi hành")%>
 								<%

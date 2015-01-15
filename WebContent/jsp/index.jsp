@@ -1,4 +1,4 @@
-<%@page import="java.text.NumberFormat"%>
+﻿<%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.Locale"%>
 <%@page import="model.Tuyen"%>
 <%@page import="java.util.Date"%>
@@ -177,8 +177,8 @@
 				<input type="hidden" value="<%=mes%>" id="error" />
 				<form action="<%=DuongDan.TIM_TUYEN_SV%>" class="login-form bg"
 					id="formtimve">
-					<input type="hidden" id="idnoidi" name="idnoidi" value="20" /> <input
-						type="hidden" id="idnoiden" name="idnoiden" value="21" />
+					<input type="hidden" id="idnoidi" name="idnoidi" value="" /> <input
+						type="hidden" id="idnoiden" name="idnoiden" value="" />
 					<table id="tb-datve" width="200px">
 						<tr>
 							<td><img alt="a" src="/BanVeXe/image/tim ve xe.jpg"
@@ -196,8 +196,7 @@
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
 									đi:</span><input type="text" id="noidi" placeholder="Nơi đi" readonly
-								value=/>
-								<div id="menu-noidi">
+								value="" />								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
 										int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
@@ -227,8 +226,7 @@
 								</div></td>
 							<td><span id="title-datve" class="title-datveden">Nơi
 									đến:</span><input type="text" id="noiden" placeholder="Nơi đến"
-								value readonly />
-								<div id="menu-noiden">
+								value="" readonly />								<div id="menu-noiden">
 									<%
 										n = 0; for(int i=0; i<sl;){
 									%>
@@ -257,7 +255,7 @@
 						</tr>
 						<tr>
 							<td><span id="title-datve">Ngày đi:</span><input type="date"
-								name="ngaydi" min="<%=f.format(now)%>" value="2014-12-30" /></td>
+								name="ngaydi" min="<%=f.format(now)%>"  /></td>
 							<td><span id="title-datve">Ngày về:</span><input type="date"
 								name="ngayve" min="<%=f.format(now)%>" /></td>
 
@@ -288,19 +286,6 @@
 					VeXeOnline.com, chúng tôi xin đảm bảo quý khách sẽ được phục vụ tận
 					tình, chu đáo!</marquee>
 			</div>
-			<!-- 			 <div style="margin-left: 200px; position: absolute;" align="center" z-index=-1> -->
-			<!-- 			<a href="http://kialongbien.oto-xemay.vn/" target="_blank" -->
-			<!-- 				style="margin-right: 15px;" rel="nofollow"> <img -->
-			<!-- 				src="http://113.160.50.25/banner/top/banner/1412384609_oto-long-bien.gif" -->
-			<!-- 				border="1"></a> <a -->
-			<!-- 				href="http://oto-xemay.vn/xem-tin-tuc/thong-tin-quang-cao-3.html" -->
-			<!-- 				target="_blank" style="margin-right: 15px;" rel="nofollow"> <img -->
-			<!-- 				src="http://113.160.50.25/banner/top/banner/1404352074_lien-he-quang-cao_ngang.gif" -->
-			<!-- 				border="1"></a> <a href="http://quanmuiauto.oto-xemay.vn/" -->
-			<!-- 				target="_blank" style="margin-right: 15px;" rel="nofollow"> <img -->
-			<!-- 				src="http://113.160.50.25/banner/top/banner/1395905620_quan-mui-auto11.gif" -->
-			<!-- 				border="1"></a> -->
-			<!-- 		</div>  -->
 			<div class="center">
 				<div id="left">
 					<img id="imgleft" class="autoScroll" alt="left"
@@ -313,7 +298,7 @@
 								<legend>Các vé được đặt nhiều trong ngày</legend>
 								<div id="vexe-nhieu">
 									<%
-										for (int i = 0; i < 0; i++) {
+										for (int i = 0; i < 4; i++) {
 									%>
 									<div id="nhieu-01">
 										<a
