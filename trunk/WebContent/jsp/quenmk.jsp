@@ -63,7 +63,7 @@
 		</div>
 		<div class="quenmk">
 		<div id="wait" style="display: none; width: 69px; height: 89px; border: 1px solid black;z-index:100; background-color: blue; position: absolute; top: 50%; left: 50%; padding: 2px;">
-			<img src='http://www.w3schools.com/jquery/demo_wait.gif' width="64" height="64" /><br>Loading..
+			<img src='/BanVeXe/image/demo_wait.gif' width="64" height="64" /><br>Loading..
 		</div>
 			<p class="ghichu-qmk">
 				Thông tin chi tiết của Quý khách sẽ giúp chúng tôi xác nhận lại tài
