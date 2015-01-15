@@ -186,23 +186,22 @@
 						</tr>
 						<%
 							List<DiaDiem> listmb = new ArrayList();
-																								if(session.getAttribute("listDiaDiem") != null){
-																								listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
-																									}
-																			List<Tuyen> tuyen = new ArrayList();
-																			if(session.getAttribute("listTuyen") != null){
-																				tuyen = (List<Tuyen>) session.getAttribute("listTuyen");
-																			}
+								if(session.getAttribute("listDiaDiem") != null){
+								listmb = (List<DiaDiem>) session.getAttribute("listDiaDiem");
+								}
+											List<Tuyen> tuyen = new ArrayList();
+										if(session.getAttribute("listTuyen") != null){
+										tuyen = (List<Tuyen>) session.getAttribute("listTuyen");	}
 						%>
 						<tr>
 							<td><span id="title-datve" class="title-datvedi">Nơi
 									đi:</span><input type="text" id="noidi" placeholder="Nơi đi" readonly
-								value="a" />
+								value=/>
 								<div id="menu-noidi">
 									<%
 										int sl = listmb.size();
-																									int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
-																									int n = 0; for(int i=0; i<sl;){
+										int slOnCol = sl/4 + (sl%4 > 0 ?1:0 );
+										int n = 0; for(int i=0; i<sl;){
 									%>
 									<div class="noidi-nam bg">
 										<div id="noidi-den"></div>
@@ -228,7 +227,7 @@
 								</div></td>
 							<td><span id="title-datve" class="title-datveden">Nơi
 									đến:</span><input type="text" id="noiden" placeholder="Nơi đến"
-								value="b" readonly />
+								value readonly />
 								<div id="menu-noiden">
 									<%
 										n = 0; for(int i=0; i<sl;){

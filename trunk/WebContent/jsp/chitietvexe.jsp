@@ -21,11 +21,11 @@
 					window.location = '/BanVeXe/jsp/thanhtoan.jsp';
 				} else {
 					if (responseText.indexOf("1") != -1) {
-						alert("Bạn chưa chọn vé cho chuyến đi!");
+						swal("Bạn chưa chọn vé cho chuyến đi!");
 						setDefaut("chuyenve");
 						scroll("#timvedi", 800);
 					} else {
-						alert("Bạn chưa chọn vé cho chuyến về!");
+						swal("Bạn chưa chọn vé cho chuyến về!");
 						setDefaut("chuyendi");
 						scroll("#timveve", 800);
 					}

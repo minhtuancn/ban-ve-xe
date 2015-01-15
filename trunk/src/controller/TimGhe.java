@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import util.DuongDan;
 import factory.dao.FactoryDAOImp;
 import factory.dao.FactoryDao;
 import DAO.ChuyenDAO;
@@ -89,7 +90,7 @@ public class TimGhe extends HttpServlet {
 						request, response);
 			}
 		}else{
-			response.sendRedirect("/BanVeXe/jsp/body.jsp");
+			response.sendRedirect(DuongDan.TRANG_CHU);
 			
 		}
 	}
