@@ -59,10 +59,10 @@ public class ThemGhe extends HttpServlet {
 		}
 		datVe = (DatVe) session.getAttribute(datVeString);
 		KhachHang kh = (KhachHang) session.getAttribute("khachHang");
-		if ((kh == null && datVe.getSoLuongGhe() > 1)) {
-			mes = "limited-notlogin";
-		} else {
-			if ((kh != null && datVe.getSoLuongGhe() > 4)) {
+//		if ((kh == null && datVe.getSoLuongGhe() > 1)) {
+//			mes = "limited-notlogin";
+//		} else {
+			if ((datVe.getSoLuongGhe() > 4)) {
 				mes = "limited-login";
 			} else {
 				datVe = (DatVe) session.getAttribute(datVeString);
@@ -70,7 +70,7 @@ public class ThemGhe extends HttpServlet {
 				session.setAttribute(datVeString, datVe);
 				mes = "ok";
 			}
-		}
+//		}
 		
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
