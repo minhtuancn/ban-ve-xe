@@ -65,7 +65,7 @@ public class KiemTraVe extends HttpServlet {
 			pageFoward = request.getParameter("pageFoward");
 		KhachHang kh = (KhachHang) session.getAttribute("khachHang");
 		if (kh == null) {
-			response.sendRedirect(DuongDan.DANG_NHAP + "?pageFoward="+pageFoward);
+			response.sendRedirect(DuongDan.DANG_NHAP + "?pageFoward="+DuongDan.KIEM_TRA_VE_SV);
 		} else {
 			kh = khachHangDAO.getKhachHang(kh.getIdKhachHang());
 			session.setAttribute("khachHang", kh);

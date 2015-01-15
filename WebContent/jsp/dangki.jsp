@@ -208,9 +208,9 @@
 						name="captcha" placeholder="Mã xác nhận">
 				</div>
 				<div class="center">
-					<input type="button" id="submitbtn" name="submitbtn" tabindex="5"
-						value="Đăng Kí" onclick="checkPass()">
-						<input type="submit" value="ok"/>
+<!-- 					<input type="button" id="submitbtn" name="submitbtn" tabindex="5" -->
+<!-- 						value="Đăng Kí" onclick="checkPass()"> -->
+						<input id="submitbtn" type="submit" value="Đăng ký"/>
 				</div>
 			</form>
 		</div>

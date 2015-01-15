@@ -65,15 +65,12 @@ public class DoiMatKhau extends HttpServlet {
 		String re_pass = request.getParameter("re-pass");
 		String mes = "";
 
-		KhachHang khachHangDMK = (KhachHang) request.getSession().getAttribute(
-				"khachHang");
+		KhachHang khachHangDMK = (KhachHangThuongXuyen) request.getSession().getAttribute("khachHang");
 		TaiKhoan tk = ((KhachHangThuongXuyen) khachHangDMK).getTaiKhoan();
 		String passKH = tk.getMatKhau();
-		long upDate = -1;
-
 		if (pass_old.equals(passKH)) {
 			if (pass.equals(re_pass)) {
-				upDate = taiKhoanDAO.upDateMatKhau(tk.getTenTK(), pass);
+				taiKhoanDAO.upDateMatKhau(tk.getTenTK(), pass);
 				tk.setMatKhau(pass);
 				request.setAttribute("mesSuccess", "Đổi mật khẩu thành công");
 				request.getRequestDispatcher(DuongDan.KIEM_TRA_THONG_TIN_SVL).forward(request, response);

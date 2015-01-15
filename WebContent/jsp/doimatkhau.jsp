@@ -14,13 +14,20 @@
 	href="/BanVeXe/css/sweet-alert.css">
 	<script type="text/javascript">
 	function checkPass() {
-		if ($("#pass").val() == $("#re-pass").val())
+		if ($("#pass").val() == $("#re-pass").val()){
+				if($("#pass").val().length >= 8){
+					
+				}else{
+					$("#error-pass").text("Mật khẩu phải dài hơn 8 kí tự!");
+					return false;
+				}
 			$("#contactform").submit();
+		}
 		else
-			$("#error-pass").text("Mật khẩu không trùng khớp!");
+			$("#error-repass").text("Mật khẩu không trùng khớp!");
 	}
-	function checkPassOld() {
-		
+	function checkMk() {
+		$("#error-pass-old").text("");
 	}
 	function md5OldPass() {
 		$("#md5pass-old").val($.md5($("#pass-old").val()));
@@ -31,6 +38,18 @@
 	function md5Repass() {
 		$("#md5re-pass").val($.md5($("#re-pass").val()));
 	}
+	function checkPass8() {
+		if($("#pass").val().length >= 8){
+			$("#error-pass").text("");
+		}else{
+			$("#error-pass").text("Mật khẩu phải dài hơn 8 kí tự!");
+			return false;
+		}
+	}
+	function reCheck() {
+		$("#error-repass").text("");
+	}
+	
 	</script>
 </head>
 <body>
@@ -46,18 +65,19 @@
 			<div id="divtrai">
 				<label id="slable">Nhập mật khẩu hiện tại:</label><br> 
 				<span id ="error-pass-old" style="color: red;" ><%=mes %></span>
-				<input type="password" class="text" required="required" id="pass-old" onkeyup="md5OldPass()"/>
+				<input type="password" class="text" required="required" id="pass-old" onclick ="checkMk()" onkeyup="md5OldPass()"/>
 				<input type="hidden" name="pass-old" id="md5pass-old" />
 			</div>
 			<div id="divphai">
 				<label id="slable">Nhập mật khẩu mới:</label><br>
-				<input type="password" class="text" required="required" id="pass" onkeyup="md5Pass()"/>
+				<span id ="error-pass" style="color: red;"></span>
+				<input type="password" class="text" required="required" id="pass" onblur="checkPass8()" onkeyup="md5Pass()"/>
 				<input type="hidden" name="pass" id="md5pass" />
 			</div>
 			<div id="divphai">
 				<label id="slable">Nhập lại mật khẩu mới:</label><br>
-			<span id ="error-pass" style="color: red;"></span>
-				<input type="password" class="text" required="required" id="re-pass" onkeyup="md5Repass()"/>
+				<span id ="error-repass" style="color: red;"></span>
+				<input type="password" class="text" required="required" id="re-pass" onclick="reCheck()"   onkeyup="md5Repass()"/>
 				<input type="hidden" name="re-pass" id="md5re-pass" />
 			</div>
 			<div id="bt"><input type="button" value="Đổi mật khẩu" id="button_s" onclick="checkPass()"/></div>
