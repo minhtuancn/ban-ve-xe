@@ -253,7 +253,7 @@
 													for (Ve v : listVe) {
 												%>
 												<tr id="dong2">
-													<td class="tr1" align="center"><%=v.getTuyenXe()%></td>
+													<td class="tr1" align="center"><a href='<%=DuongDan.TIM_VE_SV+ "?maVe=" + v.getMaVe()%>'><%=v.getTuyenXe()%></a></td>
 													<td class="tr1" align="center"><%=v.getNgayKhoiHanh()%></td>
 													<td class="tr1" align="center"><%=cf.format(v.getTongTien())%></td>
 													<td class="tr1" align="center"><%=v.getLoaiGhe()%></td>
