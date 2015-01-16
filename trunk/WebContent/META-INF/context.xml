@@ -2,7 +2,7 @@
 <Context>
 	<Resource name="jdbc/banvexe?characterEncoding=UTF-8" auth="Container" maxActive="20"
 		maxldle="30" maxWait="10000" username="root" password="vertrigo"
-		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/banvexe?characterEncoding=UTF-8"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://192.168.137.1:3306/banvexe?characterEncoding=UTF-8"
 		logAbandoned="true" removeAbandoned="true" removeAbandonedTimeout="60"
 		type="javax.sql.DataSource" />
 </Context>

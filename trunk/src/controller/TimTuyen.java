@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -73,7 +74,15 @@ public class TimTuyen extends HttpServlet {
 		String mes = null;
 		int typeError = -1;
 		long idNoiDi = 0;
-
+		// lay ngay hien tai
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		Date now = cal.getTime();
+		System.out.println(now);
 		if (idTuyen == null) {
 			SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 			try {
@@ -101,16 +110,18 @@ public class TimTuyen extends HttpServlet {
 			}
 			Date dateNgayDi;
 			try {
-				if(ngaydi == null)
+				if (ngaydi == null)
 					throw new ParseException("", 0);
 				dateNgayDi = f.parse(ngaydi);
-				if(dateNgayDi.compareTo(new Date()) <0){
+				System.out.println(dateNgayDi);
+				System.out.println(dateNgayDi.compareTo(now));
+				if (dateNgayDi.compareTo(now) < 0) {
 					mes = "Ngày đi không được nhỏ hơn ngày hiện tại";
 					request.setAttribute("mes", mes);
 					typeError = 2;
 					request.setAttribute("typeError", typeError);
-					request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
-							request, response);
+					request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL)
+							.forward(request, response);
 					return;
 				}
 			} catch (ParseException e) {
@@ -128,13 +139,13 @@ public class TimTuyen extends HttpServlet {
 			if (laKhuHoi_bool) {
 				try {
 					dateNgayVe = f.parse(ngayve);
-					if(dateNgayVe.compareTo(new Date()) <0){
+					if (dateNgayVe.compareTo(now) < 0) {
 						mes = "Ngày về không được nhỏ hơn ngày hiện tại";
 						request.setAttribute("mes", mes);
 						typeError = 2;
 						request.setAttribute("typeError", typeError);
-						request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL).forward(
-								request, response);
+						request.getRequestDispatcher(DuongDan.TRANG_CHU_SVL)
+								.forward(request, response);
 						return;
 					}
 				} catch (ParseException e) {
@@ -186,7 +197,7 @@ public class TimTuyen extends HttpServlet {
 		}
 		request.getRequestDispatcher(DuongDan.TIM_CHUYEN_SVL).forward(request,
 				response);
-//		response.sendRedirect(DuongDan.TIM_CHUYEN);
+		// response.sendRedirect(DuongDan.TIM_CHUYEN);
 
 	}
 }
