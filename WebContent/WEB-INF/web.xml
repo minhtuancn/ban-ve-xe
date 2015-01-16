@@ -25,7 +25,7 @@
   </context-param>
   <context-param>
     <param-name>comPort</param-name>
-    <param-value>COM8</param-value>
+    <param-value>COM6</param-value>
   </context-param>
   <security-constraint>
     <display-name>Restrict direct access to certain folders</display-name>
